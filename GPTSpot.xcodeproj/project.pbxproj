@@ -21,7 +21,6 @@
 		025AE6AC2B8BEEB4001489A3 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6AB2B8BEEB4001489A3 /* ChatView.swift */; };
 		025AE6AE2B8BEEC3001489A3 /* ChatViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6AD2B8BEEC3001489A3 /* ChatViewService.swift */; };
 		025AE6B02B8D1FF8001489A3 /* View+Styiling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6AF2B8D1FF8001489A3 /* View+Styiling.swift */; };
-		025AE6B22B8D20C4001489A3 /* ProgressWallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6B12B8D20C4001489A3 /* ProgressWallView.swift */; };
 		025C7E212B8D79180060F343 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C7E202B8D79180060F343 /* ChatMessage.swift */; };
 		025C7E232B8D87820060F343 /* ChatMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C7E222B8D87820060F343 /* ChatMessageView.swift */; };
 		02A17A202BA60AD100C26A67 /* BorderlessWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A17A1F2BA60AD100C26A67 /* BorderlessWindow.swift */; };
@@ -66,7 +65,6 @@
 		025AE6AB2B8BEEB4001489A3 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		025AE6AD2B8BEEC3001489A3 /* ChatViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewService.swift; sourceTree = "<group>"; };
 		025AE6AF2B8D1FF8001489A3 /* View+Styiling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Styiling.swift"; sourceTree = "<group>"; };
-		025AE6B12B8D20C4001489A3 /* ProgressWallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressWallView.swift; sourceTree = "<group>"; };
 		025C7E202B8D79180060F343 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		025C7E222B8D87820060F343 /* ChatMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageView.swift; sourceTree = "<group>"; };
 		02A17A1F2BA60AD100C26A67 /* BorderlessWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderlessWindow.swift; sourceTree = "<group>"; };
@@ -187,7 +185,6 @@
 				02A17A212BA60CD000C26A67 /* Previewer.swift */,
 				025AE6AF2B8D1FF8001489A3 /* View+Styiling.swift */,
 				025AE6772B8BA51F001489A3 /* ContentView.swift */,
-				025AE6B12B8D20C4001489A3 /* ProgressWallView.swift */,
 				025C7E1E2B8D77D00060F343 /* ChatView */,
 				025C7E222B8D87820060F343 /* ChatMessageView.swift */,
 				02AAD1BA2B8E7AEA00ED7876 /* HotkeyAction.swift */,
@@ -352,7 +349,6 @@
 				025AE6AE2B8BEEC3001489A3 /* ChatViewService.swift in Sources */,
 				025AE6782B8BA51F001489A3 /* ContentView.swift in Sources */,
 				025C7E212B8D79180060F343 /* ChatMessage.swift in Sources */,
-				025AE6B22B8D20C4001489A3 /* ProgressWallView.swift in Sources */,
 				025AE6A92B8BEE51001489A3 /* ChatCompletion.swift in Sources */,
 				02A17A222BA60CD000C26A67 /* Previewer.swift in Sources */,
 				02AAD1BB2B8E7AEA00ED7876 /* HotkeyAction.swift in Sources */,

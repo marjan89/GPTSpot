@@ -11,10 +11,6 @@ import SwiftData
 enum Role: String {
     case user = "user"
     case assistant = "assistant"
-
-    static func fromRaw(_ rawValue: String) -> Role {
-        return rawValue == "user" ? .user : .assistant
-    }
 }
 
 @Model

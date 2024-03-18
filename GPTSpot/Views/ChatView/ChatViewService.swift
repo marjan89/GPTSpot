@@ -19,8 +19,16 @@ import SwiftData
         sortBy: [.init(\ChatMessage.timestamp)]
     )
     
+    private var lastChatMessagesFetchDescriptor = FetchDescriptor<ChatMessage>(
+        predicate: #Predicate<ChatMessage> { message in
+            message.origin == "user"
+        },
+        sortBy: [.init(\ChatMessage.timestamp, order: .reverse)]
+    )
+    
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
+        lastChatMessagesFetchDescriptor.fetchLimit = 1
     }
     
     private let openAiService = OpenAIService()
@@ -37,9 +45,8 @@ import SwiftData
             insertOrUpdateChatMessage(for: prompt.trimmingCharacters(in: .whitespacesAndNewlines), origin: .user)
             let chatRequest = ChatRequest.request(with: self.loadChatHistory())
             prompt = ""
-            try? await openAiService.completion(
-                for: chatRequest,
-                with: { message in
+            if let messageStream = try? await openAiService.completion(for: chatRequest) {
+                for await message in messageStream {
                     switch message {
                     case .response(let chunk, let id):
                         self.insertOrUpdateChatMessage(for: chunk, origin: .assistant, id: id)
@@ -50,12 +57,18 @@ import SwiftData
                     }
                     self.streamCounter += 1
                 }
-            )
+            }
         }
     }
     
     func discardHistory() {
         try? modelContext.delete(model: ChatMessage.self)
+    }
+    
+    func setToLastUserPrompt() {
+        if let lastMessage = try? modelContext.fetch(lastChatMessagesFetchDescriptor).first {
+            prompt = lastMessage.content
+        }
     }
     
     private func loadChatHistory() -> [ChatRequest.Message] {

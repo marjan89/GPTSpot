@@ -31,7 +31,7 @@ struct ChatView: View {
                 chatViewService.discardHistory()
             }
             HotkeyAction(hotkey: .upArrow, eventModifiers: .command) {
-                lastUserPrompt()
+                chatViewService.setToLastUserPrompt()
             }
             GeometryReader { geometry in
                 ZStack {
@@ -39,13 +39,15 @@ struct ChatView: View {
                         ScrollViewReader { scrollView in
                             List {
                                 ForEach(chatMessages) { chatMessage in
-                                    ChatMessageView(
-                                        content: chatMessage.content,
-                                        origin: .fromRaw(chatMessage.origin),
-                                        spacerWidth: geometry.size.width * 0.33
-                                    )
-                                    .listRowSeparator(.hidden)
-                                    .scaleEffect(x: 1, y: -1, anchor: .center)
+                                    if let role = Role(rawValue: chatMessage.origin) {
+                                        ChatMessageView(
+                                            content: chatMessage.content,
+                                            origin: role,
+                                            spacerWidth: geometry.size.width * 0.33
+                                        )
+                                        .listRowSeparator(.hidden)
+                                        .scaleEffect(x: 1, y: -1, anchor: .center)
+                                    }
                                 }
                             }
                             .scrollContentBackground(.hidden)
@@ -89,16 +91,6 @@ struct ChatView: View {
     private func scrollMessageListToBottom(for scrollView: ScrollViewProxy) {
         if chatMessages.count > 0 {
             scrollView.scrollTo(chatMessages[chatMessages.endIndex - 1].id, anchor: .bottom)
-        }
-    }
-    
-    private func lastUserPrompt() {
-        if let lastUserPrompt = chatMessages.last(
-        where: { chatMessage in
-            chatMessage.origin == Role.user.rawValue
-            }
-        ) {
-            chatViewService.prompt = lastUserPrompt.content
         }
     }
 }
