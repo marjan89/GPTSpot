@@ -5,9 +5,23 @@ import SwiftData
 
 @main
 struct GPTSpotApp: App {
+    
     @NSApplicationDelegateAdaptor(GPTAppDelegate.self) var appDelegate
+    
     var body: some Scene {
+        MenuBarExtra("GPTSpot", systemImage: "gear") {
+            SettingsLink {
+                Text("Settings")
+            }
+            .keyboardShortcut("S")
+            Divider()
+            Button("Quit") {
+                NSApplication.shared.terminate(nil)
+            }
+            .keyboardShortcut("Q")
+        }
         Settings {
+            SpotSettings()
         }
     }
 }
