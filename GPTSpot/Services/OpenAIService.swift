@@ -28,13 +28,16 @@ struct OpenAIService {
         return encoder
     }()
     
-    func completion(for chatRequest: ChatRequest, with responseHandler: @escaping @MainActor (Message) -> Void) async throws {
-        Task {
-            let chatRequest = try createRequest(for: chatRequest)
-            let (stream, _) = try await URLSession.shared.bytes(for: chatRequest)
-            
-            for try await line in stream.lines {
-                await responseHandler(parseRawResponse(line))
+    func completion(for chatRequest: ChatRequest) async throws -> AsyncStream<Message> {
+        let chatRequest = try createRequest(for: chatRequest)
+        let (stream, _) = try await URLSession.shared.bytes(for: chatRequest)
+           
+        return AsyncStream { continuation in
+            Task {
+                for try await line in stream.lines {
+                    continuation.yield(parseRawResponse(line))
+                }
+                continuation.finish()
             }
         }
     }
