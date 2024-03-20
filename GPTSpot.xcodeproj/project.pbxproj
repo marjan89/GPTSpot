@@ -24,8 +24,11 @@
 		025C7E232B8D87820060F343 /* ChatMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C7E222B8D87820060F343 /* ChatMessageView.swift */; };
 		028D48DA2BAA3B6C005E2FF7 /* ChatCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48D92BAA3B6C005E2FF7 /* ChatCompletion.swift */; };
 		028D48DD2BAA3CA9005E2FF7 /* KeysSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48DC2BAA3CA9005E2FF7 /* KeysSettingsView.swift */; };
-		028D48DF2BAA3CBC005E2FF7 /* AIServerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48DE2BAA3CBC005E2FF7 /* AIServerOptions.swift */; };
+		028D48DF2BAA3CBC005E2FF7 /* AIServerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48DE2BAA3CBC005E2FF7 /* AIServerSettingsView.swift */; };
 		028D48E12BAA3CC9005E2FF7 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48E02BAA3CC9005E2FF7 /* GeneralSettingsView.swift */; };
+		028D48E42BAA40F1005E2FF7 /* AIServerDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48E32BAA40F1005E2FF7 /* AIServerDefaultsKeys.swift */; };
+		028D48E62BAA40F8005E2FF7 /* GeneralSettingsDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48E52BAA40F8005E2FF7 /* GeneralSettingsDefaultsKeys.swift */; };
+		028D48E82BAA41D8005E2FF7 /* GPTModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48E72BAA41D8005E2FF7 /* GPTModels.swift */; };
 		02A17A202BA60AD100C26A67 /* BorderlessWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A17A1F2BA60AD100C26A67 /* BorderlessWindow.swift */; };
 		02A17A222BA60CD000C26A67 /* Previewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A17A212BA60CD000C26A67 /* Previewer.swift */; };
 		02AAD1BB2B8E7AEA00ED7876 /* HotkeyAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AAD1BA2B8E7AEA00ED7876 /* HotkeyAction.swift */; };
@@ -72,8 +75,11 @@
 		025C7E222B8D87820060F343 /* ChatMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageView.swift; sourceTree = "<group>"; };
 		028D48D92BAA3B6C005E2FF7 /* ChatCompletion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCompletion.swift; sourceTree = "<group>"; };
 		028D48DC2BAA3CA9005E2FF7 /* KeysSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeysSettingsView.swift; sourceTree = "<group>"; };
-		028D48DE2BAA3CBC005E2FF7 /* AIServerOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIServerOptions.swift; sourceTree = "<group>"; };
+		028D48DE2BAA3CBC005E2FF7 /* AIServerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIServerSettingsView.swift; sourceTree = "<group>"; };
 		028D48E02BAA3CC9005E2FF7 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
+		028D48E32BAA40F1005E2FF7 /* AIServerDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIServerDefaultsKeys.swift; sourceTree = "<group>"; };
+		028D48E52BAA40F8005E2FF7 /* GeneralSettingsDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsDefaultsKeys.swift; sourceTree = "<group>"; };
+		028D48E72BAA41D8005E2FF7 /* GPTModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPTModels.swift; sourceTree = "<group>"; };
 		02A17A1F2BA60AD100C26A67 /* BorderlessWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderlessWindow.swift; sourceTree = "<group>"; };
 		02A17A212BA60CD000C26A67 /* Previewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Previewer.swift; sourceTree = "<group>"; };
 		02AAD1BA2B8E7AEA00ED7876 /* HotkeyAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyAction.swift; sourceTree = "<group>"; };
@@ -109,11 +115,11 @@
 		025AE6692B8BA51F001489A3 = {
 			isa = PBXGroup;
 			children = (
+				02C491632BA71DA800EDB446 /* Frameworks */,
 				025AE6742B8BA51F001489A3 /* GPTSpot */,
 				025AE6862B8BA521001489A3 /* GPTSpotTests */,
 				025AE6902B8BA521001489A3 /* GPTSpotUITests */,
 				025AE6732B8BA51F001489A3 /* Products */,
-				02C491632BA71DA800EDB446 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,6 +136,7 @@
 		025AE6742B8BA51F001489A3 /* GPTSpot */ = {
 			isa = PBXGroup;
 			children = (
+				028D48E22BAA40C3005E2FF7 /* Defaults */,
 				025AE67E2B8BA521001489A3 /* GPTSpot.entitlements */,
 				02A17A1F2BA60AD100C26A67 /* BorderlessWindow.swift */,
 				024EC5252B8E1CB200F7456E /* EventTapManager.swift */,
@@ -190,13 +197,13 @@
 		025C7E1D2B8D77CC0060F343 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				028D48DB2BAA3C8E005E2FF7 /* Settings */,
+				025C7E222B8D87820060F343 /* ChatMessageView.swift */,
+				025AE6772B8BA51F001489A3 /* ContentView.swift */,
+				02AAD1BA2B8E7AEA00ED7876 /* HotkeyAction.swift */,
 				02A17A212BA60CD000C26A67 /* Previewer.swift */,
 				025AE6AF2B8D1FF8001489A3 /* View+Styiling.swift */,
-				025AE6772B8BA51F001489A3 /* ContentView.swift */,
 				025C7E1E2B8D77D00060F343 /* ChatView */,
-				025C7E222B8D87820060F343 /* ChatMessageView.swift */,
-				02AAD1BA2B8E7AEA00ED7876 /* HotkeyAction.swift */,
+				028D48DB2BAA3C8E005E2FF7 /* Settings */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,10 +222,20 @@
 			children = (
 				02BD90B12BA8E5480047115E /* SpotSettings.swift */,
 				028D48DC2BAA3CA9005E2FF7 /* KeysSettingsView.swift */,
-				028D48DE2BAA3CBC005E2FF7 /* AIServerOptions.swift */,
+				028D48DE2BAA3CBC005E2FF7 /* AIServerSettingsView.swift */,
 				028D48E02BAA3CC9005E2FF7 /* GeneralSettingsView.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		028D48E22BAA40C3005E2FF7 /* Defaults */ = {
+			isa = PBXGroup;
+			children = (
+				028D48E32BAA40F1005E2FF7 /* AIServerDefaultsKeys.swift */,
+				028D48E52BAA40F8005E2FF7 /* GeneralSettingsDefaultsKeys.swift */,
+				028D48E72BAA41D8005E2FF7 /* GPTModels.swift */,
+			);
+			path = Defaults;
 			sourceTree = "<group>";
 		};
 		02C491632BA71DA800EDB446 /* Frameworks */ = {
@@ -367,16 +384,19 @@
 				02A17A202BA60AD100C26A67 /* BorderlessWindow.swift in Sources */,
 				024EC5262B8E1CB200F7456E /* EventTapManager.swift in Sources */,
 				02BD90B22BA8E5480047115E /* SpotSettings.swift in Sources */,
+				028D48E82BAA41D8005E2FF7 /* GPTModels.swift in Sources */,
 				025AE6AE2B8BEEC3001489A3 /* ChatViewService.swift in Sources */,
 				025AE6782B8BA51F001489A3 /* ContentView.swift in Sources */,
 				025C7E212B8D79180060F343 /* ChatMessage.swift in Sources */,
 				02A17A222BA60CD000C26A67 /* Previewer.swift in Sources */,
 				028D48DA2BAA3B6C005E2FF7 /* ChatCompletion.swift in Sources */,
 				02AAD1BB2B8E7AEA00ED7876 /* HotkeyAction.swift in Sources */,
+				028D48E62BAA40F8005E2FF7 /* GeneralSettingsDefaultsKeys.swift in Sources */,
 				028D48E12BAA3CC9005E2FF7 /* GeneralSettingsView.swift in Sources */,
 				025AE6762B8BA51F001489A3 /* GPTSpotApp.swift in Sources */,
 				025AE6AC2B8BEEB4001489A3 /* ChatView.swift in Sources */,
-				028D48DF2BAA3CBC005E2FF7 /* AIServerOptions.swift in Sources */,
+				028D48E42BAA40F1005E2FF7 /* AIServerDefaultsKeys.swift in Sources */,
+				028D48DF2BAA3CBC005E2FF7 /* AIServerSettingsView.swift in Sources */,
 				025AE6A82B8BEE51001489A3 /* OpenAIService.swift in Sources */,
 				028D48DD2BAA3CA9005E2FF7 /* KeysSettingsView.swift in Sources */,
 				025AE6B02B8D1FF8001489A3 /* View+Styiling.swift in Sources */,

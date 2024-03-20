@@ -23,7 +23,7 @@ struct SpotSettings: View {
                     Label("General", systemImage: "gear")
                 }
                 .tag(Tabs.general)
-            AIServerOptions()
+            AIServerSettingsView()
                 .tabItem {
                     Label("AI Server", systemImage: "server.rack")
                 }

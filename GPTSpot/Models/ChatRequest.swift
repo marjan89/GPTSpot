@@ -22,9 +22,9 @@ struct ChatRequest: Codable {
 extension ChatRequest {
     static func request(with history: [Message]) -> ChatRequest {
         ChatRequest(
-            model: "gpt-4-0125-preview",
+            model: UserDefaults.standard.string(forKey: AIServerDefaultsKeys.aiModel) ?? "",
             messages: history,
-            temperature: 0.4,
+            temperature: UserDefaults.standard.double(forKey: AIServerDefaultsKeys.temperature),
             stream: true
         )
     }

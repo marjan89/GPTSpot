@@ -14,7 +14,12 @@ enum Message {
 }
 
 struct OpenAIService {
+    private let apiKey: String
     private var session = URLSession.shared
+    
+    init(apiKey: String) {
+        self.apiKey = apiKey
+    }
     
     private static var decoder = {
         let decoder = JSONDecoder()
@@ -48,7 +53,7 @@ struct OpenAIService {
         
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer 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", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         request.httpBody = try Self.encoder.encode(chatRequest)
         
         return request

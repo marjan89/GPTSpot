@@ -31,7 +31,7 @@ import SwiftData
         lastChatMessagesFetchDescriptor.fetchLimit = 1
     }
     
-    private let openAiService = OpenAIService()
+    private let openAiService = OpenAIService(apiKey: UserDefaults.standard.string(forKey: AIServerDefaultsKeys.openAiKey) ?? "")
     
     func executePrompt(shouldDiscardHistory: Bool = false) {
         if generatingContent {

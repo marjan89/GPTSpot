@@ -9,17 +9,19 @@ import Foundation
 import SwiftUI
 
 struct GeneralSettingsView: View {
-    @AppStorage("loginItem") private var loginItem = false
-    @AppStorage("startHidden") private var startHidden = false
+    @AppStorage(GeneralSettingsDefaultsKeys.loginItem) private var loginItem = false
+    @AppStorage(GeneralSettingsDefaultsKeys.startHidden) private var startHidden = false
     
     
     var body: some View {
         Form {
             Toggle(isOn: $loginItem) {
                 Text("Login item")
+                    .foregroundColor(.red)
             }
             Toggle(isOn: $startHidden) {
                 Text("Start hidden")
+                    .foregroundColor(.red)
             }
         }
         .padding(20)

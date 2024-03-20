@@ -8,12 +8,12 @@
 import Foundation
 import SwiftUI
 
-struct AIServerOptions: View {
+struct AIServerSettingsView: View {
     
-    @AppStorage("aiModel") private var aiModel = "gpt-4-0125-preview"
-    @AppStorage("temperature") private var temperature = 0.5
-    @AppStorage("openAIKey") private var openAiKey = ""
-    @AppStorage("maxHistory") private var maxHistory = 6
+    @AppStorage(AIServerDefaultsKeys.aiModel) private var aiModel = GPTModels.models.first ?? "no models defined"
+    @AppStorage(AIServerDefaultsKeys.temperature) private var temperature = 0.5
+    @AppStorage(AIServerDefaultsKeys.openAiKey) private var openAiKey = ""
+    @AppStorage(AIServerDefaultsKeys.maxHistory) private var maxHistory = 6
     
     var body: some View {
         Form {
@@ -33,16 +33,17 @@ struct AIServerOptions: View {
                 Text("2")
             }
             Picker("Model", selection: $aiModel) {
-                Text("gpt-4-1106-preview")
-                    .tag("gpt-4-1106-preview")
-                Text("gpt-4-0125-preview")
-                    .tag("gpt-4-0125-preview")
+                ForEach(GPTModels.models, id: \.self) { model in
+                    Text(model)
+                        .tag(model)
+                }
             }
             TextField(
                 "Maximum history to send",
                 value: $maxHistory,
                 formatter: NumberFormatter()
             )
+            .foregroundColor(.red)
         }
         .padding(20)
         .frame(width: 500, height: 150)
