@@ -11,7 +11,8 @@ import SwiftUI
 struct GeneralSettingsView: View {
     @AppStorage(GeneralSettingsDefaultsKeys.loginItem) private var loginItem = false
     @AppStorage(GeneralSettingsDefaultsKeys.startHidden) private var startHidden = false
-    
+    @AppStorage(GeneralSettingsDefaultsKeys.showHelpRibbon) private var showHelpRibbon = true
+    @AppStorage(GeneralSettingsDefaultsKeys.showStats) private var showStats = true
     
     var body: some View {
         Form {
@@ -21,6 +22,12 @@ struct GeneralSettingsView: View {
             }
             Toggle(isOn: $startHidden) {
                 Text("Start hidden")
+            }
+            Toggle(isOn: $showHelpRibbon) {
+                Text("Show help ribbon")
+            }
+            Toggle(isOn: $showStats) {
+                Text("Show stats")
             }
         }
         .padding(20)

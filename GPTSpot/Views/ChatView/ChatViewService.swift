@@ -17,8 +17,8 @@ import SwiftData
     private let modelContext: ModelContext
     private let openAiService: OpenAIService
     
-    private var chatMessagesFetchDescriptor = FetchDescriptor<ChatMessage>(
-        sortBy: [.init(\ChatMessage.timestamp)]
+    private var chatMessageHistoryFetchDescriptor = FetchDescriptor<ChatMessage>(
+        sortBy: [.init(\ChatMessage.timestamp, order: .reverse)]
     )
     
     private var lastChatMessagesFetchDescriptor = FetchDescriptor<ChatMessage>(
@@ -33,7 +33,6 @@ import SwiftData
         self.openAiService = openAISerice
         lastChatMessagesFetchDescriptor.fetchLimit = 1
     }
-    
     
     func executePrompt(shouldDiscardHistory: Bool = false) {
         if generatingContent {
@@ -74,13 +73,17 @@ import SwiftData
     }
     
     private func loadChatHistory() -> [ChatRequest.Message] {
-        let chatMessages = try? modelContext.fetch(chatMessagesFetchDescriptor)
+        let userLimit = UserDefaults.standard.integer(forKey: AIServerDefaultsKeys.maxHistory)
+        if userLimit > 0 {
+            chatMessageHistoryFetchDescriptor.fetchLimit = userLimit
+        }
+        let chatMessages = try? modelContext.fetch(chatMessageHistoryFetchDescriptor)
         let history = chatMessages?.map { message in
             ChatRequest.Message(
                 role: message.origin,
                 content: message.content
             )
-        } ?? []
+        }.reversed() ?? []
         return history
     }
     

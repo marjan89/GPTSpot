@@ -18,7 +18,11 @@ struct ChatView: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \ChatMessage.timestamp, order: .reverse) var chatMessages: [ChatMessage]
     @FocusState private var focusedField: FocusedField?
-    
+    @AppStorage(AIServerDefaultsKeys.maxHistory) var maxHistory = 6
+    @AppStorage(AIServerDefaultsKeys.aiModel) var aiModel = "Not defined"
+    @AppStorage(GeneralSettingsDefaultsKeys.showHelpRibbon) var showHelpRibbon = true
+    @AppStorage(GeneralSettingsDefaultsKeys.showStats) var showStats = true
+
     var body: some View {
         ZStack {
             HotkeyAction(hotkey: .return, eventModifiers: .command) {
@@ -64,24 +68,34 @@ struct ChatView: View {
                                     .onAppear { focusedField = .prompt }
                                     .roundCorners(strokeColor: .gray)
                                     .frame(height: geometry.size.height / 8)
-                                HStack {
-                                    Text("**⌘d** discard history")
-                                    Text("**⌘↑** last prompt")
-                                    Text("**⌘↩** send")
-                                    Text("**⌘⇧↩** discard history and send")
-                                    Text("**⇧⌃Space** show/hide")
-                                }
-                                .padding(.top, 4)
-                                Text("\(chatMessages.count) messages in history")
+                                if showHelpRibbon {
+                                    HStack {
+                                        Text("**⌘d** discard history")
+                                        Text("**⌘↑** last prompt")
+                                        Text("**⌘↩** send")
+                                        Text("**⌘⇧↩** discard history and send")
+                                        Text("**⇧⌃Space** show/hide")
+                                    }
                                     .padding(.top, 4)
+                                }
+                                if showStats {
+                                    HStack {
+                                        Text("total history: **\(chatMessages.count)**")
+                                            .padding(.top, 4)
+                                        Text("history max: **\(maxHistory)**")
+                                            .padding(.top, 4)
+                                        Text("**\(aiModel)**")
+                                            .padding(.top, 4)
+                                    }
+                                }
                             }
                             .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
+                            .padding(.vertical, 16)
                         }
                     }
                 }
                 .background(.windowBackground)
-                .roundCorners(strokeColor: Color.black)
+                .roundCorners(radius: 16, strokeColor: Color.black)
             }
             .padding(.all, 20)
             .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.33), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)

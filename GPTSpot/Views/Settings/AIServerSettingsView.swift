@@ -38,14 +38,18 @@ struct AIServerSettingsView: View {
                         .tag(model)
                 }
             }
-            TextField(
-                "Maximum history to send",
-                value: $maxHistory,
-                formatter: NumberFormatter()
-            )
-            .foregroundColor(.red)
+            Picker("Maximum history to send", selection: $maxHistory) {
+                ForEach(Array(stride(from: 0, to: 67, by: 6)), id: \.self) { number in
+                    Text(formatHistoryPickerValue(for: number))
+                        .tag(number)
+                }
+            }
         }
         .padding(20)
         .frame(width: 500, height: 150)
+    }
+    
+    private func formatHistoryPickerValue(for number: Int) -> String {
+        "\(number == 0 ? "No limit" : number.formatted())"
     }
 }

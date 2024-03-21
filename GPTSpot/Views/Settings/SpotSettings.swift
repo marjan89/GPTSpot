@@ -14,25 +14,25 @@ enum Tabs {
 }
 
 struct SpotSettings: View {
-    @State private var selectedTab = Tabs.general
+    @State private var selectedTab = Tabs.aiServer
     
     var body: some View {
         TabView(selection: $selectedTab) {
+            AIServerSettingsView()
+                .tabItem {
+                    Label("AI Server", systemImage: "brain")
+                }
+                .tag(Tabs.aiServer)
+            KeysSettingsView()
+                .tabItem {
+                    Label("Keys", systemImage: "keyboard")
+                }
+                .tag(Tabs.keys)
             GeneralSettingsView()
                 .tabItem {
                     Label("General", systemImage: "gear")
                 }
                 .tag(Tabs.general)
-            AIServerSettingsView()
-                .tabItem {
-                    Label("AI Server", systemImage: "server.rack")
-                }
-                .tag(Tabs.aiServer)
-            KeysSettingsView()
-                .tabItem {
-                    Label("Keys", systemImage: "arrowkeys.left.filled")
-                }
-                .tag(Tabs.keys)
         }
         .padding(20)
     }
