@@ -42,7 +42,8 @@ struct ChatView: View {
                     VStack {
                         ScrollViewReader { scrollView in
                             List {
-                                ForEach(chatMessages) { chatMessage in
+                                ForEach(chatMessages.indices, id: \.self) { index in
+                                    let chatMessage = chatMessages[index]
                                     if let role = Role(rawValue: chatMessage.origin) {
                                         ChatMessageView(
                                             content: chatMessage.content,
@@ -51,6 +52,7 @@ struct ChatView: View {
                                         )
                                         .listRowSeparator(.hidden)
                                         .scaleEffect(x: 1, y: -1, anchor: .center)
+                                        .id(index)
                                     }
                                 }
                             }
@@ -81,16 +83,15 @@ struct ChatView: View {
                                 if showStats {
                                     HStack {
                                         Text("total history: **\(chatMessages.count)**")
-                                            .padding(.top, 4)
                                         Text("history max: **\(maxHistory)**")
-                                            .padding(.top, 4)
                                         Text("**\(aiModel)**")
-                                            .padding(.top, 4)
                                     }
+                                    .padding(.top, 4)
                                 }
                             }
                             .padding(.horizontal, 16)
-                            .padding(.vertical, 16)
+                            .padding(.bottom, 16)
+                            .padding(.top, 8)
                         }
                     }
                 }
