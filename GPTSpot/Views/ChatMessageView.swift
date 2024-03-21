@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MarkdownUI
 
 struct ChatMessageView: View {
     
@@ -27,12 +28,30 @@ struct ChatMessageView: View {
                     .frame(minWidth: spacerWidth)
                 menu()
             }
-            Text(chatMessage.content)
+            Markdown(chatMessage.content)
+                .markdownBlockStyle(\.codeBlock) { configuration in
+                    configuration.label
+                        .relativeLineSpacing(.em(0.25))
+                        .markdownTextStyle {
+                            FontFamilyVariant(.monospaced)
+                            FontSize(.em(0.85))
+                            FontWeight(.bold)
+                        }
+                        .padding()
+                        .background(backgroundColor().secondary)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .markdownMargin(top: .zero, bottom: .em(0.8))
+                }
+                .markdownTextStyle(\.code) {
+                    FontFamilyVariant(.monospaced)
+                    FontWeight(.bold)
+                    BackgroundColor(backgroundColor().opacity(0.5))
+                }
                 .foregroundColor(Color(.textColor))
                 .textSelection(.enabled)
                 .scrollContentBackground(.hidden)
                 .padding(.all, 8)
-                .background(chatMessage.origin == Role.user.rawValue ? Color.blue : Color(.unemphasizedSelectedTextBackgroundColor))
+                .background(backgroundColor().secondary)
                 .roundCorners(radius: 8)
                 .frame(alignment: chatMessage.origin == Role.user.rawValue ? .trailing : .leading)
                 .layoutPriority(1)
@@ -43,6 +62,10 @@ struct ChatMessageView: View {
                     .layoutPriority(2)
             }
         }
+    }
+    
+    private func backgroundColor() -> Color {
+        chatMessage.origin == Role.user.rawValue ? Color.blue : Color(.unemphasizedSelectedTextBackgroundColor)
     }
     
     private func menu() -> some View {

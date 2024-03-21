@@ -44,23 +44,21 @@ struct ChatView: View {
             GeometryReader { geometry in
                 ZStack {
                     VStack {
-                        ScrollViewReader { scrollView in
-                            List {
-                                ForEach(chatMessages.indices, id: \.self) { index in
-                                    let chatMessage = chatMessages[index]
-                                    ChatMessageView(
-                                        chatMessage: chatMessage,
-                                        spacerWidth: geometry.size.width * 0.33
-                                    )
-                                    .environment(chatViewService)
-                                    .listRowSeparator(.hidden)
-                                    .scaleEffect(x: 1, y: -1, anchor: .center)
-                                    .id(index)
-                                }
+                        List {
+                            ForEach(chatMessages.indices, id: \.self) { index in
+                                let chatMessage = chatMessages[index]
+                                ChatMessageView(
+                                    chatMessage: chatMessage,
+                                    spacerWidth: geometry.size.width * 0.33
+                                )
+                                .environment(chatViewService)
+                                .listRowSeparator(.hidden)
+                                .scaleEffect(x: 1, y: -1, anchor: .center)
+                                .id(index)
                             }
-                            .scrollContentBackground(.hidden)
-                            .scaleEffect(x: 1, y: -1, anchor: .center)
                         }
+                        .scrollContentBackground(.hidden)
+                        .scaleEffect(x: 1, y: -1, anchor: .center)
                         ZStack {
                             VStack {
                                 TextEditor(text: $chatViewService.prompt)
