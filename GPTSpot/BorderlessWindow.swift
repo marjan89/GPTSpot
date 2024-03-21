@@ -23,9 +23,10 @@ class BorderlessWindow: NSWindow {
         self.makeKey()
         self.center()
         self.contentView = contentView
-        //        self.minSize = NSMakeSize(480, 600)
-        //        self.maxSize = NSMakeSize(CGFloat.greatestFiniteMagnitude, CGFloat.greatestFiniteMagnitude)
-//        self.orderOut(nil)
-        self.makeKeyAndOrderFront(nil)
+        if UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.startHidden) {
+            self.orderOut(nil)
+        } else {
+            self.makeKeyAndOrderFront(nil)
+        }
     }
 }

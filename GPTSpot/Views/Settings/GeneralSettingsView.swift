@@ -21,7 +21,6 @@ struct GeneralSettingsView: View {
             }
             Toggle(isOn: $startHidden) {
                 Text("Start hidden")
-                    .foregroundColor(.red)
             }
         }
         .padding(20)
