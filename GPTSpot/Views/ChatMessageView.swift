@@ -9,40 +9,78 @@ import SwiftUI
 
 struct ChatMessageView: View {
     
-    let content: String
-    let origin: Role
+    @Environment(\.modelContext) var modelContext
+    @Environment(ChatViewService.self) var chatViewService
+    
+    let chatMessage: ChatMessage
     let spacerWidth: Double
     
-    init(content: String, origin: Role, spacerWidth: Double) {
-        self.content = content
-        self.origin = origin
+    init(chatMessage: ChatMessage, spacerWidth: Double) {
+        self.chatMessage = chatMessage
         self.spacerWidth = spacerWidth
     }
     
     var body: some View {
         HStack {
-            if origin == Role.user {
+            if chatMessage.origin == Role.user.rawValue {
                 Spacer()
                     .frame(minWidth: spacerWidth)
+                menu()
             }
-            Text(content)
+            Text(chatMessage.content)
                 .foregroundColor(Color(.textColor))
                 .textSelection(.enabled)
                 .scrollContentBackground(.hidden)
                 .padding(.all, 8)
-                .background(origin == Role.user ? Color.blue : Color(.unemphasizedSelectedTextBackgroundColor))
+                .background(chatMessage.origin == Role.user.rawValue ? Color.blue : Color(.unemphasizedSelectedTextBackgroundColor))
                 .roundCorners(radius: 8)
-                .frame(alignment: origin == .user ? .trailing : .leading)
+                .frame(alignment: chatMessage.origin == Role.user.rawValue ? .trailing : .leading)
                 .layoutPriority(1)
-            if origin == Role.assistant {
+            if chatMessage.origin == Role.assistant.rawValue {
+                menu()
                 Spacer()
                     .frame(maxWidth: spacerWidth)
                     .layoutPriority(2)
             }
         }
     }
-}
-
-#Preview {
-    ChatMessageView(content: "Hello, this is me!", origin: .user, spacerWidth: 100)
+    
+    private func menu() -> some View {
+        Image(systemName: "ellipsis.circle")
+            .contextMenu(ContextMenu(menuItems: {
+                Button {
+                    copyTextToClipboard(text: chatMessage.content)
+                } label: {
+                    Text("Copy")
+                }
+                Button {
+                    chatViewService.prompt = chatMessage.content
+                } label: {
+                    Text("Make prompt")
+                }
+                Button {
+                    chatViewService.deleteMessage(for: chatMessage)
+                } label: {
+                    Text("Delete")
+                }
+            }))
+    }
+    
+    func copyTextToClipboard(text: String) {
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        pasteboard.setString(text, forType: .string)
+    }
+    
+    #Preview {
+        ChatMessageView(
+            chatMessage: ChatMessage(
+                content: "Hello world",
+                origin: Role.user.rawValue,
+                timestamp: 0,
+                id: ""
+            ),
+            spacerWidth: 100
+        )
+    }
 }

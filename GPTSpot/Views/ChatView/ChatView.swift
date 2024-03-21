@@ -15,14 +15,18 @@ struct ChatView: View {
     }
     
     @Bindable var chatViewService: ChatViewService
+    
     @Environment(\.modelContext) var modelContext
+    
     @Query(sort: \ChatMessage.timestamp, order: .reverse) var chatMessages: [ChatMessage]
+    
     @FocusState private var focusedField: FocusedField?
+    
     @AppStorage(AIServerDefaultsKeys.maxHistory) var maxHistory = 6
     @AppStorage(AIServerDefaultsKeys.aiModel) var aiModel = "Not defined"
     @AppStorage(GeneralSettingsDefaultsKeys.showHelpRibbon) var showHelpRibbon = true
     @AppStorage(GeneralSettingsDefaultsKeys.showStats) var showStats = true
-
+    
     var body: some View {
         ZStack {
             HotkeyAction(hotkey: .return, eventModifiers: .command) {
@@ -44,16 +48,14 @@ struct ChatView: View {
                             List {
                                 ForEach(chatMessages.indices, id: \.self) { index in
                                     let chatMessage = chatMessages[index]
-                                    if let role = Role(rawValue: chatMessage.origin) {
-                                        ChatMessageView(
-                                            content: chatMessage.content,
-                                            origin: role,
-                                            spacerWidth: geometry.size.width * 0.33
-                                        )
-                                        .listRowSeparator(.hidden)
-                                        .scaleEffect(x: 1, y: -1, anchor: .center)
-                                        .id(index)
-                                    }
+                                    ChatMessageView(
+                                        chatMessage: chatMessage,
+                                        spacerWidth: geometry.size.width * 0.33
+                                    )
+                                    .environment(chatViewService)
+                                    .listRowSeparator(.hidden)
+                                    .scaleEffect(x: 1, y: -1, anchor: .center)
+                                    .id(index)
                                 }
                             }
                             .scrollContentBackground(.hidden)

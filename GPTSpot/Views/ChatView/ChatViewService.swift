@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import SwiftUI
 
 @Observable final class ChatViewService {
     
@@ -64,6 +65,10 @@ import SwiftData
     
     func discardHistory() {
         try? modelContext.delete(model: ChatMessage.self)
+    }
+    
+    func deleteMessage(for chatMessage: ChatMessage) {
+        modelContext.delete(chatMessage)
     }
     
     func setToLastUserPrompt() {
