@@ -136,12 +136,12 @@
 		025AE6742B8BA51F001489A3 /* GPTSpot */ = {
 			isa = PBXGroup;
 			children = (
-				028D48E22BAA40C3005E2FF7 /* Defaults */,
 				025AE67E2B8BA521001489A3 /* GPTSpot.entitlements */,
 				02A17A1F2BA60AD100C26A67 /* BorderlessWindow.swift */,
 				024EC5252B8E1CB200F7456E /* EventTapManager.swift */,
 				025AE6752B8BA51F001489A3 /* GPTSpotApp.swift */,
 				025AE6792B8BA520001489A3 /* Assets.xcassets */,
+				028D48E22BAA40C3005E2FF7 /* Defaults */,
 				025C7E1B2B8D779B0060F343 /* Models */,
 				025AE67B2B8BA521001489A3 /* Preview Content */,
 				025C7E1C2B8D77AF0060F343 /* Services */,

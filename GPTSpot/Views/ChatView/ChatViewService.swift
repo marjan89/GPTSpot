@@ -12,8 +12,10 @@ import SwiftData
     
     var prompt: String = ""
     var generatingContent: Bool = false
-    var modelContext: ModelContext
     var streamCounter: Int32 = 0
+    
+    private let modelContext: ModelContext
+    private let openAiService: OpenAIService
     
     private var chatMessagesFetchDescriptor = FetchDescriptor<ChatMessage>(
         sortBy: [.init(\ChatMessage.timestamp)]
@@ -26,12 +28,12 @@ import SwiftData
         sortBy: [.init(\ChatMessage.timestamp, order: .reverse)]
     )
     
-    init(modelContext: ModelContext) {
+    init(modelContext: ModelContext, openAISerice: OpenAIService) {
         self.modelContext = modelContext
+        self.openAiService = openAISerice
         lastChatMessagesFetchDescriptor.fetchLimit = 1
     }
     
-    private let openAiService = OpenAIService(apiKey: UserDefaults.standard.string(forKey: AIServerDefaultsKeys.openAiKey) ?? "")
     
     func executePrompt(shouldDiscardHistory: Bool = false) {
         if generatingContent {

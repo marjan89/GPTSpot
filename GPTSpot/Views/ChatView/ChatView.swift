@@ -99,8 +99,11 @@ struct ChatView: View {
     do {
         let previewer = try Previewer()
         
-        return ChatView(chatViewService: .init(modelContext: previewer.container.mainContext))
-            .modelContainer(previewer.container)
+        return ChatView(chatViewService: .init(
+            modelContext: previewer.container.mainContext,
+            openAISerice: OpenAIServiceKey.defaultValue)
+        )
+        .modelContainer(previewer.container)
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")
     }

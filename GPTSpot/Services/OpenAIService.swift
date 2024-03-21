@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum Message {
     case response(chunk: String, id: String)
@@ -72,5 +73,18 @@ struct OpenAIService {
             return .error
         }
         return .response(chunk: chunk.choices.first?.delta.content ?? "", id: chunk.id)
+    }
+}
+
+struct OpenAIServiceKey: EnvironmentKey {
+    static let defaultValue: OpenAIService = OpenAIService(
+        apiKey: UserDefaults.standard.string(forKey: AIServerDefaultsKeys.openAiKey) ?? ""
+    )
+}
+
+extension EnvironmentValues {
+    var openAIService: OpenAIService {
+        get { self[OpenAIServiceKey.self] }
+        set { self[OpenAIServiceKey.self] = newValue }
     }
 }

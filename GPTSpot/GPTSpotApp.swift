@@ -38,6 +38,7 @@ class GPTAppDelegate: NSObject, NSApplicationDelegate {
             for: NSHostingView(
                 rootView: ContentView()
                     .modelContainer(for: ChatMessage.self)
+                    .environment(\.openAIService, OpenAIServiceKey.defaultValue)
             )
         )
     }
