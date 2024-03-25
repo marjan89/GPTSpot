@@ -35,11 +35,17 @@ struct ChatView: View {
             HotkeyAction(hotkey: .return, eventModifiers: [.command,.shift]) {
                 chatViewService.executePrompt(shouldDiscardHistory: true)
             }
-            HotkeyAction(hotkey: KeyEquivalent("d"), eventModifiers: .command) {
+            HotkeyAction(hotkey: .init("d"), eventModifiers: .command) {
                 chatViewService.discardHistory()
             }
             HotkeyAction(hotkey: .upArrow, eventModifiers: .command) {
                 chatViewService.setToLastUserPrompt()
+            }
+            HotkeyAction(hotkey: .init("?"), eventModifiers: .command) {
+                showHelpRibbon = !showHelpRibbon
+            }
+            HotkeyAction(hotkey: .init("."), eventModifiers: .command) {
+                showStats = !showStats
             }
             GeometryReader { geometry in
                 ZStack {
@@ -77,6 +83,8 @@ struct ChatView: View {
                                         Text("**⌘↩** send")
                                         Text("**⌘⇧↩** discard history and send")
                                         Text("**⇧⌃Space** show/hide")
+                                        Text("**⌘.** show stats")
+                                        Text("**⌘?** show help")
                                     }
                                     .padding(.top, 4)
                                 }
