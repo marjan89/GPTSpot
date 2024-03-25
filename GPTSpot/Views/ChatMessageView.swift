@@ -73,24 +73,28 @@ struct ChatMessageView: View {
     }
     
     private func menu() -> some View {
-        Image(systemName: "ellipsis.circle")
-            .contextMenu(ContextMenu(menuItems: {
-                Button {
-                    copyTextToClipboard(text: chatMessage.content)
-                } label: {
-                    Text("Copy")
-                }
-                Button {
-                    chatViewService.prompt = chatMessage.content
-                } label: {
-                    Text("Make prompt")
-                }
-                Button {
-                    chatViewService.deleteMessage(for: chatMessage)
-                } label: {
-                    Text("Delete")
-                }
-            }))
+        VStack {
+            Spacer()
+            Image(systemName: "ellipsis.circle")
+                .contextMenu(ContextMenu(menuItems: {
+                    Button {
+                        copyTextToClipboard(text: chatMessage.content)
+                    } label: {
+                        Text("Copy")
+                    }
+                    Button {
+                        chatViewService.prompt = chatMessage.content
+                    } label: {
+                        Text("Make prompt")
+                    }
+                    Button {
+                        chatViewService.deleteMessage(for: chatMessage)
+                    } label: {
+                        Text("Delete")
+                    }
+                }))
+                .padding(.bottom, 4)
+        }
     }
     
     func copyTextToClipboard(text: String) {
