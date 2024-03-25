@@ -38,20 +38,20 @@ struct ChatMessageView: View {
                             FontWeight(.bold)
                         }
                         .padding()
-                        .background(backgroundColor().secondary)
+                        .background(backgroundColorMarkdown())
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                         .markdownMargin(top: .zero, bottom: .em(0.8))
                 }
                 .markdownTextStyle(\.code) {
                     FontFamilyVariant(.monospaced)
                     FontWeight(.bold)
-                    BackgroundColor(backgroundColor().opacity(0.5))
+                    BackgroundColor(backgroundColorMarkdown())
                 }
                 .foregroundColor(Color(.textColor))
                 .textSelection(.enabled)
                 .scrollContentBackground(.hidden)
                 .padding(.all, 8)
-                .background(backgroundColor().secondary)
+                .background(backgroundColor())
                 .roundCorners(radius: 8)
                 .frame(alignment: chatMessage.origin == Role.user.rawValue ? .trailing : .leading)
                 .layoutPriority(1)
@@ -66,6 +66,10 @@ struct ChatMessageView: View {
     
     private func backgroundColor() -> Color {
         chatMessage.origin == Role.user.rawValue ? Color.blue : Color(.unemphasizedSelectedTextBackgroundColor)
+    }
+    
+    private func backgroundColorMarkdown() -> Color {
+        Color.black.opacity(0.2)
     }
     
     private func menu() -> some View {
