@@ -28,10 +28,11 @@ struct GPTSpotApp: App {
 class GPTAppDelegate: NSObject, NSApplicationDelegate {
     var window: NSWindow!
     var hotKeyRef: EventHotKeyRef?
-    var eventTapManager: EventTapManager?
+    var globalHotkeyManager: GlobalHotKeyManager?
+    
     func applicationDidFinishLaunching(_ notification: Notification) {
         setupWindow()
-        eventTapManager = EventTapManager(lightning: self)
+        globalHotkeyManager = GlobalHotKeyManager(appDelegate: self)
     }
     func setupWindow() {
         window = BorderlessWindow(
