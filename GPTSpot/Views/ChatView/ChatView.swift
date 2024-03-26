@@ -47,6 +47,9 @@ struct ChatView: View {
             HotkeyAction(hotkey: .init("."), eventModifiers: .command) {
                 showStats = !showStats
             }
+            HotkeyAction(hotkey: .init("t"), eventModifiers: .command) {
+                chatViewService.showTemplateStripe = !chatViewService.showTemplateStripe
+            }
             GeometryReader { geometry in
                 ZStack {
                     VStack {
@@ -57,7 +60,29 @@ struct ChatView: View {
                                     chatMessage: chatMessage,
                                     spacerWidth: geometry.size.width * 0.33
                                 )
-                                .environment(chatViewService)
+                                .contextMenu(ContextMenu(menuItems: {
+                                    Button {
+                                        copyTextToClipboard(text: chatMessage.content)
+                                    } label: {
+                                        Text("Copy")
+                                    }
+                                    Button {
+                                        chatViewService.prompt = chatMessage.content
+                                    } label: {
+                                        Text("Make prompt")
+                                    }
+                                    Button {
+                                        chatViewService.deleteMessage(chatMessage)
+                                    } label: {
+                                        Text("Delete")
+                                    }
+                                    Button {
+                                        chatViewService.insertTemplate(from: chatMessage)
+                                    } label: {
+                                        Text("Save template")
+                                    }
+                                }))
+                                .padding(.bottom, 4)
                                 .listRowSeparator(.hidden)
                                 .scaleEffect(x: 1, y: -1, anchor: .center)
                                 .id(index)
@@ -65,42 +90,47 @@ struct ChatView: View {
                         }
                         .scrollContentBackground(.hidden)
                         .scaleEffect(x: 1, y: -1, anchor: .center)
-                        ZStack {
-                            VStack {
-                                TextEditor(text: $chatViewService.prompt)
-                                    .padding(.all, 8)
-                                    .scrollClipDisabled()
-                                    .scrollContentBackground(.hidden)
-                                    .scrollIndicators(.never)
-                                    .focused($focusedField, equals: .prompt)
-                                    .onAppear { focusedField = .prompt }
-                                    .roundCorners(strokeColor: .gray)
-                                    .frame(height: geometry.size.height / 8)
-                                if showHelpRibbon {
-                                    HStack {
-                                        Text("**⌘d** discard history")
-                                        Text("**⌘↑** last prompt")
-                                        Text("**⌘↩** send")
-                                        Text("**⌘⇧↩** discard history and send")
-                                        Text("**⇧⌃Space** show/hide")
-                                        Text("**⌘.** show stats")
-                                        Text("**⌘?** show help")
-                                    }
-                                    .padding(.top, 4)
-                                }
-                                if showStats {
-                                    HStack {
-                                        Text("total history: **\(chatMessages.count)**")
-                                        Text("history max: **\(maxHistory)**")
-                                        Text("**\(aiModel)**")
-                                    }
-                                    .padding(.top, 4)
-                                }
+                        VStack {
+                            if chatViewService.showTemplateStripe {
+                                TemplateStripeView(searchQuery: chatViewService.templateSearchQuery)
+                                    .environment(chatViewService)
+                                    .frame(height: 180)
                             }
-                            .padding(.horizontal, 16)
-                            .padding(.bottom, 16)
-                            .padding(.top, 8)
+                            TextEditor(text: chatViewService.showTemplateStripe ? $chatViewService.templateSearchQuery : $chatViewService.prompt)
+                                .padding(.all, 8)
+                                .scrollClipDisabled()
+                                .scrollContentBackground(.hidden)
+                                .scrollIndicators(.never)
+                                .focused($focusedField, equals: .prompt)
+                                .onAppear { focusedField = .prompt }
+                                .roundCorners(strokeColor: .gray)
+                                .frame(height: geometry.size.height / 8)
+                                .padding(.top, 4)
+                            if showHelpRibbon {
+                                HStack {
+                                    Text("**⌘d** discard history")
+                                    Text("**⌘↑** last prompt")
+                                    Text("**⌘↩** send")
+                                    Text("**⌘⇧↩** discard history and send")
+                                    Text("**⇧⌃Space** show/hide")
+                                    Text("**⌘t** templates")
+                                    Text("**⌘.** show stats")
+                                    Text("**⌘?** show help")
+                                }
+                                .padding(.top, 4)
+                            }
+                            if showStats {
+                                HStack {
+                                    Text("total history: **\(chatMessages.count)**")
+                                    Text("history max: **\(maxHistory)**")
+                                    Text("**\(aiModel)**")
+                                }
+                                .padding(.top, 4)
+                            }
                         }
+                        .padding(.horizontal, 16)
+                        .padding(.bottom, 16)
+                        .padding(.top, 8)
                     }
                 }
                 .background(.windowBackground)
@@ -109,6 +139,12 @@ struct ChatView: View {
             .padding(.all, 20)
             .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.33), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
         }
+    }
+    
+    func copyTextToClipboard(text: String) {
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        pasteboard.setString(text, forType: .string)
     }
     
     private func scrollMessageListToBottom(for scrollView: ScrollViewProxy) {

@@ -14,6 +14,8 @@ import SwiftUI
     var prompt: String = ""
     var generatingContent: Bool = false
     var streamCounter: Int32 = 0
+    var showTemplateStripe = false
+    var templateSearchQuery = ""
     
     private let modelContext: ModelContext
     private let openAiService: OpenAIService
@@ -67,8 +69,22 @@ import SwiftUI
         try? modelContext.delete(model: ChatMessage.self)
     }
     
-    func deleteMessage(for chatMessage: ChatMessage) {
+    func deleteMessage(_ chatMessage: ChatMessage) {
         modelContext.delete(chatMessage)
+    }
+    
+    func insertTemplate(from chatMessage: ChatMessage) {
+        modelContext.insert(Template(content: chatMessage.content))
+    }
+    
+    func deleteTemplate(_ template: Template) {
+        modelContext.delete(template)
+    }
+    
+    func setTemplateAsPrompt(template: Template) {
+        prompt = template.content
+        showTemplateStripe = false
+        templateSearchQuery = ""
     }
     
     func setToLastUserPrompt() {

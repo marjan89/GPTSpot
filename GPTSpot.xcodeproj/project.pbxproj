@@ -21,6 +21,10 @@
 		025AE6B02B8D1FF8001489A3 /* View+Styiling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6AF2B8D1FF8001489A3 /* View+Styiling.swift */; };
 		025C7E212B8D79180060F343 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C7E202B8D79180060F343 /* ChatMessage.swift */; };
 		025C7E232B8D87820060F343 /* ChatMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C7E222B8D87820060F343 /* ChatMessageView.swift */; };
+		0288BF622BB2D7180047CA09 /* TemplateStripeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288BF612BB2D7180047CA09 /* TemplateStripeView.swift */; };
+		0288BF642BB2D7270047CA09 /* TemplateItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288BF632BB2D7270047CA09 /* TemplateItemView.swift */; };
+		0288BF662BB3116E0047CA09 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288BF652BB3116E0047CA09 /* Template.swift */; };
+		0288BF682BB32DF00047CA09 /* Markdown+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288BF672BB32DF00047CA09 /* Markdown+Styling.swift */; };
 		028D48DA2BAA3B6C005E2FF7 /* ChatCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48D92BAA3B6C005E2FF7 /* ChatCompletion.swift */; };
 		028D48DD2BAA3CA9005E2FF7 /* KeysSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48DC2BAA3CA9005E2FF7 /* KeysSettingsView.swift */; };
 		028D48DF2BAA3CBC005E2FF7 /* AIServerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48DE2BAA3CBC005E2FF7 /* AIServerSettingsView.swift */; };
@@ -73,6 +77,10 @@
 		025AE6AF2B8D1FF8001489A3 /* View+Styiling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Styiling.swift"; sourceTree = "<group>"; };
 		025C7E202B8D79180060F343 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		025C7E222B8D87820060F343 /* ChatMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageView.swift; sourceTree = "<group>"; };
+		0288BF612BB2D7180047CA09 /* TemplateStripeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateStripeView.swift; sourceTree = "<group>"; };
+		0288BF632BB2D7270047CA09 /* TemplateItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateItemView.swift; sourceTree = "<group>"; };
+		0288BF652BB3116E0047CA09 /* Template.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
+		0288BF672BB32DF00047CA09 /* Markdown+Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Markdown+Styling.swift"; sourceTree = "<group>"; };
 		028D48D92BAA3B6C005E2FF7 /* ChatCompletion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCompletion.swift; sourceTree = "<group>"; };
 		028D48DC2BAA3CA9005E2FF7 /* KeysSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeysSettingsView.swift; sourceTree = "<group>"; };
 		028D48DE2BAA3CBC005E2FF7 /* AIServerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIServerSettingsView.swift; sourceTree = "<group>"; };
@@ -184,6 +192,7 @@
 				025AE6A72B8BEE51001489A3 /* ChatRequest.swift */,
 				025C7E202B8D79180060F343 /* ChatMessage.swift */,
 				02FE75212BA65A0B0048A4EB /* Chunk.swift */,
+				0288BF652BB3116E0047CA09 /* Template.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -199,6 +208,7 @@
 		025C7E1D2B8D77CC0060F343 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0288BF602BB2D6C20047CA09 /* Templates */,
 				025C7E222B8D87820060F343 /* ChatMessageView.swift */,
 				025AE6772B8BA51F001489A3 /* ContentView.swift */,
 				02AAD1BA2B8E7AEA00ED7876 /* HotkeyAction.swift */,
@@ -206,6 +216,7 @@
 				025AE6AF2B8D1FF8001489A3 /* View+Styiling.swift */,
 				025C7E1E2B8D77D00060F343 /* ChatView */,
 				028D48DB2BAA3C8E005E2FF7 /* Settings */,
+				0288BF672BB32DF00047CA09 /* Markdown+Styling.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -217,6 +228,15 @@
 				025AE6AD2B8BEEC3001489A3 /* ChatViewService.swift */,
 			);
 			path = ChatView;
+			sourceTree = "<group>";
+		};
+		0288BF602BB2D6C20047CA09 /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				0288BF612BB2D7180047CA09 /* TemplateStripeView.swift */,
+				0288BF632BB2D7270047CA09 /* TemplateItemView.swift */,
+			);
+			path = Templates;
 			sourceTree = "<group>";
 		};
 		028D48DB2BAA3C8E005E2FF7 /* Settings */ = {
@@ -390,12 +410,16 @@
 				02E04C432BB1D9F50074A95E /* GlobalHotKeyManager.swift in Sources */,
 				028D48E82BAA41D8005E2FF7 /* GPTModels.swift in Sources */,
 				025AE6AE2B8BEEC3001489A3 /* ChatViewService.swift in Sources */,
+				0288BF682BB32DF00047CA09 /* Markdown+Styling.swift in Sources */,
+				0288BF642BB2D7270047CA09 /* TemplateItemView.swift in Sources */,
 				025AE6782B8BA51F001489A3 /* ContentView.swift in Sources */,
 				025C7E212B8D79180060F343 /* ChatMessage.swift in Sources */,
 				02A17A222BA60CD000C26A67 /* Previewer.swift in Sources */,
 				028D48DA2BAA3B6C005E2FF7 /* ChatCompletion.swift in Sources */,
+				0288BF622BB2D7180047CA09 /* TemplateStripeView.swift in Sources */,
 				02AAD1BB2B8E7AEA00ED7876 /* HotkeyAction.swift in Sources */,
 				028D48E62BAA40F8005E2FF7 /* GeneralSettingsDefaultsKeys.swift in Sources */,
+				0288BF662BB3116E0047CA09 /* Template.swift in Sources */,
 				028D48E12BAA3CC9005E2FF7 /* GeneralSettingsView.swift in Sources */,
 				025AE6762B8BA51F001489A3 /* GPTSpotApp.swift in Sources */,
 				025AE6AC2B8BEEB4001489A3 /* ChatView.swift in Sources */,
