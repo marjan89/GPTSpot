@@ -14,6 +14,10 @@ struct ChatView: View {
         case prompt
     }
     
+    enum FocusedMessageField : Hashable {
+        case index(_ value: Int)
+    }
+    
     @Bindable var chatViewService: ChatViewService
     
     @Environment(\.modelContext) var modelContext
@@ -27,28 +31,64 @@ struct ChatView: View {
     @AppStorage(GeneralSettingsDefaultsKeys.showHelpRibbon) var showHelpRibbon = true
     @AppStorage(GeneralSettingsDefaultsKeys.showStats) var showStats = true
     
+    @FocusState var focusedMessageField: FocusedMessageField?
+    
     var body: some View {
         ZStack {
-            HotkeyAction(hotkey: .return, eventModifiers: .command) {
+            HotkeyAction(hotkey: .return) {
                 chatViewService.executePrompt()
             }
             HotkeyAction(hotkey: .return, eventModifiers: [.command,.shift]) {
                 chatViewService.executePrompt(shouldDiscardHistory: true)
             }
-            HotkeyAction(hotkey: .init("d"), eventModifiers: .command) {
+            HotkeyAction(hotkey: .init("d")) {
                 chatViewService.discardHistory()
             }
-            HotkeyAction(hotkey: .upArrow, eventModifiers: .command) {
+            HotkeyAction(hotkey: .upArrow) {
                 chatViewService.setToLastUserPrompt()
             }
-            HotkeyAction(hotkey: .init("?"), eventModifiers: .command) {
+            HotkeyAction(hotkey: .init("?")) {
                 showHelpRibbon = !showHelpRibbon
             }
-            HotkeyAction(hotkey: .init("."), eventModifiers: .command) {
+            HotkeyAction(hotkey: .init(".")) {
                 showStats = !showStats
             }
-            HotkeyAction(hotkey: .init("t"), eventModifiers: .command) {
+            HotkeyAction(hotkey: .init("t")) {
                 chatViewService.showTemplateStripe = !chatViewService.showTemplateStripe
+            }
+            HotkeyAction(hotkey: .init("k")) {
+                if case let .index(value) = focusedMessageField {
+                    focusedMessageField = .index(min(value + 1, chatMessages.count - 1))
+                } else {
+                    focusedMessageField = .index(0)
+                }
+            }
+            HotkeyAction(hotkey: .init("j")) {
+                if case let .index(value) = focusedMessageField {
+                    focusedMessageField = .index(max(value - 1, 0))
+                } else {
+                    focusedMessageField = .index(0)
+                }
+            }
+            HotkeyAction(hotkey: .return, eventModifiers: .option) {
+                if case let .index(value) = focusedMessageField {
+                    chatViewService.prompt = chatMessages[value].content
+                }
+            }
+            HotkeyAction(hotkey: .delete) {
+                if case let .index(value) = focusedMessageField {
+                    chatViewService.deleteMessage(chatMessages[value])
+                }
+            }
+            HotkeyAction(hotkey: .init("s")) {
+                if case let .index(value) = focusedMessageField {
+                    chatViewService.insertTemplate(from: chatMessages[value])
+                }
+            }
+            HotkeyAction(hotkey: .init("c")) {
+                if case let .index(value) = focusedMessageField {
+                    copyTextToClipboard(text: chatMessages[value].content)
+                }
             }
             GeometryReader { geometry in
                 ZStack {
@@ -60,6 +100,8 @@ struct ChatView: View {
                                     chatMessage: chatMessage,
                                     spacerWidth: geometry.size.width * 0.33
                                 )
+                                .focusable(true)
+                                .focused($focusedMessageField, equals: .index(index))
                                 .contextMenu(ContextMenu(menuItems: {
                                     Button {
                                         copyTextToClipboard(text: chatMessage.content)
@@ -94,7 +136,7 @@ struct ChatView: View {
                             if chatViewService.showTemplateStripe {
                                 TemplateStripeView(searchQuery: chatViewService.templateSearchQuery)
                                     .environment(chatViewService)
-                                    .frame(height: 180)
+                                    .frame(height: 196)
                             }
                             TextEditor(text: chatViewService.showTemplateStripe ? $chatViewService.templateSearchQuery : $chatViewService.prompt)
                                 .padding(.all, 8)
@@ -106,18 +148,26 @@ struct ChatView: View {
                                 .roundCorners(strokeColor: .gray)
                                 .frame(height: geometry.size.height / 8)
                                 .padding(.top, 4)
+                            HStack {
+                                Spacer()
+                                Button("", systemImage: "questionmark.circle.fill") {}
+                                    .buttonStyle(BorderlessButtonStyle())
+                                Button("", systemImage: "chart.bar.fill") {}
+                                    .buttonStyle(BorderlessButtonStyle())
+                                Button("", systemImage: "trash.fill") {}
+                                    .buttonStyle(BorderlessButtonStyle())
+                                Button("", systemImage: "folder.fill") {}
+                                    .buttonStyle(BorderlessButtonStyle())
+                                Button("", systemImage: "memories") {}
+                                    .buttonStyle(BorderlessButtonStyle())
+                                Button("", systemImage: "paperplane.circle.fill") {}
+                                    .buttonStyle(BorderlessButtonStyle())
+                                Button("", systemImage: "paperplane.fill") {}
+                                    .buttonStyle(BorderlessButtonStyle())
+                            }
                             if showHelpRibbon {
-                                HStack {
-                                    Text("**⌘d** discard history")
-                                    Text("**⌘↑** last prompt")
-                                    Text("**⌘↩** send")
-                                    Text("**⌘⇧↩** discard history and send")
-                                    Text("**⇧⌃Space** show/hide")
-                                    Text("**⌘t** templates")
-                                    Text("**⌘.** show stats")
-                                    Text("**⌘?** show help")
-                                }
-                                .padding(.top, 4)
+                                CheatSheetView()
+                                    .padding(.top, 4)
                             }
                             if showStats {
                                 HStack {

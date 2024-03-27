@@ -31,6 +31,5 @@ extension Markdown {
             BackgroundColor(Color.black.opacity(0.2))
         }
         .foregroundColor(Color(.textColor))
-      
     }
 }

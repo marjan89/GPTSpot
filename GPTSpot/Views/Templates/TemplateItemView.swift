@@ -16,10 +16,10 @@ struct TemplateItemView: View {
         ZStack {
             Markdown(text)
                 .gptStyle()
-                .multilineTextAlignment(.leading)
                 .padding(8)
-                .frame(width: 240, height: 180, alignment: .topLeading)
+                .multilineTextAlignment(.leading)
                 .scrollContentBackground(.hidden)
+                .frame(idealWidth: 240, maxHeight: 180, alignment: .topLeading)
         }
         .background(.blue)
         .roundCorners(radius: 8)

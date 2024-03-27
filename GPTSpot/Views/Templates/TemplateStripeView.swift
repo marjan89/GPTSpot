@@ -10,9 +10,15 @@ import SwiftData
 
 struct TemplateStripeView: View {
     
+    enum FocusedTemplateField : Hashable {
+        case index(_ value: Int)
+    }
+    
     @Environment(\.modelContext) var modelContext
     @Environment(ChatViewService.self) var chatViewService
     @Query private var templates: [Template]
+    
+    @FocusState var focusedTemplateField: FocusedTemplateField?
     
     init(searchQuery: String) {
         _templates = Query(
@@ -34,28 +40,57 @@ struct TemplateStripeView: View {
     }
     
     var body: some View {
-        ScrollView(.horizontal) {
-            LazyHStack {
-                ForEach(templates, id: \.self) { template in
-                    TemplateItemView(text: template.content)
-                        .padding(.trailing, 8)
-                        .contextMenu(ContextMenu(menuItems: {
-                            Button {
-                                chatViewService.setTemplateAsPrompt(template: template)
-                            } label: {
-                                Text("Make prompt")
-                            }
-                            Button {
-                                chatViewService.deleteTemplate(template)
-                            } label: {
-                                Text("Delete")
-                            }
-                        }))
+        ZStack {
+            HotkeyAction(hotkey: .init("]")) {
+                if case let .index(value) = focusedTemplateField {
+                    focusedTemplateField = .index(min(value + 1, templates.count - 1))
+                } else {
+                    focusedTemplateField = .index(0)
                 }
             }
+            HotkeyAction(hotkey: .init("[")) {
+                if case let .index(value) = focusedTemplateField {
+                    focusedTemplateField = .index(max(value - 1, 0))
+                } else {
+                    focusedTemplateField = .index(0)
+                }
+            }
+            HotkeyAction(hotkey: .delete) {
+                if case let .index(value) = focusedTemplateField {
+                    chatViewService.deleteTemplate(templates[value])
+                }
+            }
+            HotkeyAction(hotkey: .return, eventModifiers: .option) {
+                if case let .index(value) = focusedTemplateField {
+                    chatViewService.setTemplateAsPrompt(template: templates[value])
+                }
+            }
+            ScrollView(.horizontal) {
+                LazyHStack {
+                    ForEach(templates.indices, id: \.self) { index in
+                        TemplateItemView(text: templates[index].content)
+                            .focusable(true)
+                            .focused($focusedTemplateField, equals: .index(index))
+                            .id(index)
+                            .contextMenu(ContextMenu(menuItems: {
+                                Button {
+                                    chatViewService.setTemplateAsPrompt(template: templates[index])
+                                } label: {
+                                    Text("Make prompt")
+                                }
+                                Button {
+                                    chatViewService.deleteTemplate(templates[index])
+                                } label: {
+                                    Text("Delete")
+                                }
+                            }))
+                    }
+                }
+                .padding(4)
+            }
+            .scrollIndicators(.hidden)
+            .roundCorners(radius: 4)
         }
-        .scrollIndicators(.hidden)
-        .roundCorners(radius: 8)
     }
 }
 

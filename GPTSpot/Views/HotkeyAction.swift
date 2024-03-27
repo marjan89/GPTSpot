@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct HotkeyAction: View {
-    let hotkey: KeyEquivalent
-    let eventModifiers: EventModifiers
-    let action: () -> Void
+    private let hotkey: KeyEquivalent
+    private let eventModifiers: EventModifiers
+    private let action: () -> Void
     
+    init(hotkey: KeyEquivalent, eventModifiers: EventModifiers = .command, action: @escaping () -> Void) {
+        self.hotkey = hotkey
+        self.eventModifiers = eventModifiers
+        self.action = action
+    }
+
     var body: some View {
         Button(action: action) {  }
             .keyboardShortcut(hotkey, modifiers: eventModifiers)
