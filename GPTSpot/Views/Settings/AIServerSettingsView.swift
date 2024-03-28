@@ -45,7 +45,6 @@ struct AIServerSettingsView: View {
                 }
             }
         }
-        .padding(20)
         .frame(width: 500, height: 150)
     }
     

@@ -18,12 +18,14 @@ class ChatMessage {
     var content: String = ""
     var origin: String = Role.assistant.rawValue
     var timestamp: Double = 0
-    var id = ""
+    var id: String = ""
+    var workspace: Int = 1
 
-    init(content: String, origin: String, timestamp: Double, id: String) {
+    init(content: String, origin: String, timestamp: Double, id: String, workspace: Int) {
         self.content = content
         self.origin = origin
         self.timestamp = timestamp
         self.id = id
+        self.workspace = workspace
     }
 }

@@ -13,16 +13,14 @@ struct TemplateItemView: View {
     let text: String
     
     var body: some View {
-        ZStack {
-            Markdown(text)
-                .gptStyle()
-                .padding(8)
-                .multilineTextAlignment(.leading)
-                .scrollContentBackground(.hidden)
-                .frame(idealWidth: 240, maxHeight: 180, alignment: .topLeading)
-        }
-        .background(.blue)
-        .roundCorners(radius: 8)
+        Markdown(text)
+            .gptStyle()
+            .padding(8)
+            .multilineTextAlignment(.leading)
+            .scrollContentBackground(.hidden)
+            .frame(idealWidth: 240, minHeight: 180, maxHeight: 180, alignment: .topLeading)
+            .background(.blue)
+            .cornerRadius(8)
     }
 }
 

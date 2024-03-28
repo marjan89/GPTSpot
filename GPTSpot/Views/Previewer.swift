@@ -22,8 +22,8 @@ struct Previewer {
         )
 
         chatMessages = [
-            ChatMessage(content: "Hello world", origin: "user", timestamp: 0, id: ""),
-            ChatMessage(content: "Hello", origin: "assistant", timestamp: 0, id: "")
+            ChatMessage(content: "Hello world", origin: "user", timestamp: 0, id: "", workspace: 1),
+            ChatMessage(content: "Hello", origin: "assistant", timestamp: 0, id: "", workspace: 1)
         ]
         
         templates = [

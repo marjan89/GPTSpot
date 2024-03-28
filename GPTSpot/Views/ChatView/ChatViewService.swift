@@ -12,11 +12,8 @@ import SwiftUI
 @Observable final class ChatViewService {
     
     var prompt: String = ""
-    var generatingContent: Bool = false
-    var streamCounter: Int32 = 0
-    var showTemplateStripe = false
-    var templateSearchQuery = ""
     
+    private var generatingContent: Bool = false
     private let modelContext: ModelContext
     private let openAiService: OpenAIService
     
@@ -24,76 +21,66 @@ import SwiftUI
         sortBy: [.init(\ChatMessage.timestamp, order: .reverse)]
     )
     
-    private var lastChatMessagesFetchDescriptor = FetchDescriptor<ChatMessage>(
-        predicate: #Predicate<ChatMessage> { message in
-            message.origin == "user"
-        },
-        sortBy: [.init(\ChatMessage.timestamp, order: .reverse)]
-    )
-    
     init(modelContext: ModelContext, openAISerice: OpenAIService) {
         self.modelContext = modelContext
         self.openAiService = openAISerice
-        lastChatMessagesFetchDescriptor.fetchLimit = 1
     }
     
-    func executePrompt(shouldDiscardHistory: Bool = false) {
+    func executePrompt(shouldDiscardHistory: Bool = false, workspace: Int) {
         if generatingContent {
             return
         }
         generatingContent = true
         Task { @MainActor in
             if shouldDiscardHistory {
-                discardHistory()
+                discardHistory(for: workspace)
             }
-            insertOrUpdateChatMessage(for: prompt.trimmingCharacters(in: .whitespacesAndNewlines), origin: .user)
-            let chatRequest = ChatRequest.request(with: self.loadChatHistory())
+            let sanitizedPrompt = prompt.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            if sanitizedPrompt.isEmpty {
+                return
+            }
+            insertOrUpdateChatMessage(for: sanitizedPrompt, origin: .user, workspace: workspace)
+            let chatRequest = ChatRequest.request(with: self.loadChatHistory(for: workspace))
             prompt = ""
             if let messageStream = try? await openAiService.completion(for: chatRequest) {
                 for await message in messageStream {
                     switch message {
                     case .response(let chunk, let id):
-                        self.insertOrUpdateChatMessage(for: chunk, origin: .assistant, id: id)
+                        self.insertOrUpdateChatMessage(for: chunk, origin: .assistant, id: id, workspace: workspace)
                     case .terminator:
                         self.generatingContent = false
                     case .error:
                         print("error")
                     }
-                    self.streamCounter += 1
                 }
             }
         }
     }
     
-    func discardHistory() {
-        try? modelContext.delete(model: ChatMessage.self)
+    func discardHistory(for workspace: Int) {
+        try? modelContext.delete(
+            model: ChatMessage.self,
+            where: #Predicate<ChatMessage> { message in
+                message.workspace == workspace
+            }
+        )
     }
     
-    func deleteMessage(_ chatMessage: ChatMessage) {
-        modelContext.delete(chatMessage)
-    }
-    
-    func insertTemplate(from chatMessage: ChatMessage) {
-        modelContext.insert(Template(content: chatMessage.content))
-    }
-    
-    func deleteTemplate(_ template: Template) {
-        modelContext.delete(template)
-    }
-    
-    func setTemplateAsPrompt(template: Template) {
-        prompt = template.content
-        showTemplateStripe = false
-        templateSearchQuery = ""
-    }
-    
-    func setToLastUserPrompt() {
+    func setLastChatMessageAsPrompt(workspace: Int) {
+        var lastChatMessagesFetchDescriptor = FetchDescriptor<ChatMessage>(
+            predicate: #Predicate<ChatMessage> { message in
+                message.origin == "user" && message.workspace == workspace
+            },
+            sortBy: [.init(\ChatMessage.timestamp, order: .reverse)]
+        )
+        lastChatMessagesFetchDescriptor.fetchLimit = 1
         if let lastMessage = try? modelContext.fetch(lastChatMessagesFetchDescriptor).first {
             prompt = lastMessage.content
         }
     }
     
-    private func loadChatHistory() -> [ChatRequest.Message] {
+    private func loadChatHistory(for workspace: Int) -> [ChatRequest.Message] {
         let userLimit = UserDefaults.standard.integer(forKey: AIServerDefaultsKeys.maxHistory)
         if userLimit > 0 {
             chatMessageHistoryFetchDescriptor.fetchLimit = userLimit
@@ -108,9 +95,9 @@ import SwiftUI
         return history
     }
     
-    private func insertOrUpdateChatMessage(for content: String, origin: Role, id: String = "") {
+    private func insertOrUpdateChatMessage(for content: String, origin: Role, id: String = "", workspace: Int) {
         if origin == .user {
-            insertChatMessage(for: content, origin: origin, id: UUID().uuidString)
+            insertChatMessage(for: content, origin: origin, id: UUID().uuidString, workspace: workspace)
             return
         }
         let searchPredicate = #Predicate<ChatMessage> { message in
@@ -120,16 +107,17 @@ import SwiftUI
         if let persistedMessage {
             persistedMessage.content += content
         } else {
-            insertChatMessage(for: content, origin: origin, id: id)
+            insertChatMessage(for: content, origin: origin, id: id, workspace: workspace)
         }
     }
     
-    private func insertChatMessage(for content: String, origin: Role, id: String = "") {
+    private func insertChatMessage(for content: String, origin: Role, id: String = "", workspace: Int) {
         let chatMessage = ChatMessage(
             content: content,
             origin: origin.rawValue,
             timestamp: Date().timeIntervalSince1970,
-            id: id
+            id: id,
+            workspace: workspace
         )
         modelContext.insert(chatMessage)
     }

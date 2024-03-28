@@ -10,8 +10,6 @@ import MarkdownUI
 
 struct ChatMessageView: View {
     
-    @Environment(\.modelContext) var modelContext
-    
     let chatMessage: ChatMessage
     let spacerWidth: Double
     
@@ -30,7 +28,7 @@ struct ChatMessageView: View {
                 .gptStyle()
                 .padding(.all, 8)
                 .background(backgroundColor())
-                .roundCorners(radius: 8)
+                .cornerRadius(8)
                 .frame(alignment: chatMessage.origin == Role.user.rawValue ? .trailing : .leading)
                 .layoutPriority(1)
                 .textSelection(.enabled)
@@ -53,7 +51,8 @@ struct ChatMessageView: View {
                 content: "Hello world",
                 origin: Role.user.rawValue,
                 timestamp: 0,
-                id: ""
+                id: "",
+                workspace: 1
             ),
             spacerWidth: 100
         )
