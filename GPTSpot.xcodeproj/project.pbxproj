@@ -136,6 +136,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0230ED172BBE178F00C067E6 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				029673E42BBA21EF0054062F /* RoundedCornerModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
 		025AE6692B8BA51F001489A3 = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +231,7 @@
 		025C7E1D2B8D77CC0060F343 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0230ED172BBE178F00C067E6 /* Modifiers */,
 				029673D72BB4EC0A0054062F /* CheatSheetView.swift */,
 				025AE6772B8BA51F001489A3 /* ContentView.swift */,
 				0230ED0D2BBDEC7200C067E6 /* FocusDirection.swift */,
@@ -284,7 +293,6 @@
 			children = (
 				0288BF672BB32DF00047CA09 /* Markdown+Styling.swift */,
 				029673E22BB9D9660054062F /* String+Clipboard.swift */,
-				029673E42BBA21EF0054062F /* RoundedCornerModifier.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";

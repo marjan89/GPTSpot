@@ -53,25 +53,25 @@ struct ChatListView: View {
                         } label: {
                             Text("Copy")
                         }
-                        .keyboardShortcut("x")
+                        .keyboardShortcut("c", modifiers: .option)
                         Button {
                             prompt = chatMessage.content
                         } label: {
                             Text("Make prompt")
                         }
-                        .keyboardShortcut(.return, modifiers: .control)
+                        .keyboardShortcut(.return, modifiers: .option)
                         Button {
                             modelContext.delete(chatMessage)
                         } label: {
                             Text("Delete")
                         }
-                        .keyboardShortcut(.delete, modifiers: .control)
+                        .keyboardShortcut(.delete, modifiers: .option)
                         Button {
                             modelContext.insert(Template(content: chatMessage.content))
                         } label: {
                             Text("Save template")
                         }
-                        .keyboardShortcut("s")
+                        .keyboardShortcut("s", modifiers: .option)
                     }))
                     .listRowSeparator(.hidden)
                     .scaleEffect(x: 1, y: -1, anchor: .center)

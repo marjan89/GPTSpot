@@ -46,13 +46,13 @@ struct TemplateStripeView: View {
                                 } label: {
                                     Text("Make prompt")
                                 }
-                                .keyboardShortcut(.return, modifiers: .option)
+                                .keyboardShortcut(.return, modifiers: .control)
                                 Button {
                                     modelContext.delete(template)
                                 } label: {
                                     Text("Delete")
                                 }
-                                .keyboardShortcut(.delete, modifiers: .option)
+                                .keyboardShortcut(.delete, modifiers: .control)
                             }))
                     }
                 }

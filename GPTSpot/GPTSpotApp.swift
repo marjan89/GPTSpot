@@ -9,7 +9,7 @@ struct GPTSpotApp: App {
     @NSApplicationDelegateAdaptor(GPTAppDelegate.self) var appDelegate
     
     var body: some Scene {
-        MenuBarExtra("GPTSpot", systemImage: "gear") {
+        MenuBarExtra("GPTSpot", systemImage: "dog.fill") {
             SettingsLink {
                 Text("Settings")
             }
