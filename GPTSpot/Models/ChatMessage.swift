@@ -11,6 +11,7 @@ import SwiftData
 enum Role: String {
     case user = "user"
     case assistant = "assistant"
+    case system = "system"
 }
 
 @Model

@@ -12,11 +12,12 @@ enum Message {
     case response(chunk: String, id: String)
     case terminator
     case error
+    case canceled
 }
 
-struct OpenAIService {
+class OpenAIService {
     private let apiKey: String
-    private var session = URLSession.shared
+    var task: Task<Void, Never>?
     
     init(apiKey: String) {
         self.apiKey = apiKey
@@ -37,15 +38,25 @@ struct OpenAIService {
     func completion(for chatRequest: ChatRequest) async throws -> AsyncStream<Message> {
         let chatRequest = try createRequest(for: chatRequest)
         let (stream, _) = try await URLSession.shared.bytes(for: chatRequest)
-           
+        
         return AsyncStream { continuation in
-            Task {
-                for try await line in stream.lines {
-                    continuation.yield(parseRawResponse(line))
+            task = Task {
+                do {
+                    for try await line in stream.lines {
+                        continuation.yield(parseRawResponse(line))
+                    }
+                } catch let error as NSError where error.code == NSURLErrorCancelled {
+                    continuation.yield(.canceled)
+                } catch {
+                    continuation.yield(.error)
                 }
                 continuation.finish()
             }
         }
+    }
+    
+    func cancelCompletion() {
+        task?.cancel()
     }
     
     private func createRequest(for chatRequest: ChatRequest) throws -> URLRequest {

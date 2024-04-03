@@ -79,6 +79,14 @@ struct ChatView: View {
                 HStack {
                     WorkspaceIndicatorView(workspace: $workspace)
                     Spacer()
+                    if chatViewService.generatingContent {
+                        Button("", systemImage: "stop.fill") {
+                            chatViewService.cancelCompletion()
+                        }
+                        .accessibilityLabel("Cancel response")
+                        .keyboardShortcut(.init(.return, modifiers: [.command, .shift]))
+                        .buttonStyle(BorderlessButtonStyle())
+                    }
                     Button("", systemImage: "questionmark.circle.fill") {
                         showHelpRibbon.toggle()
                     }

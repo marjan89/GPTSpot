@@ -14,27 +14,27 @@ struct CheatSheetView: View {
                 Text("General")
                     .font(.headline)
                 Text("**⇧⌃Space** show/hide")
-                Text("**⌘t** templates")
+                Text("**⌘T** templates")
                 Text("**⌘.** show stats")
                 Text("**⌘?** show help")
             }
             VStack(alignment: .leading) {
                 Text("Chat")
                     .font(.headline)
-                Text("**⌘d** discard history")
+                Text("**⌘D** discard history")
                 Text("**⌘↑** last prompt")
                 Text("**⌘⏎** send")
-                Text("**⇧⌘⏎** discard history and send")
+                Text("**⇧⌘⏎** cancel response")
             }
             VStack(alignment: .leading) {
                 Text("Messages")
                     .font(.headline)
-                Text("**⌘k** message up")
-                Text("**⌘j** message down")
+                Text("**⌘K** message up")
+                Text("**⌘J** message down")
                 Text("**^⏎** make prompt")
                 Text("**^⌫** delete message")
-                Text("**^c** copy message")
-                Text("**^s** save as template")
+                Text("**^C** copy message")
+                Text("**^S** save as template")
             }
             VStack(alignment: .leading) {
                 Text("Templates")

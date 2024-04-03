@@ -13,16 +13,16 @@
     "**^⏎** make prompt" : {
 
     },
-    "**^c** copy message" : {
+    "**^C** copy message" : {
 
     },
-    "**^s** save as template" : {
+    "**^S** save as template" : {
 
     },
     "**⇧⌃Space** show/hide" : {
 
     },
-    "**⇧⌘⏎** discard history and send" : {
+    "**⇧⌘⏎** cancel response" : {
 
     },
     "**⌘?** show help" : {
@@ -46,16 +46,16 @@
     "**⌘⏎** send" : {
 
     },
-    "**⌘d** discard history" : {
+    "**⌘D** discard history" : {
 
     },
-    "**⌘j** message down" : {
+    "**⌘J** message down" : {
 
     },
-    "**⌘k** message up" : {
+    "**⌘K** message up" : {
 
     },
-    "**⌘t** templates" : {
+    "**⌘T** templates" : {
 
     },
     "**⌥⌫** delete prompt" : {
@@ -74,6 +74,9 @@
 
     },
     "API key" : {
+
+    },
+    "Cancel response" : {
 
     },
     "Chat" : {
@@ -119,6 +122,12 @@
 
     },
     "Quit" : {
+
+    },
+    "Response canceled" : {
+
+    },
+    "Response error" : {
 
     },
     "Save template" : {

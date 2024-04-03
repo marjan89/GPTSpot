@@ -12,14 +12,10 @@ import SwiftUI
 @Observable final class ChatViewService {
     
     var prompt: String = ""
+    var generatingContent: Bool = false
     
-    private var generatingContent: Bool = false
     private let modelContext: ModelContext
     private let openAiService: OpenAIService
-    
-    private var chatMessageHistoryFetchDescriptor = FetchDescriptor<ChatMessage>(
-        sortBy: [.init(\ChatMessage.timestamp, order: .reverse)]
-    )
     
     init(modelContext: ModelContext, openAISerice: OpenAIService) {
         self.modelContext = modelContext
@@ -47,12 +43,19 @@ import SwiftUI
                         self.insertOrUpdateChatMessage(for: chunk, origin: .assistant, id: id, workspace: workspace)
                     case .terminator:
                         self.generatingContent = false
+                    case .canceled:
+                        self.insertChatMessage(for: String(localized: "Response canceled"), origin: .system, workspace: workspace)
                     case .error:
-                        print("error")
+                        self.insertChatMessage(for: String(localized: "Response error"), origin: .system, workspace: workspace)
                     }
                 }
             }
         }
+    }
+    
+    func cancelCompletion() {
+        openAiService.cancelCompletion()
+        generatingContent = false
     }
     
     func discardHistory(for workspace: Int) {
@@ -78,6 +81,12 @@ import SwiftUI
     }
     
     private func loadChatHistory(for workspace: Int) -> [ChatRequest.Message] {
+        var chatMessageHistoryFetchDescriptor = FetchDescriptor<ChatMessage>(
+            predicate: #Predicate<ChatMessage> { message in
+                message.workspace == workspace && message.origin != "system"
+            },
+            sortBy: [.init(\ChatMessage.timestamp, order: .reverse)]
+        )
         let userLimit = UserDefaults.standard.integer(forKey: AIServerDefaultsKeys.maxHistory)
         if userLimit > 0 {
             chatMessageHistoryFetchDescriptor.fetchLimit = userLimit
