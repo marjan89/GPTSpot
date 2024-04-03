@@ -7,16 +7,10 @@
     "**%@**" : {
 
     },
-    "**^⌫** delete message" : {
+    "**^⌫** delete prompt" : {
 
     },
     "**^⏎** make prompt" : {
-
-    },
-    "**^C** copy message" : {
-
-    },
-    "**^S** save as template" : {
 
     },
     "**⇧⌃Space** show/hide" : {
@@ -58,10 +52,16 @@
     "**⌘T** templates" : {
 
     },
-    "**⌥⌫** delete prompt" : {
+    "**⌥⌫** delete message" : {
 
     },
     "**⌥⏎** make prompt" : {
+
+    },
+    "**⌥C** copy message" : {
+
+    },
+    "**⌥S** save as template" : {
 
     },
     "0" : {

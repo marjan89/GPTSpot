@@ -31,18 +31,18 @@ struct CheatSheetView: View {
                     .font(.headline)
                 Text("**⌘K** message up")
                 Text("**⌘J** message down")
-                Text("**^⏎** make prompt")
-                Text("**^⌫** delete message")
-                Text("**^C** copy message")
-                Text("**^S** save as template")
+                Text("**⌥⏎** make prompt")
+                Text("**⌥⌫** delete message")
+                Text("**⌥C** copy message")
+                Text("**⌥S** save as template")
             }
             VStack(alignment: .leading) {
                 Text("Templates")
                     .font(.headline)
                 Text("**⌘[** next prompt")
                 Text("**⌘]** previous prompt")
-                Text("**⌥⏎** make prompt")
-                Text("**⌥⌫** delete prompt")
+                Text("**^⏎** make prompt")
+                Text("**^⌫** delete prompt")
             }
         }
     }
