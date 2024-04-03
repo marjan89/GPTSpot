@@ -48,53 +48,71 @@ struct ChatView: View {
                     )
                     .frame(height: 196)
                 }
-                TextEditor(text: showTemplateStripe ? $templateSearchQuery : $chatViewService.prompt)
-                    .padding(.all, 8)
-                    .scrollClipDisabled()
-                    .scrollContentBackground(.hidden)
-                    .scrollIndicators(.never)
-                    .focused($focusedField, equals: .prompt)
-                    .onAppear {
-                        focusedField = .prompt
+                ZStack {
+                    if showTemplateStripe && templateSearchQuery.isEmpty {
+                        Text("Search templates")
+                            .padding(.top, 6)
+                            .padding(.leading, 16)
+                            .foregroundStyle(.secondary)
+                            .frame(maxWidth: .infinity, maxHeight: geometry.size.height / 8, alignment: .topLeading)
                     }
-                    .roundedCorners(strokeColor: .gray)
-                    .frame(height: geometry.size.height / 8)
+                    if !showTemplateStripe && chatViewService.prompt.isEmpty {
+                        Text("Send a message")
+                            .padding(.top, 6)
+                            .padding(.leading, 16)
+                            .foregroundStyle(.secondary)
+                            .frame(maxWidth: .infinity, maxHeight: geometry.size.height / 8, alignment: .topLeading)
+                    }
+                    TextEditor(text: showTemplateStripe ? $templateSearchQuery : $chatViewService.prompt)
+                        .padding(.all, 8)
+                        .accessibilityHidden(true)
+                        .scrollClipDisabled()
+                        .scrollContentBackground(.hidden)
+                        .scrollIndicators(.never)
+                        .focused($focusedField, equals: .prompt)
+                        .onAppear {
+                            focusedField = .prompt
+                        }
+                        .roundedCorners(strokeColor: .gray)
+                        .frame(height: geometry.size.height / 8)
+                }
                 HStack {
                     WorkspaceIndicatorView(workspace: $workspace)
                     Spacer()
                     Button("", systemImage: "questionmark.circle.fill") {
                         showHelpRibbon.toggle()
                     }
+                    .accessibilityLabel("Show help")
                     .keyboardShortcut(.init("?"))
                     .buttonStyle(BorderlessButtonStyle())
                     Button("", systemImage: "chart.bar.fill") {
                         showStats.toggle()
                     }
+                    .accessibilityLabel("Show stats")
                     .keyboardShortcut(.init("."))
                     .buttonStyle(BorderlessButtonStyle())
                     Button("", systemImage: "trash.fill") {
                         chatViewService.discardHistory(for: workspace)
                     }
+                    .accessibilityLabel("Discard history")
                     .keyboardShortcut(.init("d"))
                     .buttonStyle(BorderlessButtonStyle())
                     Button("", systemImage: "folder.fill") {
                         showTemplateStripe.toggle()
                     }
+                    .accessibilityLabel("Show templates")
                     .keyboardShortcut(.init("t"))
                     .buttonStyle(BorderlessButtonStyle())
                     Button("", systemImage: "memories") {
                         chatViewService.setLastChatMessageAsPrompt(workspace: workspace)
                     }
+                    .accessibilityLabel("Set last message as prompt")
                     .keyboardShortcut(.upArrow)
-                    .buttonStyle(BorderlessButtonStyle())
-                    Button("", systemImage: "paperplane.circle.fill") {
-                        chatViewService.executePrompt(shouldDiscardHistory: true, workspace: workspace)
-                    }
-                    .keyboardShortcut(.return, modifiers: [.command, .shift])
                     .buttonStyle(BorderlessButtonStyle())
                     Button("", systemImage: "paperplane.fill") {
                         chatViewService.executePrompt(workspace: workspace)
                     }
+                    .accessibilityLabel("Send")
                     .keyboardShortcut(.return)
                     .buttonStyle(BorderlessButtonStyle())
                 }

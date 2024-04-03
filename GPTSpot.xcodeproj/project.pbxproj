@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0214801C2BB36F9400A9A314 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0214801B2BB36F9400A9A314 /* MarkdownUI */; };
 		0230ED0E2BBDEC7200C067E6 /* FocusDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230ED0D2BBDEC7200C067E6 /* FocusDirection.swift */; };
+		0230ED162BBDFC8700C067E6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */; };
 		025AE6762B8BA51F001489A3 /* GPTSpotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6752B8BA51F001489A3 /* GPTSpotApp.swift */; };
 		025AE6782B8BA51F001489A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6772B8BA51F001489A3 /* ContentView.swift */; };
 		025AE67A2B8BA520001489A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025AE6792B8BA520001489A3 /* Assets.xcassets */; };
@@ -66,6 +67,7 @@
 
 /* Begin PBXFileReference section */
 		0230ED0D2BBDEC7200C067E6 /* FocusDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusDirection.swift; sourceTree = "<group>"; };
+		0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		025AE6722B8BA51F001489A3 /* GPTSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPTSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		025AE6752B8BA51F001489A3 /* GPTSpotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPTSpotApp.swift; sourceTree = "<group>"; };
 		025AE6772B8BA51F001489A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		025AE6742B8BA51F001489A3 /* GPTSpot */ = {
 			isa = PBXGroup;
 			children = (
+				0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */,
 				025AE67E2B8BA521001489A3 /* GPTSpot.entitlements */,
 				02A17A1F2BA60AD100C26A67 /* BorderlessWindow.swift */,
 				02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */,
@@ -405,6 +408,7 @@
 			files = (
 				025AE67D2B8BA521001489A3 /* Preview Assets.xcassets in Resources */,
 				025AE67A2B8BA520001489A3 /* Assets.xcassets in Resources */,
+				0230ED162BBDFC8700C067E6 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

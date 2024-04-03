@@ -22,7 +22,7 @@ struct ChatListView: View {
     
     @Binding var prompt: String
     
-    private var workspace: Int
+    private let workspace: Int
     
     init(workspace: Int, prompt: Binding<String>) {
         self.workspace = workspace
@@ -132,8 +132,8 @@ struct ChatListView: View {
     
     do {
         let previewer = try Previewer()
+        let workspace: Int = 1
         
-        var workspace: Int = 1
         @State var prompt: String = ""
         
         return ChatListView(

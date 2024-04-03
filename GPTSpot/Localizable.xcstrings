@@ -1,0 +1,168 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "**%@**" : {
+
+    },
+    "**^⌫** delete message" : {
+
+    },
+    "**^⏎** make prompt" : {
+
+    },
+    "**^c** copy message" : {
+
+    },
+    "**^s** save as template" : {
+
+    },
+    "**⇧⌃Space** show/hide" : {
+
+    },
+    "**⇧⌘⏎** discard history and send" : {
+
+    },
+    "**⌘?** show help" : {
+
+    },
+    "**⌘.** show stats" : {
+
+    },
+    "**⌘[** next prompt" : {
+
+    },
+    "**⌘]** previous prompt" : {
+
+    },
+    "**⌘%lld**" : {
+
+    },
+    "**⌘↑** last prompt" : {
+
+    },
+    "**⌘⏎** send" : {
+
+    },
+    "**⌘d** discard history" : {
+
+    },
+    "**⌘j** message down" : {
+
+    },
+    "**⌘k** message up" : {
+
+    },
+    "**⌘t** templates" : {
+
+    },
+    "**⌥⌫** delete prompt" : {
+
+    },
+    "**⌥⏎** make prompt" : {
+
+    },
+    "0" : {
+
+    },
+    "2" : {
+
+    },
+    "AI Server" : {
+
+    },
+    "API key" : {
+
+    },
+    "Chat" : {
+
+    },
+    "Copy" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Discard history" : {
+
+    },
+    "Failed to create preview: %@" : {
+
+    },
+    "General" : {
+
+    },
+    "GPTSpot" : {
+
+    },
+    "history max: **%lld**" : {
+
+    },
+    "Keys" : {
+
+    },
+    "Login item" : {
+
+    },
+    "Make prompt" : {
+
+    },
+    "Maximum history to send" : {
+
+    },
+    "Messages" : {
+
+    },
+    "Model" : {
+
+    },
+    "Quit" : {
+
+    },
+    "Save template" : {
+
+    },
+    "Search templates" : {
+
+    },
+    "Send" : {
+
+    },
+    "Send a message" : {
+
+    },
+    "Set last message as prompt" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Show help" : {
+
+    },
+    "Show stats" : {
+
+    },
+    "Show templates" : {
+
+    },
+    "Start hidden" : {
+
+    },
+    "Temperature %lf" : {
+
+    },
+    "Templates" : {
+
+    },
+    "total history: **%lld**" : {
+
+    },
+    "Workspace %lld" : {
+
+    }
+  },
+  "version" : "1.0"
+}

@@ -26,15 +26,12 @@ import SwiftUI
         self.openAiService = openAISerice
     }
     
-    func executePrompt(shouldDiscardHistory: Bool = false, workspace: Int) {
+    func executePrompt(workspace: Int) {
         if generatingContent {
             return
         }
         generatingContent = true
         Task { @MainActor in
-            if shouldDiscardHistory {
-                discardHistory(for: workspace)
-            }
             let sanitizedPrompt = prompt.trimmingCharacters(in: .whitespacesAndNewlines)
             
             if sanitizedPrompt.isEmpty {

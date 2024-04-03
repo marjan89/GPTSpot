@@ -14,6 +14,7 @@ struct WorkspaceIndicatorView: View {
     var body: some View {
         ForEach(1...9, id: \.self) { index in
             Button("**⌘\(index)**") { workspace = index }
+                .accessibilityLabel("Workspace \(index)")
                 .keyboardShortcut(.init(Character(UnicodeScalarType(index))))
                 .padding(4)
                 .buttonStyle(BorderlessButtonStyle())

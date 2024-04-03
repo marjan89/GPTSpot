@@ -35,7 +35,7 @@ struct StatsView: View {
 #Preview {
     do {
         let previewer = try Previewer()
-        var workspace: Int = 1
+        let workspace: Int = 1
         return StatsView(workspace: workspace)
         .modelContainer(previewer.container)
     } catch {
