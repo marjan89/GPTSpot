@@ -10,6 +10,10 @@
 		0214801C2BB36F9400A9A314 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0214801B2BB36F9400A9A314 /* MarkdownUI */; };
 		0230ED0E2BBDEC7200C067E6 /* FocusDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230ED0D2BBDEC7200C067E6 /* FocusDirection.swift */; };
 		0230ED162BBDFC8700C067E6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */; };
+		0230ED192BBF48FA00C067E6 /* KeyRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230ED182BBF48FA00C067E6 /* KeyRecordingView.swift */; };
+		0230ED1C2BBF6A7900C067E6 /* KeyRecordingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230ED1B2BBF6A7900C067E6 /* KeyRecordingState.swift */; };
+		0230ED1E2BBF6A9300C067E6 /* KeySequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230ED1D2BBF6A9300C067E6 /* KeySequence.swift */; };
+		0230ED202BBF6CE700C067E6 /* KeyCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230ED1F2BBF6CE700C067E6 /* KeyCaptureView.swift */; };
 		025AE6762B8BA51F001489A3 /* GPTSpotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6752B8BA51F001489A3 /* GPTSpotApp.swift */; };
 		025AE6782B8BA51F001489A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6772B8BA51F001489A3 /* ContentView.swift */; };
 		025AE67A2B8BA520001489A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025AE6792B8BA520001489A3 /* Assets.xcassets */; };
@@ -68,6 +72,10 @@
 /* Begin PBXFileReference section */
 		0230ED0D2BBDEC7200C067E6 /* FocusDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusDirection.swift; sourceTree = "<group>"; };
 		0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		0230ED182BBF48FA00C067E6 /* KeyRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyRecordingView.swift; sourceTree = "<group>"; };
+		0230ED1B2BBF6A7900C067E6 /* KeyRecordingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyRecordingState.swift; sourceTree = "<group>"; };
+		0230ED1D2BBF6A9300C067E6 /* KeySequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeySequence.swift; sourceTree = "<group>"; };
+		0230ED1F2BBF6CE700C067E6 /* KeyCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCaptureView.swift; sourceTree = "<group>"; };
 		025AE6722B8BA51F001489A3 /* GPTSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPTSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		025AE6752B8BA51F001489A3 /* GPTSpotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPTSpotApp.swift; sourceTree = "<group>"; };
 		025AE6772B8BA51F001489A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -142,6 +150,17 @@
 				029673E42BBA21EF0054062F /* RoundedCornerModifier.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		0230ED1A2BBF6A6200C067E6 /* KeyCapture */ = {
+			isa = PBXGroup;
+			children = (
+				0230ED182BBF48FA00C067E6 /* KeyRecordingView.swift */,
+				0230ED1B2BBF6A7900C067E6 /* KeyRecordingState.swift */,
+				0230ED1D2BBF6A9300C067E6 /* KeySequence.swift */,
+				0230ED1F2BBF6CE700C067E6 /* KeyCaptureView.swift */,
+			);
+			path = KeyCapture;
 			sourceTree = "<group>";
 		};
 		025AE6692B8BA51F001489A3 = {
@@ -231,6 +250,7 @@
 		025C7E1D2B8D77CC0060F343 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0230ED1A2BBF6A6200C067E6 /* KeyCapture */,
 				0230ED172BBE178F00C067E6 /* Modifiers */,
 				029673D72BB4EC0A0054062F /* CheatSheetView.swift */,
 				025AE6772B8BA51F001489A3 /* ContentView.swift */,
@@ -447,17 +467,21 @@
 				02BD90B22BA8E5480047115E /* SpotSettings.swift in Sources */,
 				02E04C432BB1D9F50074A95E /* GlobalHotKeyManager.swift in Sources */,
 				028D48E82BAA41D8005E2FF7 /* GPTModels.swift in Sources */,
+				0230ED202BBF6CE700C067E6 /* KeyCaptureView.swift in Sources */,
 				0230ED0E2BBDEC7200C067E6 /* FocusDirection.swift in Sources */,
 				025AE6AE2B8BEEC3001489A3 /* ChatViewService.swift in Sources */,
 				029673EB2BBD45750054062F /* ChatListView.swift in Sources */,
 				0288BF682BB32DF00047CA09 /* Markdown+Styling.swift in Sources */,
 				0288BF642BB2D7270047CA09 /* TemplateItemView.swift in Sources */,
+				0230ED1C2BBF6A7900C067E6 /* KeyRecordingState.swift in Sources */,
 				025AE6782B8BA51F001489A3 /* ContentView.swift in Sources */,
 				025C7E212B8D79180060F343 /* ChatMessage.swift in Sources */,
 				029673E52BBA21EF0054062F /* RoundedCornerModifier.swift in Sources */,
 				02A17A222BA60CD000C26A67 /* Previewer.swift in Sources */,
+				0230ED1E2BBF6A9300C067E6 /* KeySequence.swift in Sources */,
 				028D48DA2BAA3B6C005E2FF7 /* ChatCompletion.swift in Sources */,
 				0288BF622BB2D7180047CA09 /* TemplateStripeView.swift in Sources */,
+				0230ED192BBF48FA00C067E6 /* KeyRecordingView.swift in Sources */,
 				029673DF2BB8A0B80054062F /* WorkspaceIndicatorView.swift in Sources */,
 				029673E12BB8A4E00054062F /* StatsView.swift in Sources */,
 				02AAD1BB2B8E7AEA00ED7876 /* HotkeyAction.swift in Sources */,

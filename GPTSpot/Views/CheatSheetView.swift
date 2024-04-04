@@ -41,8 +41,8 @@ struct CheatSheetView: View {
                     .font(.headline)
                 Text("**⌘[** next prompt")
                 Text("**⌘]** previous prompt")
-                Text("**^⏎** make prompt")
-                Text("**^⌫** delete prompt")
+                Text("**⌃⏎** make prompt")
+                Text("**⌃⌫** delete prompt")
             }
         }
     }

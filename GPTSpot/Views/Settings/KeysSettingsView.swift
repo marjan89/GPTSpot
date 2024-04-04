@@ -11,7 +11,9 @@ import SwiftUI
 struct KeysSettingsView: View {
     
     var body: some View {
-        CheatSheetView()
-            .frame(width: 700, height: 150)
+        HStack {
+            Text("Click to record a key sequence")
+            KeyRecordingView()
+        }
     }
 }

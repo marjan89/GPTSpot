@@ -7,16 +7,16 @@
     "**%@**" : {
 
     },
-    "**^⌫** delete prompt" : {
-
-    },
-    "**^⏎** make prompt" : {
-
-    },
     "**⇧⌃Space** show/hide" : {
 
     },
     "**⇧⌘⏎** cancel response" : {
+
+    },
+    "**⌃⌫** delete prompt" : {
+
+    },
+    "**⌃⏎** make prompt" : {
 
     },
     "**⌘?** show help" : {
@@ -80,6 +80,9 @@
 
     },
     "Chat" : {
+
+    },
+    "Click to record a key sequence" : {
 
     },
     "Copy" : {

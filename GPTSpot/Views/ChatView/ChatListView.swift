@@ -132,12 +132,11 @@ struct ChatListView: View {
     
     do {
         let previewer = try Previewer()
-        let workspace: Int = 1
         
         @State var prompt: String = ""
         
         return ChatListView(
-            workspace: workspace,
+            workspace: 1,
             prompt: $prompt
         )
         .modelContainer(previewer.container)
