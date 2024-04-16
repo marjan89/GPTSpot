@@ -36,24 +36,28 @@ struct TemplateStripeView: View {
             hotkeys()
             ScrollView(.horizontal) {
                 LazyHStack {
-                    ForEach(templates, id: \.content) { template in
-                        TemplateItemView(text: template.content)
-                            .focusable(true)
-                            .focused($focusedTemplateField, equals: .focusedTemplate(template))
-                            .contextMenu(ContextMenu(menuItems: {
-                                Button {
-                                    onTemplateSelected(template)
-                                } label: {
-                                    Text("Make prompt")
-                                }
-                                .keyboardShortcut(.return, modifiers: .control)
-                                Button {
-                                    modelContext.delete(template)
-                                } label: {
-                                    Text("Delete")
-                                }
-                                .keyboardShortcut(.delete, modifiers: .control)
-                            }))
+                    if templates.isEmpty {
+                        TemplateItemView(text: "You can save your templates here!\n```\n// Swift \"Hello, World!\"\nprint(\"Hello, World!\")")
+                    } else {
+                        ForEach(templates, id: \.content) { template in
+                            TemplateItemView(text: template.content)
+                                .focusable(true)
+                                .focused($focusedTemplateField, equals: .focusedTemplate(template))
+                                .contextMenu(ContextMenu(menuItems: {
+                                    Button {
+                                        onTemplateSelected(template)
+                                    } label: {
+                                        Text("Make prompt")
+                                    }
+                                    .keyboardShortcut(.return, modifiers: .control)
+                                    Button {
+                                        modelContext.delete(template)
+                                    } label: {
+                                        Text("Delete")
+                                    }
+                                    .keyboardShortcut(.delete, modifiers: .control)
+                                }))
+                        }
                     }
                 }
                 .padding(4)
