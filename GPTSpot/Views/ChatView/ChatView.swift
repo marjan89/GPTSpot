@@ -48,81 +48,10 @@ struct ChatView: View {
                     )
                     .frame(height: 196)
                 }
-                ZStack {
-                    if showTemplateStripe && templateSearchQuery.isEmpty {
-                        Text("Search templates")
-                            .padding(.top, 6)
-                            .padding(.leading, 16)
-                            .foregroundStyle(.secondary)
-                            .frame(maxWidth: .infinity, maxHeight: geometry.size.height / 8, alignment: .topLeading)
-                    }
-                    if !showTemplateStripe && chatViewService.prompt.isEmpty {
-                        Text("Send a message")
-                            .padding(.top, 6)
-                            .padding(.leading, 16)
-                            .foregroundStyle(.secondary)
-                            .frame(maxWidth: .infinity, maxHeight: geometry.size.height / 8, alignment: .topLeading)
-                    }
-                    TextEditor(text: showTemplateStripe ? $templateSearchQuery : $chatViewService.prompt)
-                        .padding(.all, 8)
-                        .accessibilityHidden(true)
-                        .scrollClipDisabled()
-                        .scrollContentBackground(.hidden)
-                        .scrollIndicators(.never)
-                        .focused($focusedField, equals: .prompt)
-                        .onAppear {
-                            focusedField = .prompt
-                        }
-                        .roundedCorners(strokeColor: .gray)
-                        .frame(height: geometry.size.height / 8)
-                }
+                PromptInput(geometry: geometry)
                 HStack {
                     WorkspaceIndicatorView(workspace: $workspace)
-                    Spacer()
-                    if chatViewService.generatingContent {
-                        Button("", systemImage: "stop.fill") {
-                            chatViewService.cancelCompletion()
-                        }
-                        .accessibilityLabel("Cancel response")
-                        .keyboardShortcut(.init(.return, modifiers: [.command, .shift]))
-                        .buttonStyle(BorderlessButtonStyle())
-                    }
-                    Button("", systemImage: "questionmark.circle.fill") {
-                        showHelpRibbon.toggle()
-                    }
-                    .accessibilityLabel("Show help")
-                    .keyboardShortcut(.init("?"))
-                    .buttonStyle(BorderlessButtonStyle())
-                    Button("", systemImage: "chart.bar.fill") {
-                        showStats.toggle()
-                    }
-                    .accessibilityLabel("Show stats")
-                    .keyboardShortcut(.init("."))
-                    .buttonStyle(BorderlessButtonStyle())
-                    Button("", systemImage: "trash.fill") {
-                        chatViewService.discardHistory(for: workspace)
-                    }
-                    .accessibilityLabel("Discard history")
-                    .keyboardShortcut(.init("d"))
-                    .buttonStyle(BorderlessButtonStyle())
-                    Button("", systemImage: "folder.fill") {
-                        showTemplateStripe.toggle()
-                    }
-                    .accessibilityLabel("Show templates")
-                    .keyboardShortcut(.init("t"))
-                    .buttonStyle(BorderlessButtonStyle())
-                    Button("", systemImage: "memories") {
-                        chatViewService.setLastChatMessageAsPrompt(workspace: workspace)
-                    }
-                    .accessibilityLabel("Set last message as prompt")
-                    .keyboardShortcut(.upArrow)
-                    .buttonStyle(BorderlessButtonStyle())
-                    Button("", systemImage: "paperplane.fill") {
-                        chatViewService.executePrompt(workspace: workspace)
-                    }
-                    .accessibilityLabel("Send")
-                    .keyboardShortcut(.return)
-                    .buttonStyle(BorderlessButtonStyle())
+                    ChatControls()
                 }
                 if showHelpRibbon {
                     CheatSheetView()
@@ -140,6 +69,89 @@ struct ChatView: View {
         .padding(.all, 20)
         .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.66), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
     }
+    
+    @ViewBuilder
+    func PromptInput(geometry: GeometryProxy) -> some View {
+        ZStack {
+            if showTemplateStripe && templateSearchQuery.isEmpty {
+                Text("Search templates")
+                    .padding(.top, 6)
+                    .padding(.leading, 16)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, maxHeight: geometry.size.height / 8, alignment: .topLeading)
+            }
+            if !showTemplateStripe && chatViewService.prompt.isEmpty {
+                Text("Send a message")
+                    .padding(.top, 6)
+                    .padding(.leading, 16)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, maxHeight: geometry.size.height / 8, alignment: .topLeading)
+            }
+            TextEditor(text: showTemplateStripe ? $templateSearchQuery : $chatViewService.prompt)
+                .padding(.all, 8)
+                .accessibilityHidden(true)
+                .scrollClipDisabled()
+                .scrollContentBackground(.hidden)
+                .scrollIndicators(.never)
+                .focused($focusedField, equals: .prompt)
+                .onAppear {
+                    focusedField = .prompt
+                }
+                .roundedCorners(strokeColor: .gray)
+                .frame(height: geometry.size.height / 8)
+        }
+    }
+    
+    @ViewBuilder
+    func ChatControls() -> some View {
+        HStack {
+            Spacer()
+            if chatViewService.generatingContent {
+                Button("", systemImage: "stop.fill") {
+                    chatViewService.cancelCompletion()
+                }
+                .accessibilityLabel("Cancel response")
+                .keyboardShortcut(.init(.return, modifiers: [.command, .shift]))
+                .buttonStyle(BorderlessButtonStyle())
+            }
+            Button("", systemImage: "questionmark.circle.fill") {
+                showHelpRibbon.toggle()
+            }
+            .accessibilityLabel("Show help")
+            .keyboardShortcut(.init("?"))
+            .buttonStyle(BorderlessButtonStyle())
+            Button("", systemImage: "chart.bar.fill") {
+                showStats.toggle()
+            }
+            .accessibilityLabel("Show stats")
+            .keyboardShortcut(.init("."))
+            .buttonStyle(BorderlessButtonStyle())
+            Button("", systemImage: "trash.fill") {
+                chatViewService.discardHistory(for: workspace)
+            }
+            .accessibilityLabel("Discard history")
+            .keyboardShortcut(.init("d"))
+            .buttonStyle(BorderlessButtonStyle())
+            Button("", systemImage: "folder.fill") {
+                showTemplateStripe.toggle()
+            }
+            .accessibilityLabel("Show templates")
+            .keyboardShortcut(.init("t"))
+            .buttonStyle(BorderlessButtonStyle())
+            Button("", systemImage: "memories") {
+                chatViewService.setLastChatMessageAsPrompt(workspace: workspace)
+            }
+            .accessibilityLabel("Set last message as prompt")
+            .keyboardShortcut(.upArrow)
+            .buttonStyle(BorderlessButtonStyle())
+            Button("", systemImage: "paperplane.fill") {
+                chatViewService.executePrompt(workspace: workspace)
+            }
+            .accessibilityLabel("Send")
+            .keyboardShortcut(.return)
+            .buttonStyle(BorderlessButtonStyle())
+        }
+    }
 }
 
 #Preview {
@@ -150,6 +162,7 @@ struct ChatView: View {
             modelContext: previewer.container.mainContext,
             openAISerice: OpenAIServiceKey.defaultValue)
         )
+        .frame(width: 700, height: 600)
         .modelContainer(previewer.container)
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")

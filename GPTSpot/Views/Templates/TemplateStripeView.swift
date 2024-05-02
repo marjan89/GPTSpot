@@ -62,6 +62,7 @@ struct TemplateStripeView: View {
                 }
                 .padding(4)
             }
+            .scrollClipDisabled()
             .scrollIndicators(.hidden)
         }
     }
