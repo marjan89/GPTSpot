@@ -47,6 +47,7 @@
 		02A17A202BA60AD100C26A67 /* BorderlessWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A17A1F2BA60AD100C26A67 /* BorderlessWindow.swift */; };
 		02A17A222BA60CD000C26A67 /* Previewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A17A212BA60CD000C26A67 /* Previewer.swift */; };
 		02AAD1BB2B8E7AEA00ED7876 /* HotkeyAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AAD1BA2B8E7AEA00ED7876 /* HotkeyAction.swift */; };
+		02AB8C922BE41528006C0853 /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AB8C912BE41528006C0853 /* LaunchAtLogin.swift */; };
 		02BD90B22BA8E5480047115E /* SpotSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BD90B12BA8E5480047115E /* SpotSettings.swift */; };
 		02E04C432BB1D9F50074A95E /* GlobalHotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */; };
 		02FE75222BA65A0B0048A4EB /* Chunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FE75212BA65A0B0048A4EB /* Chunk.swift */; };
@@ -113,6 +114,7 @@
 		02A17A1F2BA60AD100C26A67 /* BorderlessWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderlessWindow.swift; sourceTree = "<group>"; };
 		02A17A212BA60CD000C26A67 /* Previewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Previewer.swift; sourceTree = "<group>"; };
 		02AAD1BA2B8E7AEA00ED7876 /* HotkeyAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyAction.swift; sourceTree = "<group>"; };
+		02AB8C912BE41528006C0853 /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
 		02BD90B12BA8E5480047115E /* SpotSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotSettings.swift; sourceTree = "<group>"; };
 		02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotKeyManager.swift; sourceTree = "<group>"; };
 		02FE75212BA65A0B0048A4EB /* Chunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chunk.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				025AE67B2B8BA521001489A3 /* Preview Content */,
 				025C7E1C2B8D77AF0060F343 /* Services */,
 				025C7E1D2B8D77CC0060F343 /* Views */,
+				02AB8C912BE41528006C0853 /* LaunchAtLogin.swift */,
 			);
 			path = GPTSpot;
 			sourceTree = "<group>";
@@ -252,13 +255,10 @@
 			children = (
 				0230ED1A2BBF6A6200C067E6 /* KeyCapture */,
 				0230ED172BBE178F00C067E6 /* Modifiers */,
-				029673D72BB4EC0A0054062F /* CheatSheetView.swift */,
 				025AE6772B8BA51F001489A3 /* ContentView.swift */,
 				0230ED0D2BBDEC7200C067E6 /* FocusDirection.swift */,
 				02AAD1BA2B8E7AEA00ED7876 /* HotkeyAction.swift */,
 				02A17A212BA60CD000C26A67 /* Previewer.swift */,
-				029673E02BB8A4E00054062F /* StatsView.swift */,
-				029673DE2BB8A0B80054062F /* WorkspaceIndicatorView.swift */,
 				025C7E1E2B8D77D00060F343 /* ChatView */,
 				029673DB2BB894650054062F /* Extensions */,
 				028D48DB2BAA3C8E005E2FF7 /* Settings */,
@@ -270,6 +270,9 @@
 		025C7E1E2B8D77D00060F343 /* ChatView */ = {
 			isa = PBXGroup;
 			children = (
+				029673D72BB4EC0A0054062F /* CheatSheetView.swift */,
+				029673DE2BB8A0B80054062F /* WorkspaceIndicatorView.swift */,
+				029673E02BB8A4E00054062F /* StatsView.swift */,
 				025C7E222B8D87820060F343 /* ChatMessageView.swift */,
 				025AE6AB2B8BEEB4001489A3 /* ChatView.swift */,
 				025AE6AD2B8BEEC3001489A3 /* ChatViewService.swift */,
@@ -489,6 +492,7 @@
 				029673D82BB4EC0A0054062F /* CheatSheetView.swift in Sources */,
 				0288BF662BB3116E0047CA09 /* Template.swift in Sources */,
 				028D48E12BAA3CC9005E2FF7 /* GeneralSettingsView.swift in Sources */,
+				02AB8C922BE41528006C0853 /* LaunchAtLogin.swift in Sources */,
 				025AE6762B8BA51F001489A3 /* GPTSpotApp.swift in Sources */,
 				025AE6AC2B8BEEB4001489A3 /* ChatView.swift in Sources */,
 				028D48E42BAA40F1005E2FF7 /* AIServerDefaultsKeys.swift in Sources */,

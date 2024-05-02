@@ -52,3 +52,7 @@ struct AIServerSettingsView: View {
         "\(number == 0 ? "No limit" : number.formatted())"
     }
 }
+
+#Preview {
+    AIServerSettingsView()
+}

@@ -17,3 +17,7 @@ struct KeysSettingsView: View {
         }
     }
 }
+
+#Preview {
+    KeysSettingsView()
+}
