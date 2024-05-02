@@ -38,57 +38,61 @@ struct ChatListView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            hotkeys()
-            List {
-                ForEach(chatMessages, id: \.id ) { chatMessage in
-                    ChatMessageView(
-                        chatMessage: chatMessage,
-                        spacerWidth: geometry.size.width * 0.33
-                    )
-                    .focusable(true)
-                    .focused($focusedMessageField, equals: .focusedMessage(chatMessage))
-                    .contextMenu(ContextMenu(menuItems: {
-                        Button {
-                            chatMessage.content.copyTextToClipboard()
-                        } label: {
-                            Text("Copy")
+            ScrollViewReader { proxy in
+                ZStack{
+                    List {
+                        ForEach(chatMessages, id: \.id ) { chatMessage in
+                            ChatMessageView(
+                                chatMessage: chatMessage,
+                                spacerWidth: geometry.size.width * 0.33
+                            )
+                            .focusable(true)
+                            .focused($focusedMessageField, equals: .focusedMessage(chatMessage))
+                            .contextMenu(ContextMenu(menuItems: {
+                                Button {
+                                    chatMessage.content.copyTextToClipboard()
+                                } label: {
+                                    Text("Copy")
+                                }
+                                .keyboardShortcut("c", modifiers: .option)
+                                Button {
+                                    prompt = chatMessage.content
+                                } label: {
+                                    Text("Make prompt")
+                                }
+                                .keyboardShortcut(.return, modifiers: .option)
+                                Button {
+                                    modelContext.delete(chatMessage)
+                                } label: {
+                                    Text("Delete")
+                                }
+                                .keyboardShortcut(.delete, modifiers: .option)
+                                Button {
+                                    modelContext.insert(Template(content: chatMessage.content))
+                                } label: {
+                                    Text("Save template")
+                                }
+                                .keyboardShortcut("s", modifiers: .option)
+                            }))
+                            .listRowSeparator(.hidden)
+                            .scaleEffect(x: 1, y: -1, anchor: .center)
                         }
-                        .keyboardShortcut("c", modifiers: .option)
-                        Button {
-                            prompt = chatMessage.content
-                        } label: {
-                            Text("Make prompt")
-                        }
-                        .keyboardShortcut(.return, modifiers: .option)
-                        Button {
-                            modelContext.delete(chatMessage)
-                        } label: {
-                            Text("Delete")
-                        }
-                        .keyboardShortcut(.delete, modifiers: .option)
-                        Button {
-                            modelContext.insert(Template(content: chatMessage.content))
-                        } label: {
-                            Text("Save template")
-                        }
-                        .keyboardShortcut("s", modifiers: .option)
-                    }))
-                    .listRowSeparator(.hidden)
+                    }
+                    .scrollContentBackground(.hidden)
                     .scaleEffect(x: 1, y: -1, anchor: .center)
+                    hotkeys(with: proxy)
                 }
             }
-            .scrollContentBackground(.hidden)
-            .scaleEffect(x: 1, y: -1, anchor: .center)
         }
     }
     
     @ViewBuilder
-    private func hotkeys() -> some View {
+    private func hotkeys(with scrollViewProxy: ScrollViewProxy) -> some View {
         HotkeyAction(hotkey: .init("k")) {
-            focusMessage(.next)
+            focusMessage(.next, scrollViewProxy)
         }
         HotkeyAction(hotkey: .init("j")) {
-            focusMessage(.previous)
+            focusMessage(.previous, scrollViewProxy)
         }
         HotkeyAction(hotkey: .return, eventModifiers: .option) {
             if case let .focusedMessage(chatMessage) = focusedMessageField {
@@ -112,7 +116,7 @@ struct ChatListView: View {
         }
     }
     
-    private func focusMessage(_ direction: FocusDirection) {
+    private func focusMessage(_ direction: FocusDirection, _ scrollViewProxy: ScrollViewProxy) {
         if case let .focusedMessage(focusedMessage) = focusedMessageField {
             let index = chatMessages.firstIndex(of: focusedMessage) ?? 0
             let newMessageIndex = switch direction {
@@ -122,6 +126,7 @@ struct ChatListView: View {
                 max(index - 1, 0)
             }
             focusedMessageField = .focusedMessage(chatMessages[newMessageIndex])
+            scrollViewProxy.scrollTo(chatMessages[newMessageIndex].id)
         } else if let chatMessage = chatMessages.first  {
             focusedMessageField = .focusedMessage(chatMessage)
         }
