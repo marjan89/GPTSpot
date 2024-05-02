@@ -11,32 +11,28 @@ import MarkdownUI
 struct ChatMessageView: View {
     
     let chatMessage: ChatMessage
-    let spacerWidth: Double
+    let maxMessageWidth: Double
     
-    init(chatMessage: ChatMessage, spacerWidth: Double) {
+    init(chatMessage: ChatMessage, maxMessageWidth: Double) {
         self.chatMessage = chatMessage
-        self.spacerWidth = spacerWidth
+        self.maxMessageWidth = maxMessageWidth
     }
     
     var body: some View {
         HStack {
             if chatMessage.origin == Role.user.rawValue {
                 Spacer()
-                    .frame(minWidth: spacerWidth)
             }
             Markdown(chatMessage.content)
                 .gptStyle()
                 .padding(.all, 8)
                 .background(backgroundColor())
                 .cornerRadius(8)
-                .frame(alignment: chatMessage.origin == Role.user.rawValue ? .trailing : .leading)
-                .layoutPriority(1)
+                .frame(maxWidth: maxMessageWidth, alignment: chatMessage.origin == Role.user.rawValue ? .trailing : .leading)
                 .textSelection(.enabled)
                 .scrollContentBackground(.hidden)
             if chatMessage.origin == Role.assistant.rawValue {
                 Spacer()
-                    .frame(maxWidth: spacerWidth)
-                    .layoutPriority(2)
             }
         }
     }
@@ -44,17 +40,29 @@ struct ChatMessageView: View {
     private func backgroundColor() -> Color {
         chatMessage.origin == Role.user.rawValue ? Color.blue : Color(.unemphasizedSelectedTextBackgroundColor)
     }
-    
-    #Preview {
+}
+
+#Preview {
+    VStack {
         ChatMessageView(
             chatMessage: ChatMessage(
                 content: "Hello world",
                 origin: Role.user.rawValue,
-                timestamp: 0,
-                id: "",
+                timestamp: 1,
+                id: "1",
                 workspace: 1
             ),
-            spacerWidth: 100
+            maxMessageWidth: 100
+        )
+        ChatMessageView(
+            chatMessage: ChatMessage(
+                content: "Hello",
+                origin: Role.assistant.rawValue,
+                timestamp: 2,
+                id: "2",
+                workspace: 1
+            ),
+            maxMessageWidth: 100
         )
     }
 }

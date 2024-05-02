@@ -40,54 +40,57 @@ struct ChatListView: View {
         GeometryReader { geometry in
             ScrollViewReader { proxy in
                 ZStack{
-                    List {
-                        ForEach(chatMessages, id: \.id ) { chatMessage in
-                            ChatMessageView(
-                                chatMessage: chatMessage,
-                                spacerWidth: geometry.size.width * 0.33
-                            )
-                            .focusable(true)
-                            .focused($focusedMessageField, equals: .focusedMessage(chatMessage))
-                            .contextMenu(ContextMenu(menuItems: {
-                                Button {
-                                    chatMessage.content.copyTextToClipboard()
-                                } label: {
-                                    Text("Copy")
-                                }
-                                .keyboardShortcut("c", modifiers: .option)
-                                Button {
-                                    prompt = chatMessage.content
-                                } label: {
-                                    Text("Make prompt")
-                                }
-                                .keyboardShortcut(.return, modifiers: .option)
-                                Button {
-                                    modelContext.delete(chatMessage)
-                                } label: {
-                                    Text("Delete")
-                                }
-                                .keyboardShortcut(.delete, modifiers: .option)
-                                Button {
-                                    modelContext.insert(Template(content: chatMessage.content))
-                                } label: {
-                                    Text("Save template")
-                                }
-                                .keyboardShortcut("s", modifiers: .option)
-                            }))
-                            .listRowSeparator(.hidden)
-                            .scaleEffect(x: 1, y: -1, anchor: .center)
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(chatMessages, id: \.id ) { chatMessage in
+                                ChatMessageView(
+                                    chatMessage: chatMessage,
+                                    maxMessageWidth: geometry.size.width * 0.66
+                                )
+                                .focusable(true)
+                                .focused($focusedMessageField, equals: .focusedMessage(chatMessage))
+                                .contextMenu(ContextMenu(menuItems: {
+                                    Button {
+                                        chatMessage.content.copyTextToClipboard()
+                                    } label: {
+                                        Text("Copy")
+                                    }
+                                    .keyboardShortcut("c", modifiers: .option)
+                                    Button {
+                                        prompt = chatMessage.content
+                                    } label: {
+                                        Text("Make prompt")
+                                    }
+                                    .keyboardShortcut(.return, modifiers: .option)
+                                    Button {
+                                        modelContext.delete(chatMessage)
+                                    } label: {
+                                        Text("Delete")
+                                    }
+                                    .keyboardShortcut(.delete, modifiers: .option)
+                                    Button {
+                                        modelContext.insert(Template(content: chatMessage.content))
+                                    } label: {
+                                        Text("Save template")
+                                    }
+                                    .keyboardShortcut("s", modifiers: .option)
+                                }))
+                                .listRowSeparator(.hidden)
+                                .scaleEffect(x: 1, y: -1, anchor: .center)
+                            }
                         }
                     }
+                    .scrollClipDisabled()
                     .scrollContentBackground(.hidden)
                     .scaleEffect(x: 1, y: -1, anchor: .center)
-                    hotkeys(with: proxy)
+                    Hotkeys(with: proxy)
                 }
             }
         }
     }
     
     @ViewBuilder
-    private func hotkeys(with scrollViewProxy: ScrollViewProxy) -> some View {
+    private func Hotkeys(with scrollViewProxy: ScrollViewProxy) -> some View {
         HotkeyAction(hotkey: .init("k")) {
             focusMessage(.next, scrollViewProxy)
         }
