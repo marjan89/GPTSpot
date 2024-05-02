@@ -48,6 +48,7 @@
 		02A17A222BA60CD000C26A67 /* Previewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A17A212BA60CD000C26A67 /* Previewer.swift */; };
 		02AAD1BB2B8E7AEA00ED7876 /* HotkeyAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AAD1BA2B8E7AEA00ED7876 /* HotkeyAction.swift */; };
 		02AB8C922BE41528006C0853 /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AB8C912BE41528006C0853 /* LaunchAtLogin.swift */; };
+		02AB8C942BE42F59006C0853 /* URLResponse+ErrorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AB8C932BE42F59006C0853 /* URLResponse+ErrorCode.swift */; };
 		02BD90B22BA8E5480047115E /* SpotSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BD90B12BA8E5480047115E /* SpotSettings.swift */; };
 		02E04C432BB1D9F50074A95E /* GlobalHotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */; };
 		02FE75222BA65A0B0048A4EB /* Chunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FE75212BA65A0B0048A4EB /* Chunk.swift */; };
@@ -115,6 +116,7 @@
 		02A17A212BA60CD000C26A67 /* Previewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Previewer.swift; sourceTree = "<group>"; };
 		02AAD1BA2B8E7AEA00ED7876 /* HotkeyAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyAction.swift; sourceTree = "<group>"; };
 		02AB8C912BE41528006C0853 /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
+		02AB8C932BE42F59006C0853 /* URLResponse+ErrorCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+ErrorCode.swift"; sourceTree = "<group>"; };
 		02BD90B12BA8E5480047115E /* SpotSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotSettings.swift; sourceTree = "<group>"; };
 		02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotKeyManager.swift; sourceTree = "<group>"; };
 		02FE75212BA65A0B0048A4EB /* Chunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chunk.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				025AE6A52B8BEE51001489A3 /* OpenAIService.swift */,
+				02AB8C932BE42F59006C0853 /* URLResponse+ErrorCode.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 				0230ED0E2BBDEC7200C067E6 /* FocusDirection.swift in Sources */,
 				025AE6AE2B8BEEC3001489A3 /* ChatViewService.swift in Sources */,
 				029673EB2BBD45750054062F /* ChatListView.swift in Sources */,
+				02AB8C942BE42F59006C0853 /* URLResponse+ErrorCode.swift in Sources */,
 				0288BF682BB32DF00047CA09 /* Markdown+Styling.swift in Sources */,
 				0288BF642BB2D7270047CA09 /* TemplateItemView.swift in Sources */,
 				0230ED1C2BBF6A7900C067E6 /* KeyRecordingState.swift in Sources */,

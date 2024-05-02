@@ -43,10 +43,9 @@ import SwiftUI
                         self.insertOrUpdateChatMessage(for: chunk, origin: .assistant, id: id, workspace: workspace)
                     case .terminator:
                         self.generatingContent = false
-                    case .canceled:
-                        self.insertChatMessage(for: String(localized: "Response canceled"), origin: .system, workspace: workspace)
-                    case .error:
-                        self.insertChatMessage(for: String(localized: "Response error"), origin: .system, workspace: workspace)
+                    case .error(let errorType):
+                        self.insertChatMessage(for: handleError(error: errorType), origin: .system, workspace: workspace)
+                        self.generatingContent = false
                     }
                 }
             }
@@ -78,6 +77,28 @@ import SwiftUI
         if let lastMessage = try? modelContext.fetch(lastChatMessagesFetchDescriptor).first {
             prompt = lastMessage.content
         }
+    }
+    
+    private func handleError(error: MessageErrorType) -> String {
+        let error = switch(error) {
+        case .invalidToken:
+            String(localized:"Response error: Token is invalid")
+        case .invalidRegion:
+            String(localized:"Response error: Not supported in your region")
+        case .modelUnavailable:
+            String(localized:"Reponse error: Model is not available")
+        case .rateLimitReached:
+            String(localized:"Response error: You reached your rate limit")
+        case .serverError:
+            String(localized: "Server error")
+        case .serverOverload:
+            String(localized: "Response error: Server appears to be ovreloaded at the moment")
+        case .userCanceled:
+            String(localized: "Response canceled by user")
+        default:
+            String(localized: "Response error: Unknown")
+        }
+        return error
     }
     
     private func loadChatHistory(for workspace: Int) -> [ChatRequest.Message] {
@@ -117,7 +138,7 @@ import SwiftUI
         }
     }
     
-    private func insertChatMessage(for content: String, origin: Role, id: String = "", workspace: Int) {
+    private func insertChatMessage(for content: String, origin: Role, id: String = UUID().uuidString, workspace: Int) {
         let chatMessage = ChatMessage(
             content: content,
             origin: origin.rawValue,

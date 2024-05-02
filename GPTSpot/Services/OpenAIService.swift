@@ -11,17 +11,23 @@ import SwiftUI
 enum Message {
     case response(chunk: String, id: String)
     case terminator
-    case error
-    case canceled
+    case error(_ error: MessageErrorType)
+}
+
+enum MessageErrorType {
+    case invalidToken
+    case invalidRegion
+    case rateLimitReached
+    case serverError
+    case serverOverload
+    case modelUnavailable
+    case userCanceled
+    case unknown
+    case none
 }
 
 class OpenAIService {
-    private let apiKey: String
     var task: Task<Void, Never>?
-    
-    init(apiKey: String) {
-        self.apiKey = apiKey
-    }
     
     private static var decoder = {
         let decoder = JSONDecoder()
@@ -37,18 +43,21 @@ class OpenAIService {
     
     func completion(for chatRequest: ChatRequest) async throws -> AsyncStream<Message> {
         let chatRequest = try createRequest(for: chatRequest)
-        let (stream, _) = try await URLSession.shared.bytes(for: chatRequest)
-        
+        let (stream, response) = try await URLSession.shared.bytes(for: chatRequest)
         return AsyncStream { continuation in
             task = Task {
-                do {
-                    for try await line in stream.lines {
-                        continuation.yield(parseRawResponse(line))
+                if response.hasErrorStatusCode() {
+                    continuation.yield(parseError(urlResponse: response))
+                } else {
+                    do {
+                        for try await line in stream.lines {
+                            continuation.yield(parseRawResponse(line))
+                        }
+                    } catch let error as NSError where error.code == NSURLErrorCancelled {
+                        continuation.yield(.error(.userCanceled))
+                    } catch {
+                        continuation.yield(.error(.unknown))
                     }
-                } catch let error as NSError where error.code == NSURLErrorCancelled {
-                    continuation.yield(.canceled)
-                } catch {
-                    continuation.yield(.error)
                 }
                 continuation.finish()
             }
@@ -59,10 +68,35 @@ class OpenAIService {
         task?.cancel()
     }
     
+    private func parseError(urlResponse: URLResponse) -> Message {
+        if let statusCode = (urlResponse as? HTTPURLResponse)?.statusCode, statusCode >= 300 {
+            let error = switch statusCode {
+            case 401:
+                Message.error(.invalidToken)
+            case 403:
+                Message.error(.invalidRegion)
+            case 429:
+                Message.error(.rateLimitReached)
+            case 500:
+                Message.error(.serverError)
+            case 503:
+                Message.error(.serverOverload)
+            case 404:
+                Message.error(.modelUnavailable)
+            default:
+                Message.error(.unknown)
+            }
+            return error
+        } else {
+            return .error(.none)
+        }
+    }
+    
+    
     private func createRequest(for chatRequest: ChatRequest) throws -> URLRequest {
         let url = URL(string: "https://api.openai.com/v1/chat/completions")!
         var request = URLRequest(url: url)
-        
+        let apiKey = UserDefaults.standard.string(forKey: AIServerDefaultsKeys.openAiKey) ?? ""
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
@@ -73,7 +107,7 @@ class OpenAIService {
     
     private func parseRawResponse(_ line: String) -> Message {
         let components = line.split(separator: ":", maxSplits: 1, omittingEmptySubsequences: true)
-        guard components.count == 2, components[0] == "data" else { return .error }
+        guard components.count == 2, components[0] == "data" else { return .error(.unknown) }
         
         let message = components[1].trimmingCharacters(in: .whitespacesAndNewlines)
         
@@ -81,16 +115,14 @@ class OpenAIService {
             return .terminator
         }
         guard let chunk = try? JSONDecoder().decode(Chunk.self, from: message.data(using: .utf8)!) else {
-            return .error
+            return .error(.unknown)
         }
         return .response(chunk: chunk.choices.first?.delta.content ?? "", id: chunk.id)
     }
 }
 
 struct OpenAIServiceKey: EnvironmentKey {
-    static let defaultValue: OpenAIService = OpenAIService(
-        apiKey: UserDefaults.standard.string(forKey: AIServerDefaultsKeys.openAiKey) ?? ""
-    )
+    static let defaultValue: OpenAIService = OpenAIService()
 }
 
 extension EnvironmentValues {

@@ -124,10 +124,25 @@
     "Quit" : {
 
     },
-    "Response canceled" : {
+    "Reponse error: Model is not available" : {
 
     },
-    "Response error" : {
+    "Response canceled by user" : {
+
+    },
+    "Response error: Not supported in your region" : {
+
+    },
+    "Response error: Server appears to be ovreloaded at the moment" : {
+
+    },
+    "Response error: Token is invalid" : {
+
+    },
+    "Response error: Unknown" : {
+
+    },
+    "Response error: You reached your rate limit" : {
 
     },
     "Save template" : {
@@ -140,6 +155,9 @@
 
     },
     "Send a message" : {
+
+    },
+    "Server error" : {
 
     },
     "Set last message as prompt" : {

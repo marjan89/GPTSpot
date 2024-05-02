@@ -31,7 +31,7 @@ struct ChatMessageView: View {
                 .frame(maxWidth: maxMessageWidth, alignment: chatMessage.origin == Role.user.rawValue ? .trailing : .leading)
                 .textSelection(.enabled)
                 .scrollContentBackground(.hidden)
-            if chatMessage.origin == Role.assistant.rawValue {
+            if chatMessage.origin != Role.user.rawValue {
                 Spacer()
             }
         }
@@ -47,7 +47,7 @@ struct ChatMessageView: View {
         ChatMessageView(
             chatMessage: ChatMessage(
                 content: "Hello world",
-                origin: Role.user.rawValue,
+                origin: Role.system.rawValue,
                 timestamp: 1,
                 id: "1",
                 workspace: 1
