@@ -79,6 +79,7 @@ struct ChatListView: View {
                                 .scaleEffect(x: 1, y: -1, anchor: .center)
                             }
                         }
+                        .padding(.horizontal, 16)
                     }
                     .scrollClipDisabled()
                     .scrollContentBackground(.hidden)

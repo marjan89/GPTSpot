@@ -37,32 +37,35 @@ struct ChatView: View {
                     workspace: workspace,
                     prompt: $chatViewService.prompt
                 )
-                if showTemplateStripe {
-                    TemplateStripeView(
-                        searchQuery: templateSearchQuery,
-                        onTemplateSelected: { template in
-                            chatViewService.prompt = template.content
-                            showTemplateStripe = false
-                            templateSearchQuery = ""
+                VStack {
+                    VStack {
+                        if showTemplateStripe {
+                            TemplateStripeView(
+                                searchQuery: templateSearchQuery,
+                                onTemplateSelected: { template in
+                                    chatViewService.prompt = template.content
+                                    showTemplateStripe = false
+                                    templateSearchQuery = ""
+                                }
+                            )
+                            .frame(height: 196)
                         }
-                    )
-                    .frame(height: 196)
+                        PromptInput(geometry: geometry)
+                        HStack {
+                            WorkspaceIndicatorView(workspace: $workspace)
+                            ChatControls()
+                        }
+                        if showHelpRibbon {
+                            CheatSheetView()
+                        }
+                        if showStats {
+                            StatsView(workspace: workspace)
+                        }
+                    }
+                    .padding(.all, 16)
                 }
-                PromptInput(geometry: geometry)
-                HStack {
-                    WorkspaceIndicatorView(workspace: $workspace)
-                    ChatControls()
-                }
-                if showHelpRibbon {
-                    CheatSheetView()
-                }
-                if showStats {
-                    StatsView(workspace: workspace)
-                }
+                .background(.regularMaterial)
             }
-            .padding(.horizontal, 16)
-            .padding(.bottom, 16)
-            .padding(.top, 8)
         }
         .background(.windowBackground)
         .roundedCorners(radius: 16, strokeColor: Color.black)
