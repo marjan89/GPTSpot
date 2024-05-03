@@ -44,6 +44,7 @@ struct ChatView: View {
                                 searchQuery: templateSearchQuery,
                                 onTemplateSelected: { template in
                                     chatViewService.prompt = template.content
+                                    focusedField = .prompt
                                     showTemplateStripe = false
                                     templateSearchQuery = ""
                                 }
@@ -148,6 +149,7 @@ struct ChatView: View {
             .keyboardShortcut(.upArrow)
             .buttonStyle(BorderlessButtonStyle())
             Button("", systemImage: "paperplane.fill") {
+                focusedField = .prompt
                 chatViewService.executePrompt(workspace: workspace)
             }
             .accessibilityLabel("Send")
