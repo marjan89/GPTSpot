@@ -10,15 +10,11 @@ import SwiftData
 
 struct ChatView: View {
     
-    enum FocusedField {
-        case prompt
-    }
-    
     @Bindable var chatViewService: ChatViewService
     
     @Environment(\.modelContext) var modelContext
     
-    @FocusState private var focusedField: FocusedField?
+    @FocusState private var focusedField: Bool
     
     @State var workspace = 1
     @State var showHelpRibbon = false
@@ -44,14 +40,20 @@ struct ChatView: View {
                                 searchQuery: templateSearchQuery,
                                 onTemplateSelected: { template in
                                     chatViewService.prompt = template.content
-                                    focusedField = .prompt
+                                    focusedField = true
                                     showTemplateStripe = false
                                     templateSearchQuery = ""
                                 }
                             )
                             .frame(height: 196)
                         }
-                        PromptInput(geometry: geometry)
+                        PromptEditor(
+                            showTemplateHint: $showTemplateStripe,
+                            templateSearchQuery: $templateSearchQuery,
+                            prompt: $chatViewService.prompt,
+                            focusedField: _focusedField,
+                            textEditorHeight: geometry.size.height / 8
+                        )
                         HStack {
                             WorkspaceIndicatorView(workspace: $workspace)
                             ChatControls()
@@ -72,41 +74,6 @@ struct ChatView: View {
         .roundedCorners(radius: 16, strokeColor: Color.black)
         .padding(.all, 20)
         .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.66), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-    }
-    
-    @ViewBuilder
-    func PromptInput(geometry: GeometryProxy) -> some View {
-        ZStack {
-            if showTemplateStripe && templateSearchQuery.isEmpty {
-                Text("Search templates")
-                    .padding(.top, 6)
-                    .padding(.leading, 16)
-                    .foregroundStyle(.secondary)
-                    .frame(maxWidth: .infinity, maxHeight: geometry.size.height / 8, alignment: .topLeading)
-            }
-            if !showTemplateStripe && chatViewService.prompt.isEmpty {
-                Text("Send a message")
-                    .padding(.top, 6)
-                    .padding(.leading, 16)
-                    .foregroundStyle(.secondary)
-                    .frame(maxWidth: .infinity, maxHeight: geometry.size.height / 8, alignment: .topLeading)
-            }
-            TextEditor(text: showTemplateStripe ? $templateSearchQuery : $chatViewService.prompt)
-                .padding(.all, 8)
-                .accessibilityHidden(true)
-                .scrollClipDisabled()
-                .scrollContentBackground(.hidden)
-                .scrollIndicators(.never)
-                .focused($focusedField, equals: .prompt)
-                .onAppear {
-                    focusedField = .prompt
-                }
-                .roundedCorners(strokeColor: .gray)
-                .frame(height: geometry.size.height / 8)
-            HotkeyAction(hotkey: .init("`"), eventModifiers: .command) {
-                chatViewService.prompt.append("```")
-            }
-        }
     }
     
     @ViewBuilder
@@ -146,13 +113,13 @@ struct ChatView: View {
             .keyboardShortcut(.init("t"))
             .buttonStyle(BorderlessButtonStyle())
             Button("", systemImage: "memories") {
+                focusedField = true
                 chatViewService.setLastChatMessageAsPrompt(workspace: workspace)
             }
             .accessibilityLabel("Set last message as prompt")
             .keyboardShortcut(.upArrow)
             .buttonStyle(BorderlessButtonStyle())
             Button("", systemImage: "paperplane.fill") {
-                focusedField = .prompt
                 chatViewService.executePrompt(workspace: workspace)
             }
             .accessibilityLabel("Send")

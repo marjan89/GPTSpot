@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "025AE6712B8BA51F001489A3"
-               BuildableName = "GPTSpot.app"
-               BlueprintName = "GPTSpot"
+               BuildableName = "GPTSpot-macOS.app"
+               BlueprintName = "GPTSpot-macOS"
                ReferencedContainer = "container:GPTSpot.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -71,8 +71,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "025AE6712B8BA51F001489A3"
-            BuildableName = "GPTSpot.app"
-            BlueprintName = "GPTSpot"
+            BuildableName = "GPTSpot-macOS.app"
+            BlueprintName = "GPTSpot-macOS"
             ReferencedContainer = "container:GPTSpot.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -88,8 +88,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "025AE6712B8BA51F001489A3"
-            BuildableName = "GPTSpot.app"
-            BlueprintName = "GPTSpot"
+            BuildableName = "GPTSpot-macOS.app"
+            BlueprintName = "GPTSpot-macOS"
             ReferencedContainer = "container:GPTSpot.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
