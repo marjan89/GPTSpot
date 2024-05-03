@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension URLResponse {
+internal extension URLResponse {
     func hasErrorStatusCode() -> Bool {
         if let statusCode = (self as? HTTPURLResponse)?.statusCode, statusCode >= 300 {
             return true

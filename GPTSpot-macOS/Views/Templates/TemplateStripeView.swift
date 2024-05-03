@@ -7,8 +7,9 @@
 
 import SwiftUI
 import SwiftData
+import GPTSpot_Common
 
-public struct TemplateStripeView: View {
+struct TemplateStripeView: View {
     
     enum FocusedTemplateField : Hashable {
         case focusedTemplate(_ template: Template)
@@ -22,7 +23,7 @@ public struct TemplateStripeView: View {
     
     @FocusState var focusedTemplateField: FocusedTemplateField?
     
-    public init(searchQuery: String, onTemplateSelected: @escaping (Template) -> Void) {
+    init(searchQuery: String, onTemplateSelected: @escaping (Template) -> Void) {
         self.onTemplateSelected = onTemplateSelected
         _templates = Query(
             filter: #Predicate<Template> { template in
@@ -31,7 +32,7 @@ public struct TemplateStripeView: View {
         )
     }
     
-    public var body: some View {
+    var body: some View {
         ZStack {
             hotkeys()
             ScrollView(.horizontal) {

@@ -6,8 +6,10 @@
 	<dict>
 		<key>GPTSpot-Common.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>1</integer>
 		</dict>
 		<key>GPTSpot-iOS.xcscheme_^#shared#^_</key>
 		<dict>
@@ -33,6 +35,11 @@
 			<true/>
 		</dict>
 		<key>025AE68C2B8BA521001489A3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>026B92972BE4FED400BCD0A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -1,14 +1,12 @@
 //
 //  String+Clipboard.swift
-//  GPTSpot
+//  GPTSpot-Common
 //
-//  Created by Sinisa Marjanovic on 3/31/24.
+//  Created by Sinisa Marjanovic on 5/3/24.
 //
 
 import Foundation
 import SwiftUI
-
-#if canImport(AppKit)
 import AppKit
 
 extension String {
@@ -19,18 +17,3 @@ extension String {
         
     }
 }
-
-#endif
-
-#if canImport(UIKit)
-import UIKit
-
-extension String {
-    
-    func copyTextToClipboard() {
-        let pasteboard = UIPasteboard.general
-        pasteboard.string = self
-    }
-}
-#endif
-

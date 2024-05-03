@@ -16,40 +16,7 @@ struct ChatView: View {
     @FocusState private var focusedField: Bool
     
     var body: some View {
-        GeometryReader { geometry in
-            VStack(spacing: 4) {
-                ChatListView(
-                    workspace: 0,
-                    prompt: $chatViewService.prompt
-                )
-                VStack {
-                    VStack {
-                        if showTemplateStripe {
-                            TemplateStripeView(
-                                searchQuery: templateSearchQuery,
-                                onTemplateSelected: { template in
-                                    chatViewService.prompt = template.content
-                                    focusedField = true
-                                    showTemplateStripe = false
-                                    templateSearchQuery = ""
-                                }
-                            )
-                            .frame(height: 196)
-                        }
-                        PromptEditor(
-                            showTemplateHint: $showTemplateStripe,
-                            templateSearchQuery: $templateSearchQuery,
-                            prompt: $chatViewService.prompt,
-                            focusedField: _focusedField,
-                            textEditorHeight: geometry.size.height / 8
-                        )
-                    }
-                    .padding(.all, 16)
-                }
-                .background(.regularMaterial)
-            }
-        }
-        .background(.windowBackground)
+        EmptyView()
     }
 }
 

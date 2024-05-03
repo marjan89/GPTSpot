@@ -9,7 +9,7 @@ import Foundation
 import MarkdownUI
 import SwiftUI
 
-extension Markdown {
+public extension Markdown {
     
     func gptStyle() -> some View {
         self.markdownBlockStyle(\.codeBlock) { configuration in

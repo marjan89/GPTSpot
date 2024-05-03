@@ -7,24 +7,25 @@
 
 import SwiftUI
 import SwiftData
+import GPTSpot_Common
 
 enum FocusedMessageField : Hashable {
     case focusedMessage(_ chatMessage: ChatMessage)
 }
 
-public struct ChatListView: View {
+struct ChatListView: View {
     
-    @FocusState var focusedMessageField: FocusedMessageField?
+    @FocusState private var focusedMessageField: FocusedMessageField?
     
-    @Environment(\.modelContext) var modelContext: ModelContext
+    @Environment(\.modelContext) private var modelContext: ModelContext
     
-    @Query var chatMessages: [ChatMessage]
+    @Query private var chatMessages: [ChatMessage]
     
-    @Binding var prompt: String
+    @Binding private var prompt: String
     
     private let workspace: Int
     
-    public init(workspace: Int, prompt: Binding<String>) {
+    init(workspace: Int, prompt: Binding<String>) {
         self.workspace = workspace
         self._prompt = prompt
         _chatMessages = Query(
@@ -36,7 +37,7 @@ public struct ChatListView: View {
         )
     }
     
-    public var body: some View {
+    var body: some View {
         GeometryReader { geometry in
             ScrollViewReader { proxy in
                 ZStack{

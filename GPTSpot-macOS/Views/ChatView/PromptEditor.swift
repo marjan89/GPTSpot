@@ -48,7 +48,7 @@ public struct PromptEditor: View {
                 .scrollIndicators(.never)
                 .focused($focusedField)
                 .onAppear {
-                    focusedField = false
+                    focusedField = true
                 }
                 .roundedCorners(strokeColor: .gray)
                 .frame(height: textEditorHeight)

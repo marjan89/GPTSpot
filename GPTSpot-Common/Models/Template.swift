@@ -12,7 +12,7 @@ import SwiftData
 public class Template {
     public var content: String = ""
     
-    init(content: String) {
+    public init(content: String) {
         self.content = content
     }
 }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MarkdownUI
+import GPTSpot_Common
 
 struct TemplateItemView: View {
     
