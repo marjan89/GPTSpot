@@ -32,6 +32,9 @@ class GPTAppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         setupWindow()
+        NSApp.setActivationPolicy(
+            UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.hideFromDock) ? .accessory : .regular
+        )
         globalHotkeyManager = GlobalHotKeyManager(appDelegate: self)
     }
     func setupWindow() {

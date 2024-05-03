@@ -103,6 +103,9 @@
     "GPTSpot" : {
 
     },
+    "Hide from dock" : {
+
+    },
     "history max: **%lld**" : {
 
     },
@@ -188,6 +191,9 @@
 
     },
     "Workspace %lld" : {
+
+    },
+    "You need to restart the app for this change to take effect" : {
 
     }
   },
