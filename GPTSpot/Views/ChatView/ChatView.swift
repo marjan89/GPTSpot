@@ -103,6 +103,9 @@ struct ChatView: View {
                 }
                 .roundedCorners(strokeColor: .gray)
                 .frame(height: geometry.size.height / 8)
+            HotkeyAction(hotkey: .init("`"), eventModifiers: .command) {
+                chatViewService.prompt.append("```")
+            }
         }
     }
     
