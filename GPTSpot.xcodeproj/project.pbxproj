@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0229B54B2BE48626003F86F3 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0229B54A2BE48626003F86F3 /* Models.swift */; };
 		0230ED0E2BBDEC7200C067E6 /* FocusDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230ED0D2BBDEC7200C067E6 /* FocusDirection.swift */; };
 		0230ED162BBDFC8700C067E6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */; };
 		0230ED192BBF48FA00C067E6 /* KeyRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230ED182BBF48FA00C067E6 /* KeyRecordingView.swift */; };
@@ -72,6 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0229B54A2BE48626003F86F3 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		0230ED0D2BBDEC7200C067E6 /* FocusDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusDirection.swift; sourceTree = "<group>"; };
 		0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		0230ED182BBF48FA00C067E6 /* KeyRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyRecordingView.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				025C7E202B8D79180060F343 /* ChatMessage.swift */,
 				02FE75212BA65A0B0048A4EB /* Chunk.swift */,
 				0288BF652BB3116E0047CA09 /* Template.swift */,
+				0229B54A2BE48626003F86F3 /* Models.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				02AAD1BB2B8E7AEA00ED7876 /* HotkeyAction.swift in Sources */,
 				028D48E62BAA40F8005E2FF7 /* GeneralSettingsDefaultsKeys.swift in Sources */,
 				029673D82BB4EC0A0054062F /* CheatSheetView.swift in Sources */,
+				0229B54B2BE48626003F86F3 /* Models.swift in Sources */,
 				0288BF662BB3116E0047CA09 /* Template.swift in Sources */,
 				028D48E12BAA3CC9005E2FF7 /* GeneralSettingsView.swift in Sources */,
 				02AB8C922BE41528006C0853 /* LaunchAtLogin.swift in Sources */,
