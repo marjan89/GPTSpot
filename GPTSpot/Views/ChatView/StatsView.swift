@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import GPTSpot_Common
 
 struct StatsView: View {
     

@@ -85,9 +85,6 @@
     "Chat" : {
 
     },
-    "Click to record a key sequence" : {
-
-    },
     "Copy" : {
 
     },
@@ -110,9 +107,6 @@
 
     },
     "history max: **%lld**" : {
-
-    },
-    "Keys" : {
 
     },
     "Make prompt" : {

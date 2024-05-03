@@ -38,7 +38,7 @@ struct ChatMessageView: View {
     }
     
     private func backgroundColor() -> Color {
-        chatMessage.origin == Role.user.rawValue ? Color.blue : Color(.unemphasizedSelectedTextBackgroundColor)
+        chatMessage.origin == Role.user.rawValue ? Color.blue : Color(.darkGray)
     }
 }
 

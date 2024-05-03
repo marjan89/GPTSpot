@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import GPTSpot_Common
 
 struct AIServerSettingsView: View {
     

@@ -7,8 +7,9 @@
 
 import SwiftUI
 import SwiftData
+import GPTSpot_Common
 
-struct ChatView: View {
+public struct ChatView: View {
     
     @Bindable var chatViewService: ChatViewService
     
@@ -22,11 +23,11 @@ struct ChatView: View {
     @State var showTemplateStripe = false
     @State var templateSearchQuery = ""
     
-    init(chatViewService: ChatViewService) {
+    public init(chatViewService: ChatViewService) {
         self.chatViewService = chatViewService
     }
     
-    var body: some View {
+    public var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 4) {
                 ChatListView(

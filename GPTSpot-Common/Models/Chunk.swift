@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Chunk: Decodable {
+public struct Chunk: Decodable {
     struct Choice: Decodable {
         struct Delta: Decodable {
             let role: String?

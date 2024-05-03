@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import GPTSpot_Common
 
 @main
 struct GPTSpot_iOSApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(for: [ChatMessage.self, Template.self])
+                .environment(\.openAIService, OpenAIServiceKey.defaultValue)
         }
     }
 }

@@ -9,20 +9,21 @@ import Foundation
 import SwiftData
 import SwiftUI
 
-@Observable final class ChatViewService {
+@Observable
+public final class ChatViewService {
     
-    var prompt: String = ""
-    var generatingContent: Bool = false
+    public var prompt: String = ""
+    public var generatingContent: Bool = false
     
     private let modelContext: ModelContext
     private let openAiService: OpenAIService
     
-    init(modelContext: ModelContext, openAISerice: OpenAIService) {
+    public init(modelContext: ModelContext, openAISerice: OpenAIService) {
         self.modelContext = modelContext
         self.openAiService = openAISerice
     }
     
-    func executePrompt(workspace: Int) {
+    public func executePrompt(workspace: Int) {
         if generatingContent {
             return
         }
@@ -52,12 +53,12 @@ import SwiftUI
         }
     }
     
-    func cancelCompletion() {
+    public func cancelCompletion() {
         openAiService.cancelCompletion()
         generatingContent = false
     }
     
-    func discardHistory(for workspace: Int) {
+    public func discardHistory(for workspace: Int) {
         try? modelContext.delete(
             model: ChatMessage.self,
             where: #Predicate<ChatMessage> { message in
@@ -66,7 +67,7 @@ import SwiftUI
         )
     }
     
-    func setLastChatMessageAsPrompt(workspace: Int) {
+    public func setLastChatMessageAsPrompt(workspace: Int) {
         var lastChatMessagesFetchDescriptor = FetchDescriptor<ChatMessage>(
             predicate: #Predicate<ChatMessage> { message in
                 message.origin == "user" && message.workspace == workspace

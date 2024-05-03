@@ -30,6 +30,5 @@ extension Markdown {
             FontWeight(.bold)
             BackgroundColor(Color.black.opacity(0.2))
         }
-        .foregroundColor(Color(.textColor))
     }
 }

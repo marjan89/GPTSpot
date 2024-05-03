@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import GPTSpot_Common
 
 struct GeneralSettingsView: View {
     @AppStorage(GeneralSettingsDefaultsKeys.startHidden) private var startHidden = false

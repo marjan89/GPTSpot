@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct ChatRequest: Codable {
-    struct Message: Codable {
+public struct ChatRequest: Codable {
+    public struct Message: Codable {
         let role: String
         let content: String
     }

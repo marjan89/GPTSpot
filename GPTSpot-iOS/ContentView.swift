@@ -6,16 +6,18 @@
 //
 
 import SwiftUI
+import GPTSpot_Common
 
 struct ContentView: View {
+    
+    @Environment(\.modelContext) var modelContext
+    @Environment(\.openAIService) var openAIService
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        ChatView(chatViewService: .init(
+            modelContext: modelContext,
+            openAISerice: openAIService)
+        )
     }
 }
 

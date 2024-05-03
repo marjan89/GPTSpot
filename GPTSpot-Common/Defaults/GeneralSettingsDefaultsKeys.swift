@@ -7,8 +7,8 @@
 
 import Foundation
 
-enum GeneralSettingsDefaultsKeys {
-    static let loginItem: String = "loginItem"
-    static let startHidden: String = "startHidden"
-    static let hideFromDock: String = "hideFromDock"
+public enum GeneralSettingsDefaultsKeys {
+    public static let loginItem: String = "loginItem"
+    public static let startHidden: String = "startHidden"
+    public static let hideFromDock: String = "hideFromDock"
 }

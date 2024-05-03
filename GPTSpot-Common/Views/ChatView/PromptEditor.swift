@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PromptEditor: View {
+public struct PromptEditor: View {
     
     @Binding var showTemplateHint: Bool
     @Binding var templateSearchQuery: String
@@ -16,7 +16,15 @@ struct PromptEditor: View {
     
     let textEditorHeight: CGFloat
     
-    var body: some View {
+    public init(showTemplateHint: Binding<Bool>, templateSearchQuery: Binding<String>, prompt: Binding<String>, focusedField: FocusState<Bool>, textEditorHeight: CGFloat) {
+        self._showTemplateHint = showTemplateHint
+        self._templateSearchQuery = templateSearchQuery
+        self._prompt = prompt
+        self._focusedField = focusedField
+        self.textEditorHeight = textEditorHeight
+    }
+    
+    public var body: some View {
         ZStack {
             if showTemplateHint && templateSearchQuery.isEmpty {
                 Text("Search templates")

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GPTSpot_Common
 
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext

@@ -9,8 +9,8 @@ import Foundation
 import SwiftData
 
 @Model
-class Template {
-    var content: String = ""
+public class Template {
+    public var content: String = ""
     
     init(content: String) {
         self.content = content

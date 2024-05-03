@@ -26,8 +26,9 @@ enum MessageErrorType {
     case none
 }
 
-class OpenAIService {
-    var task: Task<Void, Never>?
+public class OpenAIService {
+    
+    private var task: Task<Void, Never>?
     
     private static var encoder = {
         let encoder = JSONEncoder()
@@ -115,12 +116,12 @@ class OpenAIService {
     }
 }
 
-struct OpenAIServiceKey: EnvironmentKey {
-    static let defaultValue: OpenAIService = OpenAIService()
+public struct OpenAIServiceKey: EnvironmentKey {
+    public static let defaultValue: OpenAIService = OpenAIService()
 }
 
 extension EnvironmentValues {
-    var openAIService: OpenAIService {
+    public var openAIService: OpenAIService {
         get { self[OpenAIServiceKey.self] }
         set { self[OpenAIServiceKey.self] = newValue }
     }

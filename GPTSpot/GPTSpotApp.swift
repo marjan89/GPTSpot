@@ -2,6 +2,7 @@ import SwiftUI
 import Cocoa
 import Carbon
 import SwiftData
+import GPTSpot_Common
 
 @main
 struct GPTSpotApp: App {

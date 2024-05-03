@@ -12,7 +12,7 @@ enum FocusedMessageField : Hashable {
     case focusedMessage(_ chatMessage: ChatMessage)
 }
 
-struct ChatListView: View {
+public struct ChatListView: View {
     
     @FocusState var focusedMessageField: FocusedMessageField?
     
@@ -24,7 +24,7 @@ struct ChatListView: View {
     
     private let workspace: Int
     
-    init(workspace: Int, prompt: Binding<String>) {
+    public init(workspace: Int, prompt: Binding<String>) {
         self.workspace = workspace
         self._prompt = prompt
         _chatMessages = Query(
@@ -36,7 +36,7 @@ struct ChatListView: View {
         )
     }
     
-    var body: some View {
+    public var body: some View {
         GeometryReader { geometry in
             ScrollViewReader { proxy in
                 ZStack{

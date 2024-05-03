@@ -9,12 +9,12 @@ import Foundation
 import SwiftData
 
 @MainActor
-struct Previewer {
-    let container: ModelContainer
-    let chatMessages: [ChatMessage]
-    let templates: [Template]
+public struct Previewer {
+    public let container: ModelContainer
+    public let chatMessages: [ChatMessage]
+    public let templates: [Template]
 
-    init() throws {
+    public init() throws {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         container = try ModelContainer(
             for: ChatMessage.self, Template.self,

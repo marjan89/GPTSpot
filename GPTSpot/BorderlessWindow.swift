@@ -7,6 +7,7 @@
 
 import Foundation
 import Cocoa
+import GPTSpot_Common
 
 class BorderlessWindow: NSWindow {
     override var canBecomeKey: Bool {

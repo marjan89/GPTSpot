@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct RoundedCornerModifier: ViewModifier {
+public struct RoundedCornerModifier: ViewModifier {
     var radius: CGFloat = 8
     var strokeWidth: CGFloat = 1
     var strokeColor: Color = Color.clear
     
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         content
             .clipShape(RoundedRectangle(cornerRadius: radius, style: .continuous))
             .overlay(
@@ -24,7 +24,7 @@ struct RoundedCornerModifier: ViewModifier {
 
 extension View {
     
-    func roundedCorners(radius: CGFloat = 8, stroke: CGFloat = 1, strokeColor: Color = Color.clear) -> some View {
+    public func roundedCorners(radius: CGFloat = 8, stroke: CGFloat = 1, strokeColor: Color = Color.clear) -> some View {
         return self
             .modifier(RoundedCornerModifier(radius: radius, strokeWidth: stroke, strokeColor: strokeColor))
     }

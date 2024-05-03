@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum AIServerDefaultsKeys {
-    static let aiModel: String = "aiModel"
-    static let temperature: String = "temperature"
-    static let openAiKey: String = "openAiKey"
-    static let maxHistory: String = "maxHistory"
+public enum AIServerDefaultsKeys {
+    public static let aiModel: String = "aiModel"
+    public static let temperature: String = "temperature"
+    public static let openAiKey: String = "openAiKey"
+    public static let maxHistory: String = "maxHistory"
 }

@@ -7,8 +7,8 @@
 
 import Foundation
 
-enum GPTModels {
-    static let models: [String] = [
+public enum GPTModels {
+    public static let models: [String] = [
         "gpt-4-turbo",
         "gpt-4-turbo-2024-04-09",
         "gpt-4-0125-preview",

@@ -10,7 +10,6 @@ import SwiftUI
 enum Tabs {
     case general
     case aiServer
-    case keys
 }
 
 struct SpotSettings: View {
@@ -23,11 +22,6 @@ struct SpotSettings: View {
                     Label("AI Server", systemImage: "brain")
                 }
                 .tag(Tabs.aiServer)
-            KeysSettingsView()
-                .tabItem {
-                    Label("Keys", systemImage: "keyboard")
-                }
-                .tag(Tabs.keys)
             GeneralSettingsView()
                 .tabItem {
                     Label("General", systemImage: "gear")
