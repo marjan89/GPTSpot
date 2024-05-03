@@ -18,7 +18,6 @@ class BorderlessWindow: NSWindow {
         self.isOpaque = false
         self.backgroundColor = NSColor.clear
         self.contentView?.layer?.backgroundColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        self.setFrameAutosaveName("gpt-spot")
         self.level = .floating
         self.makeKey()
         self.center()

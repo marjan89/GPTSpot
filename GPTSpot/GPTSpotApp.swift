@@ -50,6 +50,7 @@ class GPTAppDelegate: NSObject, NSApplicationDelegate {
     func toggleWindowVisibility() {
         if window.isVisible {
             window.orderOut(nil)
+            NSApp.hide(nil)
         } else {
             window.makeKeyAndOrderFront(nil)
             NSApp.activate(ignoringOtherApps: true)
