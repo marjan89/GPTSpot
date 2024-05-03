@@ -31,7 +31,6 @@
 		0288BF642BB2D7270047CA09 /* TemplateItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288BF632BB2D7270047CA09 /* TemplateItemView.swift */; };
 		0288BF662BB3116E0047CA09 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288BF652BB3116E0047CA09 /* Template.swift */; };
 		0288BF682BB32DF00047CA09 /* Markdown+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288BF672BB32DF00047CA09 /* Markdown+Styling.swift */; };
-		028D48DA2BAA3B6C005E2FF7 /* ChatCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48D92BAA3B6C005E2FF7 /* ChatCompletion.swift */; };
 		028D48DD2BAA3CA9005E2FF7 /* KeysSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48DC2BAA3CA9005E2FF7 /* KeysSettingsView.swift */; };
 		028D48DF2BAA3CBC005E2FF7 /* AIServerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48DE2BAA3CBC005E2FF7 /* AIServerSettingsView.swift */; };
 		028D48E12BAA3CC9005E2FF7 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48E02BAA3CC9005E2FF7 /* GeneralSettingsView.swift */; };
@@ -101,7 +100,6 @@
 		0288BF632BB2D7270047CA09 /* TemplateItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateItemView.swift; sourceTree = "<group>"; };
 		0288BF652BB3116E0047CA09 /* Template.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
 		0288BF672BB32DF00047CA09 /* Markdown+Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Markdown+Styling.swift"; sourceTree = "<group>"; };
-		028D48D92BAA3B6C005E2FF7 /* ChatCompletion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCompletion.swift; sourceTree = "<group>"; };
 		028D48DC2BAA3CA9005E2FF7 /* KeysSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeysSettingsView.swift; sourceTree = "<group>"; };
 		028D48DE2BAA3CBC005E2FF7 /* AIServerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIServerSettingsView.swift; sourceTree = "<group>"; };
 		028D48E02BAA3CC9005E2FF7 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
@@ -237,7 +235,6 @@
 		025C7E1B2B8D779B0060F343 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				028D48D92BAA3B6C005E2FF7 /* ChatCompletion.swift */,
 				025AE6A72B8BEE51001489A3 /* ChatRequest.swift */,
 				025C7E202B8D79180060F343 /* ChatMessage.swift */,
 				02FE75212BA65A0B0048A4EB /* Chunk.swift */,
@@ -489,7 +486,6 @@
 				029673E52BBA21EF0054062F /* RoundedCornerModifier.swift in Sources */,
 				02A17A222BA60CD000C26A67 /* Previewer.swift in Sources */,
 				0230ED1E2BBF6A9300C067E6 /* KeySequence.swift in Sources */,
-				028D48DA2BAA3B6C005E2FF7 /* ChatCompletion.swift in Sources */,
 				0288BF622BB2D7180047CA09 /* TemplateStripeView.swift in Sources */,
 				0230ED192BBF48FA00C067E6 /* KeyRecordingView.swift in Sources */,
 				029673DF2BB8A0B80054062F /* WorkspaceIndicatorView.swift in Sources */,

@@ -29,12 +29,6 @@ enum MessageErrorType {
 class OpenAIService {
     var task: Task<Void, Never>?
     
-    private static var decoder = {
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        return decoder
-    }()
-    
     private static var encoder = {
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase
