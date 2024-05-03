@@ -14,7 +14,9 @@ class BorderlessWindow: NSWindow {
     }
 
     init(for contentView: NSView) {
-        super.init(contentRect: NSRect(x: 0, y: 0, width: 1000, height: 800), styleMask: [.borderless], backing: .buffered, defer: false)
+        let screenRect = NSScreen.main?.frame ?? NSRect.zero
+        
+        super.init(contentRect: NSRect(x: 0, y: 0, width: screenRect.width * 0.6, height: screenRect.height * 0.8), styleMask: [.borderless], backing: .buffered, defer: false)
         self.isOpaque = false
         self.backgroundColor = NSColor.clear
         self.contentView?.layer?.backgroundColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
