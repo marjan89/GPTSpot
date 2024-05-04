@@ -26,7 +26,6 @@
 		026B92A92BE4FFAF00BCD0A7 /* GPTSpot_Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 026B92982BE4FED400BCD0A7 /* GPTSpot_Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		026B92AD2BE5009000BCD0A7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */; };
 		026B92AF2BE5009D00BCD0A7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */; };
-		026B92C82BE5137100BCD0A7 /* ChatMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C7E222B8D87820060F343 /* ChatMessageView.swift */; };
 		026B92C92BE5137100BCD0A7 /* ChatViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6AD2B8BEEC3001489A3 /* ChatViewService.swift */; };
 		026B92CA2BE5138100BCD0A7 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288BF652BB3116E0047CA09 /* Template.swift */; };
 		026B92CC2BE5138100BCD0A7 /* ChatRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6A72B8BEE51001489A3 /* ChatRequest.swift */; };
@@ -63,6 +62,7 @@
 		02AB8C9D2BE47E4C006C0853 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 02AB8C9C2BE47E4C006C0853 /* MarkdownUI */; };
 		02BD90B22BA8E5480047115E /* SpotSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BD90B12BA8E5480047115E /* SpotSettings.swift */; };
 		02E04C432BB1D9F50074A95E /* GlobalHotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */; };
+		02FD0B6B2BE5B9A40042B60C /* ChatMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C7E222B8D87820060F343 /* ChatMessageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,9 +213,9 @@
 		025AE6692B8BA51F001489A3 = {
 			isa = PBXGroup;
 			children = (
-				026B926A2BE4FE1800BCD0A7 /* GPTSpot-iOS */,
-				026B92992BE4FED400BCD0A7 /* GPTSpot-Common */,
 				02C491632BA71DA800EDB446 /* Frameworks */,
+				026B92992BE4FED400BCD0A7 /* GPTSpot-Common */,
+				026B926A2BE4FE1800BCD0A7 /* GPTSpot-iOS */,
 				025AE6742B8BA51F001489A3 /* GPTSpot-macOs */,
 				025AE6732B8BA51F001489A3 /* Products */,
 			);
@@ -234,15 +234,15 @@
 		025AE6742B8BA51F001489A3 /* GPTSpot-macOs */ = {
 			isa = PBXGroup;
 			children = (
-				026B92E82BE51DA600BCD0A7 /* Extensions */,
-				025AE67B2B8BA521001489A3 /* Preview Content */,
 				025AE67E2B8BA521001489A3 /* GPTSpot.entitlements */,
 				02A17A1F2BA60AD100C26A67 /* BorderlessWindow.swift */,
 				02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */,
 				025AE6752B8BA51F001489A3 /* GPTSpotmacOSApp.swift */,
-				025AE6792B8BA520001489A3 /* Assets.xcassets */,
-				025C7E1D2B8D77CC0060F343 /* Views */,
 				02AB8C912BE41528006C0853 /* LaunchAtLogin.swift */,
+				025AE6792B8BA520001489A3 /* Assets.xcassets */,
+				026B92E82BE51DA600BCD0A7 /* Extensions */,
+				025AE67B2B8BA521001489A3 /* Preview Content */,
+				025C7E1D2B8D77CC0060F343 /* Views */,
 			);
 			path = "GPTSpot-macOs";
 			sourceTree = "<group>";
@@ -293,6 +293,7 @@
 		025C7E1E2B8D77D00060F343 /* ChatView */ = {
 			isa = PBXGroup;
 			children = (
+				025C7E222B8D87820060F343 /* ChatMessageView.swift */,
 				029673EA2BBD45750054062F /* ChatListView.swift */,
 				026B92B02BE501CB00BCD0A7 /* PromptEditor.swift */,
 				029673D72BB4EC0A0054062F /* CheatSheetView.swift */,
@@ -306,11 +307,11 @@
 		026B926A2BE4FE1800BCD0A7 /* GPTSpot-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				026B926B2BE4FE1800BCD0A7 /* GPTSpotiOSApp.swift */,
+				026B92E22BE51CAD00BCD0A7 /* ChatView.swift */,
 				026B926D2BE4FE1800BCD0A7 /* ContentView.swift */,
+				026B926B2BE4FE1800BCD0A7 /* GPTSpotiOSApp.swift */,
 				026B926F2BE4FE1800BCD0A7 /* Assets.xcassets */,
 				026B92712BE4FE1800BCD0A7 /* Preview Content */,
-				026B92E22BE51CAD00BCD0A7 /* ChatView.swift */,
 			);
 			path = "GPTSpot-iOS";
 			sourceTree = "<group>";
@@ -326,14 +327,14 @@
 		026B92992BE4FED400BCD0A7 /* GPTSpot-Common */ = {
 			isa = PBXGroup;
 			children = (
-				029673DB2BB894650054062F /* Extensions */,
-				026B92B22BE5121400BCD0A7 /* Views */,
-				0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */,
-				025C7E1B2B8D779B0060F343 /* Models */,
-				028D48E22BAA40C3005E2FF7 /* Defaults */,
-				025C7E1C2B8D77AF0060F343 /* Services */,
-				026B929A2BE4FED400BCD0A7 /* GPTSpot_Common.h */,
 				026B929B2BE4FED400BCD0A7 /* GPTSpot_Common.docc */,
+				026B929A2BE4FED400BCD0A7 /* GPTSpot_Common.h */,
+				0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */,
+				028D48E22BAA40C3005E2FF7 /* Defaults */,
+				029673DB2BB894650054062F /* Extensions */,
+				025C7E1B2B8D779B0060F343 /* Models */,
+				025C7E1C2B8D77AF0060F343 /* Services */,
+				026B92B22BE5121400BCD0A7 /* Views */,
 			);
 			path = "GPTSpot-Common";
 			sourceTree = "<group>";
@@ -350,7 +351,6 @@
 		026B92B32BE5122100BCD0A7 /* ChatView */ = {
 			isa = PBXGroup;
 			children = (
-				025C7E222B8D87820060F343 /* ChatMessageView.swift */,
 				025AE6AD2B8BEEC3001489A3 /* ChatViewService.swift */,
 			);
 			path = ChatView;
@@ -620,6 +620,7 @@
 				029BABD82BE56DB0008F8FB0 /* RoundedCornerModifier.swift in Sources */,
 				029673D82BB4EC0A0054062F /* CheatSheetView.swift in Sources */,
 				029BABCF2BE56914008F8FB0 /* HotkeyAction.swift in Sources */,
+				02FD0B6B2BE5B9A40042B60C /* ChatMessageView.swift in Sources */,
 				028D48E12BAA3CC9005E2FF7 /* GeneralSettingsView.swift in Sources */,
 				029BABD32BE56B09008F8FB0 /* ChatListView.swift in Sources */,
 				02AB8C922BE41528006C0853 /* LaunchAtLogin.swift in Sources */,
@@ -655,7 +656,6 @@
 				026B92DB2BE5176200BCD0A7 /* Previewer.swift in Sources */,
 				026B92E12BE5179E00BCD0A7 /* Markdown+Styling.swift in Sources */,
 				026B92D32BE5138B00BCD0A7 /* URLResponse+ErrorCode.swift in Sources */,
-				026B92C82BE5137100BCD0A7 /* ChatMessageView.swift in Sources */,
 				026B92C92BE5137100BCD0A7 /* ChatViewService.swift in Sources */,
 				026B92CF2BE5138600BCD0A7 /* GeneralSettingsDefaultsKeys.swift in Sources */,
 				026B92D02BE5138600BCD0A7 /* GPTModels.swift in Sources */,

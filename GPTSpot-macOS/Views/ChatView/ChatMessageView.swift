@@ -7,18 +7,19 @@
 
 import SwiftUI
 import MarkdownUI
+import GPTSpot_Common
 
-public struct ChatMessageView: View {
+struct ChatMessageView: View {
 
-    public let chatMessage: ChatMessage
-    public let maxMessageWidth: Double
+    let chatMessage: ChatMessage
+    let maxMessageWidth: Double
 
-    public init(chatMessage: ChatMessage, maxMessageWidth: Double) {
+    init(chatMessage: ChatMessage, maxMessageWidth: Double) {
         self.chatMessage = chatMessage
         self.maxMessageWidth = maxMessageWidth
     }
 
-    public var body: some View {
+    var body: some View {
         HStack {
             if chatMessage.origin == Role.user.rawValue {
                 Spacer()
