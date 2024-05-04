@@ -278,6 +278,7 @@
 		025C7E1D2B8D77CC0060F343 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				029673DB2BB894650054062F /* Extensions */,
 				0230ED172BBE178F00C067E6 /* Modifiers */,
 				025AE6772B8BA51F001489A3 /* ContentView.swift */,
 				029BABCC2BE56891008F8FB0 /* FocusDirection.swift */,
@@ -331,7 +332,6 @@
 				026B929A2BE4FED400BCD0A7 /* GPTSpot_Common.h */,
 				0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */,
 				028D48E22BAA40C3005E2FF7 /* Defaults */,
-				029673DB2BB894650054062F /* Extensions */,
 				025C7E1B2B8D779B0060F343 /* Models */,
 				025C7E1C2B8D77AF0060F343 /* Services */,
 				026B92B22BE5121400BCD0A7 /* Views */,
