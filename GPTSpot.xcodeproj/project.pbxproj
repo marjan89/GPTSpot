@@ -64,8 +64,8 @@
 		02FD0B762BE6508E0042B60C /* RoundedCornerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029673E42BBA21EF0054062F /* RoundedCornerModifier.swift */; };
 		02FD0B802BE67DCB0042B60C /* ChatMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C7E222B8D87820060F343 /* ChatMessageView.swift */; };
 		02FD0B822BE688120042B60C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD0B812BE688120042B60C /* SettingsView.swift */; };
-		02FD0B842BE688A30042B60C /* AIServerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48DE2BAA3CBC005E2FF7 /* AIServerSettingsView.swift */; };
 		02FD0B862BE688C30042B60C /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48E02BAA3CC9005E2FF7 /* GeneralSettingsView.swift */; };
+		02FD0B872BE6AABA0042B60C /* AIServerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48DE2BAA3CBC005E2FF7 /* AIServerSettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -383,6 +383,7 @@
 		028D48DB2BAA3C8E005E2FF7 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				028D48DE2BAA3CBC005E2FF7 /* AIServerSettingsView.swift */,
 				028D48E02BAA3CC9005E2FF7 /* GeneralSettingsView.swift */,
 				02BD90B12BA8E5480047115E /* SpotSettings.swift */,
 			);
@@ -444,7 +445,6 @@
 		02FD0B832BE688730042B60C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				028D48DE2BAA3CBC005E2FF7 /* AIServerSettingsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -660,6 +660,7 @@
 				029BABD12BE56950008F8FB0 /* TemplateStripeView.swift in Sources */,
 				029673E12BB8A4E00054062F /* StatsView.swift in Sources */,
 				029673D82BB4EC0A0054062F /* CheatSheetView.swift in Sources */,
+				02FD0B872BE6AABA0042B60C /* AIServerSettingsView.swift in Sources */,
 				029BABCF2BE56914008F8FB0 /* HotkeyAction.swift in Sources */,
 				029BABD32BE56B09008F8FB0 /* ChatListView.swift in Sources */,
 				02AB8C922BE41528006C0853 /* LaunchAtLogin.swift in Sources */,
@@ -695,7 +696,6 @@
 			files = (
 				02FD0B802BE67DCB0042B60C /* ChatMessageView.swift in Sources */,
 				026B92D22BE5138B00BCD0A7 /* OpenAIService.swift in Sources */,
-				02FD0B842BE688A30042B60C /* AIServerSettingsView.swift in Sources */,
 				026B92DB2BE5176200BCD0A7 /* Previewer.swift in Sources */,
 				026B92E12BE5179E00BCD0A7 /* Markdown+Styling.swift in Sources */,
 				02FD0B762BE6508E0042B60C /* RoundedCornerModifier.swift in Sources */,

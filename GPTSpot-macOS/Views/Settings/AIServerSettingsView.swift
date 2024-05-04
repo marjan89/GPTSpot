@@ -7,27 +7,16 @@
 
 import Foundation
 import SwiftUI
+import GPTSpot_Common
 
-public struct AIServerSettingsView: View {
+struct AIServerSettingsView: View {
 
     @AppStorage(AIServerDefaultsKeys.aiModel) private var aiModel = GPTModels.models.first ?? "no models defined"
     @AppStorage(AIServerDefaultsKeys.temperature) private var temperature = 0.5
     @AppStorage(AIServerDefaultsKeys.openAiKey) private var openAiKey = ""
     @AppStorage(AIServerDefaultsKeys.maxHistory) private var maxHistory = 6
 
-    public init(
-        aiModel: String = GPTModels.models.first ?? "no models defined",
-        temperature: Double = 0.5,
-        openAiKey: String = "",
-        maxHistory: Int = 6
-    ) {
-        self.aiModel = aiModel
-        self.temperature = temperature
-        self.openAiKey = openAiKey
-        self.maxHistory = maxHistory
-    }
-
-    public var body: some View {
+    var body: some View {
         Form {
             TextField(
                 "API key",

@@ -18,6 +18,7 @@ struct WorkspaceListView: View {
     @Environment(\.modelContext) var modelContext: ModelContext
     @Environment(\.openAIService) var openAiService: OpenAIService
     @Environment(ChatViewService.self) var chatViewService: ChatViewService
+
     @State private var path = [Path]()
 
     var body: some View {
@@ -58,11 +59,24 @@ struct WorkspaceListView: View {
             }
             .navigationDestination(for: Path.self) { _ in
                 SettingsView()
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationTitle("Settings")
             }
         }
     }
 }
 
 #Preview {
-    WorkspaceListView()
+    do {
+        let previewer = try Previewer()
+
+        return WorkspaceListView()
+            .modelContainer(previewer.container)
+            .environment(ChatViewService(
+                modelContext: previewer.container.mainContext,
+                openAISerice: OpenAIServiceKey.defaultValue
+            ))
+    } catch {
+        return Text("Failed to create preview: \(error.localizedDescription)")
+    }
 }
