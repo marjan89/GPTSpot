@@ -11,7 +11,7 @@ struct HotkeyAction: View {
     private let hotkey: KeyEquivalent
     private let eventModifiers: EventModifiers
     private let action: () -> Void
-    
+
     init(hotkey: KeyEquivalent, eventModifiers: EventModifiers = .command, action: @escaping () -> Void) {
         self.hotkey = hotkey
         self.eventModifiers = eventModifiers

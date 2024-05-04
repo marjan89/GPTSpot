@@ -181,6 +181,16 @@
     "Temperature %lf" : {
 
     },
+    "Template hint" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can save your templates here!\\n```\\n// Swift \\\"Hello, World!\\\"\\nprint(\\\"Hello, World!\\\")"
+          }
+        }
+      }
+    },
     "Templates" : {
 
     },

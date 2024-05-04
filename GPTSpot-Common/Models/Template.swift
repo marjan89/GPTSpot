@@ -11,7 +11,7 @@ import SwiftData
 @Model
 public class Template {
     public var content: String = ""
-    
+
     public init(content: String) {
         self.content = content
     }

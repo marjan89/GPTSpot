@@ -27,11 +27,11 @@ public struct Previewer {
             ChatMessage(content: "How are you today", origin: "user", timestamp: 2, id: "2", workspace: 1),
             ChatMessage(content: "Im just fine", origin: "assistant", timestamp: 3, id: "3", workspace: 1)
         ]
-        
+
         templates = [
             Template(content: "Lorem ipsum"),
             Template(content: "Dolor sit amet"),
-            Template(content: "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos")
+            Template(content: "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos")
         ]
 
         for message in chatMessages {

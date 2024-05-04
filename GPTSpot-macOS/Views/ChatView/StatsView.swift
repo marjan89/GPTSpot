@@ -10,12 +10,12 @@ import SwiftData
 import GPTSpot_Common
 
 struct StatsView: View {
-    
+
     @Query var chatMessages: [ChatMessage]
 
     @AppStorage(AIServerDefaultsKeys.maxHistory) private var maxHistory = 6
     @AppStorage(AIServerDefaultsKeys.aiModel) private var aiModel = "Not defined"
-    
+
     init(workspace: Int) {
         _chatMessages = Query(
             filter: #Predicate<ChatMessage> { message in
@@ -23,7 +23,7 @@ struct StatsView: View {
             }
         )
     }
-    
+
     var body: some View {
         HStack {
             Text("total history: **\(chatMessages.count)**")
@@ -36,9 +36,9 @@ struct StatsView: View {
 #Preview {
     do {
         let previewer = try Previewer()
-        
+
         return StatsView(workspace: 1)
-        .modelContainer(previewer.container)
+            .modelContainer(previewer.container)
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")
     }

@@ -14,7 +14,7 @@ enum Tabs {
 
 struct SpotSettings: View {
     @State private var selectedTab = Tabs.aiServer
-    
+
     var body: some View {
         TabView(selection: $selectedTab) {
             AIServerSettingsView()

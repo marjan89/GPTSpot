@@ -11,18 +11,18 @@ import SwiftUI
 
 @Observable
 public final class ChatViewService {
-    
+
     public var prompt: String = ""
     public var generatingContent: Bool = false
-    
+
     private let modelContext: ModelContext
     private let openAiService: OpenAIService
-    
+
     public init(modelContext: ModelContext, openAISerice: OpenAIService) {
         self.modelContext = modelContext
         self.openAiService = openAISerice
     }
-    
+
     public func executePrompt(workspace: Int) {
         if generatingContent {
             return
@@ -30,7 +30,7 @@ public final class ChatViewService {
         generatingContent = true
         Task { @MainActor in
             let sanitizedPrompt = prompt.trimmingCharacters(in: .whitespacesAndNewlines)
-            
+
             if sanitizedPrompt.isEmpty {
                 return
             }
@@ -45,19 +45,23 @@ public final class ChatViewService {
                     case .terminator:
                         self.generatingContent = false
                     case .error(let errorType):
-                        self.insertChatMessage(for: handleError(error: errorType), origin: .system, workspace: workspace)
+                        self.insertChatMessage(
+                            for: handleError(error: errorType),
+                            origin: .system,
+                            workspace: workspace
+                        )
                         self.generatingContent = false
                     }
                 }
             }
         }
     }
-    
+
     public func cancelCompletion() {
         openAiService.cancelCompletion()
         generatingContent = false
     }
-    
+
     public func discardHistory(for workspace: Int) {
         try? modelContext.delete(
             model: ChatMessage.self,
@@ -66,7 +70,7 @@ public final class ChatViewService {
             }
         )
     }
-    
+
     public func setLastChatMessageAsPrompt(workspace: Int) {
         var lastChatMessagesFetchDescriptor = FetchDescriptor<ChatMessage>(
             predicate: #Predicate<ChatMessage> { message in
@@ -79,17 +83,17 @@ public final class ChatViewService {
             prompt = lastMessage.content
         }
     }
-    
+
     private func handleError(error: MessageErrorType) -> String {
-        let error = switch(error) {
+        let error = switch error {
         case .invalidToken:
-            String(localized:"Response error: Token is invalid")
+            String(localized: "Response error: Token is invalid")
         case .invalidRegion:
-            String(localized:"Response error: Not supported in your region")
+            String(localized: "Response error: Not supported in your region")
         case .modelUnavailable:
-            String(localized:"Reponse error: Model is not available")
+            String(localized: "Reponse error: Model is not available")
         case .rateLimitReached:
-            String(localized:"Response error: You reached your rate limit")
+            String(localized: "Response error: You reached your rate limit")
         case .serverError:
             String(localized: "Server error")
         case .serverOverload:
@@ -101,7 +105,7 @@ public final class ChatViewService {
         }
         return error
     }
-    
+
     private func loadChatHistory(for workspace: Int) -> [ChatRequest.Message] {
         var chatMessageHistoryFetchDescriptor = FetchDescriptor<ChatMessage>(
             predicate: #Predicate<ChatMessage> { message in
@@ -122,7 +126,7 @@ public final class ChatViewService {
         }.reversed() ?? []
         return history
     }
-    
+
     private func insertOrUpdateChatMessage(for content: String, origin: Role, id: String = "", workspace: Int) {
         if origin == .user {
             insertChatMessage(for: content, origin: origin, id: UUID().uuidString, workspace: workspace)
@@ -138,7 +142,7 @@ public final class ChatViewService {
             insertChatMessage(for: content, origin: origin, id: id, workspace: workspace)
         }
     }
-    
+
     private func insertChatMessage(for content: String, origin: Role, id: String = UUID().uuidString, workspace: Int) {
         let chatMessage = ChatMessage(
             content: content,

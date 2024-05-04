@@ -9,15 +9,15 @@ import SwiftUI
 import MarkdownUI
 
 public struct ChatMessageView: View {
-    
+
     public let chatMessage: ChatMessage
     public let maxMessageWidth: Double
-    
+
     public init(chatMessage: ChatMessage, maxMessageWidth: Double) {
         self.chatMessage = chatMessage
         self.maxMessageWidth = maxMessageWidth
     }
-    
+
     public var body: some View {
         HStack {
             if chatMessage.origin == Role.user.rawValue {
@@ -28,7 +28,10 @@ public struct ChatMessageView: View {
                 .padding(.all, 8)
                 .background(backgroundColor())
                 .cornerRadius(8)
-                .frame(maxWidth: maxMessageWidth, alignment: chatMessage.origin == Role.user.rawValue ? .trailing : .leading)
+                .frame(
+                    maxWidth: maxMessageWidth,
+                    alignment: chatMessage.origin == Role.user.rawValue ? .trailing : .leading
+                )
                 .textSelection(.enabled)
                 .scrollContentBackground(.hidden)
             if chatMessage.origin != Role.user.rawValue {
@@ -36,7 +39,7 @@ public struct ChatMessageView: View {
             }
         }
     }
-    
+
     private func backgroundColor() -> Color {
         chatMessage.origin == Role.user.rawValue ? Color.blue : Color(.darkGray)
     }

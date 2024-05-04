@@ -10,19 +10,19 @@ import SwiftData
 import GPTSpot_Common
 
 struct TemplateStripeView: View {
-    
-    enum FocusedTemplateField : Hashable {
+
+    enum FocusedTemplateField: Hashable {
         case focusedTemplate(_ template: Template)
     }
-    
+
     private var onTemplateSelected: (Template) -> Void
-    
+
     @Query private var templates: [Template]
-    
+
     @Environment(\.modelContext) var modelContext: ModelContext
-    
+
     @FocusState var focusedTemplateField: FocusedTemplateField?
-    
+
     init(searchQuery: String, onTemplateSelected: @escaping (Template) -> Void) {
         self.onTemplateSelected = onTemplateSelected
         _templates = Query(
@@ -31,14 +31,14 @@ struct TemplateStripeView: View {
             }
         )
     }
-    
+
     var body: some View {
         ZStack {
             hotkeys()
             ScrollView(.horizontal) {
                 LazyHStack {
                     if templates.isEmpty {
-                        TemplateItemView(text: "You can save your templates here!\n```\n// Swift \"Hello, World!\"\nprint(\"Hello, World!\")")
+                        TemplateItemView(text: String(localized: "Template hint"))
                     } else {
                         ForEach(templates, id: \.content) { template in
                             TemplateItemView(text: template.content)
@@ -67,7 +67,7 @@ struct TemplateStripeView: View {
             .scrollIndicators(.hidden)
         }
     }
-    
+
     @ViewBuilder
     private func hotkeys() -> some View {
         HotkeyAction(hotkey: .init("]")) {
@@ -87,7 +87,7 @@ struct TemplateStripeView: View {
             }
         }
     }
-    
+
     private func focusMessage(_ direction: FocusDirection) {
         if case let .focusedTemplate(focusedTemplate) = focusedTemplateField {
             let index = templates.firstIndex(of: focusedTemplate) ?? 0
@@ -98,7 +98,7 @@ struct TemplateStripeView: View {
                 max(index - 1, 0)
             }
             focusedTemplateField = .focusedTemplate(templates[newTemplateIndex])
-        } else if let template = templates.first  {
+        } else if let template = templates.first {
             focusedTemplateField = .focusedTemplate(template)
         }
     }
@@ -107,7 +107,7 @@ struct TemplateStripeView: View {
 #Preview {
     return TemplateStripeView(
         searchQuery: "",
-        onTemplateSelected: { template in
+        onTemplateSelected: { _ in
         }
     )
 }

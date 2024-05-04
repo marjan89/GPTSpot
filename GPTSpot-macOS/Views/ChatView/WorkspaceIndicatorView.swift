@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct WorkspaceIndicatorView: View {
-    
+
     @Binding var workspace: Int
-    
+
     var body: some View {
         ForEach(1...9, id: \.self) { index in
             Button("**⌘\(index)**") { workspace = index }

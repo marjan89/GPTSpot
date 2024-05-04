@@ -9,22 +9,22 @@ import SwiftUI
 import SwiftData
 import GPTSpot_Common
 
-enum FocusedMessageField : Hashable {
+enum FocusedMessageField: Hashable {
     case focusedMessage(_ chatMessage: ChatMessage)
 }
 
 struct ChatListView: View {
-    
+
     @FocusState private var focusedMessageField: FocusedMessageField?
-    
+
     @Environment(\.modelContext) private var modelContext: ModelContext
-    
+
     @Query private var chatMessages: [ChatMessage]
-    
+
     @Binding private var prompt: String
-    
+
     private let workspace: Int
-    
+
     init(workspace: Int, prompt: Binding<String>) {
         self.workspace = workspace
         self._prompt = prompt
@@ -36,11 +36,11 @@ struct ChatListView: View {
             order: .reverse
         )
     }
-    
+
     var body: some View {
         GeometryReader { geometry in
             ScrollViewReader { proxy in
-                ZStack{
+                ZStack {
                     ScrollView {
                         LazyVStack {
                             ForEach(chatMessages, id: \.id ) { chatMessage in
@@ -85,14 +85,14 @@ struct ChatListView: View {
                     .scrollClipDisabled()
                     .scrollContentBackground(.hidden)
                     .scaleEffect(x: 1, y: -1, anchor: .center)
-                    Hotkeys(with: proxy)
+                    hotkeys(with: proxy)
                 }
             }
         }
     }
-    
+
     @ViewBuilder
-    private func Hotkeys(with scrollViewProxy: ScrollViewProxy) -> some View {
+    private func hotkeys(with scrollViewProxy: ScrollViewProxy) -> some View {
         HotkeyAction(hotkey: .init("k")) {
             focusMessage(.next, scrollViewProxy)
         }
@@ -120,7 +120,7 @@ struct ChatListView: View {
             }
         }
     }
-    
+
     private func focusMessage(_ direction: FocusDirection, _ scrollViewProxy: ScrollViewProxy) {
         if case let .focusedMessage(focusedMessage) = focusedMessageField {
             let index = chatMessages.firstIndex(of: focusedMessage) ?? 0
@@ -132,19 +132,19 @@ struct ChatListView: View {
             }
             focusedMessageField = .focusedMessage(chatMessages[newMessageIndex])
             scrollViewProxy.scrollTo(chatMessages[newMessageIndex].id)
-        } else if let chatMessage = chatMessages.first  {
+        } else if let chatMessage = chatMessages.first {
             focusedMessageField = .focusedMessage(chatMessage)
         }
     }
 }
 
 #Preview {
-    
+
     do {
         let previewer = try Previewer()
-        
+
         @State var prompt: String = ""
-        
+
         return ChatListView(
             workspace: 1,
             prompt: $prompt
@@ -153,5 +153,5 @@ struct ChatListView: View {
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")
     }
-    
+
 }

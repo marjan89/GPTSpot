@@ -9,7 +9,7 @@ import SwiftUI
 import GPTSpot_Common
 
 @main
-struct GPTSpot_iOSApp: App {
+struct GPTSpotiOSApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

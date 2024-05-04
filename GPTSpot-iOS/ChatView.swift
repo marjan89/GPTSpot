@@ -14,7 +14,7 @@ struct ChatView: View {
     @State var templateSearchQuery = ""
 
     @FocusState private var focusedField: Bool
-    
+
     var body: some View {
         EmptyView()
     }
@@ -23,7 +23,7 @@ struct ChatView: View {
 #Preview {
     do {
         let previewer = try Previewer()
-        
+
         return ChatView(chatViewService: .init(
             modelContext: previewer.container.mainContext,
             openAISerice: OpenAIServiceKey.defaultValue)

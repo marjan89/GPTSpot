@@ -10,7 +10,7 @@ import MarkdownUI
 import SwiftUI
 
 public extension Markdown {
-    
+
     func gptStyle() -> some View {
         self.markdownBlockStyle(\.codeBlock) { configuration in
             configuration.label

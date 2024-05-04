@@ -10,9 +10,9 @@ import MarkdownUI
 import GPTSpot_Common
 
 struct TemplateItemView: View {
-    
+
     let text: String
-    
+
     var body: some View {
         Markdown(text)
             .gptStyle()

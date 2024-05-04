@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 extension EnvironmentValues {
-    var library:  {
+    var library: {
         get { self[LibraryKey.self] }
         set { self[LibraryKey.self] = newValue }
     }

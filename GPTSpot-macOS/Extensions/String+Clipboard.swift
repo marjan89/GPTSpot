@@ -14,6 +14,6 @@ extension String {
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         pasteboard.setString(self, forType: .string)
-        
+
     }
 }

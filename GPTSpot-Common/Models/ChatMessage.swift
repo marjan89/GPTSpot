@@ -9,9 +9,9 @@ import Foundation
 import SwiftData
 
 public enum Role: String {
-    case user = "user"
-    case assistant = "assistant"
-    case system = "system"
+    case user
+    case assistant
+    case system
 }
 
 @Model

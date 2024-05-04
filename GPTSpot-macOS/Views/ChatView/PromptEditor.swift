@@ -8,22 +8,28 @@
 import SwiftUI
 
 public struct PromptEditor: View {
-    
+
     @Binding var showTemplateHint: Bool
     @Binding var templateSearchQuery: String
     @Binding var prompt: String
     @FocusState var focusedField: Bool
-    
+
     let textEditorHeight: CGFloat
-    
-    public init(showTemplateHint: Binding<Bool>, templateSearchQuery: Binding<String>, prompt: Binding<String>, focusedField: FocusState<Bool>, textEditorHeight: CGFloat) {
+
+    public init(
+        showTemplateHint: Binding<Bool>,
+        templateSearchQuery: Binding<String>,
+        prompt: Binding<String>,
+        focusedField: FocusState<Bool>,
+        textEditorHeight: CGFloat
+    ) {
         self._showTemplateHint = showTemplateHint
         self._templateSearchQuery = templateSearchQuery
         self._prompt = prompt
         self._focusedField = focusedField
         self.textEditorHeight = textEditorHeight
     }
-    
+
     public var body: some View {
         ZStack {
             if showTemplateHint && templateSearchQuery.isEmpty {
@@ -60,13 +66,13 @@ public struct PromptEditor: View {
 }
 
 #Preview {
-    
+
     @State var showTemplateHint = false
     @State var templateSearchQuery = ""
     @State var prompt = "Hello"
     @FocusState var focusedField: Bool
     let textEditorHeight = 100.0
-    
+
     return PromptEditor(
         showTemplateHint: $showTemplateHint,
         templateSearchQuery: $templateSearchQuery,

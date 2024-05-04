@@ -14,18 +14,18 @@ enum General {
     static let discardHistory = KeyEquivalent.init("d")
     static let showTemplates = KeyEquivalent.init("t")
     static let send = KeyEquivalent.return
-    static let sendDiscardingHistory = 
+    static let sendDiscardingHistory =
 
 }
 
 enum Chat {
-    
+
 }
 
 enum Messages {
-    
+
 }
 
 enum Templates {
-    
+
 }

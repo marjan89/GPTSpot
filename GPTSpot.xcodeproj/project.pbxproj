@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0230ED162BBDFC8700C067E6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */; };
-		025AE6762B8BA51F001489A3 /* GPTSpotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6752B8BA51F001489A3 /* GPTSpotApp.swift */; };
+		025AE6762B8BA51F001489A3 /* GPTSpotmacOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6752B8BA51F001489A3 /* GPTSpotmacOSApp.swift */; };
 		025AE6782B8BA51F001489A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6772B8BA51F001489A3 /* ContentView.swift */; };
 		025AE67A2B8BA520001489A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025AE6792B8BA520001489A3 /* Assets.xcassets */; };
 		025AE67D2B8BA521001489A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025AE67C2B8BA521001489A3 /* Preview Assets.xcassets */; };
 		025AE6AC2B8BEEB4001489A3 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6AB2B8BEEB4001489A3 /* ChatView.swift */; };
-		026B926C2BE4FE1800BCD0A7 /* GPTSpot_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026B926B2BE4FE1800BCD0A7 /* GPTSpot_iOSApp.swift */; };
+		026B926C2BE4FE1800BCD0A7 /* GPTSpotiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026B926B2BE4FE1800BCD0A7 /* GPTSpotiOSApp.swift */; };
 		026B926E2BE4FE1800BCD0A7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026B926D2BE4FE1800BCD0A7 /* ContentView.swift */; };
 		026B92702BE4FE1800BCD0A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 026B926F2BE4FE1800BCD0A7 /* Assets.xcassets */; };
 		026B92732BE4FE1800BCD0A7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 026B92722BE4FE1800BCD0A7 /* Preview Assets.xcassets */; };
@@ -114,7 +114,7 @@
 		0230ED1D2BBF6A9300C067E6 /* KeySequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeySequence.swift; sourceTree = "<group>"; };
 		0230ED1F2BBF6CE700C067E6 /* KeyCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCaptureView.swift; sourceTree = "<group>"; };
 		025AE6722B8BA51F001489A3 /* GPTSpot-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPTSpot-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		025AE6752B8BA51F001489A3 /* GPTSpotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPTSpotApp.swift; sourceTree = "<group>"; };
+		025AE6752B8BA51F001489A3 /* GPTSpotmacOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPTSpotmacOSApp.swift; sourceTree = "<group>"; };
 		025AE6772B8BA51F001489A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		025AE6792B8BA520001489A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		025AE67C2B8BA521001489A3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 		025C7E202B8D79180060F343 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		025C7E222B8D87820060F343 /* ChatMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageView.swift; sourceTree = "<group>"; };
 		026B92692BE4FE1800BCD0A7 /* GPTSpot-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPTSpot-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		026B926B2BE4FE1800BCD0A7 /* GPTSpot_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPTSpot_iOSApp.swift; sourceTree = "<group>"; };
+		026B926B2BE4FE1800BCD0A7 /* GPTSpotiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPTSpotiOSApp.swift; sourceTree = "<group>"; };
 		026B926D2BE4FE1800BCD0A7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		026B926F2BE4FE1800BCD0A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		026B92722BE4FE1800BCD0A7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 				025AE67E2B8BA521001489A3 /* GPTSpot.entitlements */,
 				02A17A1F2BA60AD100C26A67 /* BorderlessWindow.swift */,
 				02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */,
-				025AE6752B8BA51F001489A3 /* GPTSpotApp.swift */,
+				025AE6752B8BA51F001489A3 /* GPTSpotmacOSApp.swift */,
 				025AE6792B8BA520001489A3 /* Assets.xcassets */,
 				025C7E1D2B8D77CC0060F343 /* Views */,
 				02AB8C912BE41528006C0853 /* LaunchAtLogin.swift */,
@@ -306,7 +306,7 @@
 		026B926A2BE4FE1800BCD0A7 /* GPTSpot-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				026B926B2BE4FE1800BCD0A7 /* GPTSpot_iOSApp.swift */,
+				026B926B2BE4FE1800BCD0A7 /* GPTSpotiOSApp.swift */,
 				026B926D2BE4FE1800BCD0A7 /* ContentView.swift */,
 				026B926F2BE4FE1800BCD0A7 /* Assets.xcassets */,
 				026B92712BE4FE1800BCD0A7 /* Preview Content */,
@@ -430,10 +430,12 @@
 				025AE66F2B8BA51F001489A3 /* Frameworks */,
 				025AE6702B8BA51F001489A3 /* Resources */,
 				026B92A52BE4FED400BCD0A7 /* Embed Frameworks */,
+				029BABDA2BE5AB96008F8FB0 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				029BABDC2BE5AC39008F8FB0 /* PBXTargetDependency */,
 				026B929F2BE4FED400BCD0A7 /* PBXTargetDependency */,
 			);
 			name = "GPTSpot-macOS";
@@ -452,6 +454,7 @@
 				026B92662BE4FE1800BCD0A7 /* Frameworks */,
 				026B92672BE4FE1800BCD0A7 /* Resources */,
 				026B92AC2BE4FFAF00BCD0A7 /* Embed Frameworks */,
+				02FD0B6A2BE5B7C40042B60C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -519,6 +522,7 @@
 			mainGroup = 025AE6692B8BA51F001489A3;
 			packageReferences = (
 				02AB8C9B2BE47E45006C0853 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				029BABD92BE5AB5C008F8FB0 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 025AE6732B8BA51F001489A3 /* Products */;
 			projectDirPath = "";
@@ -562,6 +566,45 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		029BABDA2BE5AB96008F8FB0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		02FD0B6A2BE5B7C40042B60C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		025AE66E2B8BA51F001489A3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -581,7 +624,7 @@
 				029BABD32BE56B09008F8FB0 /* ChatListView.swift in Sources */,
 				02AB8C922BE41528006C0853 /* LaunchAtLogin.swift in Sources */,
 				029BABD42BE56B09008F8FB0 /* PromptEditor.swift in Sources */,
-				025AE6762B8BA51F001489A3 /* GPTSpotApp.swift in Sources */,
+				025AE6762B8BA51F001489A3 /* GPTSpotmacOSApp.swift in Sources */,
 				025AE6AC2B8BEEB4001489A3 /* ChatView.swift in Sources */,
 				026B92E42BE51D6C00BCD0A7 /* KeyRecordingView.swift in Sources */,
 				029BABD02BE5694D008F8FB0 /* TemplateItemView.swift in Sources */,
@@ -600,7 +643,7 @@
 			files = (
 				026B926E2BE4FE1800BCD0A7 /* ContentView.swift in Sources */,
 				026B92E32BE51CAD00BCD0A7 /* ChatView.swift in Sources */,
-				026B926C2BE4FE1800BCD0A7 /* GPTSpot_iOSApp.swift in Sources */,
+				026B926C2BE4FE1800BCD0A7 /* GPTSpotiOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,6 +680,10 @@
 			isa = PBXTargetDependency;
 			target = 026B92972BE4FED400BCD0A7 /* GPTSpot-Common */;
 			targetProxy = 026B92AA2BE4FFAF00BCD0A7 /* PBXContainerItemProxy */;
+		};
+		029BABDC2BE5AC39008F8FB0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 029BABDB2BE5AC39008F8FB0 /* SwiftLintPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -679,7 +726,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -743,7 +790,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1022,6 +1069,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		029BABD92BE5AB5C008F8FB0 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.54.0;
+			};
+		};
 		02AB8C9B2BE47E45006C0853 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
@@ -1042,6 +1097,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 02AB8C9B2BE47E45006C0853 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
 			productName = MarkdownUI;
+		};
+		029BABDB2BE5AC39008F8FB0 /* SwiftLintPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 029BABD92BE5AB5C008F8FB0 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintPlugin";
 		};
 		02AB8C9C2BE47E4C006C0853 /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;

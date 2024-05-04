@@ -11,7 +11,7 @@ import GPTSpot_Common
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.openAIService) var openAIService
-    
+
     var body: some View {
         ChatView(chatViewService: .init(
             modelContext: modelContext,

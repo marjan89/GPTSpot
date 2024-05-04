@@ -5,10 +5,10 @@ import SwiftData
 import GPTSpot_Common
 
 @main
-struct GPTSpotApp: App {
-    
+struct GPTSpotmacOSApp: App {
+
     @NSApplicationDelegateAdaptor(GPTAppDelegate.self) var appDelegate
-    
+
     var body: some Scene {
         MenuBarExtra("GPTSpot", image: .menuBar) {
             SettingsLink {
@@ -30,7 +30,7 @@ class GPTAppDelegate: NSObject, NSApplicationDelegate {
     var window: NSWindow!
     var hotKeyRef: EventHotKeyRef?
     var globalHotkeyManager: GlobalHotKeyManager?
-    
+
     func applicationDidFinishLaunching(_ notification: Notification) {
         setupWindow()
         NSApp.setActivationPolicy(
@@ -47,7 +47,7 @@ class GPTAppDelegate: NSObject, NSApplicationDelegate {
             )
         )
     }
-    
+
     func toggleWindowVisibility() {
         if window.isVisible {
             window.orderOut(nil)

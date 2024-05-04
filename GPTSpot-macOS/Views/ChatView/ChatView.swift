@@ -10,23 +10,23 @@ import SwiftData
 import GPTSpot_Common
 
 struct ChatView: View {
-    
+
     @Bindable private var chatViewService: ChatViewService
-    
+
     @Environment(\.modelContext) private var modelContext
-    
+
     @FocusState private var focusedField: Bool
-    
+
     @State var workspace = 1
     @State var showHelpRibbon = false
     @State var showStats = false
     @State var showTemplateStripe = false
     @State var templateSearchQuery = ""
-    
+
     init(chatViewService: ChatViewService) {
         self.chatViewService = chatViewService
     }
-    
+
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 4) {
@@ -57,7 +57,7 @@ struct ChatView: View {
                         )
                         HStack {
                             WorkspaceIndicatorView(workspace: $workspace)
-                            ChatControls()
+                            chatControls()
                         }
                         if showHelpRibbon {
                             CheatSheetView()
@@ -74,11 +74,11 @@ struct ChatView: View {
         .background(.windowBackground)
         .roundedCorners(radius: 16, strokeColor: Color.black)
         .padding(.all, 20)
-        .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.66), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+        .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.66), radius: 10)
     }
-    
+
     @ViewBuilder
-    func ChatControls() -> some View {
+    func chatControls() -> some View {
         HStack {
             Spacer()
             if chatViewService.generatingContent {
@@ -133,7 +133,7 @@ struct ChatView: View {
 #Preview {
     do {
         let previewer = try Previewer()
-        
+
         return ChatView(chatViewService: .init(
             modelContext: previewer.container.mainContext,
             openAISerice: OpenAIServiceKey.defaultValue)

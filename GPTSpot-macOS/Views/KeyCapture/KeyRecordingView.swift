@@ -10,7 +10,7 @@ import SwiftUI
 struct KeyRecordingView: View {
     @State var keySequence: KeySequence = KeySequence(hotKey: " ", modifiers: EventModifiers())
     @State var keyRecordingState: KeyRecordingState = .idle
-    
+
     var body: some View {
         ZStack {
             KeyCaptureView { keySequence in

@@ -11,7 +11,7 @@ import SwiftUI
 struct KeySequence {
     let hotKey: KeyEquivalent
     let modifiers: EventModifiers
-    
+
     func asString() -> String {
         var keySequenceString = ""
         if modifiers.contains(.command) {
