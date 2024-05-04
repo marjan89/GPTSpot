@@ -24,7 +24,11 @@ struct RoundedCornerModifier: ViewModifier {
 
 extension View {
 
-    func roundedCorners(radius: CGFloat = 8, stroke: CGFloat = 1, strokeColor: Color = Color.clear) -> some View {
+    public func roundedCorners(
+        radius: CGFloat = 8,
+        stroke: CGFloat = 1,
+        strokeColor: Color = Color.clear
+    ) -> some View {
         return self
             .modifier(RoundedCornerModifier(radius: radius, strokeWidth: stroke, strokeColor: strokeColor))
     }

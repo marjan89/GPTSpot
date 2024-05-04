@@ -67,6 +67,9 @@
     "**⌥S** save as template" : {
 
     },
+    "⌘%lld" : {
+
+    },
     "0" : {
 
     },
@@ -194,7 +197,13 @@
     "Templates" : {
 
     },
+    "text" : {
+
+    },
     "total history: **%lld**" : {
+
+    },
+    "Workspace" : {
 
     },
     "Workspace %lld" : {

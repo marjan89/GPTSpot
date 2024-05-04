@@ -50,23 +50,33 @@ struct ChatMessageView: View {
     VStack {
         ChatMessageView(
             chatMessage: ChatMessage(
-                content: "Hello world",
-                origin: Role.system.rawValue,
+                content: "Hello",
+                origin: Role.user.rawValue,
                 timestamp: 1,
                 id: "1",
                 workspace: 1
             ),
-            maxMessageWidth: 100
+            maxMessageWidth: 200
         )
         ChatMessageView(
             chatMessage: ChatMessage(
-                content: "Hello",
+                content: "Hi!",
                 origin: Role.assistant.rawValue,
                 timestamp: 2,
                 id: "2",
                 workspace: 1
             ),
-            maxMessageWidth: 100
+            maxMessageWidth: 200
+        )
+        ChatMessageView(
+            chatMessage: ChatMessage(
+                content: "Response error",
+                origin: Role.system.rawValue,
+                timestamp: 3,
+                id: "3",
+                workspace: 1
+            ),
+            maxMessageWidth: 200
         )
     }
 }
