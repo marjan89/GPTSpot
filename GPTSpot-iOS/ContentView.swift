@@ -15,6 +15,7 @@ struct ContentView: View {
 
     var body: some View {
         WorkspaceListView()
+            .environment(ChatViewService(modelContext: modelContext, openAISerice: openAIService))
     }
 }
 

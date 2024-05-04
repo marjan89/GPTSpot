@@ -65,6 +65,7 @@
 		02FD0B742BE64CD20042B60C /* WorkspaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD0B732BE64CD20042B60C /* WorkspaceListView.swift */; };
 		02FD0B762BE6508E0042B60C /* RoundedCornerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029673E42BBA21EF0054062F /* RoundedCornerModifier.swift */; };
 		02FD0B802BE67DCB0042B60C /* ChatMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C7E222B8D87820060F343 /* ChatMessageView.swift */; };
+		02FD0B822BE688120042B60C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD0B812BE688120042B60C /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +163,7 @@
 		02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotKeyManager.swift; sourceTree = "<group>"; };
 		02FD0B712BE642660042B60C /* WorkspaceItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceItemView.swift; sourceTree = "<group>"; };
 		02FD0B732BE64CD20042B60C /* WorkspaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListView.swift; sourceTree = "<group>"; };
+		02FD0B812BE688120042B60C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		02FE75212BA65A0B0048A4EB /* Chunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chunk.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -425,6 +427,7 @@
 			isa = PBXGroup;
 			children = (
 				02FD0B6F2BE642240042B60C /* Workspace */,
+				02FD0B812BE688120042B60C /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 				02FD0B722BE642660042B60C /* WorkspaceItemView.swift in Sources */,
 				026B926E2BE4FE1800BCD0A7 /* ContentView.swift in Sources */,
 				026B92E32BE51CAD00BCD0A7 /* WorkspaceChatView.swift in Sources */,
+				02FD0B822BE688120042B60C /* SettingsView.swift in Sources */,
 				02FD0B742BE64CD20042B60C /* WorkspaceListView.swift in Sources */,
 				026B926C2BE4FE1800BCD0A7 /* GPTSpotiOSApp.swift in Sources */,
 			);

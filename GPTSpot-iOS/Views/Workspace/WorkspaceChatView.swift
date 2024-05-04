@@ -30,11 +30,21 @@ struct WorkspaceChatView: View {
         VStack {
             ScrollView {
                 LazyVStack {
-                    ForEach(chatMessages) { chatMessage in
-                        Text(chatMessage.content)
+                    ForEach(chatMessages, id: \.id) { chatMessage in
+                        GeometryReader { geometry in
+                            ChatMessageView(
+                                chatMessage: chatMessage,
+                                maxMessageWidth: geometry.size.width * 0.66
+                            )
+                            .listRowSeparator(.hidden)
+                            .scaleEffect(x: 1, y: -1, anchor: .center)
+                        }
+                        .padding(8)
                     }
                 }
             }
+            .scrollClipDisabled()
+            .scaleEffect(x: 1, y: -1, anchor: .center)
             HStack {
                 Button("", systemImage: "folder.fill") {
 
@@ -44,14 +54,22 @@ struct WorkspaceChatView: View {
                     TextField("text", text: $chatViewService.prompt)
                         .padding(8)
                         .padding(.horizontal, 8)
-                    Button("", systemImage: "arrow.up.circle.fill") {
-
+                    Button(
+                        "",
+                        systemImage: chatViewService.generatingContent ? "stop.fill" : "arrow.up.circle.fill"
+                    ) {
+                        if chatViewService.generatingContent {
+                            chatViewService.cancelCompletion()
+                        } else {
+                            chatViewService.executePrompt(workspace: workspace)
+                        }
                     }
                     .accessibilityLabel("Send")
                 }
-                .roundedCorners(radius: 124, stroke: 1, strokeColor: Color.gray)
+                .roundedCorners(radius: 24, stroke: 1, strokeColor: Color.gray)
             }
-            .padding(8)
+            .padding(16)
+            .background(.regularMaterial)
         }
     }
 }
