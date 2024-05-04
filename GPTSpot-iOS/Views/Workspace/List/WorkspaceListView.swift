@@ -11,29 +11,53 @@ import GPTSpot_Common
 
 struct WorkspaceListView: View {
 
+    enum Path {
+        case settings
+    }
+
     @Environment(\.modelContext) var modelContext: ModelContext
     @Environment(\.openAIService) var openAiService: OpenAIService
+    @Environment(ChatViewService.self) var chatViewService: ChatViewService
+    @State private var path = [Path]()
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 ForEach(0..<10) { index in
                     NavigationLink {
                         WorkspaceChatView(
-                            chatViewService: .init(modelContext: modelContext, openAISerice: openAiService),
+                            chatViewService: chatViewService,
                             workspace: index
                         )
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .primaryAction) {
+                                Button("", systemImage: "trash.fill") {
+                                    chatViewService.discardHistory(for: index)
+                                }
+                            }
+                        }
+                        .toolbarBackground(.hidden, for: .navigationBar)
+                        .safeAreaInset(edge: .top) {
+                            Color(.clear)
+                                .frame(height: 0)
+                                .background(.bar)
+                        }
                     } label: {
                         WorkspaceItemView(workspaceIndex: index)
                     }
                 }
             }
             .navigationTitle("Workspace")
-            .toolbarRole(.navigationStack)
             .toolbar {
-                Button("", systemImage: "gearshape.fill") {
-                    
+                ToolbarItem(placement: .primaryAction) {
+                    Button("", systemImage: "gearshape.fill") {
+                        path.append(.settings)
+                    }
                 }
+            }
+            .navigationDestination(for: Path.self) { _ in
+                SettingsView()
             }
         }
     }

@@ -28,10 +28,10 @@ struct WorkspaceChatView: View {
 
     var body: some View {
         VStack {
-            ScrollView {
-                LazyVStack {
-                    ForEach(chatMessages, id: \.id) { chatMessage in
-                        GeometryReader { geometry in
+            GeometryReader { geometry in
+                ScrollView {
+                    LazyVStack {
+                        ForEach(chatMessages, id: \.id) { chatMessage in
                             ChatMessageView(
                                 chatMessage: chatMessage,
                                 maxMessageWidth: geometry.size.width * 0.66

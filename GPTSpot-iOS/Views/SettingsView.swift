@@ -6,17 +6,11 @@
 //
 
 import SwiftUI
+import GPTSpot_Common
 
 struct SettingsView: View {
     var body: some View {
-        Form {
-            Section {
-
-            }
-            Section {
-                
-            }
-        }
+        AIServerSettingsView()
     }
 }
 
