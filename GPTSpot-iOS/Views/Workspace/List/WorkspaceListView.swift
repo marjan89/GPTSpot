@@ -45,6 +45,14 @@ struct WorkspaceListView: View {
                     NavigationLink(value: Path.workspace(workspace)) {
                         WorkspaceItemView(workspaceIndex: workspace)
                     }
+                    .swipeActions(allowsFullSwipe: false) {
+                        Button {
+                            chatViewService.discardHistory(for: workspace)
+                        } label: {
+                            Label("Delete", systemImage: "trash.fill")
+                        }
+                        .tint(.red)
+                    }
                 }
             }
             .navigationTitle("Workspace")
