@@ -76,7 +76,6 @@ struct ChatListView: View {
                                     }
                                     .keyboardShortcut("s", modifiers: .option)
                                 }))
-                                .listRowSeparator(.hidden)
                                 .scaleEffect(x: 1, y: -1, anchor: .center)
                             }
                         }

@@ -57,6 +57,10 @@ public final class ChatViewService {
         }
     }
 
+    public func appendToPrompt(_ text: String) {
+        prompt.append(text)
+    }
+
     public func cancelCompletion() {
         openAiService.cancelCompletion()
         generatingContent = false

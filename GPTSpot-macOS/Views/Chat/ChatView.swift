@@ -40,7 +40,7 @@ struct ChatView: View {
                             TemplateStripeView(
                                 searchQuery: templateSearchQuery,
                                 onTemplateSelected: { template in
-                                    chatViewService.prompt = template.content
+                                    chatViewService.appendToPrompt(template.content)
                                     focusedField = true
                                     showTemplateStripe = false
                                     templateSearchQuery = ""
