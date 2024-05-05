@@ -15,16 +15,24 @@ struct WorkspaceListView: View {
         case settings
     }
 
-    @Environment(\.modelContext) var modelContext: ModelContext
-    @Environment(\.openAIService) var openAiService: OpenAIService
-    @Environment(ChatViewService.self) var chatViewService: ChatViewService
+    @Environment(\.modelContext) private var modelContext: ModelContext
+    @Environment(\.openAIService) private var openAiService: OpenAIService
+    @Environment(ChatViewService.self) private var chatViewService: ChatViewService
+
+    @Query private var chatMessages: [ChatMessage]
+
+    private var workspaces: [Int] {
+        chatMessages
+            .map { chatMessage in chatMessage.workspace }
+            .distinct<T>()
+    }
 
     @State private var path = [Path]()
 
     var body: some View {
         NavigationStack(path: $path) {
             List {
-                ForEach(0..<10) { index in
+                ForEach(workspaces, id: \.self) { index in
                     NavigationLink {
                         WorkspaceChatView(
                             chatViewService: chatViewService,
