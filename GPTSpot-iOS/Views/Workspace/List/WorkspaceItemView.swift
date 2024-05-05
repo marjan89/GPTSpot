@@ -40,10 +40,17 @@ struct WorkspaceItemView: View {
             }
             Text(lastChatMessage.first?.content ?? "")
                 .lineLimit(3)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
 
 #Preview {
-    WorkspaceItemView(workspaceIndex: 1)
+    do {
+        let previewer = try Previewer()
+        return WorkspaceItemView(workspaceIndex: 2)
+            .modelContainer(previewer.container)
+    } catch {
+        return Text("Failed to create preview: \(error.localizedDescription)")
+    }
 }
