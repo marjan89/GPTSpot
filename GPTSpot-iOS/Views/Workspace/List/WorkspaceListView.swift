@@ -11,8 +11,9 @@ import GPTSpot_Common
 
 struct WorkspaceListView: View {
 
-    enum Path {
+    private enum Path: Hashable {
         case settings
+        case workspace(Int)
     }
 
     @Environment(\.modelContext) private var modelContext: ModelContext
@@ -21,54 +22,86 @@ struct WorkspaceListView: View {
 
     @Query private var chatMessages: [ChatMessage]
 
-    private var workspaces: [Int] {
+    private var activeWorkspaces: [Int] {
         chatMessages
             .map { chatMessage in chatMessage.workspace }
             .distinct<T>()
     }
 
-    @State private var path = [Path]()
+    private var inactiveWorkspaces: [Int] {
+        Array(1..<10)
+            .filter { workspace in
+                !activeWorkspaces.contains(workspace)
+            }
+    }
+
+    @State private var settingsPath = [Path]()
+    @State private var newWorkspaceDialog = false
 
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack(path: $settingsPath) {
             List {
-                ForEach(workspaces, id: \.self) { index in
-                    NavigationLink {
-                        WorkspaceChatView(
-                            chatViewService: chatViewService,
-                            workspace: index
-                        )
-                        .navigationBarTitleDisplayMode(.inline)
-                        .toolbar {
-                            ToolbarItem(placement: .primaryAction) {
-                                Button("", systemImage: "trash.fill") {
-                                    chatViewService.discardHistory(for: index)
-                                }
-                            }
-                        }
-                        .toolbarBackground(.hidden, for: .navigationBar)
-                        .safeAreaInset(edge: .top) {
-                            Color(.clear)
-                                .frame(height: 0)
-                                .background(.bar)
-                        }
-                    } label: {
-                        WorkspaceItemView(workspaceIndex: index)
+                ForEach(activeWorkspaces, id: \.self) { workspace in
+                    NavigationLink(value: Path.workspace(workspace)) {
+                        WorkspaceItemView(workspaceIndex: workspace)
                     }
                 }
             }
             .navigationTitle("Workspace")
             .toolbar {
-                ToolbarItem(placement: .primaryAction) {
+                ToolbarItemGroup(placement: .primaryAction) {
                     Button("", systemImage: "gearshape.fill") {
-                        path.append(.settings)
+                        settingsPath.append(.settings)
                     }
+                    .accessibilityLabel("")
+                    Button("", systemImage: "plus") {
+                        newWorkspaceDialog.toggle()
+                    }
+                    .accessibilityLabel("New workspace")
+                    .confirmationDialog(
+                        "New workspace",
+                        isPresented: $newWorkspaceDialog,
+                        titleVisibility: .visible,
+                        actions: {
+                            ForEach(inactiveWorkspaces, id: \.self) { workspace in
+                                Button("⌘\(workspace)") {
+                                    settingsPath.append(.workspace(workspace))
+                                }
+                            }
+                        },
+                        message: {
+                            Text("Available workspaces")
+                        }
+                    )
                 }
             }
-            .navigationDestination(for: Path.self) { _ in
-                SettingsView()
+            .navigationDestination(for: Path.self) { path in
+                switch path {
+                case .settings:
+                    SettingsView()
+                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationTitle("Settings")
+                case .workspace(let workspace):
+                    WorkspaceChatView(
+                        chatViewService: chatViewService,
+                        workspace: workspace
+                    )
                     .navigationBarTitleDisplayMode(.inline)
-                    .navigationTitle("Settings")
+                    .toolbar {
+                        ToolbarItem(placement: .primaryAction) {
+                            Button("", systemImage: "trash.fill") {
+                                chatViewService.discardHistory(for: workspace)
+                            }
+                        }
+                    }
+                    .toolbarBackground(.hidden, for: .navigationBar)
+                    .safeAreaInset(edge: .top) {
+                        Color(.clear)
+                            .frame(height: 0)
+                            .background(.bar)
+                    }
+
+                }
             }
         }
     }
