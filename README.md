@@ -1,6 +1,6 @@
 # GPT Spot
 
-## Keyboard first OpenAI client mimicing apples Spotlight with an iOS companion app.
+Keyboard first OpenAI client mimicing apples Spotlight with an iOS companion app.
 
 ### macOS app
 
