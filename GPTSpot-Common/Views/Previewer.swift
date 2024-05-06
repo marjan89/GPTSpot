@@ -23,7 +23,17 @@ public struct Previewer {
 
         chatMessages = [
             ChatMessage(content: "Hello AI", origin: "user", timestamp: 0, id: "0", workspace: 1),
-            ChatMessage(content: "Hello", origin: "assistant", timestamp: 1, id: "1", workspace: 1),
+            ChatMessage(
+                content: """
+                            Hello! How can I assist you today? \
+                            If you have any questions or need help \
+                            with something, feel free to ask.
+                            """,
+                origin: "assistant",
+                timestamp: 1,
+                id: "1",
+                workspace: 1
+            ),
             ChatMessage(content: "How are you today", origin: "user", timestamp: 2, id: "2", workspace: 1),
             ChatMessage(content: "Im just fine", origin: "assistant", timestamp: 3, id: "3", workspace: 1),
             ChatMessage(content: "Hello on workspace 2", origin: "user", timestamp: 0, id: "4", workspace: 2),

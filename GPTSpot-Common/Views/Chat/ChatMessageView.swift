@@ -20,24 +20,21 @@ public struct ChatMessageView: View {
 
     public var body: some View {
         HStack {
-            if chatMessage.origin == Role.user.rawValue {
-                Spacer()
-            }
             Markdown(chatMessage.content)
                 .gptStyle()
                 .padding(.all, 8)
                 .background(backgroundColor())
                 .cornerRadius(8)
+                .textSelection(.enabled)
                 .frame(
                     maxWidth: maxMessageWidth,
                     alignment: chatMessage.origin == Role.user.rawValue ? .trailing : .leading
                 )
-                .textSelection(.enabled)
-                .scrollContentBackground(.hidden)
-            if chatMessage.origin != Role.user.rawValue {
-                Spacer()
-            }
         }
+        .frame(
+            maxWidth: .infinity,
+            alignment: chatMessage.origin == Role.user.rawValue ? .trailing : .leading
+        )
     }
 
     private func backgroundColor() -> Color {
@@ -46,36 +43,43 @@ public struct ChatMessageView: View {
 }
 
 #Preview {
-    VStack {
-        ChatMessageView(
-            chatMessage: ChatMessage(
-                content: "Hello",
-                origin: Role.user.rawValue,
-                timestamp: 1,
-                id: "1",
-                workspace: 1
-            ),
-            maxMessageWidth: 200
-        )
-        ChatMessageView(
-            chatMessage: ChatMessage(
-                content: "Hi!",
-                origin: Role.assistant.rawValue,
-                timestamp: 2,
-                id: "2",
-                workspace: 1
-            ),
-            maxMessageWidth: 200
-        )
-        ChatMessageView(
-            chatMessage: ChatMessage(
-                content: "Response error",
-                origin: Role.system.rawValue,
-                timestamp: 3,
-                id: "3",
-                workspace: 1
-            ),
-            maxMessageWidth: 200
-        )
+    do {
+        let previewer = try Previewer()
+
+        return VStack {
+            ChatMessageView(
+                chatMessage: ChatMessage(
+                    content: "Hello",
+                    origin: Role.user.rawValue,
+                    timestamp: 1,
+                    id: "1",
+                    workspace: 1
+                ),
+                maxMessageWidth: 200
+            )
+            ChatMessageView(
+                chatMessage: ChatMessage(
+                    content: "Hi!",
+                    origin: Role.assistant.rawValue,
+                    timestamp: 2,
+                    id: "2",
+                    workspace: 1
+                ),
+                maxMessageWidth: 200
+            )
+            ChatMessageView(
+                chatMessage: ChatMessage(
+                    content: "Response error",
+                    origin: Role.system.rawValue,
+                    timestamp: 3,
+                    id: "3",
+                    workspace: 1
+                ),
+                maxMessageWidth: 200
+            )
+        }
+        .modelContainer(previewer.container)
+    } catch {
+        return Text("Failed to create preview: \(error.localizedDescription)")
     }
 }
