@@ -41,10 +41,28 @@ public struct Previewer {
         ]
 
         templates = [
-            Template(content: "Lorem ipsum"),
-            Template(content: "Dolor sit amet"),
-            Template(content: "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos")
-        ]
+            Template(content: "Curabitur sed iaculis dolor"),
+            Template(content: "Nulla facilisi"),
+            Template(content: "Donec aliquet mi nec libero fermentum, non ultricies nibh sollicitudin"),
+            Template(content: "Praesent nec nisl a purus blandit viverra"),
+            Template(content: "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae"),
+            Template(content: "Etiam ultricies nisi vel augue"),
+            Template(content: "Morbi ac felis"),
+            Template(content: "Nunc egestas augue at pellentesque laoreet, sapien eros vestibulum urna, posuere"),
+            Template(content: "Vivamus elementum semper nisi"),
+            Template(content: "Aenean vulputate eleifend tellus"),
+            Template(content: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim"),
+            Template(content: "Curabitur sed iaculis dolor"),
+            Template(content: "Nulla facilisi"),
+            Template(content: "Donec aliquet mi nec libero fermentum, non ultricies nibh sollicitudin"),
+            Template(content: "Praesent nec nisl a purus blandit viverra"),
+            Template(content: "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae"),
+            Template(content: "Etiam ultricies nisi vel augue"),
+            Template(content: "Morbi ac felis"),
+            Template(content: "Nunc egestas augue at pellentesque laoreet, sapien eros vestibulum urna, posuere"),
+            Template(content: "Vivamus elementum semper nisi"),
+            Template(content: "Aenean vulputate eleifend tellus"),
+            Template(content: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim")]
 
         for message in chatMessages {
             container.mainContext.insert(message)

@@ -68,6 +68,8 @@
 		02FD0B872BE6AABA0042B60C /* AIServerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48DE2BAA3CBC005E2FF7 /* AIServerSettingsView.swift */; };
 		02FD0B8A2BE821AB0042B60C /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD0B892BE821AB0042B60C /* Array.swift */; };
 		02FD0B8D2BE8570F0042B60C /* String+Clipboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD0B8C2BE8570F0042B60C /* String+Clipboard.swift */; };
+		02FD0B902BE927D40042B60C /* TemplateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD0B8F2BE927D40042B60C /* TemplateList.swift */; };
+		02FD0B922BE927E20042B60C /* TemplateItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD0B912BE927E20042B60C /* TemplateItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +170,8 @@
 		02FD0B812BE688120042B60C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		02FD0B892BE821AB0042B60C /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		02FD0B8C2BE8570F0042B60C /* String+Clipboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Clipboard.swift"; sourceTree = "<group>"; };
+		02FD0B8F2BE927D40042B60C /* TemplateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateList.swift; sourceTree = "<group>"; };
+		02FD0B912BE927E20042B60C /* TemplateItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateItemView.swift; sourceTree = "<group>"; };
 		02FE75212BA65A0B0048A4EB /* Chunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chunk.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -315,6 +319,7 @@
 		026B926A2BE4FE1800BCD0A7 /* GPTSpot-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				02FD0B8E2BE927C30042B60C /* Templates */,
 				02FD0B8B2BE857040042B60C /* Extensions */,
 				02FD0B702BE642370042B60C /* Views */,
 				026B926D2BE4FE1800BCD0A7 /* ContentView.swift */,
@@ -469,6 +474,15 @@
 				02FD0B8C2BE8570F0042B60C /* String+Clipboard.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		02FD0B8E2BE927C30042B60C /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				02FD0B8F2BE927D40042B60C /* TemplateList.swift */,
+				02FD0B912BE927E20042B60C /* TemplateItemView.swift */,
+			);
+			path = Templates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -707,7 +721,9 @@
 				026B926E2BE4FE1800BCD0A7 /* ContentView.swift in Sources */,
 				026B92E32BE51CAD00BCD0A7 /* WorkspaceChatView.swift in Sources */,
 				02FD0B822BE688120042B60C /* SettingsView.swift in Sources */,
+				02FD0B922BE927E20042B60C /* TemplateItemView.swift in Sources */,
 				02FD0B742BE64CD20042B60C /* WorkspaceListView.swift in Sources */,
+				02FD0B902BE927D40042B60C /* TemplateList.swift in Sources */,
 				026B926C2BE4FE1800BCD0A7 /* GPTSpotiOSApp.swift in Sources */,
 				02FD0B8D2BE8570F0042B60C /* String+Clipboard.swift in Sources */,
 			);
