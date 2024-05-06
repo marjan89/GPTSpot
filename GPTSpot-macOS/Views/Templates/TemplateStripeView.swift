@@ -48,7 +48,7 @@ struct TemplateStripeView: View {
                                     Button {
                                         onTemplateSelected(template)
                                     } label: {
-                                        Text("Make prompt")
+                                        Text("Append to prompt")
                                     }
                                     .keyboardShortcut(.return, modifiers: .control)
                                     Button {
