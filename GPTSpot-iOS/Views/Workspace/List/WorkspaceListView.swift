@@ -26,6 +26,7 @@ struct WorkspaceListView: View {
         chatMessages
             .map { chatMessage in chatMessage.workspace }
             .distinct<T>()
+            .sorted()
     }
 
     private var inactiveWorkspaces: [Int] {
@@ -90,10 +91,12 @@ struct WorkspaceListView: View {
                         .navigationBarTitleDisplayMode(.inline)
                         .navigationTitle("Settings")
                 case .workspace(let workspace):
-                    WorkspaceChatView(
-                        chatViewService: chatViewService,
-                        workspace: workspace
-                    )
+                    VStack { //SwiftUI bug
+                        WorkspaceChatView(
+                            chatViewService: chatViewService,
+                            workspace: workspace
+                        )
+                    }
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .primaryAction) {
@@ -102,12 +105,12 @@ struct WorkspaceListView: View {
                             }
                         }
                     }
-                    .toolbarBackground(.hidden, for: .navigationBar)
-                    .safeAreaInset(edge: .top) {
-                        Color(.clear)
-                            .frame(height: 0)
-                            .background(.bar)
-                    }
+                    //                    .toolbarBackground(.hidden, for: .navigationBar)
+                    //                    .safeAreaInset(edge: .top) {
+                    //                        Color(.clear)
+                    //                            .frame(height: 0)
+                    //                            .background(.bar)
+                    //                    }
 
                 }
             }
