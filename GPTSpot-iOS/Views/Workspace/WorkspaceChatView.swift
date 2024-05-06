@@ -10,6 +10,7 @@ import GPTSpot_Common
 import SwiftData
 
 struct WorkspaceChatView: View {
+    @Environment(\.modelContext) private var modelContext: ModelContext
     @Bindable var chatViewService: ChatViewService
     @Query private var chatMessages: [ChatMessage]
     private var workspace: Int
@@ -21,8 +22,7 @@ struct WorkspaceChatView: View {
             filter: #Predicate<ChatMessage> { chatMessage in
                 chatMessage.workspace == workspace
             },
-            sort: \ChatMessage.timestamp,
-            order: .reverse
+            sort: \ChatMessage.timestamp
         )
     }
 
@@ -36,15 +36,28 @@ struct WorkspaceChatView: View {
                                 chatMessage: chatMessage,
                                 maxMessageWidth: geometry.size.width * 0.66
                             )
-                            .listRowSeparator(.hidden)
-                            .scaleEffect(x: 1, y: -1, anchor: .center)
+                            .contextMenu(ContextMenu(menuItems: {
+                                Button("Copy", systemImage: "doc.on.doc.fill") {
+                                    chatMessage.content.copyTextToClipboard()
+                                }
+                                Button("Make prompt", systemImage: "return") {
+                                    chatViewService.prompt = chatMessage.content
+                                }
+                                Button("Delete", systemImage: "trash.fill") {
+                                    modelContext.delete(chatMessage)
+                                }
+                                Button("Save template", systemImage: "square.and.arrow.down.fill") {
+                                    modelContext.insert(Template(content: chatMessage.content))
+                                }
+                            }))
                         }
                         .padding(8)
                     }
                 }
+                .defaultScrollAnchor(.bottom)
+                .scrollClipDisabled()
+                .scrollDismissesKeyboard(.immediately)
             }
-            .scrollClipDisabled()
-            .scaleEffect(x: 1, y: -1, anchor: .center)
             HStack {
                 Button("", systemImage: "folder.fill") {
 
