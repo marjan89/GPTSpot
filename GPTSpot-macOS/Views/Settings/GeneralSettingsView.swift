@@ -12,20 +12,33 @@ import GPTSpot_Common
 struct GeneralSettingsView: View {
     @AppStorage(GeneralSettingsDefaultsKeys.startHidden) private var startHidden = false
     @AppStorage(GeneralSettingsDefaultsKeys.hideFromDock) private var hideFromDock = false
-    @State private var alertVisible = false
+    @AppStorage(GeneralSettingsDefaultsKeys.windowed) private var windowed = false
+    @AppStorage(GeneralSettingsDefaultsKeys.keepOnTop) private var keepOnTop = false
 
     var body: some View {
         Form {
-            LaunchAtLogin.Toggle("Login item")
-            Toggle(isOn: $startHidden) {
-                Text("Start hidden")
+            Section("App settings") {
+                LaunchAtLogin.Toggle("Login item")
+                Toggle(isOn: $startHidden) {
+                    Text("Start hidden")
+                }
             }
-            Toggle(isOn: $hideFromDock) {
-                Text("Hide from dock")
+            Section("Window settings") {
                 Text("You need to restart the app for this change to take effect")
+                    .font(.footnote)
+                Toggle(isOn: $hideFromDock) {
+                    Text("Hide from dock")
+                }
+                Toggle(isOn: $windowed) {
+                    Text("Windowed mode")
+                }
+                Toggle(isOn: $keepOnTop) {
+                    Text("Keep on top")
+                }
+                .disabled(!windowed)
             }
         }
-        .frame(width: 300, height: 150)
+        .padding(.horizontal, 20)
     }
 }
 

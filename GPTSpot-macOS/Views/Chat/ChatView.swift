@@ -72,9 +72,7 @@ struct ChatView: View {
             }
         }
         .background(.windowBackground)
-        .roundedCorners(radius: 16, strokeColor: Color.black)
-        .padding(.all, 20)
-        .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.66), radius: 10)
+        .window()
     }
 
     @ViewBuilder

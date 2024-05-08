@@ -7,6 +7,7 @@
 
 import Cocoa
 import Carbon
+import GPTSpot_Common
 
 class GlobalHotKeyManager {
 
@@ -15,11 +16,15 @@ class GlobalHotKeyManager {
 
     init(appDelegate: GPTAppDelegate) {
         self.appDelegate = appDelegate
-        registerGlobalHotKey()
+        if !UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.windowed) {
+            registerGlobalHotKey()
+        }
     }
 
     deinit {
-        unregisterGlobalHotKey()
+        if !UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.windowed) {
+            unregisterGlobalHotKey()
+        }
     }
 
     private func registerGlobalHotKey() {

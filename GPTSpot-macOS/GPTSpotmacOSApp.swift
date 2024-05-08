@@ -16,6 +16,9 @@ struct GPTSpotmacOSApp: App {
             }
             .keyboardShortcut("S")
             Divider()
+            Button("Show window") {
+                appDelegate.showWindow()
+            }
             Button("Quit") {
                 NSApplication.shared.terminate(nil)
             }
@@ -27,18 +30,38 @@ struct GPTSpotmacOSApp: App {
     }
 }
 class GPTAppDelegate: NSObject, NSApplicationDelegate {
-    var window: NSWindow!
+    var window: NSWindow?
     var hotKeyRef: EventHotKeyRef?
     var globalHotkeyManager: GlobalHotKeyManager?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        setupWindow()
+        createWindow()
         NSApp.setActivationPolicy(
-            UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.hideFromDock) ? .accessory : .regular
+            UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.hideFromDock) ? .accessory: .regular
         )
         globalHotkeyManager = GlobalHotKeyManager(appDelegate: self)
     }
-    func setupWindow() {
+
+    func createWindow() {
+        if UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.windowed) {
+            setupRegularWindow()
+        } else {
+            setupBorderlessWindow()
+        }
+    }
+
+    func setupRegularWindow() {
+        window = RegularWindow(
+            for: NSHostingView(
+                rootView: ContentView()
+                    .modelContainer(for: [ChatMessage.self, Template.self])
+                    .environment(\.openAIService, OpenAIServiceKey.defaultValue)
+            )
+
+        )
+    }
+
+    func setupBorderlessWindow() {
         window = BorderlessWindow(
             for: NSHostingView(
                 rootView: ContentView()
@@ -48,7 +71,20 @@ class GPTAppDelegate: NSObject, NSApplicationDelegate {
         )
     }
 
+    func showWindow() {
+        guard let window = window else {
+            return
+        }
+        if !window.isVisible {
+            window.makeKeyAndOrderFront(nil)
+            NSApp.activate(ignoringOtherApps: true)
+        }
+    }
+
     func toggleWindowVisibility() {
+        guard let window = window else {
+            return
+        }
         if window.isVisible {
             window.orderOut(nil)
             NSApp.hide(nil)

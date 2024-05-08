@@ -82,6 +82,9 @@
     "API key" : {
 
     },
+    "App settings" : {
+
+    },
     "Append to prompt" : {
 
     },
@@ -116,6 +119,9 @@
 
     },
     "history max: **%lld**" : {
+
+    },
+    "Keep on top" : {
 
     },
     "Make prompt" : {
@@ -190,6 +196,9 @@
     "Show templates" : {
 
     },
+    "Show window" : {
+
+    },
     "Start hidden" : {
 
     },
@@ -213,6 +222,12 @@
 
     },
     "total history: **%lld**" : {
+
+    },
+    "Window settings" : {
+
+    },
+    "Windowed mode" : {
 
     },
     "Workspace" : {

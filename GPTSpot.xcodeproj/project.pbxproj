@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0230ED162BBDFC8700C067E6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */; };
+		023B78722BEAD523009D90B8 /* RegularWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023B78712BEAD523009D90B8 /* RegularWindow.swift */; };
+		023B78762BEADD8A009D90B8 /* WindowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023B78752BEADD8A009D90B8 /* WindowModifier.swift */; };
 		025AE6762B8BA51F001489A3 /* GPTSpotmacOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6752B8BA51F001489A3 /* GPTSpotmacOSApp.swift */; };
 		025AE6782B8BA51F001489A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6772B8BA51F001489A3 /* ContentView.swift */; };
 		025AE67A2B8BA520001489A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025AE6792B8BA520001489A3 /* Assets.xcassets */; };
@@ -120,6 +122,8 @@
 		0230ED1B2BBF6A7900C067E6 /* KeyRecordingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyRecordingState.swift; sourceTree = "<group>"; };
 		0230ED1D2BBF6A9300C067E6 /* KeySequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeySequence.swift; sourceTree = "<group>"; };
 		0230ED1F2BBF6CE700C067E6 /* KeyCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCaptureView.swift; sourceTree = "<group>"; };
+		023B78712BEAD523009D90B8 /* RegularWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularWindow.swift; sourceTree = "<group>"; };
+		023B78752BEADD8A009D90B8 /* WindowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WindowModifier.swift; path = "GPTSpot-macOS/Views/Modifiers/WindowModifier.swift"; sourceTree = SOURCE_ROOT; };
 		025AE6722B8BA51F001489A3 /* GPTSpot-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPTSpot-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		025AE6752B8BA51F001489A3 /* GPTSpotmacOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPTSpotmacOSApp.swift; sourceTree = "<group>"; };
 		025AE6772B8BA51F001489A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -224,6 +228,25 @@
 			path = KeyCapture;
 			sourceTree = "<group>";
 		};
+		023B78732BEADB4B009D90B8 /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				02AB8C912BE41528006C0853 /* LaunchAtLogin.swift */,
+				02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */,
+				023B78712BEAD523009D90B8 /* RegularWindow.swift */,
+				02A17A1F2BA60AD100C26A67 /* BorderlessWindow.swift */,
+			);
+			path = Window;
+			sourceTree = "<group>";
+		};
+		023B78742BEADD6C009D90B8 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				023B78752BEADD8A009D90B8 /* WindowModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
 		025AE6692B8BA51F001489A3 = {
 			isa = PBXGroup;
 			children = (
@@ -249,14 +272,12 @@
 			isa = PBXGroup;
 			children = (
 				025AE67E2B8BA521001489A3 /* GPTSpot.entitlements */,
-				02A17A1F2BA60AD100C26A67 /* BorderlessWindow.swift */,
-				02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */,
 				025AE6752B8BA51F001489A3 /* GPTSpotmacOSApp.swift */,
-				02AB8C912BE41528006C0853 /* LaunchAtLogin.swift */,
 				025AE6792B8BA520001489A3 /* Assets.xcassets */,
 				026B92E82BE51DA600BCD0A7 /* Extensions */,
 				025AE67B2B8BA521001489A3 /* Preview Content */,
 				025C7E1D2B8D77CC0060F343 /* Views */,
+				023B78732BEADB4B009D90B8 /* Window */,
 			);
 			path = "GPTSpot-macOs";
 			sourceTree = "<group>";
@@ -292,6 +313,7 @@
 		025C7E1D2B8D77CC0060F343 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				023B78742BEADD6C009D90B8 /* Modifiers */,
 				025AE6772B8BA51F001489A3 /* ContentView.swift */,
 				029BABCC2BE56891008F8FB0 /* FocusDirection.swift */,
 				02AAD1BA2B8E7AEA00ED7876 /* HotkeyAction.swift */,
@@ -341,11 +363,11 @@
 		026B92992BE4FED400BCD0A7 /* GPTSpot-Common */ = {
 			isa = PBXGroup;
 			children = (
-				02FD0B882BE821650042B60C /* Extensions */,
 				026B929B2BE4FED400BCD0A7 /* GPTSpot_Common.docc */,
 				026B929A2BE4FED400BCD0A7 /* GPTSpot_Common.h */,
 				0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */,
 				028D48E22BAA40C3005E2FF7 /* Defaults */,
+				02FD0B882BE821650042B60C /* Extensions */,
 				025C7E1B2B8D779B0060F343 /* Models */,
 				025C7E1C2B8D77AF0060F343 /* Services */,
 				026B92B22BE5121400BCD0A7 /* Views */,
@@ -693,6 +715,7 @@
 				025AE6782B8BA51F001489A3 /* ContentView.swift in Sources */,
 				02FD0B862BE688C30042B60C /* GeneralSettingsView.swift in Sources */,
 				029673DF2BB8A0B80054062F /* WorkspaceIndicatorView.swift in Sources */,
+				023B78722BEAD523009D90B8 /* RegularWindow.swift in Sources */,
 				029BABD12BE56950008F8FB0 /* TemplateStripeView.swift in Sources */,
 				029673E12BB8A4E00054062F /* StatsView.swift in Sources */,
 				029673D82BB4EC0A0054062F /* CheatSheetView.swift in Sources */,
@@ -701,6 +724,7 @@
 				029BABD32BE56B09008F8FB0 /* ChatListView.swift in Sources */,
 				02AB8C922BE41528006C0853 /* LaunchAtLogin.swift in Sources */,
 				029BABD42BE56B09008F8FB0 /* PromptEditor.swift in Sources */,
+				023B78762BEADD8A009D90B8 /* WindowModifier.swift in Sources */,
 				025AE6762B8BA51F001489A3 /* GPTSpotmacOSApp.swift in Sources */,
 				025AE6AC2B8BEEB4001489A3 /* ChatView.swift in Sources */,
 				026B92E42BE51D6C00BCD0A7 /* KeyRecordingView.swift in Sources */,

@@ -11,4 +11,6 @@ public enum GeneralSettingsDefaultsKeys {
     public static let loginItem: String = "loginItem"
     public static let startHidden: String = "startHidden"
     public static let hideFromDock: String = "hideFromDock"
+    public static let windowed: String = "windowed"
+    public static let keepOnTop: String = "keepOnTop"
 }

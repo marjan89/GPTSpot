@@ -91,7 +91,7 @@ struct WorkspaceListView: View {
                         .navigationBarTitleDisplayMode(.inline)
                         .navigationTitle("Settings")
                 case .workspace(let workspace):
-                    VStack { //SwiftUI bug
+                    VStack { // SwiftUI bug
                         WorkspaceChatView(
                             chatViewService: chatViewService,
                             workspace: workspace
