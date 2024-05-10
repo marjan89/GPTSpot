@@ -34,7 +34,17 @@ public final class ChatViewService {
             if sanitizedPrompt.isEmpty {
                 return
             }
-            insertOrUpdateChatMessage(for: sanitizedPrompt, origin: .user, workspace: workspace)
+            let promptPrefix = UserDefaults.standard.string(forKey: AIServerDefaultsKeys.promptPrefix)
+            let modifiedPrompt = if let promptPrefix = promptPrefix {
+"""
+\(promptPrefix)\r\n
+\(sanitizedPrompt)
+"""
+            } else {
+                sanitizedPrompt
+            }
+
+            insertOrUpdateChatMessage(for: modifiedPrompt, origin: .user, workspace: workspace)
             let chatRequest = ChatRequest.request(with: self.loadChatHistory(for: workspace))
             prompt = ""
             if let messageStream = try? await openAiService.completion(for: chatRequest) {

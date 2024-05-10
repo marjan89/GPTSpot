@@ -15,6 +15,7 @@ struct AIServerSettingsView: View {
     @AppStorage(AIServerDefaultsKeys.temperature) private var temperature = 0.5
     @AppStorage(AIServerDefaultsKeys.openAiKey) private var openAiKey = ""
     @AppStorage(AIServerDefaultsKeys.maxHistory) private var maxHistory = 6
+    @AppStorage(AIServerDefaultsKeys.promptPrefix) private var promptPrefix = ""
 
     var body: some View {
         Form {
@@ -45,6 +46,10 @@ struct AIServerSettingsView: View {
                         .tag(number)
                 }
             }
+            TextField(
+                "Prompt prefix",
+                text: $promptPrefix
+            )
         }
     }
 
