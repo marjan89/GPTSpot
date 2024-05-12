@@ -27,13 +27,13 @@ public final class ChatViewService {
         if generatingContent {
             return
         }
-        generatingContent = true
         Task { @MainActor in
             let sanitizedPrompt = prompt.trimmingCharacters(in: .whitespacesAndNewlines)
 
             if sanitizedPrompt.isEmpty {
                 return
             }
+            generatingContent = true
             let promptPrefix = UserDefaults.standard.string(forKey: AIServerDefaultsKeys.promptPrefix)
             let modifiedPrompt = if let promptPrefix = promptPrefix {
 """
