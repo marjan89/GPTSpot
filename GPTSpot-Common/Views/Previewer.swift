@@ -11,8 +11,6 @@ import SwiftData
 @MainActor
 public struct Previewer {
     public let container: ModelContainer
-    public let chatMessages: [ChatMessage]
-    public let templates: [Template]
 
     public init() throws {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
@@ -21,7 +19,22 @@ public struct Previewer {
             configurations: config
         )
 
-        chatMessages = [
+        let chatMessages: [ChatMessage]
+        let templates: [Template]
+
+        chatMessages = produceMockChatMessages()
+        templates = produceMockTemplates()
+
+        for message in chatMessages {
+            container.mainContext.insert(message)
+        }
+        for template in templates {
+            container.mainContext.insert(template)
+        }
+    }
+
+    private func produceMockChatMessages() -> [ChatMessage] {
+        return [
             ChatMessage(content: "Hello AI", origin: "user", timestamp: 0, id: "0", workspace: 1),
             ChatMessage(
                 content: """
@@ -39,8 +52,10 @@ public struct Previewer {
             ChatMessage(content: "Hello on workspace 2", origin: "user", timestamp: 0, id: "4", workspace: 2),
             ChatMessage(content: "Hello", origin: "assistant", timestamp: 1, id: "5", workspace: 2)
         ]
+    }
 
-        templates = [
+    private func produceMockTemplates() -> [Template] {
+        return [
             Template(content: "Curabitur sed iaculis dolor"),
             Template(content: "Nulla facilisi"),
             Template(content: "Donec aliquet mi nec libero fermentum, non ultricies nibh sollicitudin"),
@@ -62,13 +77,8 @@ public struct Previewer {
             Template(content: "Nunc egestas augue at pellentesque laoreet, sapien eros vestibulum urna, posuere"),
             Template(content: "Vivamus elementum semper nisi"),
             Template(content: "Aenean vulputate eleifend tellus"),
-            Template(content: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim")]
+            Template(content: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim")
+        ]
 
-        for message in chatMessages {
-            container.mainContext.insert(message)
-        }
-        for template in templates {
-            container.mainContext.insert(template)
-        }
     }
 }
