@@ -13,4 +13,5 @@ public enum AIServerDefaultsKeys {
     public static let openAiKey: String = "openAiKey"
     public static let maxHistory: String = "maxHistory"
     public static let promptPrefix: String = "promptPrefix"
+    public static let usePrompPrefix: String = "usePromptPrefix"
 }

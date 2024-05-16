@@ -16,6 +16,7 @@ struct ChatView: View {
     @Environment(\.modelContext) private var modelContext
 
     @FocusState private var focusedField: Bool
+    @AppStorage(AIServerDefaultsKeys.usePrompPrefix) private var promptPrefix: Bool = false
 
     @State var workspace = 1
     @State var showHelpRibbon = false
@@ -79,6 +80,14 @@ struct ChatView: View {
     func chatControls() -> some View {
         HStack {
             Spacer()
+            Toggle(
+                isOn: $promptPrefix,
+                label: {
+                    Text("Prompt prefix")
+                }
+            )
+            .toggleStyle(SwitchToggleStyle())
+            .keyboardShortcut(.init("/"))
             if chatViewService.generatingContent {
                 Button("", systemImage: "stop.fill") {
                     chatViewService.cancelCompletion()

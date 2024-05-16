@@ -34,17 +34,8 @@ public final class ChatViewService {
                 return
             }
             generatingContent = true
-            let promptPrefix = UserDefaults.standard.string(forKey: AIServerDefaultsKeys.promptPrefix)
-            let modifiedPrompt = if let promptPrefix = promptPrefix {
-"""
-\(promptPrefix)\r\n
-\(sanitizedPrompt)
-"""
-            } else {
-                sanitizedPrompt
-            }
 
-            insertOrUpdateChatMessage(for: modifiedPrompt, origin: .user, workspace: workspace)
+            insertOrUpdateChatMessage(for: modifiedPrompt(prompt), origin: .user, workspace: workspace)
             let chatRequest = ChatRequest.request(with: self.loadChatHistory(for: workspace))
             prompt = ""
             if let messageStream = try? await openAiService.completion(for: chatRequest) {
@@ -118,6 +109,22 @@ public final class ChatViewService {
             String(localized: "Response error: Unknown")
         }
         return error
+    }
+
+    private func modifiedPrompt(_ prompt: String) -> String {
+        if UserDefaults.standard.bool(forKey: AIServerDefaultsKeys.usePrompPrefix) {
+            let promptPrefix = UserDefaults.standard.string(forKey: AIServerDefaultsKeys.promptPrefix)
+            if let promptPrefix = promptPrefix {
+return """
+\(promptPrefix)\r\n
+\(prompt)
+"""
+            } else {
+                return prompt
+            }
+        } else {
+            return prompt
+        }
     }
 
     private func loadChatHistory(for workspace: Int) -> [ChatRequest.Message] {
