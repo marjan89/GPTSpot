@@ -218,6 +218,16 @@
         }
       }
     },
+    "Template search no results" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No template matches the query"
+          }
+        }
+      }
+    },
     "Templates" : {
 
     },

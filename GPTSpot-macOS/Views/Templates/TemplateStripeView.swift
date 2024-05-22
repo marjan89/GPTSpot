@@ -16,6 +16,7 @@ struct TemplateStripeView: View {
     }
 
     private var onTemplateSelected: (Template) -> Void
+    private var searchQuery: String
 
     @Query private var templates: [Template]
 
@@ -25,6 +26,7 @@ struct TemplateStripeView: View {
 
     init(searchQuery: String, onTemplateSelected: @escaping (Template) -> Void) {
         self.onTemplateSelected = onTemplateSelected
+        self.searchQuery = searchQuery
         _templates = Query(
             filter: #Predicate<Template> { template in
                 searchQuery.isEmpty || template.content.contains(searchQuery)
@@ -37,8 +39,10 @@ struct TemplateStripeView: View {
             hotkeys()
             ScrollView(.horizontal) {
                 LazyHStack {
-                    if templates.isEmpty {
+                    if templates.isEmpty && searchQuery.isEmpty {
                         TemplateItemView(text: String(localized: "Template hint"))
+                    } else if templates.isEmpty {
+                        TemplateItemView(text: String(localized: "Template search no results"))
                     } else {
                         ForEach(templates, id: \.content) { template in
                             TemplateItemView(text: template.content)
