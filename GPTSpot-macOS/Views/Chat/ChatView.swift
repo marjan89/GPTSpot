@@ -80,6 +80,20 @@ struct ChatView: View {
     func chatControls() -> some View {
         HStack {
             Spacer()
+            if !chatViewService.prompt.isEmpty || !templateSearchQuery.isEmpty {
+                Button("", systemImage: "square.and.arrow.down.fill") {
+                    if showTemplateStripe {
+                        modelContext.insert(Template(content: templateSearchQuery))
+                        templateSearchQuery = ""
+                    } else {
+                        chatViewService.savePrompAsTemplate()
+                    }
+                }
+                .accessibilityLabel("Save as template")
+                .help("Save as template")
+                .keyboardShortcut(.init("s", modifiers: [.command]))
+                .buttonStyle(BorderlessButtonStyle())
+            }
             Toggle(
                 isOn: $promptPrefix,
                 label: {
@@ -93,6 +107,7 @@ struct ChatView: View {
                     chatViewService.cancelCompletion()
                 }
                 .accessibilityLabel("Cancel response")
+                .help("Cancel response")
                 .keyboardShortcut(.init(.return, modifiers: [.command, .shift]))
                 .buttonStyle(BorderlessButtonStyle())
             }
@@ -100,24 +115,28 @@ struct ChatView: View {
                 showHelpRibbon.toggle()
             }
             .accessibilityLabel("Show help")
+            .help("Show help")
             .keyboardShortcut(.init("?"))
             .buttonStyle(BorderlessButtonStyle())
             Button("", systemImage: "chart.bar.fill") {
                 showStats.toggle()
             }
             .accessibilityLabel("Show stats")
+            .help("Show stats")
             .keyboardShortcut(.init("."))
             .buttonStyle(BorderlessButtonStyle())
             Button("", systemImage: "trash.fill") {
                 chatViewService.discardHistory(for: workspace)
             }
             .accessibilityLabel("Discard history")
+            .help("Discard history")
             .keyboardShortcut(.init("d"))
             .buttonStyle(BorderlessButtonStyle())
             Button("", systemImage: "folder.fill") {
                 showTemplateStripe.toggle()
             }
             .accessibilityLabel("Show templates")
+            .help("Show templates")
             .keyboardShortcut(.init("t"))
             .buttonStyle(BorderlessButtonStyle())
             Button("", systemImage: "memories") {
@@ -125,12 +144,14 @@ struct ChatView: View {
                 chatViewService.setLastChatMessageAsPrompt(workspace: workspace)
             }
             .accessibilityLabel("Set last message as prompt")
+            .help("Set last message as prompt")
             .keyboardShortcut(.upArrow)
             .buttonStyle(BorderlessButtonStyle())
             Button("", systemImage: "paperplane.fill") {
                 chatViewService.executePrompt(workspace: workspace)
             }
             .accessibilityLabel("Send")
+            .help("Send")
             .keyboardShortcut(.return)
             .buttonStyle(BorderlessButtonStyle())
         }

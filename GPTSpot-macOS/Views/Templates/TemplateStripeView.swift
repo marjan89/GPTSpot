@@ -44,7 +44,7 @@ struct TemplateStripeView: View {
                     } else if templates.isEmpty {
                         TemplateItemView(text: String(localized: "Template search no results"))
                     } else {
-                        ForEach(templates, id: \.content) { template in
+                    ForEach(templates, id: \.id) { template in
                             TemplateItemView(text: template.content)
                                 .focusable(true)
                                 .focused($focusedTemplateField, equals: .focusedTemplate(template))

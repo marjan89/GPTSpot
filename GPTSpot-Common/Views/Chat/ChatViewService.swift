@@ -62,6 +62,11 @@ public final class ChatViewService {
         prompt.append(text)
     }
 
+    public func savePrompAsTemplate() {
+        modelContext.insert(Template(content: prompt))
+        prompt = ""
+    }
+
     public func cancelCompletion() {
         openAiService.cancelCompletion()
         generatingContent = false
