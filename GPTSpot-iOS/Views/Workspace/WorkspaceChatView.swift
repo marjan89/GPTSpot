@@ -82,6 +82,11 @@ struct WorkspaceChatView: View {
                 .accessibilityLabel("Send")
             }
             .roundedCorners(radius: 24, stroke: 1, strokeColor: Color.gray)
+            if !chatViewService.prompt.isEmpty {
+                Button("", systemImage: "square.and.arrow.down.fill") {
+                    chatViewService.savePrompAsTemplate()
+                }
+            }
         }
         .padding(16)
         .background(.regularMaterial)
