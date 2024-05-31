@@ -98,20 +98,6 @@ struct WorkspaceListView: View {
                         )
                     }
                     .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                        ToolbarItem(placement: .primaryAction) {
-                            Button("", systemImage: "trash.fill") {
-                                chatViewService.discardHistory(for: workspace)
-                            }
-                        }
-                    }
-                    //                    .toolbarBackground(.hidden, for: .navigationBar)
-                    //                    .safeAreaInset(edge: .top) {
-                    //                        Color(.clear)
-                    //                            .frame(height: 0)
-                    //                            .background(.bar)
-                    //                    }
-
                 }
             }
         }

@@ -15,6 +15,7 @@ struct WorkspaceChatView: View {
     @Query private var chatMessages: [ChatMessage]
     @Query private var templates: [Template]
     @AppStorage(AIServerDefaultsKeys.usePrompPrefix) private var promptPrefix: Bool = false
+    @AppStorage(IOSDefaultsKeys.expandedInputField) private var expandedInputField: Bool = false
     @State private var promptPrefixSheetShown = false
     private var workspace: Int
 
@@ -89,9 +90,20 @@ struct WorkspaceChatView: View {
             .help("Prompt prefix")
             .toggleStyle(.button)
             HStack {
-                TextField("text", text: $chatViewService.prompt)
-                    .padding(8)
-                    .padding(.horizontal, 8)
+                if expandedInputField {
+                    TextField("Send a message", text: $chatViewService.prompt)
+                        .padding(8)
+                        .padding(.horizontal, 8)
+                } else {
+                    TextEditor(text: $chatViewService.prompt)
+                        .padding(8)
+                        .padding(.horizontal, 8)
+                        .accessibilityHidden(true)
+                        .scrollClipDisabled()
+                        .scrollContentBackground(.hidden)
+                        .scrollIndicators(.never)
+                        .frame(height: UIScreen.main.bounds.height * 0.2)
+                }
                 Button(
                     "",
                     systemImage: chatViewService.generatingContent ? "stop.fill" : "arrow.up.circle.fill"
@@ -116,6 +128,19 @@ struct WorkspaceChatView: View {
         }
         .padding(16)
         .background(.regularMaterial)
+        .toolbar {
+            ToolbarItemGroup(placement: .primaryAction) {
+                Button(
+                    "",
+                    systemImage: expandedInputField ? "rectangle.expand.vertical" : "rectangle.compress.vertical"
+                ) {
+                    expandedInputField.toggle()
+                }
+                Button("", systemImage: "trash.fill") {
+                    chatViewService.discardHistory(for: workspace)
+                }
+            }
+        }
     }
 }
 
