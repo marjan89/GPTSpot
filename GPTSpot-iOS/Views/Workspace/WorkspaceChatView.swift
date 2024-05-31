@@ -14,6 +14,8 @@ struct WorkspaceChatView: View {
     @Bindable var chatViewService: ChatViewService
     @Query private var chatMessages: [ChatMessage]
     @Query private var templates: [Template]
+    @AppStorage(AIServerDefaultsKeys.usePrompPrefix) private var promptPrefix: Bool = false
+    @State private var promptPrefixSheetShown = false
     private var workspace: Int
 
     init(chatViewService: ChatViewService, workspace: Int) {
@@ -65,6 +67,27 @@ struct WorkspaceChatView: View {
             } label: {
                 Image(systemName: "folder.fill")
             }
+            Button("", systemImage: "text.quote") {
+                promptPrefixSheetShown.toggle()
+            }
+            .sheet(isPresented: $promptPrefixSheetShown) {
+                VStack {
+                    Toggle(
+                        isOn: $promptPrefix,
+                        label: {
+                            Text("Prompt prefix")
+                        }
+                    )
+                    Button("Dismiss") {
+                        promptPrefixSheetShown.toggle()
+                    }
+                }
+                .padding()
+                .presentationDetents([.medium, .fraction(0.15)])
+            }
+            .accessibilityLabel("Prompt prefix")
+            .help("Prompt prefix")
+            .toggleStyle(.button)
             HStack {
                 TextField("text", text: $chatViewService.prompt)
                     .padding(8)
@@ -80,12 +103,15 @@ struct WorkspaceChatView: View {
                     }
                 }
                 .accessibilityLabel("Send")
+                .help("Send")
             }
             .roundedCorners(radius: 24, stroke: 1, strokeColor: Color.gray)
             if !chatViewService.prompt.isEmpty {
                 Button("", systemImage: "square.and.arrow.down.fill") {
                     chatViewService.savePrompAsTemplate()
                 }
+                .accessibilityLabel("Save template")
+                .help("Save template")
             }
         }
         .padding(16)
