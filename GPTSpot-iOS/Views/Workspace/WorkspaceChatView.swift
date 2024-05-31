@@ -15,7 +15,6 @@ struct WorkspaceChatView: View {
     @Query private var chatMessages: [ChatMessage]
     @Query private var templates: [Template]
     private var workspace: Int
-    @State private var templatesShown: Bool = false
 
     init(chatViewService: ChatViewService, workspace: Int) {
         self.chatViewService = chatViewService
@@ -59,16 +58,13 @@ struct WorkspaceChatView: View {
             .scrollDismissesKeyboard(.immediately)
         }
         HStack {
-            Button("", systemImage: "folder.fill") {
-                templatesShown = true
-            }
-            .accessibilityLabel("Show templates")
-            .sheet(isPresented: $templatesShown, content: {
+            NavigationLink {
                 TemplateList { template in
                     chatViewService.appendToPrompt(template.content)
-                    templatesShown = false
                 }
-            })
+            } label: {
+                Image(systemName: "folder.fill")
+            }
             HStack {
                 TextField("text", text: $chatViewService.prompt)
                     .padding(8)

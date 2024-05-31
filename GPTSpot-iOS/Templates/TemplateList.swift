@@ -14,6 +14,8 @@ struct TemplateList: View {
     @Query private var templates: [Template]
     @Environment(\.modelContext) private var modelContext: ModelContext
     private var onTemplateSelected: (Template) -> Void
+    @State var templatesQuery: String = ""
+    @Environment(\.dismiss) private var dismiss
 
     init(onTemplateSelected: @escaping (Template) -> Void) {
         self.onTemplateSelected = onTemplateSelected
@@ -21,10 +23,27 @@ struct TemplateList: View {
 
     var body: some View {
         List {
-            ForEach(templates, id: \.content) { template in
+            ForEach(
+                templates.filter { template in
+                    if templatesQuery.isEmpty {
+                        return true
+                    } else {
+                        let words = templatesQuery
+                            .lowercased()
+                            .trimmingCharacters(in: .whitespacesAndNewlines)
+                            .components(separatedBy: .whitespaces)
+                        let queryMatched = words.contains { word in
+                            template.content.lowercased().contains(word)
+                        }
+                        return queryMatched
+                    }
+                },
+                id: \.id
+            ) { template in
                 Text(template.content)
                     .onTapGesture {
                         onTemplateSelected(template)
+                        dismiss()
                     }
                     .swipeActions(allowsFullSwipe: false) {
                         Button {
@@ -36,6 +55,7 @@ struct TemplateList: View {
                     }
             }
         }
+        .searchable(text: $templatesQuery)
     }
 }
 
