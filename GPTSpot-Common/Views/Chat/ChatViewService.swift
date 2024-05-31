@@ -12,6 +12,8 @@ import SwiftUI
 @Observable
 public final class ChatViewService {
 
+    let throttleIntervalInSeconds = 0.1
+
     public var prompt: String = ""
     public var generatingContent: Bool = false
 
@@ -38,12 +40,24 @@ public final class ChatViewService {
             insertOrUpdateChatMessage(for: modifiedPrompt(prompt), origin: .user, workspace: workspace)
             let chatRequest = ChatRequest.request(with: self.loadChatHistory(for: workspace))
             prompt = ""
+            var responseBuffer: [(String, String)] = []
+            var time = Date().timeIntervalSince1970
             if let messageStream = try? await openAiService.completion(for: chatRequest) {
                 for await message in messageStream {
                     switch message {
                     case .response(let chunk, let id):
-                        self.insertOrUpdateChatMessage(for: chunk, origin: .assistant, id: id, workspace: workspace)
+                        responseBuffer.append((id, chunk))
+                        if Date().timeIntervalSince1970 - time > throttleIntervalInSeconds {
+                            insertBufferedResponses(for: responseBuffer, workspace: workspace)
+                            time = Date().timeIntervalSince1970
+                            responseBuffer.removeAll()
+                        }
                     case .terminator:
+                        if !responseBuffer.isEmpty {
+                            insertBufferedResponses(for: responseBuffer, workspace: workspace)
+                            time = Date().timeIntervalSince1970
+                            responseBuffer.removeAll()
+                        }
                         self.generatingContent = false
                     case .error(let errorType):
                         self.insertChatMessage(
@@ -56,6 +70,18 @@ public final class ChatViewService {
                 }
             }
         }
+    }
+
+    private func insertBufferedResponses(for responseBuffer: [(String, String)], workspace: Int) {
+        if responseBuffer.isEmpty {
+            return
+        }
+        guard let id = responseBuffer.first?.0 else {
+            return
+        }
+
+        let chunk = responseBuffer.map { response in response.1 }.joined()
+        self.insertOrUpdateChatMessage(for: chunk, origin: .assistant, id: id, workspace: workspace)
     }
 
     public func appendToPrompt(_ text: String) {
