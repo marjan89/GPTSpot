@@ -91,10 +91,6 @@ struct WorkspaceChatView: View {
             .toggleStyle(.button)
             HStack {
                 if expandedInputField {
-                    TextField("Send a message", text: $chatViewService.prompt)
-                        .padding(8)
-                        .padding(.horizontal, 8)
-                } else {
                     TextEditor(text: $chatViewService.prompt)
                         .padding(8)
                         .padding(.horizontal, 8)
@@ -103,6 +99,10 @@ struct WorkspaceChatView: View {
                         .scrollContentBackground(.hidden)
                         .scrollIndicators(.never)
                         .frame(height: UIScreen.main.bounds.height * 0.2)
+                } else {
+                    TextField("Send a message", text: $chatViewService.prompt)
+                        .padding(8)
+                        .padding(.horizontal, 8)
                 }
                 Button(
                     "",
@@ -128,11 +128,13 @@ struct WorkspaceChatView: View {
         }
         .padding(16)
         .background(.regularMaterial)
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Workspace ⌘\(workspace)")
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
                 Button(
                     "",
-                    systemImage: expandedInputField ? "rectangle.expand.vertical" : "rectangle.compress.vertical"
+                    systemImage: expandedInputField ? "rectangle.compress.vertical" : "rectangle.expand.vertical"
                 ) {
                     expandedInputField.toggle()
                 }

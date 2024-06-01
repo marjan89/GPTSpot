@@ -208,6 +208,9 @@
     "Show window" : {
 
     },
+    "Start a conversation" : {
+
+    },
     "Start hidden" : {
 
     },
@@ -250,6 +253,9 @@
 
     },
     "Workspace %lld" : {
+
+    },
+    "Workspace ⌘%lld" : {
 
     },
     "You need to restart the app for this change to take effect" : {

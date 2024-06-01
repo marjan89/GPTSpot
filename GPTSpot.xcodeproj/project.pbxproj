@@ -12,7 +12,6 @@
 		023B78762BEADD8A009D90B8 /* WindowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023B78752BEADD8A009D90B8 /* WindowModifier.swift */; };
 		025AE6762B8BA51F001489A3 /* GPTSpotmacOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6752B8BA51F001489A3 /* GPTSpotmacOSApp.swift */; };
 		025AE6782B8BA51F001489A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6772B8BA51F001489A3 /* ContentView.swift */; };
-		025AE67A2B8BA520001489A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025AE6792B8BA520001489A3 /* Assets.xcassets */; };
 		025AE67D2B8BA521001489A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025AE67C2B8BA521001489A3 /* Preview Assets.xcassets */; };
 		025AE6AC2B8BEEB4001489A3 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6AB2B8BEEB4001489A3 /* ChatView.swift */; };
 		026B926C2BE4FE1800BCD0A7 /* GPTSpotiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026B926B2BE4FE1800BCD0A7 /* GPTSpotiOSApp.swift */; };
@@ -62,6 +61,7 @@
 		02BD90B22BA8E5480047115E /* SpotSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BD90B12BA8E5480047115E /* SpotSettings.swift */; };
 		02E04C432BB1D9F50074A95E /* GlobalHotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */; };
 		02F8690A2C0A954000961513 /* iOSDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F869092C0A954000961513 /* iOSDefaultsKeys.swift */; };
+		02F8690C2C0A9CEF00961513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025AE6792B8BA520001489A3 /* Assets.xcassets */; };
 		02FD0B722BE642660042B60C /* WorkspaceItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD0B712BE642660042B60C /* WorkspaceItemView.swift */; };
 		02FD0B742BE64CD20042B60C /* WorkspaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD0B732BE64CD20042B60C /* WorkspaceListView.swift */; };
 		02FD0B762BE6508E0042B60C /* RoundedCornerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029673E42BBA21EF0054062F /* RoundedCornerModifier.swift */; };
@@ -273,9 +273,9 @@
 		025AE6742B8BA51F001489A3 /* GPTSpot-macOs */ = {
 			isa = PBXGroup;
 			children = (
+				025AE6792B8BA520001489A3 /* Assets.xcassets */,
 				025AE67E2B8BA521001489A3 /* GPTSpot.entitlements */,
 				025AE6752B8BA51F001489A3 /* GPTSpotmacOSApp.swift */,
-				025AE6792B8BA520001489A3 /* Assets.xcassets */,
 				026B92E82BE51DA600BCD0A7 /* Extensions */,
 				025AE67B2B8BA521001489A3 /* Preview Content */,
 				025C7E1D2B8D77CC0060F343 /* Views */,
@@ -643,7 +643,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				025AE67D2B8BA521001489A3 /* Preview Assets.xcassets in Resources */,
-				025AE67A2B8BA520001489A3 /* Assets.xcassets in Resources */,
+				02F8690C2C0A9CEF00961513 /* Assets.xcassets in Resources */,
 				0230ED162BBDFC8700C067E6 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
