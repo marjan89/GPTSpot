@@ -79,12 +79,12 @@ struct ChatListView: View {
                                 .scaleEffect(x: 1, y: -1, anchor: .center)
                             }
                         }
-                        .padding(.horizontal, 16)
                     }
-                    .scrollClipDisabled()
-                    .scaleEffect(x: 1, y: -1, anchor: .center)
-                    hotkeys(with: proxy)
+                    .padding(.horizontal, 16)
                 }
+                .scrollClipDisabled()
+                .scaleEffect(x: 1, y: -1, anchor: .center)
+                hotkeys(with: proxy)
             }
         }
     }
