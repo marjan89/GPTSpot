@@ -73,18 +73,27 @@ struct WorkspaceChatView: View {
             }
             .sheet(isPresented: $promptPrefixSheetShown) {
                 VStack {
-                    Toggle(
-                        isOn: $promptPrefix,
-                        label: {
-                            Text("Prompt prefix")
+                    Form {
+                        Section {
+                            if !chatViewService.prompt.isEmpty {
+                                Button("Save prompt as template", systemImage: "square.and.arrow.down.fill") {
+                                    chatViewService.savePrompAsTemplate()
+                                }
+                                .accessibilityLabel("Save template")
+                                .help("Save template")
+                            }
+                            Toggle(
+                                isOn: $promptPrefix,
+                                label: {
+                                    Text("Prompt prefix")
+                                }
+                            )
                         }
-                    )
+                    }
                     Button("Dismiss") {
                         promptPrefixSheetShown.toggle()
                     }
                 }
-                .padding()
-                .presentationDetents([.medium, .fraction(0.15)])
             }
             .accessibilityLabel("Prompt prefix")
             .help("Prompt prefix")
@@ -118,13 +127,6 @@ struct WorkspaceChatView: View {
                 .help("Send")
             }
             .roundedCorners(radius: 24, stroke: 1, strokeColor: Color.gray)
-            if !chatViewService.prompt.isEmpty {
-                Button("", systemImage: "square.and.arrow.down.fill") {
-                    chatViewService.savePrompAsTemplate()
-                }
-                .accessibilityLabel("Save template")
-                .help("Save template")
-            }
         }
         .padding(16)
         .background(.regularMaterial)
