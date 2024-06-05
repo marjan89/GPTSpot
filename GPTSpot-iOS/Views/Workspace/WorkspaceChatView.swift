@@ -11,16 +11,17 @@ import SwiftData
 
 struct WorkspaceChatView: View {
     @Environment(\.modelContext) private var modelContext: ModelContext
-    @Bindable var chatViewService: ChatViewService
+    @Environment(ChatViewService.self) private var chatViewService: ChatViewService
     @Query private var chatMessages: [ChatMessage]
     @Query private var templates: [Template]
     @AppStorage(AIServerDefaultsKeys.usePrompPrefix) private var promptPrefix: Bool = false
     @AppStorage(IOSDefaultsKeys.expandedInputField) private var expandedInputField: Bool = false
     @State private var promptPrefixSheetShown = false
-    private var workspace: Int
+    @State private var prompt: String = ""
 
-    init(chatViewService: ChatViewService, workspace: Int) {
-        self.chatViewService = chatViewService
+    private let workspace: Int
+
+    init(workspace: Int) {
         self.workspace = workspace
         _chatMessages = Query(
             filter: #Predicate<ChatMessage> { chatMessage in
@@ -44,7 +45,7 @@ struct WorkspaceChatView: View {
                             chatMessage.content.copyTextToClipboard()
                         }
                         Button("Make prompt", systemImage: "return") {
-                            chatViewService.prompt = chatMessage.content
+                            prompt = chatMessage.content
                         }
                         Button("Delete", systemImage: "trash.fill") {
                             modelContext.delete(chatMessage)
@@ -63,7 +64,7 @@ struct WorkspaceChatView: View {
         HStack {
             NavigationLink {
                 TemplateList { template in
-                    chatViewService.appendToPrompt(template.content)
+                    prompt.append(template.content)
                 }
             } label: {
                 Image(systemName: "folder.fill")
@@ -75,9 +76,9 @@ struct WorkspaceChatView: View {
                 VStack {
                     Form {
                         Section {
-                            if !chatViewService.prompt.isEmpty {
+                            if !prompt.isEmpty {
                                 Button("Save prompt as template", systemImage: "square.and.arrow.down.fill") {
-                                    chatViewService.savePrompAsTemplate()
+                                    chatViewService.savePrompAsTemplate(prompt)
                                 }
                                 .accessibilityLabel("Save template")
                                 .help("Save template")
@@ -100,7 +101,7 @@ struct WorkspaceChatView: View {
             .toggleStyle(.button)
             HStack {
                 if expandedInputField {
-                    TextEditor(text: $chatViewService.prompt)
+                    TextEditor(text: $prompt)
                         .padding(8)
                         .padding(.horizontal, 8)
                         .accessibilityHidden(true)
@@ -109,7 +110,7 @@ struct WorkspaceChatView: View {
                         .scrollIndicators(.never)
                         .frame(height: UIScreen.main.bounds.height * 0.2)
                 } else {
-                    TextField("Send a message", text: $chatViewService.prompt)
+                    TextField("Send a message", text: $prompt)
                         .padding(8)
                         .padding(.horizontal, 8)
                 }
@@ -120,7 +121,8 @@ struct WorkspaceChatView: View {
                     if chatViewService.generatingContent {
                         chatViewService.cancelCompletion()
                     } else {
-                        chatViewService.executePrompt(workspace: workspace)
+                        chatViewService.executePrompt(workspace: workspace, prompt: prompt)
+                        prompt = ""
                     }
                 }
                 .accessibilityLabel("Send")
@@ -152,14 +154,8 @@ struct WorkspaceChatView: View {
     do {
         let previewer = try Previewer()
 
-        return WorkspaceChatView(
-            chatViewService: .init(
-                modelContext: previewer.container.mainContext,
-                openAISerice: OpenAIServiceKey.defaultValue
-            ),
-            workspace: 1
-        )
-        .modelContainer(previewer.container)
+        return WorkspaceChatView( workspace: 1 )
+            .modelContainer(previewer.container)
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")
     }

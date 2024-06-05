@@ -77,10 +77,7 @@ struct WorkspaceListView: View {
                             .navigationBarTitleDisplayMode(.inline)
                             .navigationTitle("Settings")
                     case .workspace(let workspace):
-                            WorkspaceChatView(
-                                chatViewService: chatViewService,
-                                workspace: workspace
-                            )
+                        WorkspaceChatView(workspace: workspace)
                     }
                 }
         }

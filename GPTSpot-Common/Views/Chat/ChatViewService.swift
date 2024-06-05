@@ -14,7 +14,6 @@ public final class ChatViewService {
 
     let throttleIntervalInSeconds = 0.1
 
-    public var prompt: String = ""
     public var generatingContent: Bool = false
 
     private let modelContext: ModelContext
@@ -25,7 +24,7 @@ public final class ChatViewService {
         self.openAiService = openAISerice
     }
 
-    public func executePrompt(workspace: Int) {
+    public func executePrompt(workspace: Int, prompt: String) {
         if generatingContent {
             return
         }
@@ -39,7 +38,6 @@ public final class ChatViewService {
 
             insertOrUpdateChatMessage(for: modifiedPrompt(prompt), origin: .user, workspace: workspace)
             let chatRequest = ChatRequest.request(with: self.loadChatHistory(for: workspace))
-            prompt = ""
             var responseBuffer: [(String, String)] = []
             var time = Date().timeIntervalSince1970
             if let messageStream = try? await openAiService.completion(for: chatRequest) {
@@ -84,13 +82,8 @@ public final class ChatViewService {
         self.insertOrUpdateChatMessage(for: chunk, origin: .assistant, id: id, workspace: workspace)
     }
 
-    public func appendToPrompt(_ text: String) {
-        prompt.append(text)
-    }
-
-    public func savePrompAsTemplate() {
+    public func savePrompAsTemplate(_ prompt: String) {
         modelContext.insert(Template(content: prompt))
-        prompt = ""
     }
 
     public func cancelCompletion() {
@@ -116,7 +109,7 @@ public final class ChatViewService {
         )
         lastChatMessagesFetchDescriptor.fetchLimit = 1
         if let lastMessage = try? modelContext.fetch(lastChatMessagesFetchDescriptor).first {
-            prompt = lastMessage.content
+//            prompt = lastMessage.content
         }
     }
 
