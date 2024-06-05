@@ -10,10 +10,14 @@ import SwiftData
 
 @MainActor
 public struct Previewer {
+
     public let container: ModelContainer
+    public let openAIService: OpenAIService
+    public let chatViewService: ChatViewService
 
     public init() throws {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
+
         container = try ModelContainer(
             for: ChatMessage.self, Template.self,
             configurations: config
@@ -21,6 +25,11 @@ public struct Previewer {
 
         let chatMessages: [ChatMessage]
         let templates: [Template]
+        openAIService = OpenAIServiceKey.defaultValue
+        chatViewService = ChatViewService(
+            modelContext: container.mainContext,
+            openAISerice: openAIService
+        )
 
         chatMessages = produceMockChatMessages()
         templates = produceMockTemplates()

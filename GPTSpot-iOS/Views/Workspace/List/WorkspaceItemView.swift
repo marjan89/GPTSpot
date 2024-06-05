@@ -11,9 +11,8 @@ import SwiftData
 
 struct WorkspaceItemView: View {
 
-    @Environment(\.modelContext) private var modelContext: ModelContext
-    var workspaceIndex: Int
     @Query private var lastChatMessage: [ChatMessage]
+    private let workspaceIndex: Int
 
     init(workspaceIndex: Int) {
         self.workspaceIndex = workspaceIndex

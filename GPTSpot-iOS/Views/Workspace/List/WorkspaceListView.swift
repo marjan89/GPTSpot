@@ -16,7 +16,6 @@ struct WorkspaceListView: View {
         case workspace(Int)
     }
 
-    @Environment(\.modelContext) private var modelContext: ModelContext
     @Environment(\.openAIService) private var openAiService: OpenAIService
     @Environment(ChatViewService.self) private var chatViewService: ChatViewService
 
@@ -97,19 +96,17 @@ struct WorkspaceListView: View {
                 }
             }
         } else {
-            List {
-                ForEach(activeWorkspaces, id: \.self) { workspace in
-                    NavigationLink(value: Path.workspace(workspace)) {
-                        WorkspaceItemView(workspaceIndex: workspace)
+            List(activeWorkspaces, id: \.self) { workspace in
+                NavigationLink(value: Path.workspace(workspace)) {
+                    WorkspaceItemView(workspaceIndex: workspace)
+                }
+                .swipeActions(allowsFullSwipe: false) {
+                    Button {
+                        chatViewService.discardHistory(for: workspace)
+                    } label: {
+                        Label("Delete", systemImage: "trash.fill")
                     }
-                    .swipeActions(allowsFullSwipe: false) {
-                        Button {
-                            chatViewService.discardHistory(for: workspace)
-                        } label: {
-                            Label("Delete", systemImage: "trash.fill")
-                        }
-                        .tint(.red)
-                    }
+                    .tint(.red)
                 }
             }
         }
@@ -122,10 +119,7 @@ struct WorkspaceListView: View {
 
         return WorkspaceListView()
             .modelContainer(previewer.container)
-            .environment(ChatViewService(
-                modelContext: previewer.container.mainContext,
-                openAISerice: OpenAIServiceKey.defaultValue
-            ))
+            .environment(previewer.chatViewService)
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")
     }
