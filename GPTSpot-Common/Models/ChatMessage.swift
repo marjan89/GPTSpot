@@ -15,7 +15,7 @@ public enum Role: String {
 }
 
 @Model
-public class ChatMessage {
+public class ChatMessage: Identifiable {
     public var content: String = ""
     public var origin: String = Role.assistant.rawValue
     public var timestamp: Double = 0
