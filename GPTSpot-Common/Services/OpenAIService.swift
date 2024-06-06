@@ -22,7 +22,7 @@ enum MessageErrorType {
     case serverOverload
     case modelUnavailable
     case userCanceled
-    case unknown
+    case unknown(_ message: String)
     case none
 }
 
@@ -51,7 +51,7 @@ public class OpenAIService {
                     } catch let error as NSError where error.code == NSURLErrorCancelled {
                         continuation.yield(.error(.userCanceled))
                     } catch {
-                        continuation.yield(.error(.unknown))
+                        continuation.yield(.error(.unknown(error.localizedDescription)))
                     }
                 }
                 continuation.finish()
@@ -79,7 +79,7 @@ public class OpenAIService {
             case 404:
                 Message.error(.modelUnavailable)
             default:
-                Message.error(.unknown)
+                Message.error(.unknown("Response error: status code: \(statusCode)"))
             }
             return error
         } else {
@@ -101,7 +101,9 @@ public class OpenAIService {
 
     private func parseRawResponse(_ line: String) -> Message {
         let components = line.split(separator: ":", maxSplits: 1, omittingEmptySubsequences: true)
-        guard components.count == 2, components[0] == "data" else { return .error(.unknown) }
+        guard components.count == 2, components[0] == "data" else {
+            return .error(.unknown("Reponse error: data missing"))
+        }
 
         let message = components[1].trimmingCharacters(in: .whitespacesAndNewlines)
 
@@ -109,9 +111,30 @@ public class OpenAIService {
             return .terminator
         }
         guard let chunk = try? JSONDecoder().decode(Chunk.self, from: message.data(using: .utf8)!) else {
-            return .error(.unknown)
+            return .error(.unknown("Response error: decoding chunk failed"))
         }
         return .response(chunk: chunk.choices.first?.delta.content ?? "", id: chunk.id)
+    }
+
+    // swiftlint:disable non_optional_string_data_conversion
+    private func logRequest(_ request: URLRequest) {
+        print("Request URL: \(request.url?.absoluteString ?? "Unknown URL")")
+        if let httpBody = request.httpBody, let bodyString = String(data: httpBody, encoding: .utf8) {
+            print("Request Body: \(bodyString)")
+        }
+    }
+    // swiftlint:enable non_optional_string_data_conversion
+
+    private func logResponse(_ response: URLResponse, message: Message? = nil, error: Message? = nil) {
+        if let httpResponse = response as? HTTPURLResponse {
+            print("Response Status Code: \(httpResponse.statusCode)")
+        }
+        if let message = message {
+            print("Response Message: \(message)")
+        }
+        if let error = error {
+            print("Response Error: \(error)")
+        }
     }
 }
 

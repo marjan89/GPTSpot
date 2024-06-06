@@ -131,6 +131,8 @@ public final class ChatViewService {
             String(localized: "Response error: Server appears to be ovreloaded at the moment")
         case .userCanceled:
             String(localized: "Response canceled by user")
+        case .unknown(let message):
+            message
         default:
             String(localized: "Response error: Unknown")
         }
