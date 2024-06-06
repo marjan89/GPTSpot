@@ -17,7 +17,7 @@ struct WorkspaceChatView: View {
     @AppStorage(AIServerDefaultsKeys.usePrompPrefix) private var promptPrefix: Bool = false
     @AppStorage(IOSDefaultsKeys.expandedInputField) private var expandedInputField: Bool = false
     @State private var promptPrefixSheetShown = false
-    @State private var prompt: String = ""
+    @State private var prompt = ""
 
     private let workspace: Int
 

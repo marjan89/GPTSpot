@@ -100,7 +100,7 @@ public final class ChatViewService {
         )
     }
 
-    public func setLastChatMessageAsPrompt(workspace: Int) {
+    public func getLastChatMessageContent(workspace: Int) -> String {
         var lastChatMessagesFetchDescriptor = FetchDescriptor<ChatMessage>(
             predicate: #Predicate<ChatMessage> { message in
                 message.origin == "user" && message.workspace == workspace
@@ -108,9 +108,11 @@ public final class ChatViewService {
             sortBy: [.init(\ChatMessage.timestamp, order: .reverse)]
         )
         lastChatMessagesFetchDescriptor.fetchLimit = 1
-        if let lastMessage = try? modelContext.fetch(lastChatMessagesFetchDescriptor).first {
-//            prompt = lastMessage.content
+        if let lastMessageContent = try? modelContext.fetch(lastChatMessagesFetchDescriptor).first?.content {
+            return lastMessageContent
         }
+
+        return ""
     }
 
     private func handleError(error: MessageErrorType) -> String {
@@ -139,7 +141,7 @@ public final class ChatViewService {
         if UserDefaults.standard.bool(forKey: AIServerDefaultsKeys.usePrompPrefix) {
             let promptPrefix = UserDefaults.standard.string(forKey: AIServerDefaultsKeys.promptPrefix)
             if let promptPrefix = promptPrefix {
-return """
+                return """
 \(promptPrefix)\r\n
 \(prompt)
 """

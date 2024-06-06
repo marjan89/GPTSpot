@@ -23,6 +23,7 @@ struct ChatView: View {
     @State var showStats = false
     @State var showTemplateStripe = false
     @State var templateSearchQuery = ""
+    @State var prompt = ""
 
     init(chatViewService: ChatViewService) {
         self.chatViewService = chatViewService
@@ -33,7 +34,7 @@ struct ChatView: View {
             VStack(spacing: 4) {
                 ChatListView(
                     workspace: workspace,
-                    prompt: $chatViewService.prompt
+                    prompt: $prompt
                 )
                 VStack {
                     VStack {
@@ -41,7 +42,7 @@ struct ChatView: View {
                             TemplateStripeView(
                                 searchQuery: templateSearchQuery,
                                 onTemplateSelected: { template in
-                                    chatViewService.appendToPrompt(template.content)
+                                    prompt.append(template.content)
                                     focusedField = true
                                     showTemplateStripe = false
                                     templateSearchQuery = ""
@@ -52,7 +53,7 @@ struct ChatView: View {
                         PromptEditor(
                             showTemplateHint: $showTemplateStripe,
                             templateSearchQuery: $templateSearchQuery,
-                            prompt: $chatViewService.prompt,
+                            prompt: $prompt,
                             focusedField: _focusedField,
                             textEditorHeight: geometry.size.height / 8
                         )
@@ -78,13 +79,13 @@ struct ChatView: View {
 
     @ViewBuilder
     func saveAsTemplateButton() -> some View {
-        if !chatViewService.prompt.isEmpty || !templateSearchQuery.isEmpty {
+        if !prompt.isEmpty || !templateSearchQuery.isEmpty {
             Button("", systemImage: "square.and.arrow.down.fill") {
                 if showTemplateStripe {
                     modelContext.insert(Template(content: templateSearchQuery))
                     templateSearchQuery = ""
                 } else {
-                    chatViewService.savePrompAsTemplate()
+                    chatViewService.savePrompAsTemplate(prompt)
                 }
             }
             .accessibilityLabel("Save as template")
@@ -167,7 +168,7 @@ struct ChatView: View {
     func lastMessageAsPrompt() -> some View {
         Button("", systemImage: "memories") {
             focusedField = true
-            chatViewService.setLastChatMessageAsPrompt(workspace: workspace)
+            prompt = chatViewService.getLastChatMessageContent(workspace: workspace)
         }
         .accessibilityLabel("Set last message as prompt")
         .help("Set last message as prompt")
@@ -178,7 +179,8 @@ struct ChatView: View {
     @ViewBuilder
     func sendButton() -> some View {
         Button("", systemImage: "paperplane.fill") {
-            chatViewService.executePrompt(workspace: workspace)
+            chatViewService.executePrompt(workspace: workspace, prompt: prompt)
+            prompt = ""
         }
         .accessibilityLabel("Send")
         .help("Send")
@@ -207,12 +209,9 @@ struct ChatView: View {
     do {
         let previewer = try Previewer()
 
-        return ChatView(chatViewService: .init(
-            modelContext: previewer.container.mainContext,
-            openAISerice: OpenAIServiceKey.defaultValue)
-        )
-        .frame(width: 700, height: 600)
-        .modelContainer(previewer.container)
+        return ChatView(chatViewService: previewer.chatViewService)
+            .frame(width: 700, height: 600)
+            .modelContainer(previewer.container)
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")
     }
