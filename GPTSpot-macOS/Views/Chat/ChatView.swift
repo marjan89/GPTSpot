@@ -96,7 +96,7 @@ struct ChatView: View {
         if !prompt.isEmpty || !templateSearchQuery.isEmpty {
             Button {
                 if showTemplateStripe {
-                    modelContext.insert(Template(content: templateSearchQuery))
+                    chatViewService.insertTemplate(Template(content: templateSearchQuery))
                     templateSearchQuery = ""
                 } else {
                     chatViewService.savePrompAsTemplate(prompt)
