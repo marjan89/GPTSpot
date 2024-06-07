@@ -70,7 +70,7 @@ struct ChatListView: View {
                             }
                             .keyboardShortcut("s", modifiers: .option)
                         }))
-                        .listRowInsets(.none)
+                        .listRowInsets(.init(top: 16, leading: 0, bottom: 0, trailing: 0))
                         .listRowSeparator(.hidden)
                     }
                     .onChange(of: focusedMessageField) {
