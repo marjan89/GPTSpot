@@ -14,8 +14,9 @@ struct ContentView: View {
     @Environment(\.openAIService) var openAIService
 
     var body: some View {
-        WorkspaceListView()
+        WorkspaceHomeView()
             .environment(ChatViewService(modelContext: modelContext, openAISerice: openAIService))
+            .environment(WorkspaceHomeService(modelContext: modelContext))
     }
 }
 

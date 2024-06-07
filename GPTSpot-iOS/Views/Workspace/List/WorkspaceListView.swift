@@ -1,8 +1,8 @@
 //
-//  WorkspaceListView.swift
+//  WorkspaceList.swift
 //  GPTSpot-iOS
 //
-//  Created by Sinisa Marjanovic on 5/4/24.
+//  Created by Sinisa Marjanovic on 7/6/24.
 //
 
 import SwiftUI
@@ -11,15 +11,17 @@ import GPTSpot_Common
 
 struct WorkspaceListView: View {
 
-    private enum Path: Hashable {
-        case settings
-        case workspace(Int)
+    @Query(sort: \ChatMessage.timestamp) private var chatMessages: [ChatMessage]
+    private let onSwipeDelete: (_ workspace: Int) -> Void
+    private let onEmptyViewAction: () -> Void
+
+    init(
+        onSwipeDelete: @escaping (_: Int) -> Void,
+        onEmptyViewAction: @escaping () -> Void
+    ) {
+        self.onSwipeDelete = onSwipeDelete
+        self.onEmptyViewAction = onEmptyViewAction
     }
-
-    @Environment(\.openAIService) private var openAiService: OpenAIService
-    @Environment(ChatViewService.self) private var chatViewService: ChatViewService
-
-    @Query private var chatMessages: [ChatMessage]
 
     private var activeWorkspaces: [Int] {
         chatMessages
@@ -29,61 +31,13 @@ struct WorkspaceListView: View {
     }
 
     private var inactiveWorkspaces: [Int] {
-        Array(1..<10)
+        Array(WorkspaceConfig.firstOrdinal..<WorkspaceConfig.workspaceLimit)
             .filter { workspace in
                 !activeWorkspaces.contains(workspace)
             }
     }
 
-    @State private var path = [Path]()
-    @State private var newWorkspaceDialog = false
-
     var body: some View {
-        NavigationStack(path: $path) {
-            mainContent()
-                .navigationTitle("Workspace")
-                .toolbar {
-                    ToolbarItemGroup(placement: .primaryAction) {
-                        Button("", systemImage: "gearshape.fill") {
-                            path.append(.settings)
-                        }
-                        .accessibilityLabel("")
-                        Button("", systemImage: "plus") {
-                            newWorkspaceDialog.toggle()
-                        }
-                        .accessibilityLabel("New workspace")
-                        .confirmationDialog(
-                            "New workspace",
-                            isPresented: $newWorkspaceDialog,
-                            titleVisibility: .visible,
-                            actions: {
-                                ForEach(inactiveWorkspaces, id: \.self) { workspace in
-                                    Button("⌘\(workspace)") {
-                                        path.append(.workspace(workspace))
-                                    }
-                                }
-                            },
-                            message: {
-                                Text("Available workspaces")
-                            }
-                        )
-                    }
-                }
-                .navigationDestination(for: Path.self) { path in
-                    switch path {
-                    case .settings:
-                        SettingsView()
-                            .navigationBarTitleDisplayMode(.inline)
-                            .navigationTitle("Settings")
-                    case .workspace(let workspace):
-                        ChatView(workspace: workspace)
-                    }
-                }
-        }
-    }
-
-    @ViewBuilder
-    private func mainContent() -> some View {
         if activeWorkspaces.isEmpty {
             VStack {
                 Image(uiImage: UIImage(named: "AppIcon")!)
@@ -92,17 +46,22 @@ struct WorkspaceListView: View {
                     .frame(width: 100, height: 100)
                     .contentMargins(.bottom, 16)
                 Button("Start a conversation") {
-                    path.append(.workspace(1))
+                    onEmptyViewAction()
                 }
             }
         } else {
             List(activeWorkspaces, id: \.self) { workspace in
-                NavigationLink(value: Path.workspace(workspace)) {
-                    WorkspaceItemView(workspaceIndex: workspace)
+                NavigationLink(value: WorkspaceHomePath.workspace(workspace)) {
+                    WorkspaceListItemView(
+                        workspaceIndex: workspace,
+                        content: chatMessages.last(where: { chatMessage in
+                            chatMessage.workspace == workspace
+                        })?.content ?? ""
+                    )
                 }
                 .swipeActions(allowsFullSwipe: false) {
                     Button {
-                        chatViewService.discardHistory(for: workspace)
+                        onSwipeDelete(workspace)
                     } label: {
                         Label("Delete", systemImage: "trash.fill")
                     }
@@ -114,12 +73,18 @@ struct WorkspaceListView: View {
 }
 
 #Preview {
+    @State var path = [WorkspaceHomePath]()
+
     do {
         let previewer = try Previewer()
+        return WorkspaceListView(
+            onSwipeDelete: { _ in
+            },
+            onEmptyViewAction: {
 
-        return WorkspaceListView()
-            .modelContainer(previewer.container)
-            .environment(previewer.chatViewService)
+            }
+        )
+        .modelContainer(previewer.container)
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")
     }
