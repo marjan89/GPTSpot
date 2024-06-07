@@ -30,7 +30,7 @@ class RegularWindow: NSWindow {
         if UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.keepOnTop) {
             self.level = .floating
         }
-        self.minSize = NSSize(width: 200, height: 200)
+        self.minSize = NSSize(width: 500, height: 200)
         self.isReleasedWhenClosed = false
         self.makeKey()
         self.setFrameAutosaveName(autoSaveName)

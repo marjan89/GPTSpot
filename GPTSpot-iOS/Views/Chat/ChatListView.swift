@@ -46,7 +46,7 @@ struct ChatListView<ContextMenuItems: View>: View {
                     scrollProxy.scrollTo(chatMessages.last, anchor: .bottom)
                 }
                 .onChange(of: chatMessages) {
-                    scrollProxy.scrollTo(chatMessages.last, anchor: .bottom)
+                    scrollProxy.scrollTo(chatMessages.last?.id, anchor: .bottom)
                 }
             }
         }

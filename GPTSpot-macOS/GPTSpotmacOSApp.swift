@@ -54,6 +54,7 @@ class GPTAppDelegate: NSObject, NSApplicationDelegate {
         window = RegularWindow(
             for: NSHostingView(
                 rootView: ContentView()
+                    .frame(minWidth: 800, minHeight: 400)
                     .modelContainer(for: [ChatMessage.self, Template.self])
                     .environment(\.openAIService, OpenAIServiceKey.defaultValue)
             )
