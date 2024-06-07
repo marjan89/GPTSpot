@@ -15,14 +15,11 @@ struct TemplateStripeView: View {
         case focusedTemplate(_ template: Template)
     }
 
-    private var onTemplateSelected: (Template) -> Void
-    private var searchQuery: String
-
+    @Environment(TemplateStripeService.self) private var templateStripeService: TemplateStripeService
     @Query private var templates: [Template]
-
-    @Environment(\.modelContext) var modelContext: ModelContext
-
     @FocusState var focusedTemplateField: FocusedTemplateField?
+    private let onTemplateSelected: (Template) -> Void
+    private let searchQuery: String
 
     init(searchQuery: String, onTemplateSelected: @escaping (Template) -> Void) {
         self.onTemplateSelected = onTemplateSelected
@@ -44,10 +41,13 @@ struct TemplateStripeView: View {
                     } else if templates.isEmpty {
                         TemplateItemView(text: String(localized: "Template search no results"))
                     } else {
-                    ForEach(templates, id: \.id) { template in
+                        ForEach(templates, id: \.id) { template in
                             TemplateItemView(text: template.content)
                                 .focusable(true)
                                 .focused($focusedTemplateField, equals: .focusedTemplate(template))
+                                .onTapGesture {
+                                    onTemplateSelected(template)
+                                }
                                 .contextMenu(ContextMenu(menuItems: {
                                     Button {
                                         onTemplateSelected(template)
@@ -56,7 +56,7 @@ struct TemplateStripeView: View {
                                     }
                                     .keyboardShortcut(.return, modifiers: .control)
                                     Button {
-                                        modelContext.delete(template)
+                                        templateStripeService.deleteTemplate(template)
                                     } label: {
                                         Text("Delete")
                                     }
@@ -82,7 +82,7 @@ struct TemplateStripeView: View {
         }
         HotkeyAction(hotkey: .delete, eventModifiers: .control) {
             if case let .focusedTemplate(template) = focusedTemplateField {
-                modelContext.delete(template)
+                templateStripeService.deleteTemplate(template)
             }
         }
         HotkeyAction(hotkey: .return, eventModifiers: .control) {
@@ -119,6 +119,7 @@ struct TemplateStripeView: View {
             }
         )
         .modelContainer(previewer.container)
+        .environment(TemplateStripeService(modelContext: previewer.container.mainContext))
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")
     }

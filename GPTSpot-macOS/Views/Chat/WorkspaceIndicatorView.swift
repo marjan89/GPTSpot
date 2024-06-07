@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import GPTSpot_Common
 
 struct WorkspaceIndicatorView: View {
 
     @Binding var workspace: Int
 
     var body: some View {
-        ForEach(1...9, id: \.self) { index in
+        ForEach(WorkspaceConfig.firstOrdinal..<WorkspaceConfig.workspaceLimit, id: \.self) { index in
             Button("**⌘\(index)**") { workspace = index }
                 .accessibilityLabel("Workspace \(index)")
                 .keyboardShortcut(.init(Character(UnicodeScalarType(index))))

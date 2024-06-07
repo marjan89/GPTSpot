@@ -11,8 +11,7 @@ import GPTSpot_Common
 
 struct ChatView: View {
 
-    @Bindable private var chatViewService: ChatViewService
-
+    @Environment(ChatViewService.self) private var chatViewService: ChatViewService
     @Environment(\.modelContext) private var modelContext
 
     @FocusState private var focusedField: Bool
@@ -25,10 +24,6 @@ struct ChatView: View {
     @State var templateSearchQuery = ""
     @State var prompt = ""
 
-    init(chatViewService: ChatViewService) {
-        self.chatViewService = chatViewService
-    }
-
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 4) {
@@ -37,44 +32,63 @@ struct ChatView: View {
                     prompt: $prompt
                 )
                 VStack {
-                    VStack {
-                        if showTemplateStripe {
-                            TemplateStripeView(
-                                searchQuery: templateSearchQuery,
-                                onTemplateSelected: { template in
-                                    prompt.append(template.content)
-                                    focusedField = true
-                                    showTemplateStripe = false
-                                    templateSearchQuery = ""
-                                }
-                            )
-                            .frame(height: 196)
-                        }
-                        PromptEditor(
-                            showTemplateHint: $showTemplateStripe,
-                            templateSearchQuery: $templateSearchQuery,
-                            prompt: $prompt,
-                            focusedField: _focusedField,
-                            textEditorHeight: geometry.size.height / 8
-                        )
-                        HStack {
-                            WorkspaceIndicatorView(workspace: $workspace)
-                            chatControls()
-                        }
-                        if showHelpRibbon {
-                            CheatSheetView()
-                        }
-                        if showStats {
-                            StatsView(workspace: workspace)
-                        }
+                    templateStripe()
+                    PromptEditor(
+                        showTemplateHint: $showTemplateStripe,
+                        templateSearchQuery: $templateSearchQuery,
+                        prompt: $prompt,
+                        focusedField: _focusedField,
+                        textEditorHeight: geometry.size.height / 8
+                    )
+                    HStack {
+                        WorkspaceIndicatorView(workspace: $workspace)
+                        chatControls()
                     }
-                    .padding(.all, 16)
+                    if showHelpRibbon {
+                        CheatSheetView()
+                    }
+                    if showStats {
+                        StatsView(workspace: workspace)
+                    }
                 }
+                .padding(.all, 16)
                 .background(.regularMaterial)
             }
         }
         .background(.windowBackground)
         .window()
+    }
+
+    @ViewBuilder
+    func templateStripe() -> some View {
+        if showTemplateStripe {
+            TemplateStripeView(
+                searchQuery: templateSearchQuery,
+                onTemplateSelected: { template in
+                    prompt.append(template.content)
+                    focusedField = true
+                    showTemplateStripe = false
+                    templateSearchQuery = ""
+                }
+            )
+            .frame(height: 196)
+        }
+    }
+
+    @ViewBuilder
+    func chatControls() -> some View {
+        HStack {
+            Spacer()
+            saveAsTemplateButton()
+            promptPrefixToggle()
+            stopGeneratingContentButton()
+            helpButton()
+            statsButton()
+            trashButton()
+            templatesButton()
+            lastMessageAsPrompt()
+            sendButton()
+        }
     }
 
     @ViewBuilder
@@ -187,29 +201,14 @@ struct ChatView: View {
         .keyboardShortcut(.return)
         .buttonStyle(BorderlessButtonStyle())
     }
-
-    @ViewBuilder
-    func chatControls() -> some View {
-        HStack {
-            Spacer()
-            saveAsTemplateButton()
-            promptPrefixToggle()
-            stopGeneratingContentButton()
-            helpButton()
-            statsButton()
-            trashButton()
-            templatesButton()
-            lastMessageAsPrompt()
-            sendButton()
-        }
-    }
 }
 
 #Preview {
     do {
         let previewer = try Previewer()
 
-        return ChatView(chatViewService: previewer.chatViewService)
+        return ChatView()
+            .environment(previewer.chatViewService)
             .frame(width: 700, height: 600)
             .modelContainer(previewer.container)
     } catch {

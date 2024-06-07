@@ -14,7 +14,7 @@ public struct PromptEditor: View {
     @Binding var prompt: String
     @FocusState var focusedField: Bool
 
-    let textEditorHeight: CGFloat
+    private let textEditorHeight: CGFloat
 
     public init(
         showTemplateHint: Binding<Bool>,

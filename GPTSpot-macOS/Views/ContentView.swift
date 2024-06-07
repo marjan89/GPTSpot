@@ -13,10 +13,14 @@ struct ContentView: View {
     @Environment(\.openAIService) var openAIService
 
     var body: some View {
-        ChatView(chatViewService: .init(
-            modelContext: modelContext,
-            openAISerice: openAIService)
-        )
+        ChatView()
+            .environment(
+                ChatViewService(
+                    modelContext: modelContext,
+                    openAISerice: openAIService
+                )
+            )
+            .environment(TemplateStripeService(modelContext: modelContext))
     }
 }
 

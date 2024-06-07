@@ -16,13 +16,9 @@ enum FocusedMessageField: Hashable {
 struct ChatListView: View {
 
     @FocusState private var focusedMessageField: FocusedMessageField?
-
     @Environment(\.modelContext) private var modelContext: ModelContext
-
     @Query private var chatMessages: [ChatMessage]
-
     @Binding private var prompt: String
-
     private let workspace: Int
 
     init(workspace: Int, prompt: Binding<String>) {
@@ -38,9 +34,9 @@ struct ChatListView: View {
 
     var body: some View {
         ZStack {
+            hotkeys()
             ScrollViewReader { proxy in
                 GeometryReader { geometry in
-                    hotkeys()
                     List(chatMessages, id: \.id) { chatMessage in
                         ChatMessageView(
                             chatMessage: chatMessage,
