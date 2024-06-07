@@ -16,7 +16,7 @@ enum FocusedMessageField: Hashable {
 struct ChatListView: View {
 
     @FocusState private var focusedMessageField: FocusedMessageField?
-    @Environment(\.modelContext) private var modelContext: ModelContext
+    @Environment(ChatViewService.self) private var chatViewService: ChatViewService
     @Query private var chatMessages: [ChatMessage]
     @Binding private var prompt: String
     private let workspace: Int
@@ -58,13 +58,13 @@ struct ChatListView: View {
                             }
                             .keyboardShortcut(.return, modifiers: .option)
                             Button {
-                                modelContext.delete(chatMessage)
+                                chatViewService.deleteChatMessage(chatMessage)
                             } label: {
                                 Text("Delete")
                             }
                             .keyboardShortcut(.delete, modifiers: .option)
                             Button {
-                                modelContext.insert(Template(content: chatMessage.content))
+                                chatViewService.insertTemplate(Template(content: chatMessage.content))
                             } label: {
                                 Text("Save template")
                             }
@@ -110,12 +110,12 @@ struct ChatListView: View {
         }
         HotkeyAction(hotkey: .delete, eventModifiers: .option) {
             if case let .focusedMessage(chatMessage) = focusedMessageField {
-                modelContext.delete(chatMessage)
+                chatViewService.deleteChatMessage(chatMessage)
             }
         }
         HotkeyAction(hotkey: .init("s"), eventModifiers: .option) {
             if case let .focusedMessage(chatMessage) = focusedMessageField {
-                modelContext.insert(Template(content: chatMessage.content))
+                chatViewService.deleteTemplate(Template(content: chatMessage.content))
             }
         }
         HotkeyAction(hotkey: .init("c"), eventModifiers: .option) {
