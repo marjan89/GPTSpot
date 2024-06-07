@@ -59,7 +59,7 @@ struct WorkspaceHomeView: View {
         } label: {
             Image(systemName: "gearshape.fill")
         }
-        .accessibilityLabel("")
+        .accessibilityLabel("Settings")
         Button {
             newWorkspaceDialog.toggle()
         } label: {
