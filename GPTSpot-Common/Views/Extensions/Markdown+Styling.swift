@@ -19,6 +19,7 @@ public extension Markdown {
                     FontFamilyVariant(.monospaced)
                     FontSize(.em(0.85))
                     FontWeight(.bold)
+                    ForegroundColor(.white)
                 }
                 .padding()
                 .background(Color.black.opacity(0.2))
@@ -29,6 +30,10 @@ public extension Markdown {
             FontFamilyVariant(.monospaced)
             FontWeight(.bold)
             BackgroundColor(Color.black.opacity(0.2))
+            ForegroundColor(.white)
+        }
+        .markdownTextStyle(\.text) {
+            ForegroundColor(.white)
         }
     }
 }
