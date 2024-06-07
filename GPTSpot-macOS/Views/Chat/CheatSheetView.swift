@@ -26,6 +26,7 @@ struct CheatSheetView: View {
                 Text("**⌘⏎** send")
                 Text("**⇧⌘⏎** cancel response")
                 Text("**⌘`** insert block quotes")
+                Text("**⌘S** save prompt as template")
             }
             VStack(alignment: .leading) {
                 Text("Messages")
