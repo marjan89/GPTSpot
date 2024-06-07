@@ -36,29 +36,7 @@ struct WorkspaceHomeView: View {
             .navigationTitle("Workspace")
             .toolbar {
                 ToolbarItemGroup(placement: .primaryAction) {
-                    Button("", systemImage: "gearshape.fill") {
-                        path.append(.settings)
-                    }
-                    .accessibilityLabel("")
-                    Button("", systemImage: "plus") {
-                        newWorkspaceDialog.toggle()
-                    }
-                    .accessibilityLabel("New workspace")
-                    .confirmationDialog(
-                        "New workspace",
-                        isPresented: $newWorkspaceDialog,
-                        titleVisibility: .visible,
-                        actions: {
-                            ForEach(workspaceHomeService.getInactiveWorkspaces(), id: \.self) { workspace in
-                                Button("⌘\(workspace)") {
-                                    path.append(.workspace(workspace))
-                                }
-                            }
-                        },
-                        message: {
-                            Text("Available workspaces")
-                        }
-                    )
+                    toolbar()
                 }
             }
             .navigationDestination(for: WorkspaceHomePath.self) { path in
@@ -73,6 +51,37 @@ struct WorkspaceHomeView: View {
             }
         }
     }
+
+    @ViewBuilder
+    private func toolbar() -> some View {
+        Button {
+            path.append(.settings)
+        } label: {
+            Image(systemName: "gearshape.fill")
+        }
+        .accessibilityLabel("")
+        Button {
+            newWorkspaceDialog.toggle()
+        } label: {
+            Image(systemName: "plus")
+        }
+        .accessibilityLabel("New workspace")
+        .confirmationDialog(
+            "New workspace",
+            isPresented: $newWorkspaceDialog,
+            titleVisibility: .visible,
+            actions: {
+                ForEach(workspaceHomeService.getInactiveWorkspaces(), id: \.self) { workspace in
+                    Button("⌘\(workspace)") {
+                        path.append(.workspace(workspace))
+                    }
+                }
+            },
+            message: {
+                Text("Available workspaces")
+            }
+        )
+    }
 }
 
 #Preview {
@@ -82,6 +91,7 @@ struct WorkspaceHomeView: View {
         return WorkspaceHomeView()
             .modelContainer(previewer.container)
             .environment(previewer.chatViewService)
+            .environment(WorkspaceHomeService(modelContext: previewer.container.mainContext))
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")
     }

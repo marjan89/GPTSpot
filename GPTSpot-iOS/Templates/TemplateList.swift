@@ -11,14 +11,18 @@ import SwiftData
 
 struct TemplateList: View {
 
-    @Query private var templates: [Template]
-    @Environment(\.modelContext) private var modelContext: ModelContext
-    private var onTemplateSelected: (Template) -> Void
-    @State var templatesQuery: String = ""
     @Environment(\.dismiss) private var dismiss
+    @Query private var templates: [Template]
+    @State var templatesQuery: String = ""
+    private let onTemplateSwipeDelete: (Template) -> Void
+    private let onTemplateSelected: (Template) -> Void
 
-    init(onTemplateSelected: @escaping (Template) -> Void) {
+    init(
+        onTemplateSelected: @escaping (Template) -> Void,
+        onTemplateSwipeDelete: @escaping (Template) -> Void
+    ) {
         self.onTemplateSelected = onTemplateSelected
+        self.onTemplateSwipeDelete = onTemplateSwipeDelete
     }
 
     var body: some View {
@@ -47,7 +51,7 @@ struct TemplateList: View {
                     }
                     .swipeActions(allowsFullSwipe: false) {
                         Button {
-                            modelContext.delete(template)
+                            onTemplateSwipeDelete(template)
                         } label: {
                             Label("Delete", systemImage: "trash.fill")
                         }
@@ -63,9 +67,12 @@ struct TemplateList: View {
     do {
         let previewer = try Previewer()
 
-        return TemplateList { _ in
-
-        }
+        return TemplateList(
+            onTemplateSelected: { _ in
+            },
+            onTemplateSwipeDelete: { _ in
+            }
+        )
         .modelContainer(previewer.container)
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")

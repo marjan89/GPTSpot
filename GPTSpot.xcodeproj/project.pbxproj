@@ -60,6 +60,7 @@
 		02A5ED302C13253C0037E96D /* WorkspaceHomePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A5ED2F2C13253C0037E96D /* WorkspaceHomePath.swift */; };
 		02A5ED322C1327900037E96D /* WorkspaceHomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A5ED312C1327900037E96D /* WorkspaceHomeService.swift */; };
 		02A5ED342C132A3D0037E96D /* WorkspaceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A5ED332C132A3D0037E96D /* WorkspaceConfig.swift */; };
+		02A5ED362C133FDB0037E96D /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A5ED352C133FDB0037E96D /* ChatListView.swift */; };
 		02AB8C922BE41528006C0853 /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AB8C912BE41528006C0853 /* LaunchAtLogin.swift */; };
 		02AB8C9D2BE47E4C006C0853 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 02AB8C9C2BE47E4C006C0853 /* MarkdownUI */; };
 		02BD90B22BA8E5480047115E /* SpotSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BD90B12BA8E5480047115E /* SpotSettings.swift */; };
@@ -173,6 +174,7 @@
 		02A5ED2F2C13253C0037E96D /* WorkspaceHomePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceHomePath.swift; sourceTree = "<group>"; };
 		02A5ED312C1327900037E96D /* WorkspaceHomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceHomeService.swift; sourceTree = "<group>"; };
 		02A5ED332C132A3D0037E96D /* WorkspaceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceConfig.swift; sourceTree = "<group>"; };
+		02A5ED352C133FDB0037E96D /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		02AAD1BA2B8E7AEA00ED7876 /* HotkeyAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyAction.swift; sourceTree = "<group>"; };
 		02AB8C912BE41528006C0853 /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
 		02AB8C932BE42F59006C0853 /* URLResponse+ErrorCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+ErrorCode.swift"; sourceTree = "<group>"; };
@@ -459,19 +461,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		02FD0B6F2BE642240042B60C /* Workspace */ = {
+		02FD0B6F2BE642240042B60C /* Chat */ = {
 			isa = PBXGroup;
 			children = (
 				026B92E22BE51CAD00BCD0A7 /* ChatView.swift */,
-				02FD0B752BE64DFA0042B60C /* List */,
+				02A5ED352C133FDB0037E96D /* ChatListView.swift */,
 			);
-			path = Workspace;
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		02FD0B702BE642370042B60C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				02FD0B6F2BE642240042B60C /* Workspace */,
+				02FD0B752BE64DFA0042B60C /* List */,
+				02FD0B6F2BE642240042B60C /* Chat */,
 				02FD0B812BE688120042B60C /* SettingsView.swift */,
 			);
 			path = Views;
@@ -760,6 +763,7 @@
 				02FD0B902BE927D40042B60C /* TemplateList.swift in Sources */,
 				026B926C2BE4FE1800BCD0A7 /* GPTSpotiOSApp.swift in Sources */,
 				02FD0B8D2BE8570F0042B60C /* String+Clipboard.swift in Sources */,
+				02A5ED362C133FDB0037E96D /* ChatListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

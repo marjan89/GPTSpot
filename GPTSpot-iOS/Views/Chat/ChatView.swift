@@ -10,9 +10,7 @@ import GPTSpot_Common
 import SwiftData
 
 struct ChatView: View {
-    @Environment(\.modelContext) private var modelContext: ModelContext
     @Environment(ChatViewService.self) private var chatViewService: ChatViewService
-    @Query private var chatMessages: [ChatMessage]
     @Query private var templates: [Template]
     @AppStorage(AIServerDefaultsKeys.usePrompPrefix) private var promptPrefix: Bool = false
     @AppStorage(IOSDefaultsKeys.expandedInputField) private var expandedInputField: Bool = false
@@ -23,33 +21,18 @@ struct ChatView: View {
 
     init(workspace: Int) {
         self.workspace = workspace
-        _chatMessages = Query(
-            filter: #Predicate<ChatMessage> { chatMessage in
-                chatMessage.workspace == workspace
-            },
-            sort: \ChatMessage.timestamp
-        )
     }
 
     var body: some View {
-        chatList()
+        ChatListView(
+            workspace: workspace,
+            contextMenuItems: { chatMessage in
+                contextMenuItems(chatMessage: chatMessage)
+            }
+        )
         HStack {
-            NavigationLink {
-                TemplateList { template in
-                    prompt.append(template.content)
-                }
-            } label: {
-                Image(systemName: "folder.fill")
-            }
-            Button("", systemImage: "text.quote") {
-                promptPrefixSheetShown.toggle()
-            }
-            .sheet(isPresented: $promptPrefixSheetShown) {
-                promptPrefixSheet()
-            }
-            .accessibilityLabel("Prompt prefix")
-            .help("Prompt prefix")
-            .toggleStyle(.button)
+            templateList()
+            chatOptions()
             promptInput()
         }
         .padding(16)
@@ -58,58 +41,70 @@ struct ChatView: View {
         .navigationTitle("Workspace ⌘\(workspace)")
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
-                Button(
-                    "",
-                    systemImage: expandedInputField ? "rectangle.compress.vertical" : "rectangle.expand.vertical"
-                ) {
-                    expandedInputField.toggle()
-                }
-                Button("", systemImage: "trash.fill") {
-                    chatViewService.discardHistory(for: workspace)
-                }
+                toolbar()
             }
         }
     }
 
     @ViewBuilder
-    private func chatList() -> some View {
-        ScrollViewReader { scrollProxy in
-            GeometryReader { geomatry in
-                List(chatMessages, id: \.self) { chatMessage in
-                    ChatMessageView(
-                        chatMessage: chatMessage,
-                        maxMessageWidth: geomatry.size.width * 0.66
-                    )
-                    .listRowInsets(.none)
-                    .listRowSeparator(.hidden)
-                    .id(chatMessage)
-                    .padding(.horizontal, 8)
-                    .contextMenu(ContextMenu(menuItems: {
-                        Button("Copy", systemImage: "doc.on.doc.fill") {
-                            chatMessage.content.copyTextToClipboard()
-                        }
-                        Button("Make prompt", systemImage: "return") {
-                            prompt = chatMessage.content
-                        }
-                        Button("Delete", systemImage: "trash.fill") {
-                            modelContext.delete(chatMessage)
-                        }
-                        Button("Save template", systemImage: "square.and.arrow.down.fill") {
-                            modelContext.insert(Template(content: chatMessage.content))
-                        }
-                    }))
-                }
-                .listStyle(.plain)
-                .scrollClipDisabled()
-                .scrollDismissesKeyboard(.immediately)
-                .onAppear {
-                    scrollProxy.scrollTo(chatMessages.last, anchor: .bottom)
-                }
-                .onChange(of: chatMessages) {
-                    scrollProxy.scrollTo(chatMessages.last, anchor: .bottom)
-                }
-            }
+    func contextMenuItems(chatMessage: ChatMessage) -> some View {
+        Button("Copy", systemImage: "doc.on.doc.fill") {
+            chatMessage.content.copyTextToClipboard()
         }
+        Button("Make prompt", systemImage: "return") {
+            prompt = chatMessage.content
+        }
+        Button("Delete", systemImage: "trash.fill") {
+            chatViewService.deleteChatMessage(chatMessage)
+        }
+        Button("Save template", systemImage: "square.and.arrow.down.fill") {
+            chatViewService.insertTemplate(Template(content: chatMessage.content))
+        }
+    }
+
+    @ViewBuilder
+    private func toolbar() -> some View {
+        Button {
+            expandedInputField.toggle()
+        } label: {
+            Image(systemName: expandedInputField ? "rectangle.compress.vertical" : "rectangle.expand.vertical")
+        }
+        Button {
+            chatViewService.discardHistory(for: workspace)
+        } label: {
+            Image(systemName: "trash.fill")
+        }
+    }
+
+    @ViewBuilder
+    private func templateList() -> some View {
+        NavigationLink {
+            TemplateList(
+                onTemplateSelected: { template in
+                    prompt.append(template.content)
+                },
+                onTemplateSwipeDelete: { template in
+                    chatViewService.deleteTemplate(template)
+                }
+            )
+        } label: {
+            Image(systemName: "folder.fill")
+        }
+    }
+
+    @ViewBuilder
+    private func chatOptions() -> some View {
+        Button {
+            promptPrefixSheetShown.toggle()
+        } label: {
+            Image(systemName: "text.quote")
+        }
+        .sheet(isPresented: $promptPrefixSheetShown) {
+            promptPrefixSheet()
+        }
+        .accessibilityLabel("Prompt prefix")
+        .help("Prompt prefix")
+        .toggleStyle(.button)
     }
 
     @ViewBuilder
@@ -129,17 +124,17 @@ struct ChatView: View {
                     .padding(8)
                     .padding(.horizontal, 8)
             }
-            Button(
-                "",
-                systemImage: chatViewService.generatingContent ? "stop.fill" : "arrow.up.circle.fill"
-            ) {
+            Button {
                 if chatViewService.generatingContent {
                     chatViewService.cancelCompletion()
                 } else {
                     chatViewService.executePrompt(workspace: workspace, prompt: prompt)
                     prompt = ""
                 }
+            } label: {
+                Image(systemName: chatViewService.generatingContent ? "stop.fill" : "arrow.up.circle.fill")
             }
+            .padding(.trailing, 8)
             .accessibilityLabel("Send")
             .help("Send")
         }
@@ -179,6 +174,7 @@ struct ChatView: View {
 
         return ChatView( workspace: 1 )
             .modelContainer(previewer.container)
+            .environment(previewer.chatViewService)
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")
     }

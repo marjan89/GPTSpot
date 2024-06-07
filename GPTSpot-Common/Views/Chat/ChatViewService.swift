@@ -91,6 +91,14 @@ public final class ChatViewService {
         generatingContent = false
     }
 
+    public func deleteChatMessage(_ chatMessage: ChatMessage) {
+        modelContext.delete(chatMessage)
+    }
+
+    public func insertTemplate(_ template: Template) {
+        modelContext.insert(template)
+    }
+
     public func discardHistory(for workspace: Int) {
         try? modelContext.delete(
             model: ChatMessage.self,
@@ -98,6 +106,10 @@ public final class ChatViewService {
                 message.workspace == workspace
             }
         )
+    }
+
+    public func deleteTemplate(_ template: Template) {
+        modelContext.delete(template)
     }
 
     public func getLastChatMessageContent(workspace: Int) -> String {
