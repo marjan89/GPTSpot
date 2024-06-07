@@ -94,13 +94,15 @@ struct ChatView: View {
     @ViewBuilder
     func saveAsTemplateButton() -> some View {
         if !prompt.isEmpty || !templateSearchQuery.isEmpty {
-            Button("", systemImage: "square.and.arrow.down.fill") {
+            Button {
                 if showTemplateStripe {
                     modelContext.insert(Template(content: templateSearchQuery))
                     templateSearchQuery = ""
                 } else {
                     chatViewService.savePrompAsTemplate(prompt)
                 }
+            } label: {
+                Image(systemName: "square.and.arrow.down.fill")
             }
             .accessibilityLabel("Save as template")
             .help("Save as template")
@@ -124,8 +126,10 @@ struct ChatView: View {
     @ViewBuilder
     func stopGeneratingContentButton() -> some View {
         if chatViewService.generatingContent {
-            Button("", systemImage: "stop.fill") {
+            Button {
                 chatViewService.cancelCompletion()
+            } label: {
+                Image(systemName: "stop.fill")
             }
             .accessibilityLabel("Cancel response")
             .help("Cancel response")
@@ -136,8 +140,10 @@ struct ChatView: View {
 
     @ViewBuilder
     func helpButton() -> some View {
-        Button("", systemImage: "questionmark.circle.fill") {
+        Button {
             showHelpRibbon.toggle()
+        } label: {
+            Image(systemName: "questionmark.circle.fill")
         }
         .accessibilityLabel("Show help")
         .help("Show help")
@@ -147,8 +153,10 @@ struct ChatView: View {
 
     @ViewBuilder
     func statsButton() -> some View {
-        Button("", systemImage: "chart.bar.fill") {
+        Button {
             showStats.toggle()
+        } label: {
+            Image(systemName: "chart.bar.fill")
         }
         .accessibilityLabel("Show stats")
         .help("Show stats")
@@ -158,8 +166,10 @@ struct ChatView: View {
 
     @ViewBuilder
     func trashButton() -> some View {
-        Button("", systemImage: "trash.fill") {
+        Button {
             chatViewService.discardHistory(for: workspace)
+        } label: {
+            Image(systemName: "trash.fill")
         }
         .accessibilityLabel("Discard history")
         .help("Discard history")
@@ -169,8 +179,10 @@ struct ChatView: View {
 
     @ViewBuilder
     func templatesButton() -> some View {
-        Button("", systemImage: "folder.fill") {
+        Button {
             showTemplateStripe.toggle()
+        } label: {
+            Image(systemName: "folder.fill")
         }
         .accessibilityLabel("Show templates")
         .help("Show templates")
@@ -180,9 +192,11 @@ struct ChatView: View {
 
     @ViewBuilder
     func lastMessageAsPrompt() -> some View {
-        Button("", systemImage: "memories") {
+        Button {
             focusedField = true
             prompt = chatViewService.getLastChatMessageContent(workspace: workspace)
+        } label: {
+            Image(systemName: "memories")
         }
         .accessibilityLabel("Set last message as prompt")
         .help("Set last message as prompt")
@@ -192,9 +206,11 @@ struct ChatView: View {
 
     @ViewBuilder
     func sendButton() -> some View {
-        Button("", systemImage: "paperplane.fill") {
+        Button {
             chatViewService.executePrompt(workspace: workspace, prompt: prompt)
             prompt = ""
+        } label: {
+            Image(systemName: "paperplane.fill")
         }
         .accessibilityLabel("Send")
         .help("Send")
