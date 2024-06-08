@@ -36,7 +36,15 @@ public final class ChatViewService {
             }
             generatingContent = true
 
-            insertOrUpdateChatMessage(for: modifiedPrompt(prompt), origin: .user, workspace: workspace)
+            let messageCountFetchDescriptor = FetchDescriptor<ChatMessage>()
+            let messageCount = try? modelContext.fetchCount(messageCountFetchDescriptor)
+
+            if messageCount == 0 {
+                let systemRequest = ChatRequest.systemRequest()
+                try? await openAiService.request(for: systemRequest)
+            }
+
+            insertOrUpdateChatMessage(for: prompt, origin: .user, workspace: workspace)
             let chatRequest = ChatRequest.request(with: self.loadChatHistory(for: workspace))
             var responseBuffer: [(String, String)] = []
             var time = Date().timeIntervalSince1970
@@ -149,22 +157,6 @@ public final class ChatViewService {
             String(localized: "Response error: Unknown")
         }
         return error
-    }
-
-    private func modifiedPrompt(_ prompt: String) -> String {
-        if UserDefaults.standard.bool(forKey: AIServerDefaultsKeys.usePrompPrefix) {
-            let promptPrefix = UserDefaults.standard.string(forKey: AIServerDefaultsKeys.promptPrefix)
-            if let promptPrefix = promptPrefix {
-                return """
-\(promptPrefix)\r\n
-\(prompt)
-"""
-            } else {
-                return prompt
-            }
-        } else {
-            return prompt
-        }
     }
 
     private func loadChatHistory(for workspace: Int) -> [ChatRequest.Message] {

@@ -28,4 +28,16 @@ extension ChatRequest {
             stream: true
         )
     }
+
+    static func systemRequest() -> ChatRequest {
+        ChatRequest(
+            model: UserDefaults.standard.string(forKey: AIServerDefaultsKeys.aiModel) ?? GPTModels.models.first ?? "",
+            messages: [Message(
+                role: Role.system.rawValue,
+                content: UserDefaults.standard.string(forKey: AIServerDefaultsKeys.promptPrefix) ?? ""
+            )],
+            temperature: UserDefaults.standard.double(forKey: AIServerDefaultsKeys.temperature),
+            stream: false
+        )
+    }
 }

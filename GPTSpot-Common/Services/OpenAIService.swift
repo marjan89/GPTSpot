@@ -30,6 +30,12 @@ public class OpenAIService {
 
     private var task: Task<Void, Never>?
 
+    private static var decoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+
     private static var encoder = {
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase
@@ -38,25 +44,46 @@ public class OpenAIService {
 
     func completion(for chatRequest: ChatRequest) async throws -> AsyncStream<Message> {
         let chatRequest = try createRequest(for: chatRequest)
+        logRequest(chatRequest)
+
         let (stream, response) = try await URLSession.shared.bytes(for: chatRequest)
+        logResponse(response)
+
         return AsyncStream { continuation in
             task = Task {
                 if response.hasErrorStatusCode() {
-                    continuation.yield(parseError(urlResponse: response))
+                    let error = parseError(urlResponse: response)
+                    logResponse(response, error: error)
+                    continuation.yield(error)
                 } else {
                     do {
                         for try await line in stream.lines {
-                            continuation.yield(parseRawResponse(line))
+                            let message = parseRawResponse(line)
+                            logResponse(response, message: message)
+                            continuation.yield(message)
                         }
                     } catch let error as NSError where error.code == NSURLErrorCancelled {
-                        continuation.yield(.error(.userCanceled))
+                        let messageError = Message.error(.userCanceled)
+                        logResponse(response, error: messageError)
+                        continuation.yield(messageError)
                     } catch {
-                        continuation.yield(.error(.unknown(error.localizedDescription)))
+                        let messageError = Message.error(.unknown(error.localizedDescription))
+                        logResponse(response, error: messageError)
+                        continuation.yield(messageError)
                     }
                 }
                 continuation.finish()
             }
         }
+    }
+
+    func request(for chatRequest: ChatRequest) async throws -> ChatCompletion {
+        let request = try createRequest(for: chatRequest)
+        logRequest(request)
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+        logResponse(response)
+        return try Self.decoder.decode(ChatCompletion.self, from: data)
     }
 
     func cancelCompletion() {
@@ -102,7 +129,7 @@ public class OpenAIService {
     private func parseRawResponse(_ line: String) -> Message {
         let components = line.split(separator: ":", maxSplits: 1, omittingEmptySubsequences: true)
         guard components.count == 2, components[0] == "data" else {
-            return .error(.unknown("Reponse error: data missing"))
+            return .error(.unknown("Response error: data missing"))
         }
 
         let message = components[1].trimmingCharacters(in: .whitespacesAndNewlines)

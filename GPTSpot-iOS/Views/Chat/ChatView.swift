@@ -150,6 +150,7 @@ struct ChatView: View {
                         Button("Save prompt as template", systemImage: "square.and.arrow.down.fill") {
                             chatViewService.savePrompAsTemplate(prompt)
                         }
+                        .keyboardShortcut("s")
                         .accessibilityLabel("Save template")
                         .help("Save template")
                     }
