@@ -47,6 +47,7 @@
 		026B92E72BE51D6C00BCD0A7 /* KeyCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230ED1F2BBF6CE700C067E6 /* KeyCaptureView.swift */; };
 		028811382C135D270026ED01 /* TemplateStripeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028811372C135D270026ED01 /* TemplateStripeService.swift */; };
 		0288113A2C1516550026ED01 /* ChatCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028811392C1516550026ED01 /* ChatCompletion.swift */; };
+		0288113C2C1531490026ED01 /* ChatRequest+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288113B2C1531490026ED01 /* ChatRequest+Factory.swift */; };
 		029673D82BB4EC0A0054062F /* CheatSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029673D72BB4EC0A0054062F /* CheatSheetView.swift */; };
 		029673DF2BB8A0B80054062F /* WorkspaceIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029673DE2BB8A0B80054062F /* WorkspaceIndicatorView.swift */; };
 		029673E12BB8A4E00054062F /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029673E02BB8A4E00054062F /* StatsView.swift */; };
@@ -156,6 +157,7 @@
 		026B92E22BE51CAD00BCD0A7 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		028811372C135D270026ED01 /* TemplateStripeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TemplateStripeService.swift; path = "GPTSpot-macOS/Views/Templates/TemplateStripeService.swift"; sourceTree = SOURCE_ROOT; };
 		028811392C1516550026ED01 /* ChatCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCompletion.swift; sourceTree = "<group>"; };
+		0288113B2C1531490026ED01 /* ChatRequest+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatRequest+Factory.swift"; sourceTree = "<group>"; };
 		0288BF612BB2D7180047CA09 /* TemplateStripeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateStripeView.swift; sourceTree = "<group>"; };
 		0288BF632BB2D7270047CA09 /* TemplateItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateItemView.swift; sourceTree = "<group>"; };
 		0288BF652BB3116E0047CA09 /* Template.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 			children = (
 				025AE6A52B8BEE51001489A3 /* OpenAIService.swift */,
 				02AB8C932BE42F59006C0853 /* URLResponse+ErrorCode.swift */,
+				0288113B2C1531490026ED01 /* ChatRequest+Factory.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -782,6 +785,7 @@
 				026B92D22BE5138B00BCD0A7 /* OpenAIService.swift in Sources */,
 				026B92DB2BE5176200BCD0A7 /* Previewer.swift in Sources */,
 				026B92E12BE5179E00BCD0A7 /* Markdown+Styling.swift in Sources */,
+				0288113C2C1531490026ED01 /* ChatRequest+Factory.swift in Sources */,
 				02FD0B762BE6508E0042B60C /* RoundedCornerModifier.swift in Sources */,
 				02FD0B8A2BE821AB0042B60C /* Array.swift in Sources */,
 				02F8690A2C0A954000961513 /* iOSDefaultsKeys.swift in Sources */,

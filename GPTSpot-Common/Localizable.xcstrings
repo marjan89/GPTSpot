@@ -109,9 +109,6 @@
     "Discard history" : {
 
     },
-    "Dismiss" : {
-
-    },
     "Failed to create preview: %@" : {
 
     },
@@ -178,9 +175,6 @@
     "Save as template" : {
 
     },
-    "Save prompt as template" : {
-
-    },
     "Save template" : {
 
     },
@@ -218,6 +212,12 @@
 
     },
     "Start hidden" : {
+
+    },
+    "System message" : {
+
+    },
+    "System message enabled" : {
 
     },
     "Temperature %lf" : {

@@ -36,15 +36,10 @@ public final class ChatViewService {
             }
             generatingContent = true
 
-            let messageCountFetchDescriptor = FetchDescriptor<ChatMessage>()
-            let messageCount = try? modelContext.fetchCount(messageCountFetchDescriptor)
-
-            if messageCount == 0 {
-                let systemRequest = ChatRequest.systemRequest()
-                try? await openAiService.request(for: systemRequest)
-            }
+            await initializeWithSystemMessageIfEnabled(for: workspace)
 
             insertOrUpdateChatMessage(for: prompt, origin: .user, workspace: workspace)
+
             let chatRequest = ChatRequest.request(with: self.loadChatHistory(for: workspace))
             var responseBuffer: [(String, String)] = []
             var time = Date().timeIntervalSince1970
@@ -59,21 +54,35 @@ public final class ChatViewService {
                             responseBuffer.removeAll()
                         }
                     case .terminator:
-                        if !responseBuffer.isEmpty {
-                            insertBufferedResponses(for: responseBuffer, workspace: workspace)
-                            time = Date().timeIntervalSince1970
-                            responseBuffer.removeAll()
-                        }
-                        self.generatingContent = false
+                        insertBufferedResponses(for: responseBuffer, workspace: workspace)
+                        generatingContent = false
                     case .error(let errorType):
-                        self.insertChatMessage(
+                        insertChatMessage(
                             for: handleError(error: errorType),
                             origin: .system,
                             workspace: workspace
                         )
-                        self.generatingContent = false
+                        generatingContent = false
                     }
                 }
+            }
+        }
+    }
+
+    private func initializeWithSystemMessageIfEnabled(for workspace: Int) async {
+        if let systemMessage = UserDefaults.standard.string(forKey: AIServerDefaultsKeys.promptPrefix),
+           UserDefaults.standard.bool(forKey: AIServerDefaultsKeys.usePrompPrefix) {
+            let messageCountFetchDescriptor = FetchDescriptor<ChatMessage>()
+            let messageCount = try? modelContext.fetchCount(messageCountFetchDescriptor)
+
+            if messageCount == 0 {
+                let systemRequest = ChatRequest.systemRequest()
+                insertOrUpdateChatMessage(
+                    for: "🛠️ This workspace is using a system message: \(systemMessage)",
+                    origin: .system,
+                    workspace: workspace
+                )
+                try? await openAiService.request(for: systemRequest)
             }
         }
     }

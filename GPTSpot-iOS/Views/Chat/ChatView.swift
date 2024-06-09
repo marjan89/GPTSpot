@@ -12,9 +12,7 @@ import SwiftData
 struct ChatView: View {
     @Environment(ChatViewService.self) private var chatViewService: ChatViewService
     @Query private var templates: [Template]
-    @AppStorage(AIServerDefaultsKeys.usePrompPrefix) private var promptPrefix: Bool = false
     @AppStorage(IOSDefaultsKeys.expandedInputField) private var expandedInputField: Bool = false
-    @State private var promptPrefixSheetShown = false
     @State private var prompt = ""
 
     private let workspace: Int
@@ -32,7 +30,6 @@ struct ChatView: View {
         )
         HStack {
             templateList()
-            chatOptions()
             promptInput()
         }
         .padding(16)
@@ -93,21 +90,6 @@ struct ChatView: View {
     }
 
     @ViewBuilder
-    private func chatOptions() -> some View {
-        Button {
-            promptPrefixSheetShown.toggle()
-        } label: {
-            Image(systemName: "text.quote")
-        }
-        .sheet(isPresented: $promptPrefixSheetShown) {
-            promptPrefixSheet()
-        }
-        .accessibilityLabel("Prompt prefix")
-        .help("Prompt prefix")
-        .toggleStyle(.button)
-    }
-
-    @ViewBuilder
     private func promptInput() -> some View {
         HStack {
             if expandedInputField {
@@ -139,33 +121,6 @@ struct ChatView: View {
             .help("Send")
         }
         .roundedCorners(radius: 24, stroke: 1, strokeColor: Color.gray)
-    }
-
-    @ViewBuilder
-    private func promptPrefixSheet() -> some View {
-        VStack {
-            Form {
-                Section {
-                    if !prompt.isEmpty {
-                        Button("Save prompt as template", systemImage: "square.and.arrow.down.fill") {
-                            chatViewService.savePrompAsTemplate(prompt)
-                        }
-                        .keyboardShortcut("s")
-                        .accessibilityLabel("Save template")
-                        .help("Save template")
-                    }
-                    Toggle(
-                        isOn: $promptPrefix,
-                        label: {
-                            Text("Prompt prefix")
-                        }
-                    )
-                }
-            }
-            Button("Dismiss") {
-                promptPrefixSheetShown.toggle()
-            }
-        }
     }
 }
 
