@@ -12,6 +12,7 @@ public enum Role: String {
     case user
     case assistant
     case system
+    case local
 }
 
 @Model

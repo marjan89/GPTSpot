@@ -70,15 +70,24 @@ public struct ChatMessageView: View {
             ChatMessageView(
                 chatMessage: ChatMessage(
                     content: "Response error",
-                    origin: Role.system.rawValue,
+                    origin: Role.local.rawValue,
                     timestamp: 3,
                     id: "3",
                     workspace: 1
                 ),
                 maxMessageWidth: 200
             )
+            ChatMessageView(
+                chatMessage: ChatMessage(
+                    content: "System message",
+                    origin: Role.system.rawValue,
+                    timestamp: 3,
+                    id: "4",
+                    workspace: 1
+                ),
+                maxMessageWidth: 200
+            )
         }
-        .modelContainer(previewer.container)
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")
     }

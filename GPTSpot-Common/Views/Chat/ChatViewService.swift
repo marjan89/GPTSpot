@@ -59,7 +59,7 @@ public final class ChatViewService {
                     case .error(let errorType):
                         insertChatMessage(
                             for: handleError(error: errorType),
-                            origin: .system,
+                            origin: .local,
                             workspace: workspace
                         )
                         generatingContent = false
@@ -78,17 +78,23 @@ public final class ChatViewService {
 
             if messageCount == 0 {
                 let systemRequest = ChatRequest.systemRequest()
+                insertChatMessage(
+                    for: systemMessage,
+                    origin: .system,
+                    id: UUID().uuidString,
+                    workspace: workspace
+                )
                 do {
+                    try await openAiService.request(for: systemRequest)
                     insertOrUpdateChatMessage(
                         for: "🛠️ This workspace is using a system message: \(systemMessage)",
-                        origin: .system,
+                        origin: .local,
                         workspace: workspace
                     )
-                    try await openAiService.request(for: systemRequest)
                 } catch {
                     insertOrUpdateChatMessage(
                         for: "⚠️ Failed to set system message.",
-                        origin: .system,
+                        origin: .local,
                         workspace: workspace
                     )
                 }
@@ -180,22 +186,48 @@ public final class ChatViewService {
     private func loadChatHistory(for workspace: Int) -> [ChatRequest.Message] {
         var chatMessageHistoryFetchDescriptor = FetchDescriptor<ChatMessage>(
             predicate: #Predicate<ChatMessage> { message in
-                message.workspace == workspace && message.origin != "system"
+                message.workspace == workspace && message.origin != "local"
             },
-            sortBy: [.init(\ChatMessage.timestamp, order: .reverse)]
+            sortBy: [.init(\ChatMessage.timestamp)]
+        )
+        let systemMessageFetchDescriptor = FetchDescriptor<ChatMessage>(
+            predicate: #Predicate<ChatMessage> { message in
+                message.origin == "system"
+            }
         )
         let userLimit = UserDefaults.standard.integer(forKey: AIServerDefaultsKeys.maxHistory)
         if userLimit > 0 {
             chatMessageHistoryFetchDescriptor.fetchLimit = userLimit
         }
-        let chatMessages = try? modelContext.fetch(chatMessageHistoryFetchDescriptor)
-        let history = chatMessages?.map { message in
-            ChatRequest.Message(
-                role: message.origin,
-                content: message.content
+        do {
+            let chatMessages = try modelContext.fetch(chatMessageHistoryFetchDescriptor)
+            let systemMessages = try modelContext.fetch(systemMessageFetchDescriptor)
+            let history = chatMessages.map { message in
+                ChatRequest.Message(
+                    role: message.origin,
+                    content: message.content
+                )
+            }
+            return if let systemMessage = systemMessages.first, !chatMessages.contains(
+                where: { message in
+                    message.origin == "system"
+                }
+            ) {
+                [ChatRequest.Message(
+                    role: systemMessage.origin,
+                    content: systemMessage.content
+                )] + history
+            } else {
+                history
+            }
+        } catch {
+            insertOrUpdateChatMessage(
+                for: "Response error: failed to fetch history",
+                origin: .local,
+                workspace: workspace
             )
-        }.reversed() ?? []
-        return history
+            return []
+        }
     }
 
     private func insertOrUpdateChatMessage(for content: String, origin: Role, id: String = "", workspace: Int) {

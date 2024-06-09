@@ -26,7 +26,7 @@ struct ChatListView: View {
         self._prompt = prompt
         _chatMessages = Query(
             filter: #Predicate<ChatMessage> { chatMessage in
-                chatMessage.workspace == workspace
+                chatMessage.workspace == workspace && !(chatMessage.origin == "system")
             },
             sort: \ChatMessage.timestamp
         )
