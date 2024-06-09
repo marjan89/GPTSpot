@@ -12,10 +12,8 @@ import GPTSpot_Common
 struct ChatView: View {
 
     @Environment(ChatViewService.self) private var chatViewService: ChatViewService
-    @Environment(\.modelContext) private var modelContext
 
     @FocusState private var focusedField: Bool
-    @AppStorage(AIServerDefaultsKeys.usePrompPrefix) private var promptPrefix: Bool = false
 
     @State var workspace = 1
     @State var showHelpRibbon = false
@@ -80,7 +78,6 @@ struct ChatView: View {
         HStack {
             Spacer()
             saveAsTemplateButton()
-            promptPrefixToggle()
             stopGeneratingContentButton()
             helpButton()
             statsButton()
@@ -109,18 +106,6 @@ struct ChatView: View {
             .keyboardShortcut(.init("s", modifiers: [.command]))
             .buttonStyle(BorderlessButtonStyle())
         }
-    }
-
-    @ViewBuilder
-    func promptPrefixToggle() -> some View {
-        Toggle(
-            isOn: $promptPrefix,
-            label: {
-                Text("Prompt prefix")
-            }
-        )
-        .toggleStyle(SwitchToggleStyle())
-        .keyboardShortcut(.init("/"))
     }
 
     @ViewBuilder

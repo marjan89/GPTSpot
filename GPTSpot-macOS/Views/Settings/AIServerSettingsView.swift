@@ -16,6 +16,7 @@ struct AIServerSettingsView: View {
     @AppStorage(AIServerDefaultsKeys.openAiKey) private var openAiKey = ""
     @AppStorage(AIServerDefaultsKeys.maxHistory) private var maxHistory = 6
     @AppStorage(AIServerDefaultsKeys.promptPrefix) private var promptPrefix = ""
+    @AppStorage(AIServerDefaultsKeys.usePrompPrefix) private var userPromptPrefix = false
 
     var body: some View {
         Form {
@@ -47,9 +48,10 @@ struct AIServerSettingsView: View {
                 }
             }
             TextField(
-                "Prompt prefix",
+                "System message",
                 text: $promptPrefix
             )
+            Toggle("System message enabled", isOn: $userPromptPrefix)
         }
     }
 
