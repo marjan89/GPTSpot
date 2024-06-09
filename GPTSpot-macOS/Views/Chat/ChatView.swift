@@ -21,36 +21,52 @@ struct ChatView: View {
     @State var showTemplateStripe = false
     @State var templateSearchQuery = ""
     @State var prompt = ""
+    private let windowed = UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.windowed)
 
     var body: some View {
         GeometryReader { geometry in
-            VStack(spacing: 4) {
-                ChatListView(
-                    workspace: workspace,
-                    prompt: $prompt
-                )
-                VStack {
-                    templateStripe()
-                    PromptEditor(
-                        showTemplateHint: $showTemplateStripe,
-                        templateSearchQuery: $templateSearchQuery,
-                        prompt: $prompt,
-                        focusedField: _focusedField,
-                        textEditorHeight: geometry.size.height / 8
+            HStack(spacing: 0) {
+                if windowed {
+                    WorkspaceListView(
+                        onSwipeDelete: { workspace in
+                            chatViewService.discardHistory(for: workspace)
+                        },
+                        onEmptyViewAction: {},
+                        activeWorkspace: $workspace
                     )
-                    HStack {
-                        WorkspaceIndicatorView(workspace: $workspace)
-                        chatControls()
-                    }
-                    if showHelpRibbon {
-                        CheatSheetView()
-                    }
-                    if showStats {
-                        StatsView(workspace: workspace)
+                    .background(.windowBackground)
+                    .frame(width: 312)
+                    .toolbar {
+                        chatControlsToolbar(placement: .primaryAction)
                     }
                 }
-                .padding(.all, 16)
-                .background(.regularMaterial)
+                VStack(spacing: 0) {
+                    ChatListView(
+                        workspace: workspace,
+                        prompt: $prompt
+                    )
+                    VStack {
+                        templateStripe()
+                        PromptEditor(
+                            showTemplateHint: $showTemplateStripe,
+                            templateSearchQuery: $templateSearchQuery,
+                            prompt: $prompt,
+                            focusedField: _focusedField,
+                            textEditorHeight: geometry.size.height / 8
+                        )
+                        if showHelpRibbon {
+                            CheatSheetView()
+                        }
+                        if !windowed && showStats {
+                            StatsView(workspace: workspace)
+                        }
+                        if !windowed {
+                            chatControls()
+                        }
+                    }
+                    .padding(.all, 16)
+                    .background(.regularMaterial)
+                }
             }
         }
         .background(.windowBackground)
@@ -76,21 +92,43 @@ struct ChatView: View {
     @ViewBuilder
     func chatControls() -> some View {
         HStack {
-            Spacer()
-            saveAsTemplateButton()
-            stopGeneratingContentButton()
-            helpButton()
-            statsButton()
-            trashButton()
-            templatesButton()
-            lastMessageAsPrompt()
-            sendButton()
+            Group {
+                WorkspaceIndicatorView(workspace: $workspace)
+                Spacer()
+                saveAsTemplateButton()
+                stopGeneratingContentButton()
+                helpButton()
+                statsButton()
+                trashButton()
+                templatesButton()
+                lastMessageAsPrompt()
+                sendButton()
+            }
+            .buttonStyle(BorderlessButtonStyle())
+        }
+    }
+
+    func chatControlsToolbar(placement: ToolbarItemPlacement) -> ToolbarItemGroup<some View> {
+        ToolbarItemGroup(placement: placement) {
+            Group {
+                StatsView(workspace: workspace)
+                saveAsTemplateButton()
+                stopGeneratingContentButton()
+                helpButton()
+                statsButton()
+                trashButton()
+                templatesButton()
+                lastMessageAsPrompt()
+                sendButton()
+            }
+            .buttonStyle(AccessoryBarButtonStyle())
         }
     }
 
     @ViewBuilder
-    func saveAsTemplateButton() -> some View {
-        if !prompt.isEmpty || !templateSearchQuery.isEmpty {
+    private func saveAsTemplateButton() -> some View {
+        if !prompt.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
+            !templateSearchQuery.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             Button {
                 if showTemplateStripe {
                     chatViewService.insertTemplate(Template(content: templateSearchQuery))
@@ -104,12 +142,11 @@ struct ChatView: View {
             .accessibilityLabel("Save as template")
             .help("Save as template")
             .keyboardShortcut(.init("s", modifiers: [.command]))
-            .buttonStyle(BorderlessButtonStyle())
         }
     }
 
     @ViewBuilder
-    func stopGeneratingContentButton() -> some View {
+    private func stopGeneratingContentButton() -> some View {
         if chatViewService.generatingContent {
             Button {
                 chatViewService.cancelCompletion()
@@ -119,12 +156,11 @@ struct ChatView: View {
             .accessibilityLabel("Cancel response")
             .help("Cancel response")
             .keyboardShortcut(.init(.return, modifiers: [.command, .shift]))
-            .buttonStyle(BorderlessButtonStyle())
         }
     }
 
     @ViewBuilder
-    func helpButton() -> some View {
+    private func helpButton() -> some View {
         Button {
             showHelpRibbon.toggle()
         } label: {
@@ -133,11 +169,10 @@ struct ChatView: View {
         .accessibilityLabel("Show help")
         .help("Show help")
         .keyboardShortcut(.init("?"))
-        .buttonStyle(BorderlessButtonStyle())
     }
 
     @ViewBuilder
-    func statsButton() -> some View {
+    private func statsButton() -> some View {
         Button {
             showStats.toggle()
         } label: {
@@ -146,11 +181,10 @@ struct ChatView: View {
         .accessibilityLabel("Show stats")
         .help("Show stats")
         .keyboardShortcut(.init("."))
-        .buttonStyle(BorderlessButtonStyle())
     }
 
     @ViewBuilder
-    func trashButton() -> some View {
+    private func trashButton() -> some View {
         Button {
             chatViewService.discardHistory(for: workspace)
         } label: {
@@ -159,11 +193,10 @@ struct ChatView: View {
         .accessibilityLabel("Discard history")
         .help("Discard history")
         .keyboardShortcut(.init("d"))
-        .buttonStyle(BorderlessButtonStyle())
     }
 
     @ViewBuilder
-    func templatesButton() -> some View {
+    private func templatesButton() -> some View {
         Button {
             showTemplateStripe.toggle()
         } label: {
@@ -172,11 +205,10 @@ struct ChatView: View {
         .accessibilityLabel("Show templates")
         .help("Show templates")
         .keyboardShortcut(.init("t"))
-        .buttonStyle(BorderlessButtonStyle())
     }
 
     @ViewBuilder
-    func lastMessageAsPrompt() -> some View {
+    private func lastMessageAsPrompt() -> some View {
         Button {
             focusedField = true
             prompt = chatViewService.getLastChatMessageContent(workspace: workspace)
@@ -186,11 +218,10 @@ struct ChatView: View {
         .accessibilityLabel("Set last message as prompt")
         .help("Set last message as prompt")
         .keyboardShortcut(.upArrow)
-        .buttonStyle(BorderlessButtonStyle())
     }
 
     @ViewBuilder
-    func sendButton() -> some View {
+    private func sendButton() -> some View {
         Button {
             chatViewService.executePrompt(workspace: workspace, prompt: prompt)
             prompt = ""
@@ -200,7 +231,6 @@ struct ChatView: View {
         .accessibilityLabel("Send")
         .help("Send")
         .keyboardShortcut(.return)
-        .buttonStyle(BorderlessButtonStyle())
     }
 }
 

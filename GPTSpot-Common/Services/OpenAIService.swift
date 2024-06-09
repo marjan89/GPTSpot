@@ -77,7 +77,7 @@ public class OpenAIService {
         }
     }
 
-    func request(for chatRequest: ChatRequest) async throws -> ChatCompletion {
+    @discardableResult func request(for chatRequest: ChatRequest) async throws -> ChatCompletion {
         let request = try createRequest(for: chatRequest)
         logRequest(request)
 

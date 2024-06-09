@@ -78,12 +78,20 @@ public final class ChatViewService {
 
             if messageCount == 0 {
                 let systemRequest = ChatRequest.systemRequest()
-                insertOrUpdateChatMessage(
-                    for: "🛠️ This workspace is using a system message: \(systemMessage)",
-                    origin: .system,
-                    workspace: workspace
-                )
-                try? await openAiService.request(for: systemRequest)
+                do {
+                    insertOrUpdateChatMessage(
+                        for: "🛠️ This workspace is using a system message: \(systemMessage)",
+                        origin: .system,
+                        workspace: workspace
+                    )
+                    try await openAiService.request(for: systemRequest)
+                } catch {
+                    insertOrUpdateChatMessage(
+                        for: "⚠️ Failed to set system message.",
+                        origin: .system,
+                        workspace: workspace
+                    )
+                }
             }
         }
     }

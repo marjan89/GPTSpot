@@ -71,6 +71,7 @@ struct ChatListView: View {
                             .keyboardShortcut("s", modifiers: .option)
                         }))
                         .listRowInsets(.init(top: 16, leading: 0, bottom: 0, trailing: 0))
+                        .padding(.bottom, 8)
                         .listRowSeparator(.hidden)
                     }
                     .onChange(of: focusedMessageField) {
@@ -151,9 +152,9 @@ struct ChatListView: View {
             workspace: 1,
             prompt: $prompt
         )
+        .environment(previewer.chatViewService)
         .modelContainer(previewer.container)
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")
     }
-
 }

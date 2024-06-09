@@ -48,6 +48,8 @@
 		028811382C135D270026ED01 /* TemplateStripeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028811372C135D270026ED01 /* TemplateStripeService.swift */; };
 		0288113A2C1516550026ED01 /* ChatCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028811392C1516550026ED01 /* ChatCompletion.swift */; };
 		0288113C2C1531490026ED01 /* ChatRequest+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288113B2C1531490026ED01 /* ChatRequest+Factory.swift */; };
+		028811412C1540400026ED01 /* WorkspaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288113D2C153F430026ED01 /* WorkspaceListView.swift */; };
+		028811422C1540490026ED01 /* WorkspaceListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288113F2C153FED0026ED01 /* WorkspaceListItemView.swift */; };
 		029673D82BB4EC0A0054062F /* CheatSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029673D72BB4EC0A0054062F /* CheatSheetView.swift */; };
 		029673DF2BB8A0B80054062F /* WorkspaceIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029673DE2BB8A0B80054062F /* WorkspaceIndicatorView.swift */; };
 		029673E12BB8A4E00054062F /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029673E02BB8A4E00054062F /* StatsView.swift */; };
@@ -158,6 +160,8 @@
 		028811372C135D270026ED01 /* TemplateStripeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TemplateStripeService.swift; path = "GPTSpot-macOS/Views/Templates/TemplateStripeService.swift"; sourceTree = SOURCE_ROOT; };
 		028811392C1516550026ED01 /* ChatCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCompletion.swift; sourceTree = "<group>"; };
 		0288113B2C1531490026ED01 /* ChatRequest+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatRequest+Factory.swift"; sourceTree = "<group>"; };
+		0288113D2C153F430026ED01 /* WorkspaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WorkspaceListView.swift; path = "GPTSpot-macOS/Views/Chat/WorkspaceListView.swift"; sourceTree = SOURCE_ROOT; };
+		0288113F2C153FED0026ED01 /* WorkspaceListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WorkspaceListItemView.swift; path = "GPTSpot-macOS/Views/Chat/WorkspaceListItemView.swift"; sourceTree = SOURCE_ROOT; };
 		0288BF612BB2D7180047CA09 /* TemplateStripeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateStripeView.swift; sourceTree = "<group>"; };
 		0288BF632BB2D7270047CA09 /* TemplateItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateItemView.swift; sourceTree = "<group>"; };
 		0288BF652BB3116E0047CA09 /* Template.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
@@ -354,6 +358,8 @@
 				029673DE2BB8A0B80054062F /* WorkspaceIndicatorView.swift */,
 				029673E02BB8A4E00054062F /* StatsView.swift */,
 				025AE6AB2B8BEEB4001489A3 /* ChatView.swift */,
+				0288113D2C153F430026ED01 /* WorkspaceListView.swift */,
+				0288113F2C153FED0026ED01 /* WorkspaceListItemView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -734,6 +740,7 @@
 				025AE6782B8BA51F001489A3 /* ContentView.swift in Sources */,
 				02FD0B862BE688C30042B60C /* GeneralSettingsView.swift in Sources */,
 				029673DF2BB8A0B80054062F /* WorkspaceIndicatorView.swift in Sources */,
+				028811412C1540400026ED01 /* WorkspaceListView.swift in Sources */,
 				023B78722BEAD523009D90B8 /* RegularWindow.swift in Sources */,
 				029BABD12BE56950008F8FB0 /* TemplateStripeView.swift in Sources */,
 				028811382C135D270026ED01 /* TemplateStripeService.swift in Sources */,
@@ -750,6 +757,7 @@
 				026B92E42BE51D6C00BCD0A7 /* KeyRecordingView.swift in Sources */,
 				029BABD02BE5694D008F8FB0 /* TemplateItemView.swift in Sources */,
 				026B92E52BE51D6C00BCD0A7 /* KeySequence.swift in Sources */,
+				028811422C1540490026ED01 /* WorkspaceListItemView.swift in Sources */,
 				029BABD22BE56A24008F8FB0 /* FocusDirection.swift in Sources */,
 				029BABD72BE56BF3008F8FB0 /* String+Clipboard.swift in Sources */,
 				026B92E62BE51D6C00BCD0A7 /* KeyRecordingState.swift in Sources */,

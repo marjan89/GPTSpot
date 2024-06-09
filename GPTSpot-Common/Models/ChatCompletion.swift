@@ -8,6 +8,7 @@
 import Foundation
 
 struct ChatCompletion: Codable {
+    // swiftlint:disable nesting
     struct Choice: Codable {
         struct Message: Codable {
             let role: String
@@ -19,6 +20,7 @@ struct ChatCompletion: Codable {
         let logprobs: String?
         let finishReason: String
     }
+    // swiftlint:enable nesting
 
     struct Usage: Codable {
         let promptTokens: Int
