@@ -34,7 +34,6 @@ struct ChatView: View {
                         onEmptyViewAction: {},
                         activeWorkspace: $workspace
                     )
-                    .background(.windowBackground)
                     .frame(width: 312)
                     .toolbar {
                         chatControlsToolbar(placement: .primaryAction)
