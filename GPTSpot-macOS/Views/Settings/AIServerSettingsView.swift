@@ -15,8 +15,8 @@ struct AIServerSettingsView: View {
     @AppStorage(AIServerDefaultsKeys.temperature) private var temperature = 0.5
     @AppStorage(AIServerDefaultsKeys.openAiKey) private var openAiKey = ""
     @AppStorage(AIServerDefaultsKeys.maxHistory) private var maxHistory = 6
-    @AppStorage(AIServerDefaultsKeys.promptPrefix) private var promptPrefix = ""
-    @AppStorage(AIServerDefaultsKeys.usePrompPrefix) private var userPromptPrefix = false
+    @AppStorage(AIServerDefaultsKeys.systemMessage) private var systemMessage = ""
+    @AppStorage(AIServerDefaultsKeys.useSystemMessage) private var useSystemMessage = false
 
     var body: some View {
         Form {
@@ -49,9 +49,9 @@ struct AIServerSettingsView: View {
             }
             TextField(
                 "System message",
-                text: $promptPrefix
+                text: $systemMessage
             )
-            Toggle("System message enabled", isOn: $userPromptPrefix)
+            Toggle("System message enabled", isOn: $useSystemMessage)
         }
     }
 

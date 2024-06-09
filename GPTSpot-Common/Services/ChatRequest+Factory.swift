@@ -22,7 +22,7 @@ extension ChatRequest {
             model: UserDefaults.standard.string(forKey: AIServerDefaultsKeys.aiModel) ?? GPTModels.models.first ?? "",
             messages: [Message(
                 role: Role.system.rawValue,
-                content: UserDefaults.standard.string(forKey: AIServerDefaultsKeys.promptPrefix) ?? ""
+                content: UserDefaults.standard.string(forKey: AIServerDefaultsKeys.systemMessage) ?? ""
             )],
             temperature: UserDefaults.standard.double(forKey: AIServerDefaultsKeys.temperature),
             stream: false

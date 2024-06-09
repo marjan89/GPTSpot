@@ -12,6 +12,6 @@ public enum AIServerDefaultsKeys {
     public static let temperature: String = "temperature"
     public static let openAiKey: String = "openAiKey"
     public static let maxHistory: String = "maxHistory"
-    public static let promptPrefix: String = "promptPrefix"
-    public static let usePrompPrefix: String = "usePromptPrefix"
+    public static let systemMessage: String = "systemMessage"
+    public static let useSystemMessage: String = "useSystemMessage"
 }

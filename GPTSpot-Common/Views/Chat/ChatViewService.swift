@@ -70,8 +70,9 @@ public final class ChatViewService {
     }
 
     private func initializeWithSystemMessageIfEnabled(for workspace: Int) async {
-        if let systemMessage = UserDefaults.standard.string(forKey: AIServerDefaultsKeys.promptPrefix),
-           UserDefaults.standard.bool(forKey: AIServerDefaultsKeys.usePrompPrefix) {
+        if let systemMessage = UserDefaults.standard.string(forKey: AIServerDefaultsKeys.systemMessage),
+           !systemMessage.isEmpty,
+           UserDefaults.standard.bool(forKey: AIServerDefaultsKeys.useSystemMessage) {
             let messageCountFetchDescriptor = FetchDescriptor<ChatMessage>()
             let messageCount = try? modelContext.fetchCount(messageCountFetchDescriptor)
 
