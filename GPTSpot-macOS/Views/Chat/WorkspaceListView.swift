@@ -12,37 +12,44 @@ import GPTSpot_Common
 struct WorkspaceListView: View {
 
     @Query(sort: \ChatMessage.timestamp) private var chatMessages: [ChatMessage]
-    private let onSwipeDelete: (_ workspace: Int) -> Void
-    private let onEmptyViewAction: () -> Void
+    private let onItemDelete: (_ workspace: Int) -> Void
     @Binding var activeWorkspace: Int
+    @Binding var query: String
 
     init(
-        onSwipeDelete: @escaping (_: Int) -> Void,
-        onEmptyViewAction: @escaping () -> Void,
-        activeWorkspace: Binding<Int>
+        onItemDelete: @escaping (_: Int) -> Void,
+        activeWorkspace: Binding<Int>,
+        query: Binding<String>
     ) {
-        self.onSwipeDelete = onSwipeDelete
-        self.onEmptyViewAction = onEmptyViewAction
+        self.onItemDelete = onItemDelete
         self._activeWorkspace = activeWorkspace
+        self._query = query
     }
 
     private var activeWorkspaces: [Int] {
         let workspaces = chatMessages
+            .filter { message in
+                if query.isEmpty {
+                    return true
+                } else {
+                    let words = query
+                        .lowercased()
+                        .trimmingCharacters(in: .whitespacesAndNewlines)
+                        .components(separatedBy: .whitespaces)
+                    let queryMatched = words.contains { word in
+                        message.content.lowercased().contains(word)
+                    }
+                    return queryMatched
+                }
+            }
             .map { chatMessage in chatMessage.workspace }
             .distinct<T>()
             .sorted()
-        return if !workspaces.contains(activeWorkspace) {
+        return if query.isEmpty && !workspaces.contains(activeWorkspace) {
             [activeWorkspace] + workspaces
         } else {
             workspaces
         }
-    }
-
-    private var inactiveWorkspaces: [Int] {
-        Array(WorkspaceConfig.firstOrdinal..<WorkspaceConfig.workspaceLimit)
-            .filter { workspace in
-                !activeWorkspaces.contains(workspace)
-            }
     }
 
     var body: some View {
@@ -76,7 +83,7 @@ struct WorkspaceListView: View {
                     .id(activeWorkspace)
                     .contextMenu(ContextMenu {
                         Button {
-                            onSwipeDelete(activeWorkspace)
+                            onItemDelete(activeWorkspace)
                         } label: {
                             Label("Delete", systemImage: "trash.fill")
                         }
@@ -101,14 +108,13 @@ struct WorkspaceListView: View {
         let previewer = try Previewer()
 
         @State var workspace: Int = 1
+        @State var query: String = ""
 
         return WorkspaceListView(
-            onSwipeDelete: { _ in
+            onItemDelete: { _ in
             },
-            onEmptyViewAction: {
-
-            },
-            activeWorkspace: $workspace
+            activeWorkspace: $workspace,
+            query: $query
         )
         .modelContainer(previewer.container)
     } catch {

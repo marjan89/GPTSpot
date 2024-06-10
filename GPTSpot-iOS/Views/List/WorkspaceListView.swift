@@ -30,13 +30,6 @@ struct WorkspaceListView: View {
             .sorted()
     }
 
-    private var inactiveWorkspaces: [Int] {
-        Array(WorkspaceConfig.firstOrdinal..<WorkspaceConfig.workspaceLimit)
-            .filter { workspace in
-                !activeWorkspaces.contains(workspace)
-            }
-    }
-
     var body: some View {
         if activeWorkspaces.isEmpty {
             VStack {

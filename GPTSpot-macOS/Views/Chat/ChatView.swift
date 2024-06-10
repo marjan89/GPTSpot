@@ -68,11 +68,11 @@ struct ChatView: View {
         GeometryReader { geometry in
             NavigationSplitView {
                 WorkspaceListView(
-                    onSwipeDelete: { workspace in
+                    onItemDelete: { workspace in
                         chatViewService.discardHistory(for: workspace)
                     },
-                    onEmptyViewAction: {},
-                    activeWorkspace: $workspace
+                    activeWorkspace: $workspace,
+                    query: $query
                 )
                 .frame(width: 312)
                 .navigationSplitViewColumnWidth(ideal: 312)
