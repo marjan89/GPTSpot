@@ -26,14 +26,15 @@ struct GeneralSettingsView: View {
             Section("Window settings") {
                 Text("You need to restart the app for this change to take effect")
                     .font(.footnote)
-                Toggle(isOn: $hideFromDock) {
-                    Text("Hide from dock")
-                }
                 Toggle(isOn: $windowed) {
                     Text("Windowed mode")
                 }
                 Toggle(isOn: $keepOnTop) {
                     Text("Keep on top")
+                }
+                .disabled(!windowed)
+                Toggle(isOn: $hideFromDock) {
+                    Text("Hide from dock")
                 }
                 .disabled(!windowed)
             }

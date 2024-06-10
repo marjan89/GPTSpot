@@ -14,17 +14,57 @@ struct ChatView: View {
     @Environment(ChatViewService.self) private var chatViewService: ChatViewService
 
     @FocusState private var focusedField: Bool
-
     @State var workspace = 1
     @State var showHelpRibbon = false
     @State var showStats = false
     @State var showTemplateStripe = false
     @State var templateSearchQuery = ""
     @State var prompt = ""
-    private let windowed = UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.windowed)
     @State var query: String = ""
+    private let windowed = UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.windowed)
 
     var body: some View {
+        if windowed {
+            windowedView()
+        } else {
+            paneView()
+                .window()
+        }
+    }
+
+    @ViewBuilder
+    private func paneView() -> some View {
+        GeometryReader { geometry in
+            VStack(spacing: 0) {
+                ChatListView(
+                    workspace: workspace,
+                    prompt: $prompt
+                )
+                VStack {
+                    templateStripe()
+                    PromptEditor(
+                        showTemplateHint: $showTemplateStripe,
+                        templateSearchQuery: $templateSearchQuery,
+                        prompt: $prompt,
+                        focusedField: _focusedField,
+                        textEditorHeight: geometry.size.width * 0.1
+                    )
+                    if showHelpRibbon {
+                        CheatSheetView()
+                    }
+                    if showStats {
+                        StatsView(workspace: workspace)
+                    }
+                    chatControls()
+                }
+                .padding(.all, 16)
+                .background(.regularMaterial)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func windowedView() -> some View {
         GeometryReader { geometry in
             NavigationSplitView {
                 WorkspaceListView(
@@ -51,64 +91,25 @@ struct ChatView: View {
                             templateSearchQuery: $templateSearchQuery,
                             prompt: $prompt,
                             focusedField: _focusedField,
-                            textEditorHeight: geometry.size.height / 8
+                            textEditorHeight: geometry.size.width * 0.1
                         )
+                        if showStats {
+                            StatsView(workspace: workspace)
+                        }
                     }
                     .padding(.all, 16)
                     .background(.regularMaterial)
+                    .sheet(isPresented: $showHelpRibbon) {
+                        CheatSheetView()
+                            .padding(16)
+                    }
                 }
-//                .toolbar(.visible, for: .automatic)
                 .toolbar {
                     chatControlsToolbar(placement: .automatic)
                 }
             }
             .navigationSplitViewStyle(.automatic)
-
-            //            HStack(spacing: 0) {
-            //                if windowed {
-            //                    WorkspaceListView(
-            //                        onSwipeDelete: { workspace in
-            //                            chatViewService.discardHistory(for: workspace)
-            //                        },
-            //                        onEmptyViewAction: {},
-            //                        activeWorkspace: $workspace
-            //                    )
-            //                    .frame(width: 312)
-            //                    .toolbar {
-            //                        chatControlsToolbar(placement: .primaryAction)
-            //                    }
-            //                }
-            //                VStack(spacing: 0) {
-            //                    ChatListView(
-            //                        workspace: workspace,
-            //                        prompt: $prompt
-            //                    )
-            //                    VStack {
-            //                        templateStripe()
-            //                        PromptEditor(
-            //                            showTemplateHint: $showTemplateStripe,
-            //                            templateSearchQuery: $templateSearchQuery,
-            //                            prompt: $prompt,
-            //                            focusedField: _focusedField,
-            //                            textEditorHeight: geometry.size.height / 8
-            //                        )
-            //                        if showHelpRibbon {
-            //                            CheatSheetView()
-            //                        }
-            //                        if !windowed && showStats {
-            //                            StatsView(workspace: workspace)
-            //                        }
-            //                        if !windowed {
-            //                            chatControls()
-            //                        }
-            //                    }
-            //                    .padding(.all, 16)
-            //                    .background(.regularMaterial)
-            //                }
-            //            }
         }
-        .background(.windowBackground)
-        .window()
     }
 
     @ViewBuilder
@@ -149,7 +150,6 @@ struct ChatView: View {
     func chatControlsToolbar(placement: ToolbarItemPlacement) -> ToolbarItemGroup<some View> {
         ToolbarItemGroup(placement: placement) {
             Group {
-                StatsView(workspace: workspace)
                 saveAsTemplateButton()
                 stopGeneratingContentButton()
                 helpButton()

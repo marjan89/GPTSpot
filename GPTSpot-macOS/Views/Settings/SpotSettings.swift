@@ -19,7 +19,6 @@ struct SpotSettings: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             AIServerSettingsView()
-                .frame(width: 500, height: 150)
                 .tabItem {
                     Label("AI Server", systemImage: "brain")
                 }
@@ -30,7 +29,8 @@ struct SpotSettings: View {
                 }
                 .tag(Tabs.general)
         }
-        .padding(20)
+        .frame(minWidth: 500)
+        .padding(16)
     }
 }
 

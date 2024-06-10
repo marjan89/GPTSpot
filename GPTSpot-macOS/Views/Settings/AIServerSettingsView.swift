@@ -51,7 +51,11 @@ struct AIServerSettingsView: View {
                 "System message",
                 text: $systemMessage
             )
+            Text("Applies to new conversations only")
+                .font(.footnote)
             Toggle("System message enabled", isOn: $useSystemMessage)
+            Text("Applies to new conversations only")
+                .font(.footnote)
         }
     }
 
