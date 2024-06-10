@@ -60,9 +60,7 @@ struct WorkspaceListView: View {
                     )
                     .id(activeWorkspace)
                 }
-                .padding(.vertical, -8)
                 .scrollContentBackground(.hidden)
-                .clipped()
             } else {
                 List(activeWorkspaces, id: \.self) { workspace in
                     WorkspaceListItemView(
@@ -84,9 +82,7 @@ struct WorkspaceListView: View {
                         }
                     })
                 }
-                .padding(.all, -8)
                 .scrollContentBackground(.hidden)
-                .clipped()
             }
         }
     }

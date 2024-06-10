@@ -22,23 +22,23 @@ struct ChatView: View {
     @State var templateSearchQuery = ""
     @State var prompt = ""
     private let windowed = UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.windowed)
+    @State var query: String = ""
 
     var body: some View {
         GeometryReader { geometry in
-            HStack(spacing: 0) {
-                if windowed {
-                    WorkspaceListView(
-                        onSwipeDelete: { workspace in
-                            chatViewService.discardHistory(for: workspace)
-                        },
-                        onEmptyViewAction: {},
-                        activeWorkspace: $workspace
-                    )
-                    .frame(width: 312)
-                    .toolbar {
-                        chatControlsToolbar(placement: .primaryAction)
-                    }
-                }
+            NavigationSplitView {
+                WorkspaceListView(
+                    onSwipeDelete: { workspace in
+                        chatViewService.discardHistory(for: workspace)
+                    },
+                    onEmptyViewAction: {},
+                    activeWorkspace: $workspace
+                )
+                .frame(width: 312)
+                .navigationSplitViewColumnWidth(ideal: 312)
+                .listStyle(.sidebar)
+                .searchable(text: $query, placement: .sidebar)
+            } detail: {
                 VStack(spacing: 0) {
                     ChatListView(
                         workspace: workspace,
@@ -53,20 +53,59 @@ struct ChatView: View {
                             focusedField: _focusedField,
                             textEditorHeight: geometry.size.height / 8
                         )
-                        if showHelpRibbon {
-                            CheatSheetView()
-                        }
-                        if !windowed && showStats {
-                            StatsView(workspace: workspace)
-                        }
-                        if !windowed {
-                            chatControls()
-                        }
                     }
                     .padding(.all, 16)
                     .background(.regularMaterial)
                 }
+//                .toolbar(.visible, for: .automatic)
+                .toolbar {
+                    chatControlsToolbar(placement: .automatic)
+                }
             }
+            .navigationSplitViewStyle(.automatic)
+
+            //            HStack(spacing: 0) {
+            //                if windowed {
+            //                    WorkspaceListView(
+            //                        onSwipeDelete: { workspace in
+            //                            chatViewService.discardHistory(for: workspace)
+            //                        },
+            //                        onEmptyViewAction: {},
+            //                        activeWorkspace: $workspace
+            //                    )
+            //                    .frame(width: 312)
+            //                    .toolbar {
+            //                        chatControlsToolbar(placement: .primaryAction)
+            //                    }
+            //                }
+            //                VStack(spacing: 0) {
+            //                    ChatListView(
+            //                        workspace: workspace,
+            //                        prompt: $prompt
+            //                    )
+            //                    VStack {
+            //                        templateStripe()
+            //                        PromptEditor(
+            //                            showTemplateHint: $showTemplateStripe,
+            //                            templateSearchQuery: $templateSearchQuery,
+            //                            prompt: $prompt,
+            //                            focusedField: _focusedField,
+            //                            textEditorHeight: geometry.size.height / 8
+            //                        )
+            //                        if showHelpRibbon {
+            //                            CheatSheetView()
+            //                        }
+            //                        if !windowed && showStats {
+            //                            StatsView(workspace: workspace)
+            //                        }
+            //                        if !windowed {
+            //                            chatControls()
+            //                        }
+            //                    }
+            //                    .padding(.all, 16)
+            //                    .background(.regularMaterial)
+            //                }
+            //            }
         }
         .background(.windowBackground)
         .window()
@@ -239,7 +278,7 @@ struct ChatView: View {
 
         return ChatView()
             .environment(previewer.chatViewService)
-            .frame(width: 700, height: 600)
+            .frame(width: 900, height: 600)
             .modelContainer(previewer.container)
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")

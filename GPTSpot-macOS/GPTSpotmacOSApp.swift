@@ -1,6 +1,4 @@
 import SwiftUI
-import Cocoa
-import Carbon
 import SwiftData
 import GPTSpot_Common
 
@@ -8,8 +6,26 @@ import GPTSpot_Common
 struct GPTSpotmacOSApp: App {
 
     @NSApplicationDelegateAdaptor(GPTAppDelegate.self) var appDelegate
+    @Environment(\.dismissWindow) var dismissWindow
+    @Environment(\.openWindow) var openWindow
+    private let windowed: Bool = UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.windowed)
+    private let windowId = UUID().uuidString
 
     var body: some Scene {
+        Window("", id: windowId) {
+            if windowed {
+                ContentView()
+                    .modelContainer(for: [ChatMessage.self, Template.self])
+                    .environment(\.openAIService, OpenAIServiceKey.defaultValue)
+            } else {
+                Image(nsImage: NSImage(imageLiteralResourceName: "AppIcon"))
+                    .onAppear {
+                        NSApplication.shared.windows.first { window in
+                            window.identifier?.rawValue == windowId
+                        }?.close()
+                    }
+            }
+        }
         MenuBarExtra("GPTSpot", image: .menuBar) {
             SettingsLink {
                 Text("Settings")
@@ -17,7 +33,11 @@ struct GPTSpotmacOSApp: App {
             .keyboardShortcut("S")
             Divider()
             Button("Show window") {
-                appDelegate.showWindow()
+                if windowed {
+                    openWindow(id: windowId)
+                } else {
+                    appDelegate.showWindow()
+                }
             }
             Button("Quit") {
                 NSApplication.shared.terminate(nil)
@@ -26,72 +46,6 @@ struct GPTSpotmacOSApp: App {
         }
         Settings {
             SpotSettings()
-        }
-    }
-}
-class GPTAppDelegate: NSObject, NSApplicationDelegate {
-    var window: NSWindow?
-    var hotKeyRef: EventHotKeyRef?
-    var globalHotkeyManager: GlobalHotKeyManager?
-
-    func applicationDidFinishLaunching(_ notification: Notification) {
-        createWindow()
-        NSApp.setActivationPolicy(
-            UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.hideFromDock) ? .accessory: .regular
-        )
-        globalHotkeyManager = GlobalHotKeyManager(appDelegate: self)
-    }
-
-    func createWindow() {
-        if UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.windowed) {
-            setupRegularWindow()
-        } else {
-            setupBorderlessWindow()
-        }
-    }
-
-    func setupRegularWindow() {
-        window = RegularWindow(
-            for: NSHostingView(
-                rootView: ContentView()
-                    .frame(minWidth: 800, minHeight: 400)
-                    .modelContainer(for: [ChatMessage.self, Template.self])
-                    .environment(\.openAIService, OpenAIServiceKey.defaultValue)
-            )
-
-        )
-    }
-
-    func setupBorderlessWindow() {
-        window = BorderlessWindow(
-            for: NSHostingView(
-                rootView: ContentView()
-                    .modelContainer(for: [ChatMessage.self, Template.self])
-                    .environment(\.openAIService, OpenAIServiceKey.defaultValue)
-            )
-        )
-    }
-
-    func showWindow() {
-        guard let window = window else {
-            return
-        }
-        if !window.isVisible {
-            window.makeKeyAndOrderFront(nil)
-            NSApp.activate(ignoringOtherApps: true)
-        }
-    }
-
-    func toggleWindowVisibility() {
-        guard let window = window else {
-            return
-        }
-        if window.isVisible {
-            window.orderOut(nil)
-            NSApp.hide(nil)
-        } else {
-            window.makeKeyAndOrderFront(nil)
-            NSApp.activate(ignoringOtherApps: true)
         }
     }
 }
