@@ -12,7 +12,7 @@ import GPTSpot_Common
 struct WindowModifier: ViewModifier {
 
     func body(content: Content) -> some View {
-        if UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.windowed) {
+        if UserDefaults.standard.bool(forKey: UserDefaults.GeneralSettingsKeys.windowed) {
             content
         } else {
             content

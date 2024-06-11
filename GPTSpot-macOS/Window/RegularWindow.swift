@@ -27,7 +27,7 @@ class RegularWindow: NSWindow {
             defer: false
         )
         self.isOpaque = true
-        if UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.keepOnTop) {
+        if UserDefaults.standard.bool(forKey: UserDefaults.GeneralSettingsKeys.keepOnTop) {
             self.level = .floating
         }
         self.minSize = NSSize(width: 500, height: 200)
@@ -35,7 +35,7 @@ class RegularWindow: NSWindow {
         self.makeKey()
         self.setFrameAutosaveName(autoSaveName)
         self.contentView = contentView
-        if UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.startHidden) {
+        if UserDefaults.standard.bool(forKey: UserDefaults.GeneralSettingsKeys.startHidden) {
             self.orderOut(nil)
         } else {
             self.makeKeyAndOrderFront(nil)

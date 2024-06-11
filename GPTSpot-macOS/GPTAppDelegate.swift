@@ -17,7 +17,7 @@ class GPTAppDelegate: NSObject, NSApplicationDelegate {
     var globalHotkeyManager: GlobalHotKeyManager?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        if !UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.windowed) {
+        if !UserDefaults.standard.bool(forKey: UserDefaults.GeneralSettingsKeys.windowed) {
             window = BorderlessWindow(
                 for: NSHostingView(
                     rootView: ContentView()
@@ -26,8 +26,8 @@ class GPTAppDelegate: NSObject, NSApplicationDelegate {
                 )
             )
         }
-        let windowed = UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.windowed)
-        let hideFromDock = UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.hideFromDock)
+        let windowed = UserDefaults.standard.bool(forKey: UserDefaults.GeneralSettingsKeys.windowed)
+        let hideFromDock = UserDefaults.standard.bool(forKey: UserDefaults.GeneralSettingsKeys.hideFromDock)
         if !windowed {
             NSApp.setActivationPolicy(.accessory)
         } else {

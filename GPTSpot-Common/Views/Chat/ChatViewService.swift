@@ -11,9 +11,6 @@ import SwiftUI
 
 @Observable
 public final class ChatViewService {
-
-    let throttleIntervalInSeconds = 0.1
-
     public var generatingContent: Bool = false
 
     private let modelContext: ModelContext
@@ -48,7 +45,7 @@ public final class ChatViewService {
                     switch message {
                     case .response(let chunk, let id):
                         responseBuffer.append((id, chunk))
-                        if Date().timeIntervalSince1970 - time > throttleIntervalInSeconds {
+                        if Date().timeIntervalSince1970 - time > Constants.throttleIntervalInSeconds {
                             insertBufferedResponses(for: responseBuffer, workspace: workspace)
                             time = Date().timeIntervalSince1970
                             responseBuffer.removeAll()
@@ -70,9 +67,9 @@ public final class ChatViewService {
     }
 
     private func initializeWithSystemMessageIfEnabled(for workspace: Int) async {
-        if let systemMessage = UserDefaults.standard.string(forKey: AIServerDefaultsKeys.systemMessage),
+        if let systemMessage = UserDefaults.standard.string(forKey: UserDefaults.AIServerKeys.systemMessage),
            !systemMessage.isEmpty,
-           UserDefaults.standard.bool(forKey: AIServerDefaultsKeys.useSystemMessage) {
+           UserDefaults.standard.bool(forKey: UserDefaults.AIServerKeys.useSystemMessage) {
             let messageCountFetchDescriptor = FetchDescriptor<ChatMessage>()
             let messageCount = try? modelContext.fetchCount(messageCountFetchDescriptor)
 
@@ -195,7 +192,7 @@ public final class ChatViewService {
                 message.origin == "system"
             }
         )
-        let userLimit = UserDefaults.standard.integer(forKey: AIServerDefaultsKeys.maxHistory)
+        let userLimit = UserDefaults.standard.integer(forKey: UserDefaults.AIServerKeys.maxHistory)
         if userLimit > 0 {
             chatMessageHistoryFetchDescriptor.fetchLimit = userLimit
         }
@@ -255,5 +252,12 @@ public final class ChatViewService {
             workspace: workspace
         )
         modelContext.insert(chatMessage)
+    }
+}
+
+private extension ChatViewService {
+    enum Constants {
+        static let throttleIntervalInSeconds = 0.1
+        static let local = "local"
     }
 }

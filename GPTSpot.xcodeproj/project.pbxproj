@@ -33,7 +33,6 @@
 		026B92CC2BE5138100BCD0A7 /* ChatRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6A72B8BEE51001489A3 /* ChatRequest.swift */; };
 		026B92CD2BE5138100BCD0A7 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C7E202B8D79180060F343 /* ChatMessage.swift */; };
 		026B92CE2BE5138100BCD0A7 /* Chunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FE75212BA65A0B0048A4EB /* Chunk.swift */; };
-		026B92CF2BE5138600BCD0A7 /* GeneralSettingsDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48E52BAA40F8005E2FF7 /* GeneralSettingsDefaultsKeys.swift */; };
 		026B92D02BE5138600BCD0A7 /* GPTModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48E72BAA41D8005E2FF7 /* GPTModels.swift */; };
 		026B92D12BE5138600BCD0A7 /* AIServerDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48E32BAA40F1005E2FF7 /* AIServerDefaultsKeys.swift */; };
 		026B92D22BE5138B00BCD0A7 /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6A52B8BEE51001489A3 /* OpenAIService.swift */; };
@@ -46,7 +45,6 @@
 		026B92E52BE51D6C00BCD0A7 /* KeySequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230ED1D2BBF6A9300C067E6 /* KeySequence.swift */; };
 		026B92E62BE51D6C00BCD0A7 /* KeyRecordingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230ED1B2BBF6A7900C067E6 /* KeyRecordingState.swift */; };
 		026B92E72BE51D6C00BCD0A7 /* KeyCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230ED1F2BBF6CE700C067E6 /* KeyCaptureView.swift */; };
-		0275FB472C1794200027026B /* iOSDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0275FB462C1794200027026B /* iOSDefaultsKeys.swift */; };
 		028811382C135D270026ED01 /* TemplateStripeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028811372C135D270026ED01 /* TemplateStripeService.swift */; };
 		0288113A2C1516550026ED01 /* ChatCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028811392C1516550026ED01 /* ChatCompletion.swift */; };
 		0288113C2C1531490026ED01 /* ChatRequest+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288113B2C1531490026ED01 /* ChatRequest+Factory.swift */; };
@@ -159,7 +157,6 @@
 		026B929B2BE4FED400BCD0A7 /* GPTSpot_Common.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = GPTSpot_Common.docc; sourceTree = "<group>"; };
 		026B92B02BE501CB00BCD0A7 /* PromptEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptEditor.swift; sourceTree = "<group>"; };
 		026B92E22BE51CAD00BCD0A7 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
-		0275FB462C1794200027026B /* iOSDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSDefaultsKeys.swift; sourceTree = "<group>"; };
 		028811372C135D270026ED01 /* TemplateStripeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TemplateStripeService.swift; path = "GPTSpot-macOS/Views/Templates/TemplateStripeService.swift"; sourceTree = SOURCE_ROOT; };
 		028811392C1516550026ED01 /* ChatCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCompletion.swift; sourceTree = "<group>"; };
 		0288113B2C1531490026ED01 /* ChatRequest+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatRequest+Factory.swift"; sourceTree = "<group>"; };
@@ -172,7 +169,6 @@
 		028D48DE2BAA3CBC005E2FF7 /* AIServerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIServerSettingsView.swift; sourceTree = "<group>"; };
 		028D48E02BAA3CC9005E2FF7 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		028D48E32BAA40F1005E2FF7 /* AIServerDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIServerDefaultsKeys.swift; sourceTree = "<group>"; };
-		028D48E52BAA40F8005E2FF7 /* GeneralSettingsDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsDefaultsKeys.swift; sourceTree = "<group>"; };
 		028D48E72BAA41D8005E2FF7 /* GPTModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPTModels.swift; sourceTree = "<group>"; };
 		029673D72BB4EC0A0054062F /* CheatSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheatSheetView.swift; sourceTree = "<group>"; };
 		029673DE2BB8A0B80054062F /* WorkspaceIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceIndicatorView.swift; sourceTree = "<group>"; };
@@ -456,10 +452,8 @@
 			isa = PBXGroup;
 			children = (
 				028D48E32BAA40F1005E2FF7 /* AIServerDefaultsKeys.swift */,
-				028D48E52BAA40F8005E2FF7 /* GeneralSettingsDefaultsKeys.swift */,
 				028D48E72BAA41D8005E2FF7 /* GPTModels.swift */,
 				02A5ED332C132A3D0037E96D /* WorkspaceConfig.swift */,
-				0275FB462C1794200027026B /* iOSDefaultsKeys.swift */,
 			);
 			path = Defaults;
 			sourceTree = "<group>";
@@ -802,7 +796,6 @@
 				02FD0B8A2BE821AB0042B60C /* Array.swift in Sources */,
 				026B92D32BE5138B00BCD0A7 /* URLResponse+ErrorCode.swift in Sources */,
 				026B92C92BE5137100BCD0A7 /* ChatViewService.swift in Sources */,
-				026B92CF2BE5138600BCD0A7 /* GeneralSettingsDefaultsKeys.swift in Sources */,
 				026B92D02BE5138600BCD0A7 /* GPTModels.swift in Sources */,
 				026B92D12BE5138600BCD0A7 /* AIServerDefaultsKeys.swift in Sources */,
 				0288113A2C1516550026ED01 /* ChatCompletion.swift in Sources */,
@@ -812,7 +805,6 @@
 				02A5ED342C132A3D0037E96D /* WorkspaceConfig.swift in Sources */,
 				026B92CD2BE5138100BCD0A7 /* ChatMessage.swift in Sources */,
 				026B92CE2BE5138100BCD0A7 /* Chunk.swift in Sources */,
-				0275FB472C1794200027026B /* iOSDefaultsKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

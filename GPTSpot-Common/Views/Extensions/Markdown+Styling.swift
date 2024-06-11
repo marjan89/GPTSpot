@@ -12,7 +12,7 @@ import SwiftUI
 public extension Markdown {
 
     func gptStyle() -> some View {
-        self.markdownBlockStyle(\.codeBlock) { configuration in
+        markdownBlockStyle(\.codeBlock) { configuration in
             configuration.label
                 .relativeLineSpacing(.em(0.25))
                 .markdownTextStyle {

@@ -12,7 +12,7 @@ import SwiftData
 struct ChatView: View {
     @Environment(ChatViewService.self) private var chatViewService: ChatViewService
     @Query private var templates: [Template]
-    @AppStorage(IOSDefaultsKeys.expandedInputField) private var expandedInputField: Bool = false
+    @AppStorage(UserDefaults.IOSKeys.expandedInputField) private var expandedInputField: Bool = false
     @State private var prompt = ""
 
     private let workspace: Int

@@ -9,12 +9,12 @@ import SwiftUI
 import GPTSpot_Common
 
 struct SettingsView: View {
-    @AppStorage(AIServerDefaultsKeys.aiModel) private var aiModel = GPTModels.models.first ?? "no models defined"
-    @AppStorage(AIServerDefaultsKeys.temperature) private var temperature = 0.5
-    @AppStorage(AIServerDefaultsKeys.openAiKey) private var openAiKey = ""
-    @AppStorage(AIServerDefaultsKeys.maxHistory) private var maxHistory = 6
-    @AppStorage(AIServerDefaultsKeys.systemMessage) private var systemMessage = ""
-    @AppStorage(AIServerDefaultsKeys.useSystemMessage) private var useSystemMessage = false
+    @AppStorage(UserDefaults.AIServerKeys.aiModel) private var aiModel = GPTModels.models.first ?? "no models defined"
+    @AppStorage(UserDefaults.AIServerKeys.temperature) private var temperature = 0.5
+    @AppStorage(UserDefaults.AIServerKeys.openAiKey) private var openAiKey = ""
+    @AppStorage(UserDefaults.AIServerKeys.maxHistory) private var maxHistory = 6
+    @AppStorage(UserDefaults.AIServerKeys.systemMessage) private var systemMessage = ""
+    @AppStorage(UserDefaults.AIServerKeys.useSystemMessage) private var useSystemMessage = false
 
     var body: some View {
         Form {

@@ -117,7 +117,7 @@ public class OpenAIService {
     private func createRequest(for chatRequest: ChatRequest) throws -> URLRequest {
         let url = URL(string: "https://api.openai.com/v1/chat/completions")!
         var request = URLRequest(url: url)
-        let apiKey = UserDefaults.standard.string(forKey: AIServerDefaultsKeys.openAiKey) ?? ""
+        let apiKey = UserDefaults.standard.string(forKey: UserDefaults.AIServerKeys.openAiKey) ?? ""
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")

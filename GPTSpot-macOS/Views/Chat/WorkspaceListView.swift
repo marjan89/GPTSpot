@@ -43,7 +43,7 @@ struct WorkspaceListView: View {
                 }
             }
             .map { chatMessage in chatMessage.workspace }
-            .distinct<T>()
+            .distinct
             .sorted()
         return if query.isEmpty && !workspaces.contains(activeWorkspace) {
             [activeWorkspace] + workspaces

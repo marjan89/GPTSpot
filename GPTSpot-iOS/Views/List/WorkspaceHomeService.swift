@@ -25,7 +25,7 @@ final class WorkspaceHomeService {
 
         let activeWorkspaces = chatMessages
             .map { chatMessage in chatMessage.workspace }
-            .distinct<T>()
+            .distinct
             .sorted()
         return Array(WorkspaceConfig.firstOrdinal..<WorkspaceConfig.workspaceLimit)
             .filter { workspace in

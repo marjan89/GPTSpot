@@ -30,7 +30,7 @@ class BorderlessWindow: NSWindow {
         self.makeKey()
         self.center()
         self.contentView = contentView
-        if UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.startHidden) {
+        if UserDefaults.standard.bool(forKey: UserDefaults.GeneralSettingsKeys.startHidden) {
             self.orderOut(nil)
         } else {
             self.makeKeyAndOrderFront(nil)

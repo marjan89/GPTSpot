@@ -26,7 +26,7 @@ struct WorkspaceListView: View {
     private var activeWorkspaces: [Int] {
         chatMessages
             .map { chatMessage in chatMessage.workspace }
-            .distinct<T>()
+            .distinct
             .sorted()
     }
 

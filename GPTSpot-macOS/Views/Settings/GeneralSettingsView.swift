@@ -10,10 +10,10 @@ import SwiftUI
 import GPTSpot_Common
 
 struct GeneralSettingsView: View {
-    @AppStorage(GeneralSettingsDefaultsKeys.startHidden) private var startHidden = false
-    @AppStorage(GeneralSettingsDefaultsKeys.hideFromDock) private var hideFromDock = false
-    @AppStorage(GeneralSettingsDefaultsKeys.windowed) private var windowed = false
-    @AppStorage(GeneralSettingsDefaultsKeys.keepOnTop) private var keepOnTop = false
+    @AppStorage(UserDefaults.GeneralSettingsKeys.startHidden) private var startHidden = false
+    @AppStorage(UserDefaults.GeneralSettingsKeys.hideFromDock) private var hideFromDock = false
+    @AppStorage(UserDefaults.GeneralSettingsKeys.windowed) private var windowed = false
+    @AppStorage(UserDefaults.GeneralSettingsKeys.keepOnTop) private var keepOnTop = false
 
     var body: some View {
         Form {

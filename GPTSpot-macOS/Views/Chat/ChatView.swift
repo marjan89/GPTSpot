@@ -21,7 +21,7 @@ struct ChatView: View {
     @State var templateSearchQuery = ""
     @State var prompt = ""
     @State var query: String = ""
-    private let windowed = UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.windowed)
+    private let windowed = UserDefaults.standard.bool(forKey: UserDefaults.GeneralSettingsKeys.windowed)
 
     var body: some View {
         if windowed {

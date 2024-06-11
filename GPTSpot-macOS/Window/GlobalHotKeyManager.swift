@@ -16,13 +16,13 @@ class GlobalHotKeyManager {
 
     init(appDelegate: GPTAppDelegate) {
         self.appDelegate = appDelegate
-        if !UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.windowed) {
+        if !UserDefaults.standard.bool(forKey: UserDefaults.GeneralSettingsKeys.windowed) {
             registerGlobalHotKey()
         }
     }
 
     deinit {
-        if !UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.windowed) {
+        if !UserDefaults.standard.bool(forKey: UserDefaults.GeneralSettingsKeys.windowed) {
             unregisterGlobalHotKey()
         }
     }

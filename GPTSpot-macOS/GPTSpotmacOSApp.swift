@@ -8,7 +8,7 @@ struct GPTSpotmacOSApp: App {
     @NSApplicationDelegateAdaptor(GPTAppDelegate.self) var appDelegate
     @Environment(\.dismissWindow) var dismissWindow
     @Environment(\.openWindow) var openWindow
-    private let windowed: Bool = UserDefaults.standard.bool(forKey: GeneralSettingsDefaultsKeys.windowed)
+    private let windowed: Bool = UserDefaults.standard.bool(forKey: UserDefaults.GeneralSettingsKeys.windowed)
     private let windowId = UUID().uuidString
 
     var body: some Scene {

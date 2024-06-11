@@ -9,8 +9,7 @@ import Foundation
 
 public extension Array where Element: Hashable {
 
-    func distinct() -> [Element] {
-        var seen = Set<Element>()
-        return self.filter { seen.insert($0).inserted }
+    var distinct: [Element] {
+        Array(Set(self))
     }
 }

@@ -13,8 +13,8 @@ struct StatsView: View {
 
     @Query var chatMessages: [ChatMessage]
 
-    @AppStorage(AIServerDefaultsKeys.maxHistory) private var maxHistory = 6
-    @AppStorage(AIServerDefaultsKeys.aiModel) private var aiModel = "Not defined"
+    @AppStorage(UserDefaults.AIServerKeys.maxHistory) private var maxHistory = 6
+    @AppStorage(UserDefaults.AIServerKeys.aiModel) private var aiModel = "Not defined"
 
     init(workspace: Int) {
         _chatMessages = Query(
