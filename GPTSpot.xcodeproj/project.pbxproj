@@ -11,6 +11,8 @@
 		0237CABE2C176C2B00754541 /* GPTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0237CABD2C176C2B00754541 /* GPTAppDelegate.swift */; };
 		023B78722BEAD523009D90B8 /* RegularWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023B78712BEAD523009D90B8 /* RegularWindow.swift */; };
 		023B78762BEADD8A009D90B8 /* WindowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023B78752BEADD8A009D90B8 /* WindowModifier.swift */; };
+		024B1F632C18560C00BC6007 /* TemplateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024B1F622C18560C00BC6007 /* TemplateService.swift */; };
+		024B1F652C18590A00BC6007 /* ChatMessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024B1F642C18590A00BC6007 /* ChatMessageService.swift */; };
 		025AE6762B8BA51F001489A3 /* GPTSpotmacOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6752B8BA51F001489A3 /* GPTSpotmacOSApp.swift */; };
 		025AE6782B8BA51F001489A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6772B8BA51F001489A3 /* ContentView.swift */; };
 		025AE67D2B8BA521001489A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025AE67C2B8BA521001489A3 /* Preview Assets.xcassets */; };
@@ -135,6 +137,8 @@
 		0237CABD2C176C2B00754541 /* GPTAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GPTAppDelegate.swift; path = "GPTSpot-macOS/GPTAppDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		023B78712BEAD523009D90B8 /* RegularWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularWindow.swift; sourceTree = "<group>"; };
 		023B78752BEADD8A009D90B8 /* WindowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WindowModifier.swift; path = "GPTSpot-macOS/Views/Modifiers/WindowModifier.swift"; sourceTree = SOURCE_ROOT; };
+		024B1F622C18560C00BC6007 /* TemplateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateService.swift; sourceTree = "<group>"; };
+		024B1F642C18590A00BC6007 /* ChatMessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageService.swift; sourceTree = "<group>"; };
 		025AE6722B8BA51F001489A3 /* GPTSpot-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPTSpot-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		025AE6752B8BA51F001489A3 /* GPTSpotmacOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPTSpotmacOSApp.swift; sourceTree = "<group>"; };
 		025AE6772B8BA51F001489A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -329,6 +333,8 @@
 				025AE6A52B8BEE51001489A3 /* OpenAIService.swift */,
 				02AB8C932BE42F59006C0853 /* URLResponse+ErrorCode.swift */,
 				0288113B2C1531490026ED01 /* ChatRequest+Factory.swift */,
+				024B1F622C18560C00BC6007 /* TemplateService.swift */,
+				024B1F642C18590A00BC6007 /* ChatMessageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -797,8 +803,10 @@
 				026B92D32BE5138B00BCD0A7 /* URLResponse+ErrorCode.swift in Sources */,
 				026B92C92BE5137100BCD0A7 /* ChatViewService.swift in Sources */,
 				026B92D02BE5138600BCD0A7 /* GPTModels.swift in Sources */,
+				024B1F632C18560C00BC6007 /* TemplateService.swift in Sources */,
 				026B92D12BE5138600BCD0A7 /* AIServerDefaultsKeys.swift in Sources */,
 				0288113A2C1516550026ED01 /* ChatCompletion.swift in Sources */,
+				024B1F652C18590A00BC6007 /* ChatMessageService.swift in Sources */,
 				026B929C2BE4FED400BCD0A7 /* GPTSpot_Common.docc in Sources */,
 				026B92CA2BE5138100BCD0A7 /* Template.swift in Sources */,
 				026B92CC2BE5138100BCD0A7 /* ChatRequest.swift in Sources */,

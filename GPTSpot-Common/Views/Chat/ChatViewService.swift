@@ -15,10 +15,12 @@ public final class ChatViewService {
 
     private let modelContext: ModelContext
     private let openAiService: OpenAIService
+    private let chatMessageService: ChatMessageService
 
-    public init(modelContext: ModelContext, openAISerice: OpenAIService) {
+    public init(modelContext: ModelContext, openAISerice: OpenAIService, chatMessageService: ChatMessageService) {
         self.modelContext = modelContext
         self.openAiService = openAISerice
+        self.chatMessageService = chatMessageService
     }
 
     public func executePrompt(workspace: Int, prompt: String) {
@@ -35,9 +37,9 @@ public final class ChatViewService {
 
             await initializeWithSystemMessageIfEnabled(for: workspace)
 
-            insertOrUpdateChatMessage(for: prompt, origin: .user, workspace: workspace)
+            chatMessageService.insertOrUpdateChatMessage(for: prompt, origin: .user, workspace: workspace)
 
-            let chatRequest = ChatRequest.request(with: self.loadChatHistory(for: workspace))
+            let chatRequest = ChatRequest.request(with: loadChatHistory(for: workspace))
             var responseBuffer: [(String, String)] = []
             var time = Date().timeIntervalSince1970
             if let messageStream = try? await openAiService.completion(for: chatRequest) {
@@ -54,7 +56,7 @@ public final class ChatViewService {
                         insertBufferedResponses(for: responseBuffer, workspace: workspace)
                         generatingContent = false
                     case .error(let errorType):
-                        insertChatMessage(
+                        chatMessageService.insertChatMessage(
                             for: handleError(error: errorType),
                             origin: .local,
                             workspace: workspace
@@ -70,12 +72,17 @@ public final class ChatViewService {
         if let systemMessage = UserDefaults.standard.string(forKey: UserDefaults.AIServerKeys.systemMessage),
            !systemMessage.isEmpty,
            UserDefaults.standard.bool(forKey: UserDefaults.AIServerKeys.useSystemMessage) {
-            let messageCountFetchDescriptor = FetchDescriptor<ChatMessage>()
+            let messageCountFetchDescriptor = FetchDescriptor<ChatMessage>(
+                predicate: #Predicate<ChatMessage> { message in
+                    message.workspace == workspace && message.origin != "local"
+                },
+                sortBy: [.init(\ChatMessage.timestamp)]
+            )
             let messageCount = try? modelContext.fetchCount(messageCountFetchDescriptor)
 
             if messageCount == 0 {
                 let systemRequest = ChatRequest.systemRequest()
-                insertChatMessage(
+                chatMessageService.insertChatMessage(
                     for: systemMessage,
                     origin: .system,
                     id: UUID().uuidString,
@@ -83,13 +90,13 @@ public final class ChatViewService {
                 )
                 do {
                     try await openAiService.request(for: systemRequest)
-                    insertOrUpdateChatMessage(
+                    chatMessageService.insertOrUpdateChatMessage(
                         for: "🛠️ This workspace is using a system message: \(systemMessage)",
                         origin: .local,
                         workspace: workspace
                     )
                 } catch {
-                    insertOrUpdateChatMessage(
+                    chatMessageService.insertOrUpdateChatMessage(
                         for: "⚠️ Failed to set system message.",
                         origin: .local,
                         workspace: workspace
@@ -108,52 +115,12 @@ public final class ChatViewService {
         }
 
         let chunk = responseBuffer.map { response in response.1 }.joined()
-        self.insertOrUpdateChatMessage(for: chunk, origin: .assistant, id: id, workspace: workspace)
-    }
-
-    public func savePrompAsTemplate(_ prompt: String) {
-        modelContext.insert(Template(content: prompt))
+        chatMessageService.insertOrUpdateChatMessage(for: chunk, origin: .assistant, id: id, workspace: workspace)
     }
 
     public func cancelCompletion() {
         openAiService.cancelCompletion()
         generatingContent = false
-    }
-
-    public func deleteChatMessage(_ chatMessage: ChatMessage) {
-        modelContext.delete(chatMessage)
-    }
-
-    public func insertTemplate(_ template: Template) {
-        modelContext.insert(template)
-    }
-
-    public func discardHistory(for workspace: Int) {
-        try? modelContext.delete(
-            model: ChatMessage.self,
-            where: #Predicate<ChatMessage> { message in
-                message.workspace == workspace
-            }
-        )
-    }
-
-    public func deleteTemplate(_ template: Template) {
-        modelContext.delete(template)
-    }
-
-    public func getLastChatMessageContent(workspace: Int) -> String {
-        var lastChatMessagesFetchDescriptor = FetchDescriptor<ChatMessage>(
-            predicate: #Predicate<ChatMessage> { message in
-                message.origin == "user" && message.workspace == workspace
-            },
-            sortBy: [.init(\ChatMessage.timestamp, order: .reverse)]
-        )
-        lastChatMessagesFetchDescriptor.fetchLimit = 1
-        if let lastMessageContent = try? modelContext.fetch(lastChatMessagesFetchDescriptor).first?.content {
-            return lastMessageContent
-        }
-
-        return ""
     }
 
     private func handleError(error: MessageErrorType) -> String {
@@ -218,40 +185,13 @@ public final class ChatViewService {
                 history
             }
         } catch {
-            insertOrUpdateChatMessage(
+            chatMessageService.insertOrUpdateChatMessage(
                 for: "Response error: failed to fetch history",
                 origin: .local,
                 workspace: workspace
             )
             return []
         }
-    }
-
-    private func insertOrUpdateChatMessage(for content: String, origin: Role, id: String = "", workspace: Int) {
-        if origin == .user {
-            insertChatMessage(for: content, origin: origin, id: UUID().uuidString, workspace: workspace)
-            return
-        }
-        let searchPredicate = #Predicate<ChatMessage> { message in
-            message.id == id
-        }
-        let persistedMessage = try? modelContext.fetch(FetchDescriptor<ChatMessage>(predicate: searchPredicate)).first
-        if let persistedMessage {
-            persistedMessage.content += content
-        } else {
-            insertChatMessage(for: content, origin: origin, id: id, workspace: workspace)
-        }
-    }
-
-    private func insertChatMessage(for content: String, origin: Role, id: String = UUID().uuidString, workspace: Int) {
-        let chatMessage = ChatMessage(
-            content: content,
-            origin: origin.rawValue,
-            timestamp: Date().timeIntervalSince1970,
-            id: id,
-            workspace: workspace
-        )
-        modelContext.insert(chatMessage)
     }
 }
 

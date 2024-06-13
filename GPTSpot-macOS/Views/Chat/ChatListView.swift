@@ -17,6 +17,9 @@ struct ChatListView: View {
 
     @FocusState private var focusedMessageField: FocusedMessageField?
     @Environment(ChatViewService.self) private var chatViewService: ChatViewService
+    @Environment(ChatMessageService.self) private var chatMessageService: ChatMessageService
+    @Environment(TemplateService.self) private var templateService: TemplateService
+
     @Query private var chatMessages: [ChatMessage]
     @Binding private var prompt: String
     private let workspace: Int
@@ -58,13 +61,13 @@ struct ChatListView: View {
                             }
                             .keyboardShortcut(.return, modifiers: .option)
                             Button {
-                                chatViewService.deleteChatMessage(chatMessage)
+                                chatMessageService.deleteChatMessage(chatMessage)
                             } label: {
                                 Text("Delete")
                             }
                             .keyboardShortcut(.delete, modifiers: .option)
                             Button {
-                                chatViewService.insertTemplate(Template(content: chatMessage.content))
+                                templateService.insertTemplate(Template(content: chatMessage.content))
                             } label: {
                                 Text("Save template")
                             }
@@ -111,12 +114,12 @@ struct ChatListView: View {
         }
         HotkeyAction(hotkey: .delete, eventModifiers: .option) {
             if case let .focusedMessage(chatMessage) = focusedMessageField {
-                chatViewService.deleteChatMessage(chatMessage)
+                chatMessageService.deleteChatMessage(chatMessage)
             }
         }
         HotkeyAction(hotkey: .init("s"), eventModifiers: .option) {
             if case let .focusedMessage(chatMessage) = focusedMessageField {
-                chatViewService.deleteTemplate(Template(content: chatMessage.content))
+                templateService.deleteTemplate(Template(content: chatMessage.content))
             }
         }
         HotkeyAction(hotkey: .init("c"), eventModifiers: .option) {

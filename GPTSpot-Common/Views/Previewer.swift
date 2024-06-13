@@ -14,6 +14,7 @@ public struct Previewer {
     public let container: ModelContainer
     public let openAIService: OpenAIService
     public let chatViewService: ChatViewService
+    public let chatMessageService: ChatMessageService
 
     public init() throws {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
@@ -26,9 +27,12 @@ public struct Previewer {
         let chatMessages: [ChatMessage]
         let templates: [Template]
         openAIService = OpenAIServiceKey.defaultValue
+        chatMessageService = ChatMessageService(modelContext: container.mainContext)
+
         chatViewService = ChatViewService(
             modelContext: container.mainContext,
-            openAISerice: openAIService
+            openAISerice: openAIService,
+            chatMessageService: chatMessageService
         )
 
         chatMessages = produceMockChatMessages()

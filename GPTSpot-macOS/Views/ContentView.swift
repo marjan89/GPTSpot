@@ -17,10 +17,13 @@ struct ContentView: View {
             .environment(
                 ChatViewService(
                     modelContext: modelContext,
-                    openAISerice: openAIService
+                    openAISerice: openAIService,
+                    chatMessageService: ChatMessageService(modelContext: modelContext)
                 )
             )
             .environment(TemplateStripeService(modelContext: modelContext))
+            .environment(ChatMessageService(modelContext: modelContext))
+            .environment(TemplateService(modelContext: modelContext))
     }
 }
 

@@ -12,6 +12,8 @@ import GPTSpot_Common
 struct ChatView: View {
 
     @Environment(ChatViewService.self) private var chatViewService: ChatViewService
+    @Environment(ChatMessageService.self) private var chatMessageService: ChatMessageService
+    @Environment(TemplateService.self) private var templateService: TemplateService
 
     @FocusState private var focusedField: Bool
     @State var workspace = 1
@@ -69,7 +71,7 @@ struct ChatView: View {
             NavigationSplitView {
                 WorkspaceListView(
                     onItemDelete: { workspace in
-                        chatViewService.discardHistory(for: workspace)
+                        chatMessageService.discardHistory(for: workspace)
                     },
                     activeWorkspace: $workspace,
                     query: $query
@@ -169,10 +171,10 @@ struct ChatView: View {
             !templateSearchQuery.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             Button {
                 if showTemplateStripe {
-                    chatViewService.insertTemplate(Template(content: templateSearchQuery))
+                    templateService.insertTemplate(Template(content: templateSearchQuery))
                     templateSearchQuery = ""
                 } else {
-                    chatViewService.savePrompAsTemplate(prompt)
+                    templateService.insertTemplate(for: prompt)
                 }
             } label: {
                 Image(systemName: "square.and.arrow.down.fill")
@@ -224,7 +226,7 @@ struct ChatView: View {
     @ViewBuilder
     private func trashButton() -> some View {
         Button {
-            chatViewService.discardHistory(for: workspace)
+            chatMessageService.discardHistory(for: workspace)
         } label: {
             Image(systemName: "trash.fill")
         }
@@ -249,7 +251,7 @@ struct ChatView: View {
     private func lastMessageAsPrompt() -> some View {
         Button {
             focusedField = true
-            prompt = chatViewService.getLastChatMessageContent(workspace: workspace)
+            prompt = chatMessageService.getLastChatMessageContent(for: workspace)
         } label: {
             Image(systemName: "memories")
         }

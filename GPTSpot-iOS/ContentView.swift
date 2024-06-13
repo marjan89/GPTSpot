@@ -17,6 +17,8 @@ struct ContentView: View {
         WorkspaceHomeView()
             .environment(ChatViewService(modelContext: modelContext, openAISerice: openAIService))
             .environment(WorkspaceHomeService(modelContext: modelContext))
+            .environment(ChatMessageService(modelContext: modelContext))
+            .environment(TemplateService(modelContext: modelContext))
     }
 }
 
