@@ -16,9 +16,9 @@ enum FocusedMessageField: Hashable {
 struct ChatListView: View {
 
     @FocusState private var focusedMessageField: FocusedMessageField?
-    @Environment(ChatViewService.self) private var chatViewService: ChatViewService
-    @Environment(ChatMessageService.self) private var chatMessageService: ChatMessageService
-    @Environment(TemplateService.self) private var templateService: TemplateService
+    @Environment(\.chatViewService) private var chatViewService: ChatViewService
+    @Environment(\.chatMessageService) private var chatMessageService: ChatMessageService
+    @Environment(\.templateService) private var templateService: TemplateService
 
     @Query private var chatMessages: [ChatMessage]
     @Binding private var prompt: String
@@ -40,7 +40,7 @@ struct ChatListView: View {
 //            hotkeys()
             ScrollViewReader { proxy in
                 GeometryReader { geometry in
-                    List(chatMessages, id: \.id) { chatMessage in
+                    List(chatMessages, id: \.content) { chatMessage in
                         ChatMessageView(
                             chatMessage: chatMessage,
                             maxMessageWidth: geometry.size.width * 0.66
@@ -79,17 +79,17 @@ struct ChatListView: View {
                     }
                     .onChange(of: focusedMessageField) {
                         if case let .focusedMessage(chatMessage) = focusedMessageField {
-                            proxy.scrollTo(chatMessage.id)
+                            proxy.scrollTo(chatMessage.content)
                         }
                     }
                     .onChange(of: chatMessages) {
                         if let lastChatMessage = chatMessages.last {
-                            proxy.scrollTo(lastChatMessage.id)
+                            proxy.scrollTo(lastChatMessage.content)
                         }
                     }
                     .onAppear {
                         if let lastChatMessage = chatMessages.last {
-                            proxy.scrollTo(lastChatMessage.id)
+                            proxy.scrollTo(lastChatMessage.content)
                         }
                     }
                     .listStyle(.plain)

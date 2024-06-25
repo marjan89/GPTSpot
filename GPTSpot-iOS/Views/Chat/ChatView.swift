@@ -10,7 +10,7 @@ import GPTSpot_Common
 import SwiftData
 
 struct ChatView: View {
-    @Environment(ChatViewService.self) private var chatViewService: ChatViewService
+    @Environment(\.chatViewService) private var chatViewService: ChatViewService
     @Query private var templates: [Template]
     @AppStorage(UserDefaults.IOSKeys.expandedInputField) private var expandedInputField: Bool = false
     @State private var prompt = ""

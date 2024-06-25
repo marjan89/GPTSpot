@@ -11,7 +11,7 @@ import GPTSpot_Common
 
 struct WorkspaceHomeView: View {
 
-    @Environment(ChatViewService.self) private var chatViewService: ChatViewService
+    @Environment(\.chatViewService) private var chatViewService: ChatViewService
     @Environment(WorkspaceHomeService.self) private var workspaceHomeService: WorkspaceHomeService
 
     @State private var path = [WorkspaceHomePath]()

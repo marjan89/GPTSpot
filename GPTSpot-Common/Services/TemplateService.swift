@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import SwiftUI
 
 @Observable
 public class TemplateService {
@@ -27,5 +28,16 @@ public class TemplateService {
 
     public func deleteTemplate(_ template: Template) {
         modelContext.delete(template)
+    }
+}
+
+public struct TemplateServiceKey: EnvironmentKey {
+    public static let defaultValue: TemplateService = Container.shared.resolve(TemplateService.self)
+}
+
+extension EnvironmentValues {
+    public var templateService: TemplateService {
+        get { self[TemplateServiceKey.self] }
+        set { self[TemplateServiceKey.self] = newValue }
     }
 }

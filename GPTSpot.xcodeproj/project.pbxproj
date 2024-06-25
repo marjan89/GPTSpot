@@ -7,12 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		022865352C2D7F7D00F92B05 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 022865342C2D7F7D00F92B05 /* MarkdownUI */; };
+		022865372C2D7F8900F92B05 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 022865362C2D7F8900F92B05 /* MarkdownUI */; };
+		022865392C2D7F8F00F92B05 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 022865382C2D7F8F00F92B05 /* MarkdownUI */; };
+		0228653B2C2E269100F92B05 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0228653A2C2E269100F92B05 /* Module.swift */; };
+		0228653D2C2E26A600F92B05 /* DataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0228653C2C2E26A600F92B05 /* DataModule.swift */; };
+		0228653F2C2E26AF00F92B05 /* CommonModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0228653E2C2E26AF00F92B05 /* CommonModule.swift */; };
+		022865412C2E271200F92B05 /* Container+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022865402C2E271200F92B05 /* Container+Shared.swift */; };
 		0230ED162BBDFC8700C067E6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */; };
-		0237CABE2C176C2B00754541 /* GPTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0237CABD2C176C2B00754541 /* GPTAppDelegate.swift */; };
+		0237CABE2C176C2B00754541 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0237CABD2C176C2B00754541 /* AppDelegate.swift */; };
 		023B78722BEAD523009D90B8 /* RegularWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023B78712BEAD523009D90B8 /* RegularWindow.swift */; };
 		023B78762BEADD8A009D90B8 /* WindowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023B78752BEADD8A009D90B8 /* WindowModifier.swift */; };
 		024B1F632C18560C00BC6007 /* TemplateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024B1F622C18560C00BC6007 /* TemplateService.swift */; };
 		024B1F652C18590A00BC6007 /* ChatMessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024B1F642C18590A00BC6007 /* ChatMessageService.swift */; };
+		024B1F682C1B469E00BC6007 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024B1F672C1B469E00BC6007 /* Container.swift */; };
 		025AE6762B8BA51F001489A3 /* GPTSpotmacOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6752B8BA51F001489A3 /* GPTSpotmacOSApp.swift */; };
 		025AE6782B8BA51F001489A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6772B8BA51F001489A3 /* ContentView.swift */; };
 		025AE67D2B8BA521001489A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025AE67C2B8BA521001489A3 /* Preview Assets.xcassets */; };
@@ -25,7 +33,6 @@
 		026B929D2BE4FED400BCD0A7 /* GPTSpot_Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 026B929A2BE4FED400BCD0A7 /* GPTSpot_Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		026B92A02BE4FED400BCD0A7 /* GPTSpot_Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 026B92982BE4FED400BCD0A7 /* GPTSpot_Common.framework */; };
 		026B92A12BE4FED400BCD0A7 /* GPTSpot_Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 026B92982BE4FED400BCD0A7 /* GPTSpot_Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		026B92A72BE4FFAC00BCD0A7 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 026B92A62BE4FFAC00BCD0A7 /* MarkdownUI */; };
 		026B92A82BE4FFAF00BCD0A7 /* GPTSpot_Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 026B92982BE4FED400BCD0A7 /* GPTSpot_Common.framework */; };
 		026B92A92BE4FFAF00BCD0A7 /* GPTSpot_Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 026B92982BE4FED400BCD0A7 /* GPTSpot_Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		026B92AD2BE5009000BCD0A7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */; };
@@ -39,7 +46,6 @@
 		026B92D12BE5138600BCD0A7 /* AIServerDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48E32BAA40F1005E2FF7 /* AIServerDefaultsKeys.swift */; };
 		026B92D22BE5138B00BCD0A7 /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6A52B8BEE51001489A3 /* OpenAIService.swift */; };
 		026B92D32BE5138B00BCD0A7 /* URLResponse+ErrorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AB8C932BE42F59006C0853 /* URLResponse+ErrorCode.swift */; };
-		026B92D52BE5170A00BCD0A7 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 026B92D42BE5170A00BCD0A7 /* MarkdownUI */; };
 		026B92DB2BE5176200BCD0A7 /* Previewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A17A212BA60CD000C26A67 /* Previewer.swift */; };
 		026B92E12BE5179E00BCD0A7 /* Markdown+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288BF672BB32DF00047CA09 /* Markdown+Styling.swift */; };
 		026B92E32BE51CAD00BCD0A7 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026B92E22BE51CAD00BCD0A7 /* ChatView.swift */; };
@@ -47,7 +53,6 @@
 		026B92E52BE51D6C00BCD0A7 /* KeySequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230ED1D2BBF6A9300C067E6 /* KeySequence.swift */; };
 		026B92E62BE51D6C00BCD0A7 /* KeyRecordingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230ED1B2BBF6A7900C067E6 /* KeyRecordingState.swift */; };
 		026B92E72BE51D6C00BCD0A7 /* KeyCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230ED1F2BBF6CE700C067E6 /* KeyCaptureView.swift */; };
-		028811382C135D270026ED01 /* TemplateStripeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028811372C135D270026ED01 /* TemplateStripeService.swift */; };
 		0288113A2C1516550026ED01 /* ChatCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028811392C1516550026ED01 /* ChatCompletion.swift */; };
 		0288113C2C1531490026ED01 /* ChatRequest+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288113B2C1531490026ED01 /* ChatRequest+Factory.swift */; };
 		028811412C1540400026ED01 /* WorkspaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288113D2C153F430026ED01 /* WorkspaceListView.swift */; };
@@ -69,7 +74,6 @@
 		02A5ED342C132A3D0037E96D /* WorkspaceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A5ED332C132A3D0037E96D /* WorkspaceConfig.swift */; };
 		02A5ED362C133FDB0037E96D /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A5ED352C133FDB0037E96D /* ChatListView.swift */; };
 		02AB8C922BE41528006C0853 /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AB8C912BE41528006C0853 /* LaunchAtLogin.swift */; };
-		02AB8C9D2BE47E4C006C0853 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 02AB8C9C2BE47E4C006C0853 /* MarkdownUI */; };
 		02BD90B22BA8E5480047115E /* SpotSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BD90B12BA8E5480047115E /* SpotSettings.swift */; };
 		02E04C432BB1D9F50074A95E /* GlobalHotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */; };
 		02F8690C2C0A9CEF00961513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025AE6792B8BA520001489A3 /* Assets.xcassets */; };
@@ -129,16 +133,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0228653A2C2E269100F92B05 /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
+		0228653C2C2E26A600F92B05 /* DataModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModule.swift; sourceTree = "<group>"; };
+		0228653E2C2E26AF00F92B05 /* CommonModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonModule.swift; sourceTree = "<group>"; };
+		022865402C2E271200F92B05 /* Container+Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Container+Shared.swift"; path = "GPTSpot-macOS/Container+Shared.swift"; sourceTree = SOURCE_ROOT; };
 		0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		0230ED182BBF48FA00C067E6 /* KeyRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyRecordingView.swift; sourceTree = "<group>"; };
 		0230ED1B2BBF6A7900C067E6 /* KeyRecordingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyRecordingState.swift; sourceTree = "<group>"; };
 		0230ED1D2BBF6A9300C067E6 /* KeySequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeySequence.swift; sourceTree = "<group>"; };
 		0230ED1F2BBF6CE700C067E6 /* KeyCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCaptureView.swift; sourceTree = "<group>"; };
-		0237CABD2C176C2B00754541 /* GPTAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GPTAppDelegate.swift; path = "GPTSpot-macOS/GPTAppDelegate.swift"; sourceTree = SOURCE_ROOT; };
+		0237CABD2C176C2B00754541 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "GPTSpot-macOS/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		023B78712BEAD523009D90B8 /* RegularWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularWindow.swift; sourceTree = "<group>"; };
 		023B78752BEADD8A009D90B8 /* WindowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WindowModifier.swift; path = "GPTSpot-macOS/Views/Modifiers/WindowModifier.swift"; sourceTree = SOURCE_ROOT; };
 		024B1F622C18560C00BC6007 /* TemplateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateService.swift; sourceTree = "<group>"; };
 		024B1F642C18590A00BC6007 /* ChatMessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageService.swift; sourceTree = "<group>"; };
+		024B1F672C1B469E00BC6007 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		025AE6722B8BA51F001489A3 /* GPTSpot-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPTSpot-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		025AE6752B8BA51F001489A3 /* GPTSpotmacOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPTSpotmacOSApp.swift; sourceTree = "<group>"; };
 		025AE6772B8BA51F001489A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -161,7 +170,6 @@
 		026B929B2BE4FED400BCD0A7 /* GPTSpot_Common.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = GPTSpot_Common.docc; sourceTree = "<group>"; };
 		026B92B02BE501CB00BCD0A7 /* PromptEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptEditor.swift; sourceTree = "<group>"; };
 		026B92E22BE51CAD00BCD0A7 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
-		028811372C135D270026ED01 /* TemplateStripeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TemplateStripeService.swift; path = "GPTSpot-macOS/Views/Templates/TemplateStripeService.swift"; sourceTree = SOURCE_ROOT; };
 		028811392C1516550026ED01 /* ChatCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCompletion.swift; sourceTree = "<group>"; };
 		0288113B2C1531490026ED01 /* ChatRequest+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatRequest+Factory.swift"; sourceTree = "<group>"; };
 		0288113D2C153F430026ED01 /* WorkspaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WorkspaceListView.swift; path = "GPTSpot-macOS/Views/Chat/WorkspaceListView.swift"; sourceTree = SOURCE_ROOT; };
@@ -208,8 +216,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02AB8C9D2BE47E4C006C0853 /* MarkdownUI in Frameworks */,
 				026B92A02BE4FED400BCD0A7 /* GPTSpot_Common.framework in Frameworks */,
+				022865352C2D7F7D00F92B05 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,8 +225,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				026B92A72BE4FFAC00BCD0A7 /* MarkdownUI in Frameworks */,
 				026B92A82BE4FFAF00BCD0A7 /* GPTSpot_Common.framework in Frameworks */,
+				022865372C2D7F8900F92B05 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +234,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				026B92D52BE5170A00BCD0A7 /* MarkdownUI in Frameworks */,
+				022865392C2D7F8F00F92B05 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +279,17 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		024B1F662C1B468300BC6007 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				024B1F672C1B469E00BC6007 /* Container.swift */,
+				0228653A2C2E269100F92B05 /* Module.swift */,
+				0228653C2C2E26A600F92B05 /* DataModule.swift */,
+				0228653E2C2E26AF00F92B05 /* CommonModule.swift */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
 		025AE6692B8BA51F001489A3 = {
 			isa = PBXGroup;
 			children = (
@@ -295,14 +314,15 @@
 		025AE6742B8BA51F001489A3 /* GPTSpot-macOs */ = {
 			isa = PBXGroup;
 			children = (
-				025AE6792B8BA520001489A3 /* Assets.xcassets */,
 				025AE67E2B8BA521001489A3 /* GPTSpot.entitlements */,
+				0237CABD2C176C2B00754541 /* AppDelegate.swift */,
 				025AE6752B8BA51F001489A3 /* GPTSpotmacOSApp.swift */,
+				025AE6792B8BA520001489A3 /* Assets.xcassets */,
 				026B92E82BE51DA600BCD0A7 /* Extensions */,
 				025AE67B2B8BA521001489A3 /* Preview Content */,
 				025C7E1D2B8D77CC0060F343 /* Views */,
 				023B78732BEADB4B009D90B8 /* Window */,
-				0237CABD2C176C2B00754541 /* GPTAppDelegate.swift */,
+				022865402C2E271200F92B05 /* Container+Shared.swift */,
 			);
 			path = "GPTSpot-macOs";
 			sourceTree = "<group>";
@@ -398,6 +418,7 @@
 				026B929A2BE4FED400BCD0A7 /* GPTSpot_Common.h */,
 				0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */,
 				028D48E22BAA40C3005E2FF7 /* Defaults */,
+				024B1F662C1B468300BC6007 /* Dependencies */,
 				02FD0B882BE821650042B60C /* Extensions */,
 				025C7E1B2B8D779B0060F343 /* Models */,
 				025C7E1C2B8D77AF0060F343 /* Services */,
@@ -439,7 +460,6 @@
 			children = (
 				0288BF612BB2D7180047CA09 /* TemplateStripeView.swift */,
 				0288BF632BB2D7270047CA09 /* TemplateItemView.swift */,
-				028811372C135D270026ED01 /* TemplateStripeService.swift */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -567,7 +587,7 @@
 			);
 			name = "GPTSpot-macOS";
 			packageProductDependencies = (
-				02AB8C9C2BE47E4C006C0853 /* MarkdownUI */,
+				022865342C2D7F7D00F92B05 /* MarkdownUI */,
 			);
 			productName = GPTSpot;
 			productReference = 025AE6722B8BA51F001489A3 /* GPTSpot-macOS.app */;
@@ -590,7 +610,7 @@
 			);
 			name = "GPTSpot-iOS";
 			packageProductDependencies = (
-				026B92A62BE4FFAC00BCD0A7 /* MarkdownUI */,
+				022865362C2D7F8900F92B05 /* MarkdownUI */,
 			);
 			productName = "GPTSpot-iOS";
 			productReference = 026B92692BE4FE1800BCD0A7 /* GPTSpot-iOS.app */;
@@ -611,7 +631,7 @@
 			);
 			name = "GPTSpot-Common";
 			packageProductDependencies = (
-				026B92D42BE5170A00BCD0A7 /* MarkdownUI */,
+				022865382C2D7F8F00F92B05 /* MarkdownUI */,
 			);
 			productName = "GPTSpot-Common";
 			productReference = 026B92982BE4FED400BCD0A7 /* GPTSpot_Common.framework */;
@@ -648,8 +668,8 @@
 			);
 			mainGroup = 025AE6692B8BA51F001489A3;
 			packageReferences = (
-				02AB8C9B2BE47E45006C0853 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 				029BABD92BE5AB5C008F8FB0 /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				022865332C2D7F7D00F92B05 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 			);
 			productRefGroup = 025AE6732B8BA51F001489A3 /* Products */;
 			projectDirPath = "";
@@ -746,7 +766,6 @@
 				028811412C1540400026ED01 /* WorkspaceListView.swift in Sources */,
 				023B78722BEAD523009D90B8 /* RegularWindow.swift in Sources */,
 				029BABD12BE56950008F8FB0 /* TemplateStripeView.swift in Sources */,
-				028811382C135D270026ED01 /* TemplateStripeService.swift in Sources */,
 				029673E12BB8A4E00054062F /* StatsView.swift in Sources */,
 				029673D82BB4EC0A0054062F /* CheatSheetView.swift in Sources */,
 				02FD0B872BE6AABA0042B60C /* AIServerSettingsView.swift in Sources */,
@@ -755,7 +774,7 @@
 				02AB8C922BE41528006C0853 /* LaunchAtLogin.swift in Sources */,
 				029BABD42BE56B09008F8FB0 /* PromptEditor.swift in Sources */,
 				023B78762BEADD8A009D90B8 /* WindowModifier.swift in Sources */,
-				0237CABE2C176C2B00754541 /* GPTAppDelegate.swift in Sources */,
+				0237CABE2C176C2B00754541 /* AppDelegate.swift in Sources */,
 				025AE6762B8BA51F001489A3 /* GPTSpotmacOSApp.swift in Sources */,
 				025AE6AC2B8BEEB4001489A3 /* ChatView.swift in Sources */,
 				026B92E42BE51D6C00BCD0A7 /* KeyRecordingView.swift in Sources */,
@@ -800,8 +819,12 @@
 				0288113C2C1531490026ED01 /* ChatRequest+Factory.swift in Sources */,
 				02FD0B762BE6508E0042B60C /* RoundedCornerModifier.swift in Sources */,
 				02FD0B8A2BE821AB0042B60C /* Array.swift in Sources */,
+				024B1F682C1B469E00BC6007 /* Container.swift in Sources */,
 				026B92D32BE5138B00BCD0A7 /* URLResponse+ErrorCode.swift in Sources */,
+				0228653B2C2E269100F92B05 /* Module.swift in Sources */,
 				026B92C92BE5137100BCD0A7 /* ChatViewService.swift in Sources */,
+				022865412C2E271200F92B05 /* Container+Shared.swift in Sources */,
+				0228653D2C2E26A600F92B05 /* DataModule.swift in Sources */,
 				026B92D02BE5138600BCD0A7 /* GPTModels.swift in Sources */,
 				024B1F632C18560C00BC6007 /* TemplateService.swift in Sources */,
 				026B92D12BE5138600BCD0A7 /* AIServerDefaultsKeys.swift in Sources */,
@@ -810,6 +833,7 @@
 				026B929C2BE4FED400BCD0A7 /* GPTSpot_Common.docc in Sources */,
 				026B92CA2BE5138100BCD0A7 /* Template.swift in Sources */,
 				026B92CC2BE5138100BCD0A7 /* ChatRequest.swift in Sources */,
+				0228653F2C2E26AF00F92B05 /* CommonModule.swift in Sources */,
 				02A5ED342C132A3D0037E96D /* WorkspaceConfig.swift in Sources */,
 				026B92CD2BE5138100BCD0A7 /* ChatMessage.swift in Sources */,
 				026B92CE2BE5138100BCD0A7 /* Chunk.swift in Sources */,
@@ -871,7 +895,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -1225,6 +1249,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		022865332C2D7F7D00F92B05 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.1;
+			};
+		};
 		029BABD92BE5AB5C008F8FB0 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/SwiftLint.git";
@@ -1233,36 +1265,28 @@
 				minimumVersion = 0.54.0;
 			};
 		};
-		02AB8C9B2BE47E45006C0853 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.3.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		026B92A62BE4FFAC00BCD0A7 /* MarkdownUI */ = {
+		022865342C2D7F7D00F92B05 /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 02AB8C9B2BE47E45006C0853 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			package = 022865332C2D7F7D00F92B05 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
 			productName = MarkdownUI;
 		};
-		026B92D42BE5170A00BCD0A7 /* MarkdownUI */ = {
+		022865362C2D7F8900F92B05 /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 02AB8C9B2BE47E45006C0853 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			package = 022865332C2D7F7D00F92B05 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
+		022865382C2D7F8F00F92B05 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 022865332C2D7F7D00F92B05 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
 			productName = MarkdownUI;
 		};
 		029BABDB2BE5AC39008F8FB0 /* SwiftLintPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 029BABD92BE5AB5C008F8FB0 /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintPlugin";
-		};
-		02AB8C9C2BE47E4C006C0853 /* MarkdownUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 02AB8C9B2BE47E45006C0853 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
-			productName = MarkdownUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

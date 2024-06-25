@@ -166,7 +166,7 @@ public class OpenAIService {
 }
 
 public struct OpenAIServiceKey: EnvironmentKey {
-    public static let defaultValue: OpenAIService = OpenAIService()
+    public static let defaultValue: OpenAIService = Container.shared.resolve(OpenAIService.self)
 }
 
 extension EnvironmentValues {

@@ -5,18 +5,18 @@ import GPTSpot_Common
 @main
 struct GPTSpotmacOSApp: App {
 
-    @NSApplicationDelegateAdaptor(GPTAppDelegate.self) var appDelegate
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.dismissWindow) var dismissWindow
     @Environment(\.openWindow) var openWindow
     private let windowed: Bool = UserDefaults.standard.bool(forKey: UserDefaults.GeneralSettingsKeys.windowed)
     private let windowId = UUID().uuidString
+    @Environment(\.container) var container
 
     var body: some Scene {
         Window("", id: windowId) {
             if windowed {
                 ContentView()
-                    .modelContainer(for: [ChatMessage.self, Template.self])
-                    .environment(\.openAIService, OpenAIServiceKey.defaultValue)
+                    .modelContainer(container.resolve(ModelContainer.self))
             } else {
                 Image(nsImage: NSImage(imageLiteralResourceName: "AppIcon"))
                     .onAppear {

@@ -11,9 +11,9 @@ import GPTSpot_Common
 
 struct ChatView: View {
 
-    @Environment(ChatViewService.self) private var chatViewService: ChatViewService
-    @Environment(ChatMessageService.self) private var chatMessageService: ChatMessageService
-    @Environment(TemplateService.self) private var templateService: TemplateService
+    @Environment(\.chatViewService) private var chatViewService: ChatViewService
+    @Environment(\.chatMessageService) private var chatMessageService: ChatMessageService
+    @Environment(\.templateService) private var templateService: TemplateService
 
     @FocusState private var focusedField: Bool
     @State var workspace = 1

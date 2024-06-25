@@ -15,7 +15,7 @@ struct TemplateStripeView: View {
         case focusedTemplate(_ template: Template)
     }
 
-    @Environment(TemplateStripeService.self) private var templateStripeService: TemplateStripeService
+    @Environment(\.templateService) private var templateService
     @Query private var templates: [Template]
     @FocusState var focusedTemplateField: FocusedTemplateField?
     private let onTemplateSelected: (Template) -> Void
@@ -56,7 +56,7 @@ struct TemplateStripeView: View {
                                     }
                                     .keyboardShortcut(.return, modifiers: .control)
                                     Button {
-                                        templateStripeService.deleteTemplate(template)
+                                        templateService.deleteTemplate(template)
                                     } label: {
                                         Text("Delete")
                                     }
@@ -82,7 +82,7 @@ struct TemplateStripeView: View {
         }
         HotkeyAction(hotkey: .delete, eventModifiers: .control) {
             if case let .focusedTemplate(template) = focusedTemplateField {
-                templateStripeService.deleteTemplate(template)
+                templateService.deleteTemplate(template)
             }
         }
         HotkeyAction(hotkey: .return, eventModifiers: .control) {
@@ -119,7 +119,6 @@ struct TemplateStripeView: View {
             }
         )
         .modelContainer(previewer.container)
-        .environment(TemplateStripeService(modelContext: previewer.container.mainContext))
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")
     }

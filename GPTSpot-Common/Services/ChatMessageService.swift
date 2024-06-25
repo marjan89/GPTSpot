@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import SwiftUI
 
 @Observable
 public class ChatMessageService {
@@ -70,5 +71,16 @@ public class ChatMessageService {
         }
 
         return ""
+    }
+}
+
+public struct ChatMessageServiceKey: EnvironmentKey {
+    public static let defaultValue: ChatMessageService = Container.shared.resolve(ChatMessageService.self)
+}
+
+extension EnvironmentValues {
+    public var chatMessageService: ChatMessageService {
+        get { self[ChatMessageServiceKey.self] }
+        set { self[ChatMessageServiceKey.self] = newValue }
     }
 }

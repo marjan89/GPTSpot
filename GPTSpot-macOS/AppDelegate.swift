@@ -10,8 +10,9 @@ import Cocoa
 import Carbon
 import GPTSpot_Common
 import SwiftUI
+import SwiftData
 
-class GPTAppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate {
     var window: NSWindow?
     var hotKeyRef: EventHotKeyRef?
     var globalHotkeyManager: GlobalHotKeyManager?
@@ -21,8 +22,7 @@ class GPTAppDelegate: NSObject, NSApplicationDelegate {
             window = BorderlessWindow(
                 for: NSHostingView(
                     rootView: ContentView()
-                        .modelContainer(for: [ChatMessage.self, Template.self])
-                        .environment(\.openAIService, OpenAIServiceKey.defaultValue)
+                        .modelContainer(Container.shared.resolve(ModelContainer.self))
                 )
             )
         }

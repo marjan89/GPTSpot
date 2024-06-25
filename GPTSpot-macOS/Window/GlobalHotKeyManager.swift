@@ -12,9 +12,9 @@ import GPTSpot_Common
 class GlobalHotKeyManager {
 
     var hotKeyRef: EventHotKeyRef?
-    var appDelegate: GPTAppDelegate?
+    var appDelegate: AppDelegate?
 
-    init(appDelegate: GPTAppDelegate) {
+    init(appDelegate: AppDelegate) {
         self.appDelegate = appDelegate
         if !UserDefaults.standard.bool(forKey: UserDefaults.GeneralSettingsKeys.windowed) {
             registerGlobalHotKey()

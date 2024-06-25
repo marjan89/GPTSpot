@@ -92,6 +92,5 @@ public struct Previewer {
             Template(content: "Aenean vulputate eleifend tellus"),
             Template(content: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim")
         ]
-
     }
 }

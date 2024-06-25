@@ -93,12 +93,14 @@ public final class ChatViewService {
                     chatMessageService.insertOrUpdateChatMessage(
                         for: "🛠️ This workspace is using a system message: \(systemMessage)",
                         origin: .local,
+                        id: UUID().uuidString,
                         workspace: workspace
                     )
                 } catch {
                     chatMessageService.insertOrUpdateChatMessage(
                         for: "⚠️ Failed to set system message.",
                         origin: .local,
+                        id: UUID().uuidString,
                         workspace: workspace
                     )
                 }
@@ -199,5 +201,16 @@ private extension ChatViewService {
     enum Constants {
         static let throttleIntervalInSeconds = 0.1
         static let local = "local"
+    }
+}
+
+public struct ChatViewServiceKey: EnvironmentKey {
+    public static let defaultValue: ChatViewService = Container.shared.resolve(ChatViewService.self)
+}
+
+extension EnvironmentValues {
+    public var chatViewService: ChatViewService {
+        get { self[ChatViewServiceKey.self] }
+        set { self[ChatViewServiceKey.self] = newValue }
     }
 }
