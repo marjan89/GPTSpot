@@ -11,6 +11,8 @@ import SwiftData
 
 struct ChatView: View {
     @Environment(\.chatViewService) private var chatViewService: ChatViewService
+    @Environment(\.chatMessageService) private var chatMessageService: ChatMessageService
+    @Environment(\.templateService) private var templateService: TemplateService
     @Query private var templates: [Template]
     @AppStorage(UserDefaults.IOSKeys.expandedInputField) private var expandedInputField: Bool = false
     @State private var prompt = ""
@@ -52,10 +54,10 @@ struct ChatView: View {
             prompt = chatMessage.content
         }
         Button("Delete", systemImage: "trash.fill") {
-            chatViewService.deleteChatMessage(chatMessage)
+            chatMessageService.deleteChatMessage(chatMessage)
         }
         Button("Save template", systemImage: "square.and.arrow.down.fill") {
-            chatViewService.insertTemplate(Template(content: chatMessage.content))
+            templateService.insertTemplate(Template(content: chatMessage.content))
         }
     }
 
@@ -81,7 +83,7 @@ struct ChatView: View {
                     prompt.append(template.content)
                 },
                 onTemplateSwipeDelete: { template in
-                    chatViewService.deleteTemplate(template)
+                    templateService.deleteTemplate(template)
                 }
             )
         } label: {

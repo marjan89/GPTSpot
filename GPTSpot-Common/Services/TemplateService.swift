@@ -31,13 +31,3 @@ public class TemplateService {
     }
 }
 
-public struct TemplateServiceKey: EnvironmentKey {
-    public static let defaultValue: TemplateService = Container.shared.resolve(TemplateService.self)
-}
-
-extension EnvironmentValues {
-    public var templateService: TemplateService {
-        get { self[TemplateServiceKey.self] }
-        set { self[TemplateServiceKey.self] = newValue }
-    }
-}

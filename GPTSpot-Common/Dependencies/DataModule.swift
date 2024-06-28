@@ -8,11 +8,11 @@
 import Foundation
 import SwiftData
 
-struct DataModule: Module {
+public struct DataModule: Module {
 
     public var dependencies: [ObjectIdentifier: Any] = [:]
 
-    init(with container: Container) throws {
+    public init(with container: Container) throws {
         let modelContainer = try ModelContainer(for: ChatMessage.self, Template.self)
         let modelContext = ModelContext(modelContainer)
 

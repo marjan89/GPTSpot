@@ -208,14 +208,3 @@ private extension ChatViewService {
         static let local = "local"
     }
 }
-
-public struct ChatViewServiceKey: EnvironmentKey {
-    public static let defaultValue: ChatViewService = Container.shared.resolve(ChatViewService.self)
-}
-
-extension EnvironmentValues {
-    public var chatViewService: ChatViewService {
-        get { self[ChatViewServiceKey.self] }
-        set { self[ChatViewServiceKey.self] = newValue }
-    }
-}

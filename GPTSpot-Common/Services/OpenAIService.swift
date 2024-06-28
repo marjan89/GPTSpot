@@ -165,13 +165,3 @@ public class OpenAIService {
     }
 }
 
-public struct OpenAIServiceKey: EnvironmentKey {
-    public static let defaultValue: OpenAIService = Container.shared.resolve(OpenAIService.self)
-}
-
-extension EnvironmentValues {
-    public var openAIService: OpenAIService {
-        get { self[OpenAIServiceKey.self] }
-        set { self[OpenAIServiceKey.self] = newValue }
-    }
-}

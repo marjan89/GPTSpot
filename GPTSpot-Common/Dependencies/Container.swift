@@ -16,13 +16,17 @@ public struct Container {
     // swiftlint:disable force_try
     public static func container(for types: Module.Type...) -> Container {
         var container: Container = Container()
-
-        types.forEach { type in
-            container
-                .dependencies
-                .merge(try! type.init(with: container).dependencies) { current, _ in current }
+        do {
+            try types.forEach { type in
+                container
+                    .dependencies
+                    .merge(try type.init(with: container).dependencies) { current, _ in current }
+                print("registered module \(type)")
+            }
+        } catch {
+            print(error)
         }
-
+        print("container created")
         return container
     }
     // swiftlint:enable force_try
@@ -37,16 +41,5 @@ public struct Container {
             fatalError("Dependecy \(key) not registered")
         }
         return dependency
-    }
-}
-
-public struct ContainerKey: EnvironmentKey {
-    public static var defaultValue: Container = Container.shared
-}
-
-extension EnvironmentValues {
-    public var container: Container {
-        get { self[ContainerKey.self] }
-        set { self[ContainerKey.self] = newValue }
     }
 }

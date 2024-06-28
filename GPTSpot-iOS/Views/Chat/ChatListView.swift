@@ -17,7 +17,7 @@ struct ChatListView<ContextMenuItems: View>: View {
         self.contextMenuItems = contextMenuItems
         _chatMessages = Query(
             filter: #Predicate<ChatMessage> { chatMessage in
-                chatMessage.workspace == workspace
+                chatMessage.workspace == workspace && !(chatMessage.origin == "system")
             },
             sort: \ChatMessage.timestamp
         )
@@ -26,7 +26,7 @@ struct ChatListView<ContextMenuItems: View>: View {
     var body: some View {
         ScrollViewReader { scrollProxy in
             GeometryReader { geomatry in
-                List(chatMessages, id: \.self) { chatMessage in
+                List(chatMessages, id: \.content) { chatMessage in
                     ChatMessageView(
                         chatMessage: chatMessage,
                         maxMessageWidth: geomatry.size.width * 0.66
@@ -43,10 +43,10 @@ struct ChatListView<ContextMenuItems: View>: View {
                 .scrollClipDisabled()
                 .scrollDismissesKeyboard(.immediately)
                 .onAppear {
-                    scrollProxy.scrollTo(chatMessages.last, anchor: .bottom)
+                    scrollProxy.scrollTo(chatMessages.last?.content, anchor: .bottom)
                 }
                 .onChange(of: chatMessages) {
-                    scrollProxy.scrollTo(chatMessages.last?.id, anchor: .bottom)
+                    scrollProxy.scrollTo(chatMessages.last?.content, anchor: .bottom)
                 }
             }
         }

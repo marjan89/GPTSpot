@@ -8,9 +8,10 @@
 import Foundation
 import SwiftData
 import GPTSpot_Common
+import SwiftUI
 
 @Observable
-final class WorkspaceHomeService {
+public final class WorkspaceHomeService {
 
     private let modelContext: ModelContext
 

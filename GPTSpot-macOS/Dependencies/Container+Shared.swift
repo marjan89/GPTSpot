@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import GPTSpot_Common
 
 extension Container {
 

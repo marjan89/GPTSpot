@@ -12,7 +12,7 @@ import GPTSpot_Common
 struct WorkspaceHomeView: View {
 
     @Environment(\.chatViewService) private var chatViewService: ChatViewService
-    @Environment(WorkspaceHomeService.self) private var workspaceHomeService: WorkspaceHomeService
+    @Environment(\.workspaceHomeService) private var workspaceHomeService: WorkspaceHomeService
 
     @State private var path = [WorkspaceHomePath]()
     @State private var newWorkspaceDialog = false

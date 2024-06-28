@@ -8,11 +8,11 @@
 import Foundation
 import SwiftData
 
-struct CommonModule: Module {
+public struct CommonModule: Module {
 
     public var dependencies: [ObjectIdentifier: Any] = [:]
 
-    init(with container: Container) throws {
+    public init(with container: Container) throws {
         let modelContext = container.resolve(ModelContext.self)
 
         let templateService = configuredTemplateService(modelContext: modelContext)

@@ -78,13 +78,3 @@ public class ChatMessageService {
     }
 }
 
-public struct ChatMessageServiceKey: EnvironmentKey {
-    public static let defaultValue: ChatMessageService = Container.shared.resolve(ChatMessageService.self)
-}
-
-extension EnvironmentValues {
-    public var chatMessageService: ChatMessageService {
-        get { self[ChatMessageServiceKey.self] }
-        set { self[ChatMessageServiceKey.self] = newValue }
-    }
-}

@@ -26,7 +26,7 @@ public struct Previewer {
 
         let chatMessages: [ChatMessage]
         let templates: [Template]
-        openAIService = OpenAIServiceKey.defaultValue
+        openAIService = OpenAIService()
         chatMessageService = ChatMessageService(modelContext: container.mainContext)
 
         chatViewService = ChatViewService(

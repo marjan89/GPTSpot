@@ -13,7 +13,6 @@
 		0228653B2C2E269100F92B05 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0228653A2C2E269100F92B05 /* Module.swift */; };
 		0228653D2C2E26A600F92B05 /* DataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0228653C2C2E26A600F92B05 /* DataModule.swift */; };
 		0228653F2C2E26AF00F92B05 /* CommonModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0228653E2C2E26AF00F92B05 /* CommonModule.swift */; };
-		022865412C2E271200F92B05 /* Container+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022865402C2E271200F92B05 /* Container+Shared.swift */; };
 		0230ED162BBDFC8700C067E6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */; };
 		0237CABE2C176C2B00754541 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0237CABD2C176C2B00754541 /* AppDelegate.swift */; };
 		023B78722BEAD523009D90B8 /* RegularWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023B78712BEAD523009D90B8 /* RegularWindow.swift */; };
@@ -74,6 +73,11 @@
 		02A5ED342C132A3D0037E96D /* WorkspaceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A5ED332C132A3D0037E96D /* WorkspaceConfig.swift */; };
 		02A5ED362C133FDB0037E96D /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A5ED352C133FDB0037E96D /* ChatListView.swift */; };
 		02AB8C922BE41528006C0853 /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AB8C912BE41528006C0853 /* LaunchAtLogin.swift */; };
+		02BA44E52C2EBDB000473575 /* ServiceModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44E42C2EBDB000473575 /* ServiceModule.swift */; };
+		02BA44E62C2EBE0300473575 /* Container+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022865402C2E271200F92B05 /* Container+Shared.swift */; };
+		02BA44E82C2EBE1500473575 /* Container+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44E72C2EBE1500473575 /* Container+Shared.swift */; };
+		02BA44EA2C2EC1D500473575 /* EnvironmentValues+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44E92C2EC1D500473575 /* EnvironmentValues+Keys.swift */; };
+		02BA44F22C2EC3D900473575 /* EnvironmentValues+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44F02C2EC3B300473575 /* EnvironmentValues+Keys.swift */; };
 		02BD90B22BA8E5480047115E /* SpotSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BD90B12BA8E5480047115E /* SpotSettings.swift */; };
 		02E04C432BB1D9F50074A95E /* GlobalHotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */; };
 		02F8690C2C0A9CEF00961513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025AE6792B8BA520001489A3 /* Assets.xcassets */; };
@@ -136,7 +140,7 @@
 		0228653A2C2E269100F92B05 /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		0228653C2C2E26A600F92B05 /* DataModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModule.swift; sourceTree = "<group>"; };
 		0228653E2C2E26AF00F92B05 /* CommonModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonModule.swift; sourceTree = "<group>"; };
-		022865402C2E271200F92B05 /* Container+Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Container+Shared.swift"; path = "GPTSpot-macOS/Container+Shared.swift"; sourceTree = SOURCE_ROOT; };
+		022865402C2E271200F92B05 /* Container+Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Container+Shared.swift"; path = "GPTSpot-macOs/Dependencies/Container+Shared.swift"; sourceTree = SOURCE_ROOT; };
 		0230ED152BBDFC8700C067E6 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		0230ED182BBF48FA00C067E6 /* KeyRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyRecordingView.swift; sourceTree = "<group>"; };
 		0230ED1B2BBF6A7900C067E6 /* KeyRecordingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyRecordingState.swift; sourceTree = "<group>"; };
@@ -199,6 +203,10 @@
 		02AAD1BA2B8E7AEA00ED7876 /* HotkeyAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyAction.swift; sourceTree = "<group>"; };
 		02AB8C912BE41528006C0853 /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
 		02AB8C932BE42F59006C0853 /* URLResponse+ErrorCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+ErrorCode.swift"; sourceTree = "<group>"; };
+		02BA44E42C2EBDB000473575 /* ServiceModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModule.swift; sourceTree = "<group>"; };
+		02BA44E72C2EBE1500473575 /* Container+Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+Shared.swift"; sourceTree = "<group>"; };
+		02BA44E92C2EC1D500473575 /* EnvironmentValues+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+Keys.swift"; sourceTree = "<group>"; };
+		02BA44F02C2EC3B300473575 /* EnvironmentValues+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "EnvironmentValues+Keys.swift"; path = "GPTSpot-macOS/Dependencies/EnvironmentValues+Keys.swift"; sourceTree = SOURCE_ROOT; };
 		02BD90B12BA8E5480047115E /* SpotSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotSettings.swift; sourceTree = "<group>"; };
 		02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotKeyManager.swift; sourceTree = "<group>"; };
 		02FD0B712BE642660042B60C /* WorkspaceListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListItemView.swift; sourceTree = "<group>"; };
@@ -314,6 +322,7 @@
 		025AE6742B8BA51F001489A3 /* GPTSpot-macOs */ = {
 			isa = PBXGroup;
 			children = (
+				02BA44EB2C2EC35500473575 /* Dependencies */,
 				025AE67E2B8BA521001489A3 /* GPTSpot.entitlements */,
 				0237CABD2C176C2B00754541 /* AppDelegate.swift */,
 				025AE6752B8BA51F001489A3 /* GPTSpotmacOSApp.swift */,
@@ -322,7 +331,6 @@
 				025AE67B2B8BA521001489A3 /* Preview Content */,
 				025C7E1D2B8D77CC0060F343 /* Views */,
 				023B78732BEADB4B009D90B8 /* Window */,
-				022865402C2E271200F92B05 /* Container+Shared.swift */,
 			);
 			path = "GPTSpot-macOs";
 			sourceTree = "<group>";
@@ -392,6 +400,7 @@
 		026B926A2BE4FE1800BCD0A7 /* GPTSpot-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				02BA44E32C2EBD9700473575 /* Dependencies */,
 				02FD0B8E2BE927C30042B60C /* Templates */,
 				02FD0B8B2BE857040042B60C /* Extensions */,
 				02FD0B702BE642370042B60C /* Views */,
@@ -490,6 +499,25 @@
 				0288BF672BB32DF00047CA09 /* Markdown+Styling.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		02BA44E32C2EBD9700473575 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				02BA44E42C2EBDB000473575 /* ServiceModule.swift */,
+				02BA44E72C2EBE1500473575 /* Container+Shared.swift */,
+				02BA44E92C2EC1D500473575 /* EnvironmentValues+Keys.swift */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		02BA44EB2C2EC35500473575 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				022865402C2E271200F92B05 /* Container+Shared.swift */,
+				02BA44F02C2EC3B300473575 /* EnvironmentValues+Keys.swift */,
+			);
+			path = Dependencies;
 			sourceTree = "<group>";
 		};
 		02C491632BA71DA800EDB446 /* Frameworks */ = {
@@ -757,6 +785,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02BA44E62C2EBE0300473575 /* Container+Shared.swift in Sources */,
 				02A17A202BA60AD100C26A67 /* BorderlessWindow.swift in Sources */,
 				02BD90B22BA8E5480047115E /* SpotSettings.swift in Sources */,
 				02E04C432BB1D9F50074A95E /* GlobalHotKeyManager.swift in Sources */,
@@ -769,6 +798,7 @@
 				029673E12BB8A4E00054062F /* StatsView.swift in Sources */,
 				029673D82BB4EC0A0054062F /* CheatSheetView.swift in Sources */,
 				02FD0B872BE6AABA0042B60C /* AIServerSettingsView.swift in Sources */,
+				02BA44F22C2EC3D900473575 /* EnvironmentValues+Keys.swift in Sources */,
 				029BABCF2BE56914008F8FB0 /* HotkeyAction.swift in Sources */,
 				029BABD32BE56B09008F8FB0 /* ChatListView.swift in Sources */,
 				02AB8C922BE41528006C0853 /* LaunchAtLogin.swift in Sources */,
@@ -794,6 +824,8 @@
 			files = (
 				02FD0B722BE642660042B60C /* WorkspaceListItemView.swift in Sources */,
 				02A5ED302C13253C0037E96D /* WorkspaceHomePath.swift in Sources */,
+				02BA44E82C2EBE1500473575 /* Container+Shared.swift in Sources */,
+				02BA44EA2C2EC1D500473575 /* EnvironmentValues+Keys.swift in Sources */,
 				026B926E2BE4FE1800BCD0A7 /* ContentView.swift in Sources */,
 				026B92E32BE51CAD00BCD0A7 /* ChatView.swift in Sources */,
 				02A5ED2E2C1324E60037E96D /* WorkspaceListView.swift in Sources */,
@@ -805,6 +837,7 @@
 				026B926C2BE4FE1800BCD0A7 /* GPTSpotiOSApp.swift in Sources */,
 				02FD0B8D2BE8570F0042B60C /* String+Clipboard.swift in Sources */,
 				02A5ED362C133FDB0037E96D /* ChatListView.swift in Sources */,
+				02BA44E52C2EBDB000473575 /* ServiceModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -823,7 +856,6 @@
 				026B92D32BE5138B00BCD0A7 /* URLResponse+ErrorCode.swift in Sources */,
 				0228653B2C2E269100F92B05 /* Module.swift in Sources */,
 				026B92C92BE5137100BCD0A7 /* ChatViewService.swift in Sources */,
-				022865412C2E271200F92B05 /* Container+Shared.swift in Sources */,
 				0228653D2C2E26A600F92B05 /* DataModule.swift in Sources */,
 				026B92D02BE5138600BCD0A7 /* GPTModels.swift in Sources */,
 				024B1F632C18560C00BC6007 /* TemplateService.swift in Sources */,
