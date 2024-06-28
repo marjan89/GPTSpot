@@ -40,13 +40,13 @@ public struct Container {
     }
 }
 
-public struct DIContainerKey: EnvironmentKey {
+public struct ContainerKey: EnvironmentKey {
     public static var defaultValue: Container = Container.shared
 }
 
 extension EnvironmentValues {
     public var container: Container {
-        get { self[DIContainerKey.self] }
-        set { self[DIContainerKey.self] = newValue }
+        get { self[ContainerKey.self] }
+        set { self[ContainerKey.self] = newValue }
     }
 }
