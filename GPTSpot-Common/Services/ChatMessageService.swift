@@ -46,7 +46,11 @@ public class ChatMessageService {
     }
 
     public func deleteChatMessage(_ chatMessage: ChatMessage) {
-        modelContext.delete(chatMessage)
+        let id = chatMessage.id
+        try? modelContext.delete(
+            model: ChatMessage.self,
+            where: #Predicate<ChatMessage> { message in message.id == id }
+        )
     }
 
     public func discardHistory(for workspace: Int) {

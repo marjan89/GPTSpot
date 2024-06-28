@@ -16,6 +16,10 @@ struct DataModule: Module {
         let modelContainer = try ModelContainer(for: ChatMessage.self, Template.self)
         let modelContext = ModelContext(modelContainer)
 
+        if let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
+            print("Application Support Directory: \(appSupportURL.path)")
+        }
+
         dependencies[ObjectIdentifier(ModelContainer.self)] = modelContainer
         dependencies[ObjectIdentifier(ModelContext.self)] = modelContext
     }
