@@ -23,6 +23,11 @@ public final class ChatViewService {
         self.chatMessageService = chatMessageService
     }
 
+    public func discardHistory(for workspace: Int) {
+        cancelCompletion()
+        chatMessageService.discardHistory(for: workspace)
+    }
+
     public func executePrompt(workspace: Int, prompt: String) {
         if generatingContent {
             return

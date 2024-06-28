@@ -71,7 +71,7 @@ struct ChatView: View {
             NavigationSplitView {
                 WorkspaceListView(
                     onItemDelete: { workspace in
-                        chatMessageService.discardHistory(for: workspace)
+                        chatViewService.discardHistory(for: workspace)
                     },
                     activeWorkspace: $workspace,
                     query: $query
@@ -226,7 +226,7 @@ struct ChatView: View {
     @ViewBuilder
     private func trashButton() -> some View {
         Button {
-            chatMessageService.discardHistory(for: workspace)
+            chatViewService.discardHistory(for: workspace)
         } label: {
             Image(systemName: "trash.fill")
         }
