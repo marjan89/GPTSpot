@@ -77,13 +77,15 @@ public final class ChatViewService {
         if let systemMessage = UserDefaults.standard.string(forKey: UserDefaults.AIServerKeys.systemMessage),
            !systemMessage.isEmpty,
            UserDefaults.standard.bool(forKey: UserDefaults.AIServerKeys.useSystemMessage) {
-            let messageCountFetchDescriptor = FetchDescriptor<ChatMessage>(
-                predicate: #Predicate<ChatMessage> { message in
-                    message.workspace == workspace && message.origin != "local"
-                },
-                sortBy: [.init(\ChatMessage.timestamp)]
-            )
-            let messageCount = try? modelContext.fetchCount(messageCountFetchDescriptor)
+            let messageCount = {
+                let messageCountFetchDescriptor = FetchDescriptor<ChatMessage>(
+                    predicate: #Predicate<ChatMessage> { message in
+                        message.workspace == workspace && message.origin != "local"
+                    },
+                    sortBy: [.init(\ChatMessage.timestamp)]
+                )
+                return try? modelContext.fetchCount(messageCountFetchDescriptor)
+            }()
 
             if messageCount == 0 {
                 let systemRequest = ChatRequest.systemRequest()
@@ -114,12 +116,7 @@ public final class ChatViewService {
     }
 
     private func insertBufferedResponses(for responseBuffer: [(String, String)], workspace: Int) {
-        if responseBuffer.isEmpty {
-            return
-        }
-        guard let id = responseBuffer.first?.0 else {
-            return
-        }
+        guard let id = responseBuffer.first?.0, !responseBuffer.isEmpty else { return }
 
         let chunk = responseBuffer.map { response in response.1 }.joined()
         chatMessageService.insertOrUpdateChatMessage(for: chunk, origin: .assistant, id: id, workspace: workspace)
@@ -155,21 +152,24 @@ public final class ChatViewService {
     }
 
     private func loadChatHistory(for workspace: Int) -> [ChatRequest.Message] {
-        var chatMessageHistoryFetchDescriptor = FetchDescriptor<ChatMessage>(
-            predicate: #Predicate<ChatMessage> { message in
-                message.workspace == workspace && message.origin != "local"
-            },
-            sortBy: [.init(\ChatMessage.timestamp)]
-        )
+        let chatMessageHistoryFetchDescriptor = {
+            var descriptor = FetchDescriptor<ChatMessage>(
+                predicate: #Predicate<ChatMessage> { message in
+                    message.workspace == workspace && message.origin != "local"
+                },
+                sortBy: [.init(\ChatMessage.timestamp)]
+            )
+            let userLimit = UserDefaults.standard.integer(forKey: UserDefaults.AIServerKeys.maxHistory)
+            if userLimit > 0 {
+                descriptor.fetchLimit = userLimit
+            }
+            return descriptor
+        }()
         let systemMessageFetchDescriptor = FetchDescriptor<ChatMessage>(
             predicate: #Predicate<ChatMessage> { message in
                 message.origin == "system"
             }
         )
-        let userLimit = UserDefaults.standard.integer(forKey: UserDefaults.AIServerKeys.maxHistory)
-        if userLimit > 0 {
-            chatMessageHistoryFetchDescriptor.fetchLimit = userLimit
-        }
         do {
             let chatMessages = try modelContext.fetch(chatMessageHistoryFetchDescriptor)
             let systemMessages = try modelContext.fetch(systemMessageFetchDescriptor)

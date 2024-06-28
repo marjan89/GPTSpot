@@ -63,17 +63,19 @@ public class ChatMessageService {
     }
 
     public func getLastChatMessageContent(for workspace: Int) -> String {
-        var lastChatMessagesFetchDescriptor = FetchDescriptor<ChatMessage>(
-            predicate: #Predicate<ChatMessage> { message in
-                message.origin == "user" && message.workspace == workspace
-            },
-            sortBy: [.init(\ChatMessage.timestamp, order: .reverse)]
-        )
-        lastChatMessagesFetchDescriptor.fetchLimit = 1
+        let lastChatMessagesFetchDescriptor = {
+            var descriptor = FetchDescriptor<ChatMessage>(
+                predicate: #Predicate<ChatMessage> { message in
+                    message.origin == "user" && message.workspace == workspace
+                },
+                sortBy: [.init(\ChatMessage.timestamp, order: .reverse)]
+            )
+            descriptor.fetchLimit = 1
+            return descriptor
+        }()
         if let lastMessageContent = try? modelContext.fetch(lastChatMessagesFetchDescriptor).first?.content {
             return lastMessageContent
         }
-
         return ""
     }
 }
