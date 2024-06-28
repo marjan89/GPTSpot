@@ -30,4 +30,3 @@ public class TemplateService {
         modelContext.delete(template)
     }
 }
-

@@ -58,7 +58,7 @@ extension EnvironmentValues {
         get { self[OpenAIServiceKey.self] }
         set { self[OpenAIServiceKey.self] = newValue }
     }
-    
+
     public var chatViewService: ChatViewService {
         get { self[ChatViewServiceKey.self] }
         set { self[ChatViewServiceKey.self] = newValue }

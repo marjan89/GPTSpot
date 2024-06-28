@@ -13,7 +13,6 @@ public struct Container {
 
     private var dependencies = [ObjectIdentifier: Any]()
 
-    // swiftlint:disable force_try
     public static func container(for types: Module.Type...) -> Container {
         var container: Container = Container()
         do {
@@ -29,7 +28,6 @@ public struct Container {
         print("container created")
         return container
     }
-    // swiftlint:enable force_try
     public mutating func register<T>(_ dependency: T, for type: T.Type) {
         let key = ObjectIdentifier(type)
         dependencies[key] = dependency
