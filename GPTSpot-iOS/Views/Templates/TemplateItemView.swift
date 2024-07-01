@@ -14,7 +14,7 @@ struct TemplateItemView: View {
 
     var body: some View {
         Markdown(text)
-            .gptStyle()
+            .markdownStyle()
             .padding(8)
             .multilineTextAlignment(.leading)
             .scrollContentBackground(.hidden)

@@ -78,7 +78,7 @@
 		02BA44EA2C2EC1D500473575 /* EnvironmentValues+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44E92C2EC1D500473575 /* EnvironmentValues+Keys.swift */; };
 		02BA44F22C2EC3D900473575 /* EnvironmentValues+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44F02C2EC3B300473575 /* EnvironmentValues+Keys.swift */; };
 		02BA44F42C334B1900473575 /* MarkdownStyleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44F32C334B1900473575 /* MarkdownStyleModifier.swift */; };
-		02BA44F52C334B3000473575 /* Markdown+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288BF672BB32DF00047CA09 /* Markdown+Styling.swift */; };
+		02BA44F52C334B3000473575 /* MarkdownStyleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288BF672BB32DF00047CA09 /* MarkdownStyleModifier.swift */; };
 		02BA44F72C334BF500473575 /* ChatMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44F62C334BF500473575 /* ChatMessageView.swift */; };
 		02BA44F82C334C3600473575 /* ChatMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C7E222B8D87820060F343 /* ChatMessageView.swift */; };
 		02BA44FB2C336C9000473575 /* MarkdownCopyActionStyleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44F92C3367FD00473575 /* MarkdownCopyActionStyleModifier.swift */; };
@@ -184,7 +184,7 @@
 		0288BF612BB2D7180047CA09 /* TemplateStripeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateStripeView.swift; sourceTree = "<group>"; };
 		0288BF632BB2D7270047CA09 /* TemplateItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateItemView.swift; sourceTree = "<group>"; };
 		0288BF652BB3116E0047CA09 /* Template.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
-		0288BF672BB32DF00047CA09 /* Markdown+Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Markdown+Styling.swift"; sourceTree = "<group>"; };
+		0288BF672BB32DF00047CA09 /* MarkdownStyleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownStyleModifier.swift; sourceTree = "<group>"; };
 		028D48DE2BAA3CBC005E2FF7 /* AIServerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIServerSettingsView.swift; sourceTree = "<group>"; };
 		028D48E02BAA3CC9005E2FF7 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		028D48E32BAA40F1005E2FF7 /* AIServerDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIServerDefaultsKeys.swift; sourceTree = "<group>"; };
@@ -371,9 +371,8 @@
 			isa = PBXGroup;
 			children = (
 				025AE6772B8BA51F001489A3 /* ContentView.swift */,
-				029BABCC2BE56891008F8FB0 /* FocusDirection.swift */,
-				02AAD1BA2B8E7AEA00ED7876 /* HotkeyAction.swift */,
 				025C7E1E2B8D77D00060F343 /* Chat */,
+				02BA45002C33728700473575 /* Components */,
 				0230ED1A2BBF6A6200C067E6 /* KeyCapture */,
 				028D48DB2BAA3C8E005E2FF7 /* Settings */,
 				0288BF602BB2D6C20047CA09 /* Templates */,
@@ -400,14 +399,13 @@
 		026B926A2BE4FE1800BCD0A7 /* GPTSpot-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				02BA44E32C2EBD9700473575 /* Dependencies */,
-				02FD0B8E2BE927C30042B60C /* Templates */,
-				02FD0B8B2BE857040042B60C /* Extensions */,
-				02FD0B702BE642370042B60C /* Views */,
-				026B926D2BE4FE1800BCD0A7 /* ContentView.swift */,
 				026B926B2BE4FE1800BCD0A7 /* GPTSpotiOSApp.swift */,
 				026B926F2BE4FE1800BCD0A7 /* Assets.xcassets */,
+				02BA44E32C2EBD9700473575 /* Dependencies */,
+				02FD0B8B2BE857040042B60C /* Extensions */,
+				02BA44FD2C3371A200473575 /* Modifiers */,
 				026B92712BE4FE1800BCD0A7 /* Preview Content */,
+				02FD0B702BE642370042B60C /* Views */,
 			);
 			path = "GPTSpot-iOS";
 			sourceTree = "<group>";
@@ -485,9 +483,9 @@
 		02BA44E32C2EBD9700473575 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				02BA44E42C2EBDB000473575 /* ServiceModule.swift */,
 				02BA44E72C2EBE1500473575 /* Container+Shared.swift */,
 				02BA44E92C2EC1D500473575 /* EnvironmentValues+Keys.swift */,
+				02BA44E42C2EBDB000473575 /* ServiceModule.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -511,6 +509,31 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		02BA44FD2C3371A200473575 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				0288BF672BB32DF00047CA09 /* MarkdownStyleModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		02BA44FE2C33723E00473575 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				02FD0B812BE688120042B60C /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		02BA45002C33728700473575 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				029BABCC2BE56891008F8FB0 /* FocusDirection.swift */,
+				02AAD1BA2B8E7AEA00ED7876 /* HotkeyAction.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		02C491632BA71DA800EDB446 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -531,9 +554,11 @@
 		02FD0B702BE642370042B60C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				02FD0B752BE64DFA0042B60C /* List */,
+				026B926D2BE4FE1800BCD0A7 /* ContentView.swift */,
 				02FD0B6F2BE642240042B60C /* Chat */,
-				02FD0B812BE688120042B60C /* SettingsView.swift */,
+				02FD0B752BE64DFA0042B60C /* List */,
+				02BA44FE2C33723E00473575 /* Settings */,
+				02FD0B8E2BE927C30042B60C /* Templates */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -561,7 +586,6 @@
 		02FD0B8B2BE857040042B60C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				0288BF672BB32DF00047CA09 /* Markdown+Styling.swift */,
 				02FD0B8C2BE8570F0042B60C /* String+Clipboard.swift */,
 			);
 			path = Extensions;
@@ -824,7 +848,7 @@
 				02BA44E82C2EBE1500473575 /* Container+Shared.swift in Sources */,
 				02BA44EA2C2EC1D500473575 /* EnvironmentValues+Keys.swift in Sources */,
 				026B926E2BE4FE1800BCD0A7 /* ContentView.swift in Sources */,
-				02BA44F52C334B3000473575 /* Markdown+Styling.swift in Sources */,
+				02BA44F52C334B3000473575 /* MarkdownStyleModifier.swift in Sources */,
 				026B92E32BE51CAD00BCD0A7 /* ChatView.swift in Sources */,
 				02A5ED2E2C1324E60037E96D /* WorkspaceListView.swift in Sources */,
 				02FD0B822BE688120042B60C /* SettingsView.swift in Sources */,

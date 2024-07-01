@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MarkdownUI
+import GPTSpot_Common
 
 public struct ChatMessageView: View {
 
@@ -21,7 +22,7 @@ public struct ChatMessageView: View {
     public var body: some View {
         HStack {
             Markdown(chatMessage.content)
-                .gptStyle()
+                .markdownStyle()
                 .padding(.all, 8)
                 .background(backgroundColor())
                 .cornerRadius(8)
@@ -43,52 +44,46 @@ public struct ChatMessageView: View {
 }
 
 #Preview {
-    do {
-        let previewer = try Previewer()
-
-        return VStack {
-            ChatMessageView(
-                chatMessage: ChatMessage(
-                    content: "Hello",
-                    origin: Role.user.rawValue,
-                    timestamp: 1,
-                    id: "1",
-                    workspace: 1
-                ),
-                maxMessageWidth: 200
-            )
-            ChatMessageView(
-                chatMessage: ChatMessage(
-                    content: "Hi!",
-                    origin: Role.assistant.rawValue,
-                    timestamp: 2,
-                    id: "2",
-                    workspace: 1
-                ),
-                maxMessageWidth: 200
-            )
-            ChatMessageView(
-                chatMessage: ChatMessage(
-                    content: "Response error",
-                    origin: Role.local.rawValue,
-                    timestamp: 3,
-                    id: "3",
-                    workspace: 1
-                ),
-                maxMessageWidth: 200
-            )
-            ChatMessageView(
-                chatMessage: ChatMessage(
-                    content: "System message",
-                    origin: Role.system.rawValue,
-                    timestamp: 3,
-                    id: "4",
-                    workspace: 1
-                ),
-                maxMessageWidth: 200
-            )
-        }
-    } catch {
-        return Text("Failed to create preview: \(error.localizedDescription)")
+    VStack {
+        ChatMessageView(
+            chatMessage: ChatMessage(
+                content: "Hello",
+                origin: Role.user.rawValue,
+                timestamp: 1,
+                id: "1",
+                workspace: 1
+            ),
+            maxMessageWidth: 200
+        )
+        ChatMessageView(
+            chatMessage: ChatMessage(
+                content: "Hi!",
+                origin: Role.assistant.rawValue,
+                timestamp: 2,
+                id: "2",
+                workspace: 1
+            ),
+            maxMessageWidth: 200
+        )
+        ChatMessageView(
+            chatMessage: ChatMessage(
+                content: "Response error",
+                origin: Role.local.rawValue,
+                timestamp: 3,
+                id: "3",
+                workspace: 1
+            ),
+            maxMessageWidth: 200
+        )
+        ChatMessageView(
+            chatMessage: ChatMessage(
+                content: "System message",
+                origin: Role.system.rawValue,
+                timestamp: 3,
+                id: "4",
+                workspace: 1
+            ),
+            maxMessageWidth: 200
+        )
     }
 }
