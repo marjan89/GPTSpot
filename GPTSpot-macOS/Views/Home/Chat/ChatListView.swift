@@ -37,11 +37,11 @@ struct ChatListView: View {
 
     var body: some View {
         ZStack {
-//            hotkeys()
+            hotkeys()
             ScrollViewReader { proxy in
                 GeometryReader { geometry in
                     List(chatMessages, id: \.content) { chatMessage in
-                        ChatMessageView(
+                        ChatListItemView(
                             chatMessage: chatMessage,
                             maxMessageWidth: geometry.size.width * 0.66
                         )
