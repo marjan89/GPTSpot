@@ -27,7 +27,7 @@ struct ChatListView<ContextMenuItems: View>: View {
         ScrollViewReader { scrollProxy in
             GeometryReader { geomatry in
                 List(chatMessages, id: \.content) { chatMessage in
-                    ChatMessageView(
+                    ChatListItemView(
                         chatMessage: chatMessage,
                         maxMessageWidth: geomatry.size.width * 0.66
                     )

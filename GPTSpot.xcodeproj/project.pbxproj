@@ -77,7 +77,7 @@
 		02BA44F22C2EC3D900473575 /* EnvironmentValues+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44F02C2EC3B300473575 /* EnvironmentValues+Keys.swift */; };
 		02BA44F42C334B1900473575 /* MarkdownStyleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44F32C334B1900473575 /* MarkdownStyleModifier.swift */; };
 		02BA44F52C334B3000473575 /* MarkdownStyleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288BF672BB32DF00047CA09 /* MarkdownStyleModifier.swift */; };
-		02BA44F72C334BF500473575 /* ChatMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44F62C334BF500473575 /* ChatMessageView.swift */; };
+		02BA44F72C334BF500473575 /* ChatListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44F62C334BF500473575 /* ChatListItemView.swift */; };
 		02BA44F82C334C3600473575 /* ChatListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C7E222B8D87820060F343 /* ChatListItemView.swift */; };
 		02BA44FB2C336C9000473575 /* MarkdownCopyActionStyleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44F92C3367FD00473575 /* MarkdownCopyActionStyleModifier.swift */; };
 		02BA45092C3374A700473575 /* WorkspaceListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA45042C33742700473575 /* WorkspaceListItemView.swift */; };
@@ -209,7 +209,7 @@
 		02BA44E92C2EC1D500473575 /* EnvironmentValues+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+Keys.swift"; sourceTree = "<group>"; };
 		02BA44F02C2EC3B300473575 /* EnvironmentValues+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "EnvironmentValues+Keys.swift"; path = "GPTSpot-macOS/Dependencies/EnvironmentValues+Keys.swift"; sourceTree = SOURCE_ROOT; };
 		02BA44F32C334B1900473575 /* MarkdownStyleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MarkdownStyleModifier.swift; path = "GPTSpot-macOs/Modifiers/MarkdownStyleModifier.swift"; sourceTree = SOURCE_ROOT; };
-		02BA44F62C334BF500473575 /* ChatMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageView.swift; sourceTree = "<group>"; };
+		02BA44F62C334BF500473575 /* ChatListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListItemView.swift; sourceTree = "<group>"; };
 		02BA44F92C3367FD00473575 /* MarkdownCopyActionStyleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MarkdownCopyActionStyleModifier.swift; path = "GPTSpot-macOs/Modifiers/MarkdownCopyActionStyleModifier.swift"; sourceTree = SOURCE_ROOT; };
 		02BA45042C33742700473575 /* WorkspaceListItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorkspaceListItemView.swift; path = "GPTSpot-macOS/Views/Home/Workspace/WorkspaceListItemView.swift"; sourceTree = SOURCE_ROOT; };
 		02BA45052C33742700473575 /* WorkspaceListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorkspaceListView.swift; path = "GPTSpot-macOS/Views/Home/Workspace/WorkspaceListView.swift"; sourceTree = SOURCE_ROOT; };
@@ -570,7 +570,7 @@
 			children = (
 				026B92E22BE51CAD00BCD0A7 /* ChatView.swift */,
 				02A5ED352C133FDB0037E96D /* ChatListView.swift */,
-				02BA44F62C334BF500473575 /* ChatMessageView.swift */,
+				02BA44F62C334BF500473575 /* ChatListItemView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -866,7 +866,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02BA44F72C334BF500473575 /* ChatMessageView.swift in Sources */,
+				02BA44F72C334BF500473575 /* ChatListItemView.swift in Sources */,
 				02FD0B722BE642660042B60C /* WorkspaceListItemView.swift in Sources */,
 				02A5ED302C13253C0037E96D /* WorkspaceHomePath.swift in Sources */,
 				02BA44E82C2EBE1500473575 /* Container+Shared.swift in Sources */,

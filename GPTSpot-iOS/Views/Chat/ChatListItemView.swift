@@ -9,7 +9,7 @@ import SwiftUI
 import MarkdownUI
 import GPTSpot_Common
 
-public struct ChatMessageView: View {
+public struct ChatListItemView: View {
 
     private let chatMessage: ChatMessage
     private let maxMessageWidth: Double
@@ -45,7 +45,7 @@ public struct ChatMessageView: View {
 
 #Preview {
     VStack {
-        ChatMessageView(
+        ChatListItemView(
             chatMessage: ChatMessage(
                 content: "Hello",
                 origin: Role.user.rawValue,
@@ -55,7 +55,7 @@ public struct ChatMessageView: View {
             ),
             maxMessageWidth: 200
         )
-        ChatMessageView(
+        ChatListItemView(
             chatMessage: ChatMessage(
                 content: "Hi!",
                 origin: Role.assistant.rawValue,
@@ -65,7 +65,7 @@ public struct ChatMessageView: View {
             ),
             maxMessageWidth: 200
         )
-        ChatMessageView(
+        ChatListItemView(
             chatMessage: ChatMessage(
                 content: "Response error",
                 origin: Role.local.rawValue,
@@ -75,7 +75,7 @@ public struct ChatMessageView: View {
             ),
             maxMessageWidth: 200
         )
-        ChatMessageView(
+        ChatListItemView(
             chatMessage: ChatMessage(
                 content: "System message",
                 origin: Role.system.rawValue,
