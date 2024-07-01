@@ -151,7 +151,7 @@
 		0230ED1F2BBF6CE700C067E6 /* KeyCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCaptureView.swift; sourceTree = "<group>"; };
 		0237CABD2C176C2B00754541 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "GPTSpot-macOS/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		023B78712BEAD523009D90B8 /* RegularWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularWindow.swift; sourceTree = "<group>"; };
-		023B78752BEADD8A009D90B8 /* WindowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WindowModifier.swift; path = "GPTSpot-macOS/Views/Modifiers/WindowModifier.swift"; sourceTree = SOURCE_ROOT; };
+		023B78752BEADD8A009D90B8 /* WindowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WindowModifier.swift; path = "GPTSpot-macOs/Modifiers/WindowModifier.swift"; sourceTree = SOURCE_ROOT; };
 		024B1F622C18560C00BC6007 /* TemplateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateService.swift; sourceTree = "<group>"; };
 		024B1F642C18590A00BC6007 /* ChatMessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageService.swift; sourceTree = "<group>"; };
 		024B1F672C1B469E00BC6007 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
@@ -210,9 +210,9 @@
 		02BA44E72C2EBE1500473575 /* Container+Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+Shared.swift"; sourceTree = "<group>"; };
 		02BA44E92C2EC1D500473575 /* EnvironmentValues+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+Keys.swift"; sourceTree = "<group>"; };
 		02BA44F02C2EC3B300473575 /* EnvironmentValues+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "EnvironmentValues+Keys.swift"; path = "GPTSpot-macOS/Dependencies/EnvironmentValues+Keys.swift"; sourceTree = SOURCE_ROOT; };
-		02BA44F32C334B1900473575 /* MarkdownStyleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MarkdownStyleModifier.swift; path = "GPTSpot-macOs/Views/Modifiers/MarkdownStyleModifier.swift"; sourceTree = SOURCE_ROOT; };
+		02BA44F32C334B1900473575 /* MarkdownStyleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MarkdownStyleModifier.swift; path = "GPTSpot-macOs/Modifiers/MarkdownStyleModifier.swift"; sourceTree = SOURCE_ROOT; };
 		02BA44F62C334BF500473575 /* ChatMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageView.swift; sourceTree = "<group>"; };
-		02BA44F92C3367FD00473575 /* MarkdownCopyActionStyleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MarkdownCopyActionStyleModifier.swift; path = "GPTSpot-macOS/Views/Modifiers/MarkdownCopyActionStyleModifier.swift"; sourceTree = SOURCE_ROOT; };
+		02BA44F92C3367FD00473575 /* MarkdownCopyActionStyleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MarkdownCopyActionStyleModifier.swift; path = "GPTSpot-macOs/Modifiers/MarkdownCopyActionStyleModifier.swift"; sourceTree = SOURCE_ROOT; };
 		02BD90B12BA8E5480047115E /* SpotSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotSettings.swift; sourceTree = "<group>"; };
 		02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotKeyManager.swift; sourceTree = "<group>"; };
 		02FD0B712BE642660042B60C /* WorkspaceListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListItemView.swift; sourceTree = "<group>"; };
@@ -285,16 +285,6 @@
 			path = Window;
 			sourceTree = "<group>";
 		};
-		023B78742BEADD6C009D90B8 /* Modifiers */ = {
-			isa = PBXGroup;
-			children = (
-				02BA44F92C3367FD00473575 /* MarkdownCopyActionStyleModifier.swift */,
-				02BA44F32C334B1900473575 /* MarkdownStyleModifier.swift */,
-				023B78752BEADD8A009D90B8 /* WindowModifier.swift */,
-			);
-			path = Modifiers;
-			sourceTree = "<group>";
-		};
 		024B1F662C1B468300BC6007 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,6 +326,7 @@
 				025AE6792B8BA520001489A3 /* Assets.xcassets */,
 				02BA44EB2C2EC35500473575 /* Dependencies */,
 				026B92E82BE51DA600BCD0A7 /* Extensions */,
+				02BA44FC2C336E0700473575 /* Modifiers */,
 				025AE67B2B8BA521001489A3 /* Preview Content */,
 				025C7E1D2B8D77CC0060F343 /* Views */,
 				023B78732BEADB4B009D90B8 /* Window */,
@@ -384,7 +375,6 @@
 				02AAD1BA2B8E7AEA00ED7876 /* HotkeyAction.swift */,
 				025C7E1E2B8D77D00060F343 /* Chat */,
 				0230ED1A2BBF6A6200C067E6 /* KeyCapture */,
-				023B78742BEADD6C009D90B8 /* Modifiers */,
 				028D48DB2BAA3C8E005E2FF7 /* Settings */,
 				0288BF602BB2D6C20047CA09 /* Templates */,
 			);
@@ -509,6 +499,16 @@
 				02BA44F02C2EC3B300473575 /* EnvironmentValues+Keys.swift */,
 			);
 			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		02BA44FC2C336E0700473575 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				023B78752BEADD8A009D90B8 /* WindowModifier.swift */,
+				02BA44F32C334B1900473575 /* MarkdownStyleModifier.swift */,
+				02BA44F92C3367FD00473575 /* MarkdownCopyActionStyleModifier.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		02C491632BA71DA800EDB446 /* Frameworks */ = {
