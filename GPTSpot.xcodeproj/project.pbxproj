@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		022865352C2D7F7D00F92B05 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 022865342C2D7F7D00F92B05 /* MarkdownUI */; };
 		022865372C2D7F8900F92B05 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 022865362C2D7F8900F92B05 /* MarkdownUI */; };
-		022865392C2D7F8F00F92B05 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 022865382C2D7F8F00F92B05 /* MarkdownUI */; };
 		0228653B2C2E269100F92B05 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0228653A2C2E269100F92B05 /* Module.swift */; };
 		0228653D2C2E26A600F92B05 /* DataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0228653C2C2E26A600F92B05 /* DataModule.swift */; };
 		0228653F2C2E26AF00F92B05 /* CommonModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0228653E2C2E26AF00F92B05 /* CommonModule.swift */; };
@@ -248,7 +247,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				022865392C2D7F8F00F92B05 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +421,7 @@
 				024B1F662C1B468300BC6007 /* Dependencies */,
 				02FD0B882BE821650042B60C /* Extensions */,
 				025C7E1B2B8D779B0060F343 /* Models */,
+				0230ED172BBE178F00C067E6 /* Modifiers */,
 				025C7E1C2B8D77AF0060F343 /* Services */,
 				026B92B22BE5121400BCD0A7 /* Views */,
 			);
@@ -432,7 +431,6 @@
 		026B92B22BE5121400BCD0A7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0230ED172BBE178F00C067E6 /* Modifiers */,
 				02A17A212BA60CD000C26A67 /* Previewer.swift */,
 			);
 			path = Views;
@@ -700,7 +698,6 @@
 			);
 			name = "GPTSpot-Common";
 			packageProductDependencies = (
-				022865382C2D7F8F00F92B05 /* MarkdownUI */,
 			);
 			productName = "GPTSpot-Common";
 			productReference = 026B92982BE4FED400BCD0A7 /* GPTSpot_Common.framework */;
@@ -1350,11 +1347,6 @@
 			productName = MarkdownUI;
 		};
 		022865362C2D7F8900F92B05 /* MarkdownUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 022865332C2D7F7D00F92B05 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
-			productName = MarkdownUI;
-		};
-		022865382C2D7F8F00F92B05 /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 022865332C2D7F7D00F92B05 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
 			productName = MarkdownUI;
