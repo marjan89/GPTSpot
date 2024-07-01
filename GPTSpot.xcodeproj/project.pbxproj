@@ -46,7 +46,6 @@
 		026B92D22BE5138B00BCD0A7 /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6A52B8BEE51001489A3 /* OpenAIService.swift */; };
 		026B92D32BE5138B00BCD0A7 /* URLResponse+ErrorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AB8C932BE42F59006C0853 /* URLResponse+ErrorCode.swift */; };
 		026B92DB2BE5176200BCD0A7 /* Previewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A17A212BA60CD000C26A67 /* Previewer.swift */; };
-		026B92E12BE5179E00BCD0A7 /* Markdown+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288BF672BB32DF00047CA09 /* Markdown+Styling.swift */; };
 		026B92E32BE51CAD00BCD0A7 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026B92E22BE51CAD00BCD0A7 /* ChatView.swift */; };
 		026B92E42BE51D6C00BCD0A7 /* KeyRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230ED182BBF48FA00C067E6 /* KeyRecordingView.swift */; };
 		026B92E52BE51D6C00BCD0A7 /* KeySequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230ED1D2BBF6A9300C067E6 /* KeySequence.swift */; };
@@ -78,13 +77,17 @@
 		02BA44E82C2EBE1500473575 /* Container+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44E72C2EBE1500473575 /* Container+Shared.swift */; };
 		02BA44EA2C2EC1D500473575 /* EnvironmentValues+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44E92C2EC1D500473575 /* EnvironmentValues+Keys.swift */; };
 		02BA44F22C2EC3D900473575 /* EnvironmentValues+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44F02C2EC3B300473575 /* EnvironmentValues+Keys.swift */; };
+		02BA44F42C334B1900473575 /* MarkdownStyleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44F32C334B1900473575 /* MarkdownStyleModifier.swift */; };
+		02BA44F52C334B3000473575 /* Markdown+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288BF672BB32DF00047CA09 /* Markdown+Styling.swift */; };
+		02BA44F72C334BF500473575 /* ChatMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44F62C334BF500473575 /* ChatMessageView.swift */; };
+		02BA44F82C334C3600473575 /* ChatMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C7E222B8D87820060F343 /* ChatMessageView.swift */; };
+		02BA44FB2C336C9000473575 /* MarkdownCopyActionStyleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44F92C3367FD00473575 /* MarkdownCopyActionStyleModifier.swift */; };
 		02BD90B22BA8E5480047115E /* SpotSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BD90B12BA8E5480047115E /* SpotSettings.swift */; };
 		02E04C432BB1D9F50074A95E /* GlobalHotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */; };
 		02F8690C2C0A9CEF00961513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025AE6792B8BA520001489A3 /* Assets.xcassets */; };
 		02FD0B722BE642660042B60C /* WorkspaceListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD0B712BE642660042B60C /* WorkspaceListItemView.swift */; };
 		02FD0B742BE64CD20042B60C /* WorkspaceHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD0B732BE64CD20042B60C /* WorkspaceHomeView.swift */; };
 		02FD0B762BE6508E0042B60C /* RoundedCornerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029673E42BBA21EF0054062F /* RoundedCornerModifier.swift */; };
-		02FD0B802BE67DCB0042B60C /* ChatMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C7E222B8D87820060F343 /* ChatMessageView.swift */; };
 		02FD0B822BE688120042B60C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD0B812BE688120042B60C /* SettingsView.swift */; };
 		02FD0B862BE688C30042B60C /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48E02BAA3CC9005E2FF7 /* GeneralSettingsView.swift */; };
 		02FD0B872BE6AABA0042B60C /* AIServerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48DE2BAA3CBC005E2FF7 /* AIServerSettingsView.swift */; };
@@ -207,6 +210,9 @@
 		02BA44E72C2EBE1500473575 /* Container+Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+Shared.swift"; sourceTree = "<group>"; };
 		02BA44E92C2EC1D500473575 /* EnvironmentValues+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+Keys.swift"; sourceTree = "<group>"; };
 		02BA44F02C2EC3B300473575 /* EnvironmentValues+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "EnvironmentValues+Keys.swift"; path = "GPTSpot-macOS/Dependencies/EnvironmentValues+Keys.swift"; sourceTree = SOURCE_ROOT; };
+		02BA44F32C334B1900473575 /* MarkdownStyleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MarkdownStyleModifier.swift; path = "GPTSpot-macOs/Views/Modifiers/MarkdownStyleModifier.swift"; sourceTree = SOURCE_ROOT; };
+		02BA44F62C334BF500473575 /* ChatMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageView.swift; sourceTree = "<group>"; };
+		02BA44F92C3367FD00473575 /* MarkdownCopyActionStyleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MarkdownCopyActionStyleModifier.swift; path = "GPTSpot-macOS/Views/Modifiers/MarkdownCopyActionStyleModifier.swift"; sourceTree = SOURCE_ROOT; };
 		02BD90B12BA8E5480047115E /* SpotSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotSettings.swift; sourceTree = "<group>"; };
 		02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotKeyManager.swift; sourceTree = "<group>"; };
 		02FD0B712BE642660042B60C /* WorkspaceListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListItemView.swift; sourceTree = "<group>"; };
@@ -282,6 +288,8 @@
 		023B78742BEADD6C009D90B8 /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				02BA44F92C3367FD00473575 /* MarkdownCopyActionStyleModifier.swift */,
+				02BA44F32C334B1900473575 /* MarkdownStyleModifier.swift */,
 				023B78752BEADD8A009D90B8 /* WindowModifier.swift */,
 			);
 			path = Modifiers;
@@ -322,11 +330,11 @@
 		025AE6742B8BA51F001489A3 /* GPTSpot-macOs */ = {
 			isa = PBXGroup;
 			children = (
-				02BA44EB2C2EC35500473575 /* Dependencies */,
 				025AE67E2B8BA521001489A3 /* GPTSpot.entitlements */,
 				0237CABD2C176C2B00754541 /* AppDelegate.swift */,
 				025AE6752B8BA51F001489A3 /* GPTSpotmacOSApp.swift */,
 				025AE6792B8BA520001489A3 /* Assets.xcassets */,
+				02BA44EB2C2EC35500473575 /* Dependencies */,
 				026B92E82BE51DA600BCD0A7 /* Extensions */,
 				025AE67B2B8BA521001489A3 /* Preview Content */,
 				025C7E1D2B8D77CC0060F343 /* Views */,
@@ -358,6 +366,7 @@
 		025C7E1C2B8D77AF0060F343 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				025AE6AD2B8BEEC3001489A3 /* ChatViewService.swift */,
 				025AE6A52B8BEE51001489A3 /* OpenAIService.swift */,
 				02AB8C932BE42F59006C0853 /* URLResponse+ErrorCode.swift */,
 				0288113B2C1531490026ED01 /* ChatRequest+Factory.swift */,
@@ -385,6 +394,7 @@
 		025C7E1E2B8D77D00060F343 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				025C7E222B8D87820060F343 /* ChatMessageView.swift */,
 				029673EA2BBD45750054062F /* ChatListView.swift */,
 				026B92B02BE501CB00BCD0A7 /* PromptEditor.swift */,
 				029673D72BB4EC0A0054062F /* CheatSheetView.swift */,
@@ -439,21 +449,10 @@
 		026B92B22BE5121400BCD0A7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				029673DB2BB894650054062F /* Extensions */,
 				0230ED172BBE178F00C067E6 /* Modifiers */,
 				02A17A212BA60CD000C26A67 /* Previewer.swift */,
-				026B92B32BE5122100BCD0A7 /* Chat */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		026B92B32BE5122100BCD0A7 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				025C7E222B8D87820060F343 /* ChatMessageView.swift */,
-				025AE6AD2B8BEEC3001489A3 /* ChatViewService.swift */,
-			);
-			path = Chat;
 			sourceTree = "<group>";
 		};
 		026B92E82BE51DA600BCD0A7 /* Extensions */ = {
@@ -493,14 +492,6 @@
 			path = Defaults;
 			sourceTree = "<group>";
 		};
-		029673DB2BB894650054062F /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				0288BF672BB32DF00047CA09 /* Markdown+Styling.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		02BA44E32C2EBD9700473575 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -532,6 +523,7 @@
 			children = (
 				026B92E22BE51CAD00BCD0A7 /* ChatView.swift */,
 				02A5ED352C133FDB0037E96D /* ChatListView.swift */,
+				02BA44F62C334BF500473575 /* ChatMessageView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -569,6 +561,7 @@
 		02FD0B8B2BE857040042B60C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0288BF672BB32DF00047CA09 /* Markdown+Styling.swift */,
 				02FD0B8C2BE8570F0042B60C /* String+Clipboard.swift */,
 			);
 			path = Extensions;
@@ -788,6 +781,7 @@
 				02BA44E62C2EBE0300473575 /* Container+Shared.swift in Sources */,
 				02A17A202BA60AD100C26A67 /* BorderlessWindow.swift in Sources */,
 				02BD90B22BA8E5480047115E /* SpotSettings.swift in Sources */,
+				02BA44F42C334B1900473575 /* MarkdownStyleModifier.swift in Sources */,
 				02E04C432BB1D9F50074A95E /* GlobalHotKeyManager.swift in Sources */,
 				025AE6782B8BA51F001489A3 /* ContentView.swift in Sources */,
 				02FD0B862BE688C30042B60C /* GeneralSettingsView.swift in Sources */,
@@ -796,10 +790,12 @@
 				023B78722BEAD523009D90B8 /* RegularWindow.swift in Sources */,
 				029BABD12BE56950008F8FB0 /* TemplateStripeView.swift in Sources */,
 				029673E12BB8A4E00054062F /* StatsView.swift in Sources */,
+				02BA44FB2C336C9000473575 /* MarkdownCopyActionStyleModifier.swift in Sources */,
 				029673D82BB4EC0A0054062F /* CheatSheetView.swift in Sources */,
 				02FD0B872BE6AABA0042B60C /* AIServerSettingsView.swift in Sources */,
 				02BA44F22C2EC3D900473575 /* EnvironmentValues+Keys.swift in Sources */,
 				029BABCF2BE56914008F8FB0 /* HotkeyAction.swift in Sources */,
+				02BA44F82C334C3600473575 /* ChatMessageView.swift in Sources */,
 				029BABD32BE56B09008F8FB0 /* ChatListView.swift in Sources */,
 				02AB8C922BE41528006C0853 /* LaunchAtLogin.swift in Sources */,
 				029BABD42BE56B09008F8FB0 /* PromptEditor.swift in Sources */,
@@ -822,11 +818,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02BA44F72C334BF500473575 /* ChatMessageView.swift in Sources */,
 				02FD0B722BE642660042B60C /* WorkspaceListItemView.swift in Sources */,
 				02A5ED302C13253C0037E96D /* WorkspaceHomePath.swift in Sources */,
 				02BA44E82C2EBE1500473575 /* Container+Shared.swift in Sources */,
 				02BA44EA2C2EC1D500473575 /* EnvironmentValues+Keys.swift in Sources */,
 				026B926E2BE4FE1800BCD0A7 /* ContentView.swift in Sources */,
+				02BA44F52C334B3000473575 /* Markdown+Styling.swift in Sources */,
 				026B92E32BE51CAD00BCD0A7 /* ChatView.swift in Sources */,
 				02A5ED2E2C1324E60037E96D /* WorkspaceListView.swift in Sources */,
 				02FD0B822BE688120042B60C /* SettingsView.swift in Sources */,
@@ -845,10 +843,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02FD0B802BE67DCB0042B60C /* ChatMessageView.swift in Sources */,
 				026B92D22BE5138B00BCD0A7 /* OpenAIService.swift in Sources */,
 				026B92DB2BE5176200BCD0A7 /* Previewer.swift in Sources */,
-				026B92E12BE5179E00BCD0A7 /* Markdown+Styling.swift in Sources */,
 				0288113C2C1531490026ED01 /* ChatRequest+Factory.swift in Sources */,
 				02FD0B762BE6508E0042B60C /* RoundedCornerModifier.swift in Sources */,
 				02FD0B8A2BE821AB0042B60C /* Array.swift in Sources */,
