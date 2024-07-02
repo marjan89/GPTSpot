@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		022865352C2D7F7D00F92B05 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 022865342C2D7F7D00F92B05 /* MarkdownUI */; };
-		022865372C2D7F8900F92B05 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 022865362C2D7F8900F92B05 /* MarkdownUI */; };
 		0228653B2C2E269100F92B05 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0228653A2C2E269100F92B05 /* Module.swift */; };
 		0228653D2C2E26A600F92B05 /* DataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0228653C2C2E26A600F92B05 /* DataModule.swift */; };
 		0228653F2C2E26AF00F92B05 /* CommonModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0228653E2C2E26AF00F92B05 /* CommonModule.swift */; };
@@ -83,6 +81,8 @@
 		02BA450A2C3374AB00473575 /* WorkspaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA45052C33742700473575 /* WorkspaceListView.swift */; };
 		02BA450D2C3378EE00473575 /* MockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA450C2C3378EE00473575 /* MockFactory.swift */; };
 		02BA450F2C3381E000473575 /* InMemoryDataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA450E2C3381E000473575 /* InMemoryDataModule.swift */; };
+		02BA45172C338B1800473575 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 02BA45162C338B1800473575 /* MarkdownUI */; };
+		02BA45192C338B1F00473575 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 02BA45182C338B1F00473575 /* MarkdownUI */; };
 		02BD90B22BA8E5480047115E /* SpotSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BD90B12BA8E5480047115E /* SpotSettings.swift */; };
 		02E04C432BB1D9F50074A95E /* GlobalHotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */; };
 		02F8690C2C0A9CEF00961513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025AE6792B8BA520001489A3 /* Assets.xcassets */; };
@@ -234,7 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				026B92A02BE4FED400BCD0A7 /* GPTSpot_Common.framework in Frameworks */,
-				022865352C2D7F7D00F92B05 /* MarkdownUI in Frameworks */,
+				02BA45172C338B1800473575 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,7 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				026B92A82BE4FFAF00BCD0A7 /* GPTSpot_Common.framework in Frameworks */,
-				022865372C2D7F8900F92B05 /* MarkdownUI in Frameworks */,
+				02BA45192C338B1F00473575 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,7 +660,7 @@
 			);
 			name = "GPTSpot-macOS";
 			packageProductDependencies = (
-				022865342C2D7F7D00F92B05 /* MarkdownUI */,
+				02BA45162C338B1800473575 /* MarkdownUI */,
 			);
 			productName = GPTSpot;
 			productReference = 025AE6722B8BA51F001489A3 /* GPTSpot-macOS.app */;
@@ -683,7 +683,7 @@
 			);
 			name = "GPTSpot-iOS";
 			packageProductDependencies = (
-				022865362C2D7F8900F92B05 /* MarkdownUI */,
+				02BA45182C338B1F00473575 /* MarkdownUI */,
 			);
 			productName = "GPTSpot-iOS";
 			productReference = 026B92692BE4FE1800BCD0A7 /* GPTSpot-iOS.app */;
@@ -741,7 +741,7 @@
 			mainGroup = 025AE6692B8BA51F001489A3;
 			packageReferences = (
 				029BABD92BE5AB5C008F8FB0 /* XCRemoteSwiftPackageReference "SwiftLint" */,
-				022865332C2D7F7D00F92B05 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				02BA45152C338B1800473575 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 			);
 			productRefGroup = 025AE6732B8BA51F001489A3 /* Products */;
 			projectDirPath = "";
@@ -1330,14 +1330,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		022865332C2D7F7D00F92B05 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.3.1;
-			};
-		};
 		029BABD92BE5AB5C008F8FB0 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/SwiftLint.git";
@@ -1346,23 +1338,31 @@
 				minimumVersion = 0.54.0;
 			};
 		};
+		02BA45152C338B1800473575 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		022865342C2D7F7D00F92B05 /* MarkdownUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 022865332C2D7F7D00F92B05 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
-			productName = MarkdownUI;
-		};
-		022865362C2D7F8900F92B05 /* MarkdownUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 022865332C2D7F7D00F92B05 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
-			productName = MarkdownUI;
-		};
 		029BABDB2BE5AC39008F8FB0 /* SwiftLintPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 029BABD92BE5AB5C008F8FB0 /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintPlugin";
+		};
+		02BA45162C338B1800473575 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02BA45152C338B1800473575 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
+		02BA45182C338B1F00473575 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02BA45152C338B1800473575 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
