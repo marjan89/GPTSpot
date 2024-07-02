@@ -24,6 +24,8 @@ public extension UserDefaults {
         public static let hideFromDock: String = "hideFromDock"
         public static let windowed: String = "windowed"
         public static let keepOnTop: String = "keepOnTop"
+        public static let panelTransparency: String = "panelTransparency"
+        public static let usePanelTransparency: String = "usePanelTransparency"
     }
 
     enum IOSKeys {

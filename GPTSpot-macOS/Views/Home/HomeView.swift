@@ -15,6 +15,9 @@ struct HomeView: View {
     @Environment(\.chatMessageService) private var chatMessageService: ChatMessageService
     @Environment(\.templateService) private var templateService: TemplateService
 
+    @AppStorage(UserDefaults.GeneralSettingsKeys.panelTransparency) var panelTransparency = 1.0
+    @AppStorage(UserDefaults.GeneralSettingsKeys.usePanelTransparency) var usePanelTransparency = false
+    
     @FocusState private var focusedField: Bool
     @State var workspace = 1
     @State var showHelpRibbon = false
@@ -29,38 +32,49 @@ struct HomeView: View {
         if windowed {
             windowedView()
         } else {
-            paneView()
+            panelView()
                 .window()
         }
     }
 
     @ViewBuilder
-    private func paneView() -> some View {
+    private func panelView() -> some View {
         GeometryReader { geometry in
-            VStack(spacing: 0) {
-                ChatListView(
-                    workspace: workspace,
-                    prompt: $prompt
-                )
-                VStack {
-                    templateStripe()
-                    PromptEditor(
-                        showTemplateHint: $showTemplateStripe,
-                        templateSearchQuery: $templateSearchQuery,
-                        prompt: $prompt,
-                        focusedField: _focusedField,
-                        textEditorHeight: geometry.size.width * 0.1
+            ZStack {
+                VStack(spacing: 0) {
+                    ChatListView(
+                        workspace: workspace,
+                        prompt: $prompt
                     )
-                    if showHelpRibbon {
-                        CheatSheetView()
+                    VStack {
+                        templateStripe()
+                        PromptEditor(
+                            showTemplateHint: $showTemplateStripe,
+                            templateSearchQuery: $templateSearchQuery,
+                            prompt: $prompt,
+                            focusedField: _focusedField,
+                            textEditorHeight: geometry.size.width * 0.1
+                        )
+                        if showHelpRibbon {
+                            CheatSheetView()
+                        }
+                        if showStats {
+                            StatsView(workspace: workspace)
+                        }
+                        chatControls()
                     }
-                    if showStats {
-                        StatsView(workspace: workspace)
-                    }
-                    chatControls()
+                    .padding(.all, 16)
+                    .opacityAwareMaterialBackground()
                 }
-                .padding(.all, 16)
-                .background(.regularMaterial)
+                HotkeyAction(hotkey: "*") {
+                    usePanelTransparency.toggle()
+                }
+                HotkeyAction(hotkey: "-") {
+                    panelTransparency -= 0.1
+                }
+                HotkeyAction(hotkey: "+") {
+                    panelTransparency += 0.1
+                }
             }
         }
     }
@@ -277,6 +291,6 @@ struct HomeView: View {
 #Preview {
     Previewer {
         HomeView()
-            .frame(width: 900, height: 600)
+            .frame(width: 600, height: 400)
     }
 }

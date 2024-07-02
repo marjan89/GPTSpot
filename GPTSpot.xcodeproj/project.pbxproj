@@ -39,7 +39,7 @@
 		026B92CD2BE5138100BCD0A7 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C7E202B8D79180060F343 /* ChatMessage.swift */; };
 		026B92CE2BE5138100BCD0A7 /* Chunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FE75212BA65A0B0048A4EB /* Chunk.swift */; };
 		026B92D02BE5138600BCD0A7 /* GPTModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48E72BAA41D8005E2FF7 /* GPTModels.swift */; };
-		026B92D12BE5138600BCD0A7 /* AIServerDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48E32BAA40F1005E2FF7 /* AIServerDefaultsKeys.swift */; };
+		026B92D12BE5138600BCD0A7 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D48E32BAA40F1005E2FF7 /* UserDefaultsKeys.swift */; };
 		026B92D22BE5138B00BCD0A7 /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6A52B8BEE51001489A3 /* OpenAIService.swift */; };
 		026B92D32BE5138B00BCD0A7 /* URLResponse+ErrorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AB8C932BE42F59006C0853 /* URLResponse+ErrorCode.swift */; };
 		026B92DB2BE5176200BCD0A7 /* Previewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A17A212BA60CD000C26A67 /* Previewer.swift */; };
@@ -83,6 +83,7 @@
 		02BA450F2C3381E000473575 /* InMemoryDataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA450E2C3381E000473575 /* InMemoryDataModule.swift */; };
 		02BA451C2C338BC100473575 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 02BA451B2C338BC100473575 /* MarkdownUI */; };
 		02BA451E2C338BCA00473575 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 02BA451D2C338BCA00473575 /* MarkdownUI */; };
+		02BA45202C3409D300473575 /* OpacityAwareMaterialBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA451F2C3409D300473575 /* OpacityAwareMaterialBackground.swift */; };
 		02BD90B22BA8E5480047115E /* SpotSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BD90B12BA8E5480047115E /* SpotSettings.swift */; };
 		02E04C432BB1D9F50074A95E /* GlobalHotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */; };
 		02F8690C2C0A9CEF00961513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025AE6792B8BA520001489A3 /* Assets.xcassets */; };
@@ -186,7 +187,7 @@
 		0288BF672BB32DF00047CA09 /* MarkdownStyleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownStyleModifier.swift; sourceTree = "<group>"; };
 		028D48DE2BAA3CBC005E2FF7 /* AIServerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIServerSettingsView.swift; sourceTree = "<group>"; };
 		028D48E02BAA3CC9005E2FF7 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
-		028D48E32BAA40F1005E2FF7 /* AIServerDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIServerDefaultsKeys.swift; sourceTree = "<group>"; };
+		028D48E32BAA40F1005E2FF7 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		028D48E72BAA41D8005E2FF7 /* GPTModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPTModels.swift; sourceTree = "<group>"; };
 		029673D72BB4EC0A0054062F /* CheatSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheatSheetView.swift; sourceTree = "<group>"; };
 		029673DE2BB8A0B80054062F /* WorkspaceIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceIndicatorView.swift; sourceTree = "<group>"; };
@@ -216,6 +217,7 @@
 		02BA45052C33742700473575 /* WorkspaceListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorkspaceListView.swift; path = "GPTSpot-macOS/Views/Home/Workspace/WorkspaceListView.swift"; sourceTree = SOURCE_ROOT; };
 		02BA450C2C3378EE00473575 /* MockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFactory.swift; sourceTree = "<group>"; };
 		02BA450E2C3381E000473575 /* InMemoryDataModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryDataModule.swift; sourceTree = "<group>"; };
+		02BA451F2C3409D300473575 /* OpacityAwareMaterialBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OpacityAwareMaterialBackground.swift; path = "GPTSpot-macOS/Modifiers/OpacityAwareMaterialBackground.swift"; sourceTree = SOURCE_ROOT; };
 		02BD90B12BA8E5480047115E /* SpotSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotSettings.swift; sourceTree = "<group>"; };
 		02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotKeyManager.swift; sourceTree = "<group>"; };
 		02FD0B712BE642660042B60C /* WorkspaceListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListItemView.swift; sourceTree = "<group>"; };
@@ -473,7 +475,7 @@
 		028D48E22BAA40C3005E2FF7 /* Defaults */ = {
 			isa = PBXGroup;
 			children = (
-				028D48E32BAA40F1005E2FF7 /* AIServerDefaultsKeys.swift */,
+				028D48E32BAA40F1005E2FF7 /* UserDefaultsKeys.swift */,
 				028D48E72BAA41D8005E2FF7 /* GPTModels.swift */,
 				02A5ED332C132A3D0037E96D /* WorkspaceConfig.swift */,
 			);
@@ -505,6 +507,7 @@
 				023B78752BEADD8A009D90B8 /* WindowModifier.swift */,
 				02BA44F32C334B1900473575 /* MarkdownStyleModifier.swift */,
 				02BA44F92C3367FD00473575 /* MarkdownCopyActionStyleModifier.swift */,
+				02BA451F2C3409D300473575 /* OpacityAwareMaterialBackground.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -836,6 +839,7 @@
 				02E04C432BB1D9F50074A95E /* GlobalHotKeyManager.swift in Sources */,
 				025AE6782B8BA51F001489A3 /* ContentView.swift in Sources */,
 				02FD0B862BE688C30042B60C /* GeneralSettingsView.swift in Sources */,
+				02BA45202C3409D300473575 /* OpacityAwareMaterialBackground.swift in Sources */,
 				029673DF2BB8A0B80054062F /* WorkspaceIndicatorView.swift in Sources */,
 				023B78722BEAD523009D90B8 /* RegularWindow.swift in Sources */,
 				02BA450A2C3374AB00473575 /* WorkspaceListView.swift in Sources */,
@@ -907,7 +911,7 @@
 				0228653D2C2E26A600F92B05 /* DataModule.swift in Sources */,
 				026B92D02BE5138600BCD0A7 /* GPTModels.swift in Sources */,
 				024B1F632C18560C00BC6007 /* TemplateService.swift in Sources */,
-				026B92D12BE5138600BCD0A7 /* AIServerDefaultsKeys.swift in Sources */,
+				026B92D12BE5138600BCD0A7 /* UserDefaultsKeys.swift in Sources */,
 				0288113A2C1516550026ED01 /* ChatCompletion.swift in Sources */,
 				024B1F652C18590A00BC6007 /* ChatMessageService.swift in Sources */,
 				026B929C2BE4FED400BCD0A7 /* GPTSpot_Common.docc in Sources */,

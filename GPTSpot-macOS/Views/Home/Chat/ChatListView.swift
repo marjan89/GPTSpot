@@ -20,6 +20,10 @@ struct ChatListView: View {
     @Environment(\.chatMessageService) private var chatMessageService: ChatMessageService
     @Environment(\.templateService) private var templateService: TemplateService
 
+    @AppStorage(UserDefaults.GeneralSettingsKeys.panelTransparency) private var panelTransparency = 1.0
+    @AppStorage(UserDefaults.GeneralSettingsKeys.usePanelTransparency) private var usePanelTransparency = false
+    @AppStorage(UserDefaults.GeneralSettingsKeys.windowed) private var windowed = false
+
     @Query private var chatMessages: [ChatMessage]
     @Binding private var prompt: String
     private let workspace: Int
@@ -94,6 +98,8 @@ struct ChatListView: View {
                     }
                     .listStyle(.plain)
                     .scrollClipDisabled()
+                    .scrollContentBackground(.hidden)
+                    .background(.background.opacity(!windowed && usePanelTransparency ? panelTransparency : 1.0))
                 }
             }
         }

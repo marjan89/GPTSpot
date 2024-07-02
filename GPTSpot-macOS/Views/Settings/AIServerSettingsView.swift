@@ -29,7 +29,7 @@ struct AIServerSettingsView: View {
                 in: 0...2,
                 step: 0.1
             ) {
-                Text("Temperature \(temperature)")
+                Text(String(format: "Temperature %.1f", temperature))
             } minimumValueLabel: {
                 Text("0")
             } maximumValueLabel: {

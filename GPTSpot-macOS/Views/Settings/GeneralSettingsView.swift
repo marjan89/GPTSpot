@@ -14,6 +14,8 @@ struct GeneralSettingsView: View {
     @AppStorage(UserDefaults.GeneralSettingsKeys.hideFromDock) private var hideFromDock = false
     @AppStorage(UserDefaults.GeneralSettingsKeys.windowed) private var windowed = false
     @AppStorage(UserDefaults.GeneralSettingsKeys.keepOnTop) private var keepOnTop = false
+    @AppStorage(UserDefaults.GeneralSettingsKeys.panelTransparency) private var panelTransparency = 1.0
+    @AppStorage(UserDefaults.GeneralSettingsKeys.usePanelTransparency) private var usePanelTransparency = false
 
     var body: some View {
         Form {
@@ -37,6 +39,24 @@ struct GeneralSettingsView: View {
                     Text("Hide from dock")
                 }
                 .disabled(!windowed)
+            }
+            Section("Panel settings") {
+                Slider(
+                    value: $panelTransparency,
+                    in: 0...1,
+                    step: 0.1
+                ) {
+                    Text(String(format: "Panel transparency %.1f", panelTransparency))
+                } minimumValueLabel: {
+                    Text("0")
+                } maximumValueLabel: {
+                    Text("1")
+                }
+                .disabled(windowed)
+                Toggle(isOn: $usePanelTransparency) {
+                    Text("Use panel transparency")
+                }
+                .disabled(windowed)
             }
         }
         .padding(.horizontal, 20)

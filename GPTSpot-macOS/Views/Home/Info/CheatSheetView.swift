@@ -17,6 +17,9 @@ struct CheatSheetView: View {
                 Text("**⌘T** templates")
                 Text("**⌘.** show stats")
                 Text("**⌘?** show help")
+                Text("**⌘*** toggle transparency")
+                Text("**⌘-** increase transparency")
+                Text("**⌘+** decrease transparency")
             }
             VStack(alignment: .leading) {
                 Text("Chat")

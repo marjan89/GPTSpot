@@ -19,6 +19,9 @@
     "**⌃⏎** make prompt" : {
 
     },
+    "**⌘-** increase transparency" : {
+
+    },
     "**⌘?** show help" : {
 
     },
@@ -31,6 +34,9 @@
     "**⌘]** previous prompt" : {
 
     },
+    "**⌘*** toggle transparency" : {
+
+    },
     "**⌘%lld**" : {
 
     },
@@ -38,6 +44,9 @@
 
     },
     "**⌘↑** last prompt" : {
+
+    },
+    "**⌘+** decrease transparency" : {
 
     },
     "**⌘⏎** send" : {
@@ -74,6 +83,9 @@
 
     },
     "0" : {
+
+    },
+    "1" : {
 
     },
     "2" : {
@@ -140,6 +152,9 @@
 
     },
     "New workspace" : {
+
+    },
+    "Panel settings" : {
 
     },
     "Quit" : {
@@ -244,6 +259,9 @@
 
     },
     "total history: **%lld**" : {
+
+    },
+    "Use panel transparency" : {
 
     },
     "Window settings" : {
