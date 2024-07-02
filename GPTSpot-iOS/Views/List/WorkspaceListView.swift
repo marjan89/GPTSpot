@@ -67,18 +67,10 @@ struct WorkspaceListView: View {
 
 #Preview {
     @State var path = [WorkspaceHomePath]()
-
-    do {
-        let previewer = try Previewer()
-        return WorkspaceListView(
-            onSwipeDelete: { _ in
-            },
-            onEmptyViewAction: {
-
-            }
+    return Previewer {
+        WorkspaceListView(
+            onSwipeDelete: { _ in },
+            onEmptyViewAction: { }
         )
-        .modelContainer(previewer.container)
-    } catch {
-        return Text("Failed to create preview: \(error.localizedDescription)")
     }
 }

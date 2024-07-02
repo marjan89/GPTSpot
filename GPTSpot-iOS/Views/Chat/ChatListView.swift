@@ -54,17 +54,12 @@ struct ChatListView<ContextMenuItems: View>: View {
 }
 
 #Preview {
-    do {
-        let previewer = try Previewer()
-
-        return ChatListView(
+    Previewer {
+        ChatListView(
             workspace: 1,
             contextMenuItems: { _ in
                 EmptyView()
             }
         )
-        .modelContainer(previewer.container)
-    } catch {
-        return Text("Failed to create preview: \(error.localizedDescription)")
     }
 }

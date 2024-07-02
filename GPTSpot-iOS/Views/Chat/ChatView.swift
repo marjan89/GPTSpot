@@ -127,13 +127,7 @@ struct ChatView: View {
 }
 
 #Preview {
-    do {
-        let previewer = try Previewer()
-
-        return ChatView( workspace: 1 )
-            .modelContainer(previewer.container)
-            .environment(previewer.chatViewService)
-    } catch {
-        return Text("Failed to create preview: \(error.localizedDescription)")
+    Previewer {
+        ChatView( workspace: 1 )
     }
 }

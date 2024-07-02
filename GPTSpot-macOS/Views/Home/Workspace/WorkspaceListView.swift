@@ -104,20 +104,15 @@ struct WorkspaceListView: View {
 }
 
 #Preview {
-    do {
-        let previewer = try Previewer()
+    @State var workspace: Int = 1
+    @State var query: String = ""
 
-        @State var workspace: Int = 1
-        @State var query: String = ""
-
-        return WorkspaceListView(
+    return Previewer {
+        WorkspaceListView(
             onItemDelete: { _ in
             },
             activeWorkspace: $workspace,
             query: $query
         )
-        .modelContainer(previewer.container)
-    } catch {
-        return Text("Failed to create preview: \(error.localizedDescription)")
     }
 }

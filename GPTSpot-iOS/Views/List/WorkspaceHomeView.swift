@@ -85,14 +85,7 @@ struct WorkspaceHomeView: View {
 }
 
 #Preview {
-    do {
-        let previewer = try Previewer()
-
-        return WorkspaceHomeView()
-            .modelContainer(previewer.container)
-            .environment(previewer.chatViewService)
-            .environment(WorkspaceHomeService(modelContext: previewer.container.mainContext))
-    } catch {
-        return Text("Failed to create preview: \(error.localizedDescription)")
+    Previewer {
+        WorkspaceHomeView()
     }
 }

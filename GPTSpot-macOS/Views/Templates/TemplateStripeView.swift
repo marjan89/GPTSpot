@@ -108,17 +108,10 @@ struct TemplateStripeView: View {
 }
 
 #Preview {
-
-    do {
-        let previewer = try Previewer()
-
-        return TemplateStripeView(
+    Previewer {
+        TemplateStripeView(
             searchQuery: "",
-            onTemplateSelected: { _ in
-            }
+            onTemplateSelected: { _ in }
         )
-        .modelContainer(previewer.container)
-    } catch {
-        return Text("Failed to create preview: \(error.localizedDescription)")
     }
 }

@@ -146,18 +146,12 @@ struct ChatListView: View {
 }
 
 #Preview {
+    @State var prompt: String = ""
 
-    do {
-        let previewer = try Previewer()
-        @State var prompt: String = ""
-
-        return ChatListView(
+    return Previewer {
+        ChatListView(
             workspace: 1,
             prompt: $prompt
         )
-        .environment(previewer.chatViewService)
-        .modelContainer(previewer.container)
-    } catch {
-        return Text("Failed to create preview: \(error.localizedDescription)")
     }
 }

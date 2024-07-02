@@ -34,12 +34,7 @@ struct StatsView: View {
 }
 
 #Preview {
-    do {
-        let previewer = try Previewer()
-
-        return StatsView(workspace: 1)
-            .modelContainer(previewer.container)
-    } catch {
-        return Text("Failed to create preview: \(error.localizedDescription)")
+    Previewer {
+        StatsView(workspace: 1)
     }
 }

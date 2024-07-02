@@ -64,17 +64,10 @@ struct TemplateList: View {
 }
 
 #Preview {
-    do {
-        let previewer = try Previewer()
-
-        return TemplateList(
-            onTemplateSelected: { _ in
-            },
-            onTemplateSwipeDelete: { _ in
-            }
+    Previewer {
+        TemplateList(
+            onTemplateSelected: { _ in },
+            onTemplateSwipeDelete: { _ in }
         )
-        .modelContainer(previewer.container)
-    } catch {
-        return Text("Failed to create preview: \(error.localizedDescription)")
     }
 }

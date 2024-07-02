@@ -81,6 +81,8 @@
 		02BA44FB2C336C9000473575 /* MarkdownCopyActionStyleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA44F92C3367FD00473575 /* MarkdownCopyActionStyleModifier.swift */; };
 		02BA45092C3374A700473575 /* WorkspaceListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA45042C33742700473575 /* WorkspaceListItemView.swift */; };
 		02BA450A2C3374AB00473575 /* WorkspaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA45052C33742700473575 /* WorkspaceListView.swift */; };
+		02BA450D2C3378EE00473575 /* MockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA450C2C3378EE00473575 /* MockFactory.swift */; };
+		02BA450F2C3381E000473575 /* InMemoryDataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA450E2C3381E000473575 /* InMemoryDataModule.swift */; };
 		02BD90B22BA8E5480047115E /* SpotSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BD90B12BA8E5480047115E /* SpotSettings.swift */; };
 		02E04C432BB1D9F50074A95E /* GlobalHotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */; };
 		02F8690C2C0A9CEF00961513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025AE6792B8BA520001489A3 /* Assets.xcassets */; };
@@ -212,6 +214,8 @@
 		02BA44F92C3367FD00473575 /* MarkdownCopyActionStyleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MarkdownCopyActionStyleModifier.swift; path = "GPTSpot-macOs/Modifiers/MarkdownCopyActionStyleModifier.swift"; sourceTree = SOURCE_ROOT; };
 		02BA45042C33742700473575 /* WorkspaceListItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorkspaceListItemView.swift; path = "GPTSpot-macOS/Views/Home/Workspace/WorkspaceListItemView.swift"; sourceTree = SOURCE_ROOT; };
 		02BA45052C33742700473575 /* WorkspaceListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorkspaceListView.swift; path = "GPTSpot-macOS/Views/Home/Workspace/WorkspaceListView.swift"; sourceTree = SOURCE_ROOT; };
+		02BA450C2C3378EE00473575 /* MockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFactory.swift; sourceTree = "<group>"; };
+		02BA450E2C3381E000473575 /* InMemoryDataModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryDataModule.swift; sourceTree = "<group>"; };
 		02BD90B12BA8E5480047115E /* SpotSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotSettings.swift; sourceTree = "<group>"; };
 		02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotKeyManager.swift; sourceTree = "<group>"; };
 		02FD0B712BE642660042B60C /* WorkspaceListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListItemView.swift; sourceTree = "<group>"; };
@@ -290,6 +294,7 @@
 				0228653A2C2E269100F92B05 /* Module.swift */,
 				0228653C2C2E26A600F92B05 /* DataModule.swift */,
 				0228653E2C2E26AF00F92B05 /* CommonModule.swift */,
+				02BA450E2C3381E000473575 /* InMemoryDataModule.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -423,17 +428,18 @@
 				025C7E1B2B8D779B0060F343 /* Models */,
 				0230ED172BBE178F00C067E6 /* Modifiers */,
 				025C7E1C2B8D77AF0060F343 /* Services */,
-				026B92B22BE5121400BCD0A7 /* Views */,
+				026B92B22BE5121400BCD0A7 /* Preview */,
 			);
 			path = "GPTSpot-Common";
 			sourceTree = "<group>";
 		};
-		026B92B22BE5121400BCD0A7 /* Views */ = {
+		026B92B22BE5121400BCD0A7 /* Preview */ = {
 			isa = PBXGroup;
 			children = (
 				02A17A212BA60CD000C26A67 /* Previewer.swift */,
+				02BA450C2C3378EE00473575 /* MockFactory.swift */,
 			);
-			path = Views;
+			path = Preview;
 			sourceTree = "<group>";
 		};
 		026B92E82BE51DA600BCD0A7 /* Extensions */ = {
@@ -891,6 +897,7 @@
 				026B92D22BE5138B00BCD0A7 /* OpenAIService.swift in Sources */,
 				026B92DB2BE5176200BCD0A7 /* Previewer.swift in Sources */,
 				0288113C2C1531490026ED01 /* ChatRequest+Factory.swift in Sources */,
+				02BA450F2C3381E000473575 /* InMemoryDataModule.swift in Sources */,
 				02FD0B762BE6508E0042B60C /* RoundedCornerModifier.swift in Sources */,
 				02FD0B8A2BE821AB0042B60C /* Array.swift in Sources */,
 				024B1F682C1B469E00BC6007 /* Container.swift in Sources */,
@@ -908,6 +915,7 @@
 				026B92CC2BE5138100BCD0A7 /* ChatRequest.swift in Sources */,
 				0228653F2C2E26AF00F92B05 /* CommonModule.swift in Sources */,
 				02A5ED342C132A3D0037E96D /* WorkspaceConfig.swift in Sources */,
+				02BA450D2C3378EE00473575 /* MockFactory.swift in Sources */,
 				026B92CD2BE5138100BCD0A7 /* ChatMessage.swift in Sources */,
 				026B92CE2BE5138100BCD0A7 /* Chunk.swift in Sources */,
 			);
