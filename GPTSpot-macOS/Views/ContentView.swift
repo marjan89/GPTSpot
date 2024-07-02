@@ -11,7 +11,7 @@ import GPTSpot_Common
 struct ContentView: View {
 
     var body: some View {
-        ChatView()
+        HomeView()
     }
 }
 

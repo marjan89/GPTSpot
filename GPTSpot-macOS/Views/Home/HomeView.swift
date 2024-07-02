@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 import GPTSpot_Common
 
-struct ChatView: View {
+struct HomeView: View {
 
     @Environment(\.chatViewService) private var chatViewService: ChatViewService
     @Environment(\.chatMessageService) private var chatMessageService: ChatMessageService
@@ -276,7 +276,7 @@ struct ChatView: View {
 
 #Preview {
     Previewer {
-        ChatView()
+        HomeView()
             .frame(width: 900, height: 600)
     }
 }

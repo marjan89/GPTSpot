@@ -20,7 +20,7 @@
 		025AE6762B8BA51F001489A3 /* GPTSpotmacOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6752B8BA51F001489A3 /* GPTSpotmacOSApp.swift */; };
 		025AE6782B8BA51F001489A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6772B8BA51F001489A3 /* ContentView.swift */; };
 		025AE67D2B8BA521001489A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025AE67C2B8BA521001489A3 /* Preview Assets.xcassets */; };
-		025AE6AC2B8BEEB4001489A3 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6AB2B8BEEB4001489A3 /* ChatView.swift */; };
+		025AE6AC2B8BEEB4001489A3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE6AB2B8BEEB4001489A3 /* HomeView.swift */; };
 		026B926C2BE4FE1800BCD0A7 /* GPTSpotiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026B926B2BE4FE1800BCD0A7 /* GPTSpotiOSApp.swift */; };
 		026B926E2BE4FE1800BCD0A7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026B926D2BE4FE1800BCD0A7 /* ContentView.swift */; };
 		026B92702BE4FE1800BCD0A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 026B926F2BE4FE1800BCD0A7 /* Assets.xcassets */; };
@@ -81,8 +81,8 @@
 		02BA450A2C3374AB00473575 /* WorkspaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA45052C33742700473575 /* WorkspaceListView.swift */; };
 		02BA450D2C3378EE00473575 /* MockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA450C2C3378EE00473575 /* MockFactory.swift */; };
 		02BA450F2C3381E000473575 /* InMemoryDataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BA450E2C3381E000473575 /* InMemoryDataModule.swift */; };
-		02BA45172C338B1800473575 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 02BA45162C338B1800473575 /* MarkdownUI */; };
-		02BA45192C338B1F00473575 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 02BA45182C338B1F00473575 /* MarkdownUI */; };
+		02BA451C2C338BC100473575 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 02BA451B2C338BC100473575 /* MarkdownUI */; };
+		02BA451E2C338BCA00473575 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 02BA451D2C338BCA00473575 /* MarkdownUI */; };
 		02BD90B22BA8E5480047115E /* SpotSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BD90B12BA8E5480047115E /* SpotSettings.swift */; };
 		02E04C432BB1D9F50074A95E /* GlobalHotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E04C422BB1D9F50074A95E /* GlobalHotKeyManager.swift */; };
 		02F8690C2C0A9CEF00961513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025AE6792B8BA520001489A3 /* Assets.xcassets */; };
@@ -164,7 +164,7 @@
 		025AE67E2B8BA521001489A3 /* GPTSpot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GPTSpot.entitlements; sourceTree = "<group>"; };
 		025AE6A52B8BEE51001489A3 /* OpenAIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
 		025AE6A72B8BEE51001489A3 /* ChatRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRequest.swift; sourceTree = "<group>"; };
-		025AE6AB2B8BEEB4001489A3 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		025AE6AB2B8BEEB4001489A3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		025AE6AD2B8BEEC3001489A3 /* ChatViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewService.swift; sourceTree = "<group>"; };
 		025C7E202B8D79180060F343 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		025C7E222B8D87820060F343 /* ChatListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListItemView.swift; sourceTree = "<group>"; };
@@ -234,7 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				026B92A02BE4FED400BCD0A7 /* GPTSpot_Common.framework in Frameworks */,
-				02BA45172C338B1800473575 /* MarkdownUI in Frameworks */,
+				02BA451C2C338BC100473575 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,7 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				026B92A82BE4FFAF00BCD0A7 /* GPTSpot_Common.framework in Frameworks */,
-				02BA45192C338B1F00473575 /* MarkdownUI in Frameworks */,
+				02BA451E2C338BCA00473575 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,8 +374,8 @@
 			isa = PBXGroup;
 			children = (
 				025AE6772B8BA51F001489A3 /* ContentView.swift */,
-				025C7E1E2B8D77D00060F343 /* Home */,
 				02BA45002C33728700473575 /* Components */,
+				025C7E1E2B8D77D00060F343 /* Home */,
 				0230ED1A2BBF6A6200C067E6 /* KeyCapture */,
 				028D48DB2BAA3C8E005E2FF7 /* Settings */,
 				0288BF602BB2D6C20047CA09 /* Templates */,
@@ -386,10 +386,11 @@
 		025C7E1E2B8D77D00060F343 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				025AE6AB2B8BEEB4001489A3 /* HomeView.swift */,
+				026B92B02BE501CB00BCD0A7 /* PromptEditor.swift */,
 				02BA45082C33743C00473575 /* Chat */,
 				02BA45032C33740000473575 /* Info */,
 				02BA45012C3373C900473575 /* Workspace */,
-				026B92B02BE501CB00BCD0A7 /* PromptEditor.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -557,7 +558,6 @@
 			children = (
 				025C7E222B8D87820060F343 /* ChatListItemView.swift */,
 				029673EA2BBD45750054062F /* ChatListView.swift */,
-				025AE6AB2B8BEEB4001489A3 /* ChatView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -660,7 +660,7 @@
 			);
 			name = "GPTSpot-macOS";
 			packageProductDependencies = (
-				02BA45162C338B1800473575 /* MarkdownUI */,
+				02BA451B2C338BC100473575 /* MarkdownUI */,
 			);
 			productName = GPTSpot;
 			productReference = 025AE6722B8BA51F001489A3 /* GPTSpot-macOS.app */;
@@ -683,7 +683,7 @@
 			);
 			name = "GPTSpot-iOS";
 			packageProductDependencies = (
-				02BA45182C338B1F00473575 /* MarkdownUI */,
+				02BA451D2C338BCA00473575 /* MarkdownUI */,
 			);
 			productName = "GPTSpot-iOS";
 			productReference = 026B92692BE4FE1800BCD0A7 /* GPTSpot-iOS.app */;
@@ -741,7 +741,7 @@
 			mainGroup = 025AE6692B8BA51F001489A3;
 			packageReferences = (
 				029BABD92BE5AB5C008F8FB0 /* XCRemoteSwiftPackageReference "SwiftLint" */,
-				02BA45152C338B1800473575 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				02BA451A2C338BC100473575 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 			);
 			productRefGroup = 025AE6732B8BA51F001489A3 /* Products */;
 			projectDirPath = "";
@@ -854,7 +854,7 @@
 				023B78762BEADD8A009D90B8 /* WindowModifier.swift in Sources */,
 				0237CABE2C176C2B00754541 /* AppDelegate.swift in Sources */,
 				025AE6762B8BA51F001489A3 /* GPTSpotmacOSApp.swift in Sources */,
-				025AE6AC2B8BEEB4001489A3 /* ChatView.swift in Sources */,
+				025AE6AC2B8BEEB4001489A3 /* HomeView.swift in Sources */,
 				026B92E42BE51D6C00BCD0A7 /* KeyRecordingView.swift in Sources */,
 				029BABD02BE5694D008F8FB0 /* TemplateItemView.swift in Sources */,
 				026B92E52BE51D6C00BCD0A7 /* KeySequence.swift in Sources */,
@@ -1338,7 +1338,7 @@
 				minimumVersion = 0.54.0;
 			};
 		};
-		02BA45152C338B1800473575 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+		02BA451A2C338BC100473575 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
 			requirement = {
@@ -1354,14 +1354,14 @@
 			package = 029BABD92BE5AB5C008F8FB0 /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintPlugin";
 		};
-		02BA45162C338B1800473575 /* MarkdownUI */ = {
+		02BA451B2C338BC100473575 /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 02BA45152C338B1800473575 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			package = 02BA451A2C338BC100473575 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
 			productName = MarkdownUI;
 		};
-		02BA45182C338B1F00473575 /* MarkdownUI */ = {
+		02BA451D2C338BCA00473575 /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 02BA45152C338B1800473575 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			package = 02BA451A2C338BC100473575 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
 			productName = MarkdownUI;
 		};
 /* End XCSwiftPackageProductDependency section */
