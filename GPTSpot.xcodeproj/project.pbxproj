@@ -584,14 +584,14 @@
 			children = (
 				026B926D2BE4FE1800BCD0A7 /* ContentView.swift */,
 				02FD0B6F2BE642240042B60C /* Chat */,
-				02FD0B752BE64DFA0042B60C /* List */,
+				02FD0B752BE64DFA0042B60C /* Workspace */,
 				02BA44FE2C33723E00473575 /* Settings */,
 				02FD0B8E2BE927C30042B60C /* Templates */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		02FD0B752BE64DFA0042B60C /* List */ = {
+		02FD0B752BE64DFA0042B60C /* Workspace */ = {
 			isa = PBXGroup;
 			children = (
 				02A5ED2F2C13253C0037E96D /* WorkspaceHomePath.swift */,
@@ -600,7 +600,7 @@
 				02FD0B712BE642660042B60C /* WorkspaceListItemView.swift */,
 				02A5ED2D2C1324E60037E96D /* WorkspaceListView.swift */,
 			);
-			path = List;
+			path = Workspace;
 			sourceTree = "<group>";
 		};
 		02FD0B882BE821650042B60C /* Extensions */ = {
