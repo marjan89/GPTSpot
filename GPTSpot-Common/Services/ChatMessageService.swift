@@ -32,6 +32,7 @@ public class ChatMessageService {
         } else {
             insertChatMessage(for: content, origin: origin, id: id, workspace: workspace)
         }
+        try? modelContext.save()
     }
 
     public func insertChatMessage(for content: String, origin: Role, id: String = UUID().uuidString, workspace: Int) {
@@ -43,6 +44,7 @@ public class ChatMessageService {
             workspace: workspace
         )
         modelContext.insert(chatMessage)
+        try? modelContext.save()
     }
 
     public func deleteChatMessage(_ chatMessage: ChatMessage) {
@@ -51,6 +53,7 @@ public class ChatMessageService {
             model: ChatMessage.self,
             where: #Predicate<ChatMessage> { message in message.id == id }
         )
+        try? modelContext.save()
     }
 
     public func discardHistory(for workspace: Int) {
@@ -60,6 +63,7 @@ public class ChatMessageService {
                 message.workspace == workspace
             }
         )
+        try? modelContext.save()
     }
 
     public func getLastChatMessageContent(for workspace: Int) -> String {
